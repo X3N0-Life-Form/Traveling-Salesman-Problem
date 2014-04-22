@@ -28,7 +28,11 @@ private:
     DistanceType distanceType;
     
 public:
+    // Constructors //
     Problem(std::string name, int dimension, DistanceType distanceType);
+    // Getters / Setters //
+    int getDimension();
+    std::string getName();
 };
 
 #endif	/* PROBLEM_H */

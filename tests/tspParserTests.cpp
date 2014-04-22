@@ -28,7 +28,7 @@ void tspParserTests::tearDown() {
 
 void tspParserTests::test_parseProblem() {
     Problem p = parseProblem(path_a280);
-    CPPUNIT_ASSERT_EQUAL("a280", p.getName());
+    CPPUNIT_ASSERT_EQUAL(std::string("a280"), p.getName());
     CPPUNIT_ASSERT_EQUAL(280, p.getDimension());
     //TODO: test city nodes as well
 }

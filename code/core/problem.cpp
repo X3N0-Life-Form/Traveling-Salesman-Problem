@@ -17,3 +17,12 @@ Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
             break;
     }
 }
+
+int Problem::getDimension() {
+    return dimension;
+}
+
+std::string Problem::getName() {
+    return name;
+}
+
