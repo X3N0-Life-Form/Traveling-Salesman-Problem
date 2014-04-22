@@ -23,8 +23,8 @@ private:
     std::string comment;
     int dimension;
     std::set<City> cities;
-    int distances_i[1][1];
-    float distances_f[1][1];
+    int** distances_i;
+    float** distances_f;
     DistanceType distanceType;
     
 public:
@@ -33,6 +33,10 @@ public:
     // Getters / Setters //
     int getDimension();
     std::string getName();
+    int** getDistances_i();
+    void setDistances_i(int** d_i);
+    float** getDistances_f();
+    void setDistances_f(float** d_f);
 };
 
 #endif	/* PROBLEM_H */
