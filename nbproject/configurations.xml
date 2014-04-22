@@ -48,6 +48,9 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+        </ccTool>
       </compileType>
       <item path="code/core/city.h" ex="false" tool="3" flavor2="0">
       </item>
