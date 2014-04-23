@@ -1,4 +1,4 @@
-#include "problem.h"
+#include "Problem.h"
 
 Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     dimension(dimension),

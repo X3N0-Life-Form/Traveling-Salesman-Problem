@@ -12,7 +12,7 @@
 #include <random>
 #include <iostream>
 
-#include "../core/problem.h"
+#include "../core/Problem.h"
 
 class Neighborhood {
 public:
@@ -25,7 +25,7 @@ private:
     int* path;
 public:
     void generateRandomNeighborhood();
-    
+    Neighborhood& applyRelation(Relation r);
     int* getPath();
 };
 

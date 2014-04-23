@@ -1,4 +1,4 @@
-#include "city.h"
+#include "City.h"
 
 City::City(int id, int x, int y) :
     id(id), x_i(x), y_i(y) {

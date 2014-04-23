@@ -10,7 +10,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <string>
-#include "../code/core/problem.h"
+#include "../code/core/Problem.h"
 #include "../code/parse/tspParser.h"
 
 std::string path_a280 = "data/a280.tsp";

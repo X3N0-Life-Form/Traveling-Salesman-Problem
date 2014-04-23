@@ -10,7 +10,7 @@
 
 #include <string>
 #include <vector>
-#include "city.h"
+#include "City.h"
 
 enum DistanceType {
     INTEGER,

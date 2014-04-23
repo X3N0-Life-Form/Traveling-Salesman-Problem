@@ -5,7 +5,7 @@
  * Created on 23 avril 2014, 15:22
  */
 
-#include "neighborhood.h"
+#include "Neighborhood.h"
 
 Neighborhood::Neighborhood(Problem& problem) :
     problem(problem) {

@@ -8,7 +8,7 @@
 #include <cstdlib>
 
 #include "parse/tspParser.h"
-#include "core/problem.h"
+#include "core/Problem.h"
 
 using namespace std;
 

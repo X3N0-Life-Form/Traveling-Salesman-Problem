@@ -15,8 +15,8 @@
 #include <regex>
 #include <cmath>
 
-#include "../core/problem.h"
-#include "../core/city.h"
+#include "../core/Problem.h"
+#include "../core/City.h"
 
 #define NUMBER "1234567890"
 

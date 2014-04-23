@@ -39,7 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/core/problem.o \
 	${OBJECTDIR}/code/main.o \
 	${OBJECTDIR}/code/neighborhood/neighborhood.o \
-	${OBJECTDIR}/code/parse/tspParser.o
+	${OBJECTDIR}/code/parse/tspParser.o \
+	${OBJECTDIR}/code/relation/Relation.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -97,6 +98,11 @@ ${OBJECTDIR}/code/parse/tspParser.o: code/parse/tspParser.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/parse
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/parse/tspParser.o code/parse/tspParser.cpp
+
+${OBJECTDIR}/code/relation/Relation.o: code/relation/Relation.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Relation.o code/relation/Relation.cpp
 
 # Subprojects
 .build-subprojects:
@@ -199,6 +205,19 @@ ${OBJECTDIR}/code/parse/tspParser_nomain.o: ${OBJECTDIR}/code/parse/tspParser.o 
 	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/parse/tspParser_nomain.o code/parse/tspParser.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/parse/tspParser.o ${OBJECTDIR}/code/parse/tspParser_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/relation/Relation_nomain.o: ${OBJECTDIR}/code/relation/Relation.o code/relation/Relation.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/relation/Relation.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Relation_nomain.o code/relation/Relation.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/relation/Relation.o ${OBJECTDIR}/code/relation/Relation_nomain.o;\
 	fi
 
 # Run Test Targets
