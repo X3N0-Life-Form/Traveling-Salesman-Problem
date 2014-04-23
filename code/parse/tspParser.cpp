@@ -9,7 +9,7 @@ Problem parseProblem(string filePath) {
     ParsingMode parsingMode = DISCOVER;
     int** d_i;
     float** d_f;
-    set<City> cities;
+    vector<City*> cities;
     
     ifstream stream(filePath);
     while (stream.is_open() && !stream.eof()) {
@@ -18,7 +18,7 @@ Problem parseProblem(string filePath) {
         string line_str(line);
         if (line_str.find("NAME") != string::npos) {
             
-            string::size_type pos = line_str.find_last_of(':'); //TODO: macro this?
+            string::size_type pos = line_str.find_last_of(':');
             line_str = line_str.substr(pos + 1);
             name = trim(line_str);
             
@@ -38,7 +38,7 @@ Problem parseProblem(string filePath) {
                             d_f[i] = new float[dimension];
                         }
                         type = FLOAT;
-                        //cities.insert(parseFloat(line_str));
+                        cities.push_back(parseFloat(line_str));
                     } else {
                         parsingMode = PARSE_INTEGER;
                         d_i = new int*[dimension];
@@ -46,15 +46,16 @@ Problem parseProblem(string filePath) {
                             d_i[i] = new int[dimension];
                         }
                         type = INTEGER;
-                        //cities.insert(parseInt(line_str));
+                        cities.push_back(parseInt(line_str));
                     }
                     break;
                     
                 case PARSE_INTEGER:
-                    //cities.insert(parseInt(line_str));
+                    cout << parseInt(line_str) << "\n";
+                    cities.push_back(parseInt(line_str));
                     break;
                 case PARSE_FLOAT:
-                    //cities.insert(parseFloat(line_str));
+                    cities.push_back(parseFloat(line_str));
                     break;
             }
         }
@@ -72,7 +73,6 @@ Problem parseProblem(string filePath) {
 }
 
 string trim(std::string toTrim) {
-    //cout << "in " << toTrim << "\n";
     string::size_type beginning = toTrim.find_first_not_of(" \t");
     toTrim = toTrim.substr(beginning);
     //TODO: remove trailing whitespaces
@@ -80,19 +80,19 @@ string trim(std::string toTrim) {
     return toTrim;
 }
 //TODO: return a City?
-City& parseInt(std::string line) {
+City* parseInt(std::string line) {
     //find first whitespace
     string::size_type pos = line.find_first_not_of(NUMBER);
     int id = stoi(line.substr(0, pos));
     // find second whitespace
-    line = line.substr(pos);
+    line = trim(line.substr(pos));
     pos = line.find_first_not_of(NUMBER);
-    int x = stoi(line.substr(0, pos));
-    int y = stoi(line.substr(pos));
-    //TODO: create city object
-    //d_i[id]
+    int x = stoi(trim(line.substr(0, pos)));
+    int y = stoi(trim(line.substr(pos)));
+    // create city object
+    return new City(id, x, y);
 }
 
-City& parseFloat(std::string line) {
+City* parseFloat(std::string line) {
     
 }

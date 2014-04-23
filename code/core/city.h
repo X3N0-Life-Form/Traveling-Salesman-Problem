@@ -8,6 +8,8 @@
 #ifndef CITY_H
 #define	CITY_H
 
+#include <ostream>
+
 class City {
 private:
     int id;
@@ -18,7 +20,15 @@ private:
 public:
     City(int id, int x, int y);
     City(int id, float x, float y);
+    // Getters / Setters
+    const int getId();
 };
+
+bool operator<(City& left, City& right);
+bool operator>(City& left, City& right);
+bool operator==(City& left, City& right);
+std::ostream& operator<<(std::ostream& out, City& right);
+std::ostream& operator<<(std::ostream& out, City* right);
 
 #endif	/* CITY_H */
 

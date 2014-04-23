@@ -32,6 +32,7 @@ void tspParserTests::test_parseProblem() {
     CPPUNIT_ASSERT_EQUAL(280, p.getDimension());
     CPPUNIT_ASSERT(p.getDistances_i() != NULL);
     CPPUNIT_ASSERT(p.getDistances_f() == NULL);
-    //TODO: test city nodes as well
+    // test city nodes as well
+    CPPUNIT_ASSERT_EQUAL(std::set<City>::size_type(280), p.getCities().size());
 }
 

@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/code/core/city.o \
 	${OBJECTDIR}/code/core/problem.o \
 	${OBJECTDIR}/code/main.o \
 	${OBJECTDIR}/code/parse/tspParser.o
@@ -69,6 +70,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/code/core/city.o: code/core/city.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/core
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/city.o code/core/city.cpp
 
 ${OBJECTDIR}/code/core/problem.o: code/core/problem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
@@ -106,6 +112,19 @@ ${TESTDIR}/tests/tspParserTests.o: tests/tspParserTests.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/tspParserTests.o tests/tspParserTests.cpp
 
+
+${OBJECTDIR}/code/core/city_nomain.o: ${OBJECTDIR}/code/core/city.o code/core/city.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/core
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/city.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/city_nomain.o code/core/city.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/core/city.o ${OBJECTDIR}/code/core/city_nomain.o;\
+	fi
 
 ${OBJECTDIR}/code/core/problem_nomain.o: ${OBJECTDIR}/code/core/problem.o code/core/problem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core

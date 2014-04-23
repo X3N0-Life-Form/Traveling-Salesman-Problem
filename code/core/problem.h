@@ -9,7 +9,7 @@
 #define	PROBLEM_H
 
 #include <string>
-#include <set>
+#include <vector>
 #include "city.h"
 
 enum DistanceType {
@@ -22,7 +22,7 @@ private:
     std::string name;
     std::string comment;
     int dimension;
-    std::set<City> cities;
+    std::vector<City*> cities;
     int** distances_i;
     float** distances_f;
     DistanceType distanceType;
@@ -37,6 +37,8 @@ public:
     void setDistances_i(int** d_i);
     float** getDistances_f();
     void setDistances_f(float** d_f);
+    std::vector<City*> getCities();
+    void setCities(std::vector<City*>& cities);
 };
 
 #endif	/* PROBLEM_H */

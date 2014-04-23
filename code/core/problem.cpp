@@ -43,3 +43,11 @@ void Problem::setDistances_i(int** d_i) {
     distances_i = d_i;
 }
 
+std::vector<City*> Problem::getCities() {
+    return cities;
+}
+
+void Problem::setCities(std::vector<City*>& cities) {
+    this->cities = cities;
+}
+
