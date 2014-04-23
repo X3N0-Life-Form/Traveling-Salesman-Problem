@@ -12,6 +12,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <regex>
 
 #include "../core/problem.h"
 #include "../core/city.h"
