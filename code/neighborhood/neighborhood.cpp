@@ -16,6 +16,7 @@ Neighborhood::Neighborhood(const Neighborhood& orig) :
     problem(orig.problem) {
 }
 
+
 Neighborhood::~Neighborhood() {
 }
 

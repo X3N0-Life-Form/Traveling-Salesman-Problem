@@ -10,7 +10,8 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(neighborhoodTests);
 
-neighborhoodTests::neighborhoodTests() {
+neighborhoodTests::neighborhoodTests()
+    : p(parseProblem(path_a280)), n(p) {
 }
 
 neighborhoodTests::~neighborhoodTests() {
@@ -22,9 +23,7 @@ void neighborhoodTests::setUp() {
 void neighborhoodTests::tearDown() {
 }
 
-void neighborhoodTests::testMethod() {
-    Problem p = parseProblem(path_a280);
-    Neighborhood n(p);
+void neighborhoodTests::test_generateRandomNeighborhood() {
     n.generateRandomNeighborhood();
     int* path = n.getPath();
     std::vector<int> check(p.getDimension());

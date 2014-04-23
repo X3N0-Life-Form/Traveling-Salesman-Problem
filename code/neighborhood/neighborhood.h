@@ -16,6 +16,7 @@
 
 class Neighborhood {
 public:
+    Neighborhood();
     Neighborhood(Problem& problem);
     Neighborhood(const Neighborhood& orig);
     virtual ~Neighborhood();

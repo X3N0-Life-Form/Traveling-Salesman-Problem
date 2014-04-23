@@ -30,6 +30,7 @@ public:
     // Constructors
     Problem(std::string name, int dimension, DistanceType distanceType);
     Problem(const Problem& orig);
+    Problem();
     // Getters / Setters
     int getDimension();
     std::string getName();

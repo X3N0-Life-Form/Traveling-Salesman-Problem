@@ -12,6 +12,10 @@ Problem::Problem(const Problem& orig) {//TODO
 
 }
 
+Problem::Problem() {
+//TODO
+}
+
 
 int Problem::getDimension() {
     return dimension;
