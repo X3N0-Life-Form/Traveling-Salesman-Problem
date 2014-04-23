@@ -16,7 +16,8 @@
 class tspParserTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(tspParserTests);
 
-    CPPUNIT_TEST(test_parseProblem);
+    CPPUNIT_TEST(test_parseProblem_int);
+    CPPUNIT_TEST(test_parseProblem_float);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -27,7 +28,8 @@ public:
     void tearDown();
 
 private:
-    void test_parseProblem();
+    void test_parseProblem_int();
+    void test_parseProblem_float();
 };
 
 #endif	/* TSPPARSERTESTS_H */

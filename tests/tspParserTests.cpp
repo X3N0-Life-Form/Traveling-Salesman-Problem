@@ -26,7 +26,7 @@ void tspParserTests::setUp() {
 void tspParserTests::tearDown() {
 }
 
-void tspParserTests::test_parseProblem() {
+void tspParserTests::test_parseProblem_int() {
     Problem p = parseProblem(path_a280);
     CPPUNIT_ASSERT_EQUAL(std::string("a280"), p.getName());
     CPPUNIT_ASSERT_EQUAL(280, p.getDimension());
@@ -46,3 +46,8 @@ void tspParserTests::test_parseProblem() {
     }*/
 }
 
+void tspParserTests::test_parseProblem_float() {
+    Problem p = parseProblem(path_berlin52);
+    CPPUNIT_ASSERT_EQUAL(std::string("berlin52"), p.getName());
+    // assuming that no error = we're good
+}
