@@ -31,7 +31,7 @@ Problem parseProblem(string filePath) {
         } else if (line_str.find_first_of(NUMBER) == 0) {
             switch(parsingMode) {
                 case DISCOVER:
-                    if (line_str.find_first_of('.' != string::npos)) {
+                    if (line_str.find_first_of('.') != string::npos) {
                         parsingMode = PARSE_FLOAT;
                         d_f = new float*[dimension];
                         for (int i = 0; i < dimension; i++) {
@@ -61,10 +61,13 @@ Problem parseProblem(string filePath) {
     }
     
     Problem p(name, dimension, type);
-    if (parsingMode == PARSE_INTEGER)
+    if (parsingMode == PARSE_INTEGER) {
+        //TODO: calculate distances
         p.setDistances_i(d_i);
-    else
+    } else {
+        //TODO: ditto
         p.setDistances_f(d_f);
+    }
     return p;
 }
 
