@@ -22,6 +22,10 @@ public:
     City(int id, float x, float y);
     // Getters / Setters
     const int getId();
+    const int getXI();
+    const int getYI();
+    const float getXF();
+    const float getYF();
 };
 
 bool operator<(City& left, City& right);

@@ -14,6 +14,25 @@ const int City::getId() {
     return id;
 }
 
+const float City::getXF() {
+    return x_f;
+}
+
+const float City::getYF() {
+    return y_f;
+}
+
+const int City::getXI() {
+    return x_i;
+}
+
+const int City::getYI() {
+    return y_i;
+}
+
+
+
+
 
 bool operator <(City& left, City& right) {
     return left.getId() < right.getId();

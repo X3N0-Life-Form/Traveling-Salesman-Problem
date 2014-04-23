@@ -30,11 +30,19 @@ void tspParserTests::test_parseProblem() {
     Problem p = parseProblem(path_a280);
     CPPUNIT_ASSERT_EQUAL(std::string("a280"), p.getName());
     CPPUNIT_ASSERT_EQUAL(280, p.getDimension());
-    CPPUNIT_ASSERT(p.getDistances_i() != NULL);
-    CPPUNIT_ASSERT(p.getDistances_f() == NULL);
+    CPPUNIT_ASSERT(p.getDistanceMatrix() != NULL);
     // test city nodes as well
     CPPUNIT_ASSERT_EQUAL(std::set<City>::size_type(280), p.getCities().size());
     CPPUNIT_ASSERT_EQUAL(1, p.getCities()[0]->getId());
+    CPPUNIT_ASSERT_EQUAL(288, p.getCities()[0]->getXI());
+    CPPUNIT_ASSERT_EQUAL(149, p.getCities()[0]->getYI());
     CPPUNIT_ASSERT_EQUAL(280, p.getCities()[279]->getId());
+    /*float** distances = p.getDistanceMatrix();
+    for (int i = 0; i < p.getDimension(); i++) {
+        for (int j = 0; j < p.getDimension(); j++) {
+            std::cout << distances[i][j] << ", ";
+        }
+        std::cout << "\n";
+    }*/
 }
 

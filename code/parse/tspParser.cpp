@@ -7,8 +7,7 @@ Problem parseProblem(string filePath) {
     int dimension = 1;
     DistanceType type = INTEGER;
     ParsingMode parsingMode = DISCOVER;
-    int** d_i;
-    float** d_f;
+    float** distanceMatrix;
     vector<City*> cities;
     //[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*
     regex rex("[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*",
@@ -41,17 +40,17 @@ Problem parseProblem(string filePath) {
                 case DISCOVER:
                     if (line_str.find_first_of('.') != string::npos) {
                         parsingMode = PARSE_FLOAT;
-                        d_f = new float*[dimension];
+                        distanceMatrix = new float*[dimension];
                         for (int i = 0; i < dimension; i++) {
-                            d_f[i] = new float[dimension];
+                            distanceMatrix[i] = new float[dimension];
                         }
                         type = FLOAT;
                         cities.push_back(parseFloat(line_str));
                     } else {
                         parsingMode = PARSE_INTEGER;
-                        d_i = new int*[dimension];
+                        distanceMatrix = new float*[dimension];
                         for (int i = 0; i < dimension; i++) {
-                            d_i[i] = new int[dimension];
+                            distanceMatrix[i] = new float[dimension];
                         }
                         type = INTEGER;
                         cities.push_back(parseInt(line_str));
@@ -70,13 +69,9 @@ Problem parseProblem(string filePath) {
     
     Problem p(name, dimension, type);
     p.setCities(cities);
-    if (parsingMode == PARSE_INTEGER) {
-        //TODO: calculate distances
-        p.setDistances_i(d_i);
-    } else {
-        //TODO: ditto
-        p.setDistances_f(d_f);
-    }
+    calculateDistances(cities, distanceMatrix);
+    p.setDistanceMatrix(distanceMatrix);
+
     return p;
 }
 
@@ -87,7 +82,7 @@ string trim(std::string toTrim) {
     //cout << "then " << toTrim << "\n";
     return toTrim;
 }
-//TODO: return a City?
+
 City* parseInt(std::string line) {
     line = trim(line);
     //find first whitespace
@@ -103,5 +98,28 @@ City* parseInt(std::string line) {
 }
 
 City* parseFloat(std::string line) {
-    
+    line = trim(line);
+    //find first whitespace
+    string::size_type pos = line.find_first_not_of(NUMBER);
+    int id = stoi(line.substr(0, pos));
+    // find second whitespace
+    line = trim(line.substr(pos));
+    pos = line.find_first_not_of(NUMBER);
+    float x = stof(trim(line.substr(0, pos)));
+    float y = stof(trim(line.substr(pos)));
+    // create city object
+    return new City(id, x, y);
 }
+
+void calculateDistances(std::vector<City*>& cities, float** distanceMatrix) {
+    for (int i = 0; i < cities.size(); i++) {
+        for (int j = 0; j < cities.size(); j++) {
+            int dx = cities[i]->getXI() - cities[j]->getXI();
+            int dy = cities[i]->getYI() - cities[j]->getYI();
+            float dij = sqrt(dx*dx + dy*dy);
+            distanceMatrix[i][j] = dij;
+        }
+    }
+}
+
+
