@@ -8,6 +8,11 @@ Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     
 }
 
+Problem::Problem(const Problem& orig) {//TODO
+
+}
+
+
 int Problem::getDimension() {
     return dimension;
 }
@@ -31,5 +36,14 @@ std::vector<City*> Problem::getCities() {
 
 void Problem::setCities(std::vector<City*>& cities) {
     this->cities = cities;
+}
+
+std::vector<int> Problem::getCityIds() {
+    std::vector<int> v;
+    for (City* city : cities) {
+        int id = city->getId();
+        v.push_back(id);
+    }
+    return v;
 }
 

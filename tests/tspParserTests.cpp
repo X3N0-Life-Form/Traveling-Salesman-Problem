@@ -10,10 +10,6 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(tspParserTests);
 
-std::string path_a280 = "data/a280.tsp";
-std::string path_att48 = "data/att48.tsp";
-std::string path_berlin52 = "data/berlin52.tsp";
-
 tspParserTests::tspParserTests() {
 }
 

@@ -27,15 +27,17 @@ private:
     DistanceType distanceType;
     
 public:
-    // Constructors //
+    // Constructors
     Problem(std::string name, int dimension, DistanceType distanceType);
-    // Getters / Setters //
+    Problem(const Problem& orig);
+    // Getters / Setters
     int getDimension();
     std::string getName();
     float** getDistanceMatrix();
     void setDistanceMatrix(float** d_f);
     std::vector<City*> getCities();
     void setCities(std::vector<City*>& cities);
+    std::vector<int> getCityIds();
 };
 
 #endif	/* PROBLEM_H */

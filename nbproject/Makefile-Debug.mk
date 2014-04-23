@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/core/city.o \
 	${OBJECTDIR}/code/core/problem.o \
 	${OBJECTDIR}/code/main.o \
+	${OBJECTDIR}/code/neighborhood/neighborhood.o \
 	${OBJECTDIR}/code/parse/tspParser.o
 
 # Test Directory
@@ -45,6 +46,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1
 
 # C Compiler Flags
@@ -86,6 +88,11 @@ ${OBJECTDIR}/code/main.o: code/main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/main.o code/main.cpp
 
+${OBJECTDIR}/code/neighborhood/neighborhood.o: code/neighborhood/neighborhood.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/neighborhood
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/neighborhood.o code/neighborhood/neighborhood.cpp
+
 ${OBJECTDIR}/code/parse/tspParser.o: code/parse/tspParser.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/parse
 	${RM} "$@.d"
@@ -96,9 +103,25 @@ ${OBJECTDIR}/code/parse/tspParser.o: code/parse/tspParser.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/neighborhoodTests.o ${TESTDIR}/tests/newtestrunner1.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newtestrunner.o ${TESTDIR}/tests/tspParserTests.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
+
+${TESTDIR}/tests/neighborhoodTests.o: tests/neighborhoodTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/neighborhoodTests.o tests/neighborhoodTests.cpp
+
+
+${TESTDIR}/tests/newtestrunner1.o: tests/newtestrunner1.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newtestrunner1.o tests/newtestrunner1.cpp
 
 
 ${TESTDIR}/tests/newtestrunner.o: tests/newtestrunner.cpp 
@@ -152,6 +175,19 @@ ${OBJECTDIR}/code/main_nomain.o: ${OBJECTDIR}/code/main.o code/main.cpp
 	    ${CP} ${OBJECTDIR}/code/main.o ${OBJECTDIR}/code/main_nomain.o;\
 	fi
 
+${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o: ${OBJECTDIR}/code/neighborhood/neighborhood.o code/neighborhood/neighborhood.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/neighborhood
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/neighborhood/neighborhood.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o code/neighborhood/neighborhood.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/neighborhood/neighborhood.o ${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o;\
+	fi
+
 ${OBJECTDIR}/code/parse/tspParser_nomain.o: ${OBJECTDIR}/code/parse/tspParser.o code/parse/tspParser.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/parse
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/parse/tspParser.o`; \
@@ -169,6 +205,7 @@ ${OBJECTDIR}/code/parse/tspParser_nomain.o: ${OBJECTDIR}/code/parse/tspParser.o 
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	else  \
 	    ./${TEST} || true; \
