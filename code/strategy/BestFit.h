@@ -19,7 +19,6 @@ private:
     int counter;
 public:
     virtual bool applyStrategy(int* nuPath, int nuCost);
-    virtual int* getFit();
     virtual void reset();
 };
 

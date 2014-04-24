@@ -16,14 +16,16 @@ public:
     virtual ~Strategy();
     // abstract methods
     virtual bool applyStrategy(int* nuPath, int nuCost) = 0;
-    virtual int* getFit() = 0;
     virtual void reset() = 0;
     // Getters / Setters
     int getInitialCost();
     void setInitialCost(int initialCost);
+    int* getFit();
+    int getFitCost();
     
 protected:
     int* fit;
+    int fitCost;
     int initialCost;
     int dimension;
 };
