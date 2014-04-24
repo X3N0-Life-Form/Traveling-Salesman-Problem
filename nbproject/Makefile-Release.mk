@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Relation.o \
 	${OBJECTDIR}/code/relation/Swap.o \
+	${OBJECTDIR}/code/strategy/BestFit.o \
 	${OBJECTDIR}/code/strategy/FirstFit.o \
 	${OBJECTDIR}/code/strategy/Strategy.o
 
@@ -114,6 +115,11 @@ ${OBJECTDIR}/code/relation/Swap.o: code/relation/Swap.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/relation
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap.o code/relation/Swap.cpp
+
+${OBJECTDIR}/code/strategy/BestFit.o: code/strategy/BestFit.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/BestFit.o code/strategy/BestFit.cpp
 
 ${OBJECTDIR}/code/strategy/FirstFit.o: code/strategy/FirstFit.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
@@ -300,6 +306,19 @@ ${OBJECTDIR}/code/relation/Swap_nomain.o: ${OBJECTDIR}/code/relation/Swap.o code
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap_nomain.o code/relation/Swap.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/relation/Swap.o ${OBJECTDIR}/code/relation/Swap_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/strategy/BestFit_nomain.o: ${OBJECTDIR}/code/strategy/BestFit.o code/strategy/BestFit.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/strategy/BestFit.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/BestFit_nomain.o code/strategy/BestFit.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/strategy/BestFit.o ${OBJECTDIR}/code/strategy/BestFit_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/strategy/FirstFit_nomain.o: ${OBJECTDIR}/code/strategy/FirstFit.o code/strategy/FirstFit.cpp 

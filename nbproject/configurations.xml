@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>code/strategy/BestFit.h</itemPath>
       <itemPath>code/strategy/FirstFit.h</itemPath>
       <itemPath>code/relation/Relation.h</itemPath>
       <itemPath>code/strategy/Strategy.h</itemPath>
@@ -18,6 +19,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>code/strategy/BestFit.cpp</itemPath>
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/strategy/FirstFit.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
@@ -116,6 +118,10 @@
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/strategy/FirstFit.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -279,6 +285,10 @@
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/strategy/FirstFit.cpp" ex="false" tool="1" flavor2="0">
       </item>
