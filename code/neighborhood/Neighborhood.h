@@ -31,6 +31,7 @@ public:
     int* getPath();
     void setPath(int* path);
     int getCost();
+    void setCost(int cost);
     int getDimension();
 };
 

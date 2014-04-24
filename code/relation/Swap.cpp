@@ -35,8 +35,10 @@ Neighborhood& Swap::applyRelation(Neighborhood& n) {
             ARRAY_COPY(nuPath, n.getPath(), dimension);
             SWAP(nuPath, randomIndex1, randomIndex2);
             if (strategy.applyStrategy(nuPath, nuCost)) {
-                
-                break;
+                Neighborhood nuN(n);
+                nuN.setPath(nuPath);
+                nuN.setCost(nuCost);
+                return nuN;
             }
         }
         // remove these two ids

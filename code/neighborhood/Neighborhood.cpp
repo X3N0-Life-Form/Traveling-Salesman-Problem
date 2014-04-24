@@ -97,6 +97,10 @@ int Neighborhood::getCost() {
     return cost;
 }
 
+void Neighborhood::setCost(int cost) {
+    this->cost = cost;
+}
+
 /**
  * 
  * @return This Neighborhood Problem's dimension.

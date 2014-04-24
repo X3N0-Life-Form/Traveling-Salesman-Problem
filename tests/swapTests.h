@@ -13,8 +13,7 @@
 class swapTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(swapTests);
 
-    CPPUNIT_TEST(testMethod);
-    CPPUNIT_TEST(testFailedMethod);
+    CPPUNIT_TEST(test_applyRelation);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -25,7 +24,7 @@ public:
     void tearDown();
 
 private:
-    void testMethod();
+    void test_applyRelation();
     void testFailedMethod();
 };
 
