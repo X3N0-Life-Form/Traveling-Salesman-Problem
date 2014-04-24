@@ -8,6 +8,8 @@
 #ifndef STRATEGY_H
 #define	STRATEGY_H
 
+#include "../neighborhood/Neighborhood.h"
+
 class Strategy {
 public:
     Strategy();
@@ -15,6 +17,8 @@ public:
     virtual ~Strategy();
 private:
 
+public:
+    virtual bool applyStrategy(int* nuPath, int nuCost) = 0;
 };
 
 #endif	/* STRATEGY_H */
