@@ -8,6 +8,7 @@
 #include "Swap.h"
 
 #include <random>
+#include "../utils.h"
 
 Swap::Swap(Problem& problem, Strategy& strategy) : Relation(problem, strategy) {
 }
@@ -20,14 +21,23 @@ Swap::~Swap() {
 
 Neighborhood& Swap::applyRelation(Neighborhood& n) {
     std::vector<int> idList = problem.getCityIds();
+    int dimension = problem.getDimension();
     
-    for (int i = 0; i < problem.getDimension(); i++) {
+    for (int i = 0; i < dimension; i++) {
+        // make your move
         std::random_device rd;
         int randomIndex1 = rd() % idList.size();
         int randomIndex2 = rd() % idList.size();
         int nuCost = n.calculatePotentialCost(randomIndex1, randomIndex2);
+        // is it a good move
         if (nuCost < n.getCost()) {
-            //apply strategy
+            int* nuPath = new int[dimension];
+            ARRAY_COPY(nuPath, n.getPath(), dimension);
+            SWAP(nuPath, randomIndex1, randomIndex2);
+            if (strategy.applyStrategy(nuPath, nuCost)) {
+                
+                break;
+            }
         }
         // remove these two ids
         auto toErase = idList.begin() + randomIndex1;
