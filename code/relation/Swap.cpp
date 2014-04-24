@@ -36,7 +36,7 @@ Neighborhood& Swap::applyRelation(Neighborhood& n) {
             SWAP(nuPath, randomIndex1, randomIndex2);
             if (strategy.applyStrategy(nuPath, nuCost)) {
                 Neighborhood nuN(n);
-                nuN.setPath(nuPath);
+                nuN.setPath(strategy.getFit());
                 nuN.setCost(nuCost);
                 return nuN;
             }

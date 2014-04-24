@@ -7,7 +7,8 @@
 
 #include "FirstFit.h"
 
-FirstFit::FirstFit(int initialCost) : Strategy(initialCost) {
+FirstFit::FirstFit(int initialCost, int dimension) :
+    Strategy(initialCost, dimension) {
 }
 
 FirstFit::FirstFit(const FirstFit& orig) : Strategy(orig) {
@@ -17,8 +18,18 @@ FirstFit::~FirstFit() {
 }
 
 bool FirstFit::applyStrategy(int* nuPath, int nuCost) {
-    if (nuCost < initialCost)
+    if (nuCost < initialCost) {
+        fit = nuPath;
         return true;
-    else
+    } else {
         return false;
+    }
+}
+
+int* FirstFit::getFit() {
+    return fit;
+}
+
+void FirstFit::reset() {
+    fit = NULL;
 }

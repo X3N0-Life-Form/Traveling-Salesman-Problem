@@ -12,14 +12,15 @@
 
 class FirstFit : public Strategy {
 public:
-    FirstFit(int initialCost);
+    FirstFit(int initialCost, int dimension);
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
 private:
-
+    int* fit;
 public:
     virtual bool applyStrategy(int* nuPath, int nuCost);
-
+    virtual int* getFit();
+    virtual void reset();
 };
 
 #endif	/* FIRSTFIT_H */

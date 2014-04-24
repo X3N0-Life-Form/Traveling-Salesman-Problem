@@ -15,7 +15,7 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);
 
-FirstFit f(-1);
+FirstFit f(-1, 280);
 Problem p = parseProblem(path_a280);
 Neighborhood n(p);
 Swap s(p, f);
