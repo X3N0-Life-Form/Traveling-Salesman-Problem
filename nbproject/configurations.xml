@@ -32,6 +32,14 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f6"
+                     displayName="bestFitTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/bestFitTests.cpp</itemPath>
+        <itemPath>tests/bestFitTests.h</itemPath>
+        <itemPath>tests/bestFitTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f5"
                      displayName="firstFitTests"
                      projectFiles="true"
@@ -203,6 +211,26 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f6">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/bestFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
@@ -370,6 +398,26 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f6">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/bestFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">

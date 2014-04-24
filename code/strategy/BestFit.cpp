@@ -21,7 +21,7 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost) {
     counter++;
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
-            delete[](fit);
+            fitCost = nuCost;
             fit = nuPath;
         }
         if (counter >= dimension) {

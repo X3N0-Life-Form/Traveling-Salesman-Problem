@@ -7,6 +7,11 @@
 
 #include "Strategy.h"
 
+/**
+ * 
+ * @param initialCost
+ * @param dimension
+ */
 Strategy::Strategy(int initialCost, int dimension) :
     initialCost(initialCost), dimension(dimension), fitCost(initialCost) {
 }
