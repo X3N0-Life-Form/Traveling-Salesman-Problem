@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>code/strategy/FirstFit.h</itemPath>
       <itemPath>code/relation/Relation.h</itemPath>
       <itemPath>code/strategy/Strategy.h</itemPath>
       <itemPath>code/relation/Swap.h</itemPath>
@@ -18,6 +19,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>code/core/City.cpp</itemPath>
+      <itemPath>code/strategy/FirstFit.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
       <itemPath>code/strategy/Strategy.cpp</itemPath>
       <itemPath>code/relation/Swap.cpp</itemPath>
@@ -28,29 +30,37 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f5"
+                     displayName="firstFitTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/firstFitTests.cpp</itemPath>
+        <itemPath>tests/firstFitTests.h</itemPath>
+        <itemPath>tests/firstFitTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2"
                      displayName="neighborhoodTests"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/neighborhoodTests.cpp</itemPath>
         <itemPath>tests/neighborhoodTests.h</itemPath>
-        <itemPath>tests/newtestrunner1.cpp</itemPath>
+        <itemPath>tests/neighborhoodTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1"
                      displayName="New CppUnit Test"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/newtestrunner.cpp</itemPath>
         <itemPath>tests/tspParserTests.cpp</itemPath>
         <itemPath>tests/tspParserTests.h</itemPath>
+        <itemPath>tests/tspTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f3"
                      displayName="problemTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/newtestrunner2.cpp</itemPath>
         <itemPath>tests/problemTests.cpp</itemPath>
         <itemPath>tests/problemTests.h</itemPath>
+        <itemPath>tests/problemTests_newtestrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4"
                      displayName="swapTests"
@@ -107,6 +117,10 @@
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/strategy/FirstFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/FirstFit.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
@@ -169,19 +183,43 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f5">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f5</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/firstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/neighborhoodTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/neighborhoodTests.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/newtestrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/newtestrunner1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/newtestrunner2.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/neighborhoodTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/problemTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/problemTests_newtestrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -192,6 +230,8 @@
       <item path="tests/tspParserTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/tspParserTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/tspTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -240,6 +280,10 @@
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/strategy/FirstFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/FirstFit.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
@@ -302,19 +346,43 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f5">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f5</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/firstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="tests/neighborhoodTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/neighborhoodTests.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tests/newtestrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/newtestrunner1.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/newtestrunner2.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/neighborhoodTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/problemTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/problemTests_newtestrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -325,6 +393,8 @@
       <item path="tests/tspParserTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/tspParserTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/tspTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

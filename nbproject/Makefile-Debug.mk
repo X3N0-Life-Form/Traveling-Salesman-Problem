@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Relation.o \
 	${OBJECTDIR}/code/relation/Swap.o \
+	${OBJECTDIR}/code/strategy/FirstFit.o \
 	${OBJECTDIR}/code/strategy/Strategy.o
 
 # Test Directory
@@ -49,6 +50,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 
 # Test Files
 TESTFILES= \
+	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f3 \
@@ -113,6 +115,11 @@ ${OBJECTDIR}/code/relation/Swap.o: code/relation/Swap.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap.o code/relation/Swap.cpp
 
+${OBJECTDIR}/code/strategy/FirstFit.o: code/strategy/FirstFit.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/FirstFit.o code/strategy/FirstFit.cpp
+
 ${OBJECTDIR}/code/strategy/Strategy.o: code/strategy/Strategy.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
 	${RM} "$@.d"
@@ -123,15 +130,19 @@ ${OBJECTDIR}/code/strategy/Strategy.o: code/strategy/Strategy.cpp
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
-${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/neighborhoodTests.o ${TESTDIR}/tests/newtestrunner1.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/firstFitTests.o ${TESTDIR}/tests/firstFitTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
+${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/neighborhoodTests.o ${TESTDIR}/tests/neighborhoodTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
-${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/newtestrunner.o ${TESTDIR}/tests/tspParserTests.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/tspParserTests.o ${TESTDIR}/tests/tspTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f1 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
-${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/newtestrunner2.o ${TESTDIR}/tests/problemTests.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/problemTests.o ${TESTDIR}/tests/problemTests_newtestrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
@@ -140,22 +151,28 @@ ${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/swapTests.o ${TESTDIR}/tests/swapTests
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
 
+${TESTDIR}/tests/firstFitTests.o: tests/firstFitTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/firstFitTests.o tests/firstFitTests.cpp
+
+
+${TESTDIR}/tests/firstFitTests_testrunner.o: tests/firstFitTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/firstFitTests_testrunner.o tests/firstFitTests_testrunner.cpp
+
+
 ${TESTDIR}/tests/neighborhoodTests.o: tests/neighborhoodTests.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/neighborhoodTests.o tests/neighborhoodTests.cpp
 
 
-${TESTDIR}/tests/newtestrunner1.o: tests/newtestrunner1.cpp 
+${TESTDIR}/tests/neighborhoodTests_testrunner.o: tests/neighborhoodTests_testrunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newtestrunner1.o tests/newtestrunner1.cpp
-
-
-${TESTDIR}/tests/newtestrunner.o: tests/newtestrunner.cpp 
-	${MKDIR} -p ${TESTDIR}/tests
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newtestrunner.o tests/newtestrunner.cpp
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/neighborhoodTests_testrunner.o tests/neighborhoodTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/tspParserTests.o: tests/tspParserTests.cpp 
@@ -164,16 +181,22 @@ ${TESTDIR}/tests/tspParserTests.o: tests/tspParserTests.cpp
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/tspParserTests.o tests/tspParserTests.cpp
 
 
-${TESTDIR}/tests/newtestrunner2.o: tests/newtestrunner2.cpp 
+${TESTDIR}/tests/tspTests_testrunner.o: tests/tspTests_testrunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/newtestrunner2.o tests/newtestrunner2.cpp
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/tspTests_testrunner.o tests/tspTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/problemTests.o: tests/problemTests.cpp 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/problemTests.o tests/problemTests.cpp
+
+
+${TESTDIR}/tests/problemTests_newtestrunner.o: tests/problemTests_newtestrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/problemTests_newtestrunner.o tests/problemTests_newtestrunner.cpp
 
 
 ${TESTDIR}/tests/swapTests.o: tests/swapTests.cpp 
@@ -279,6 +302,19 @@ ${OBJECTDIR}/code/relation/Swap_nomain.o: ${OBJECTDIR}/code/relation/Swap.o code
 	    ${CP} ${OBJECTDIR}/code/relation/Swap.o ${OBJECTDIR}/code/relation/Swap_nomain.o;\
 	fi
 
+${OBJECTDIR}/code/strategy/FirstFit_nomain.o: ${OBJECTDIR}/code/strategy/FirstFit.o code/strategy/FirstFit.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/strategy/FirstFit.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/FirstFit_nomain.o code/strategy/FirstFit.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/strategy/FirstFit.o ${OBJECTDIR}/code/strategy/FirstFit_nomain.o;\
+	fi
+
 ${OBJECTDIR}/code/strategy/Strategy_nomain.o: ${OBJECTDIR}/code/strategy/Strategy.o code/strategy/Strategy.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/strategy/Strategy.o`; \
@@ -296,6 +332,7 @@ ${OBJECTDIR}/code/strategy/Strategy_nomain.o: ${OBJECTDIR}/code/strategy/Strateg
 .test-conf:
 	@if [ "${TEST}" = "" ]; \
 	then  \
+	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
