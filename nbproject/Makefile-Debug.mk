@@ -35,10 +35,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/code/core/city.o \
-	${OBJECTDIR}/code/core/problem.o \
+	${OBJECTDIR}/code/core/City.o \
+	${OBJECTDIR}/code/core/Problem.o \
 	${OBJECTDIR}/code/main.o \
-	${OBJECTDIR}/code/neighborhood/neighborhood.o \
+	${OBJECTDIR}/code/neighborhood/Neighborhood.o \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Relation.o
 
@@ -74,25 +74,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem: ${OBJECTF
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/code/core/city.o: code/core/city.cpp 
+${OBJECTDIR}/code/core/City.o: code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/city.o code/core/city.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/City.o code/core/City.cpp
 
-${OBJECTDIR}/code/core/problem.o: code/core/problem.cpp 
+${OBJECTDIR}/code/core/Problem.o: code/core/Problem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/problem.o code/core/problem.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/Problem.o code/core/Problem.cpp
 
 ${OBJECTDIR}/code/main.o: code/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/main.o code/main.cpp
 
-${OBJECTDIR}/code/neighborhood/neighborhood.o: code/neighborhood/neighborhood.cpp 
+${OBJECTDIR}/code/neighborhood/Neighborhood.o: code/neighborhood/Neighborhood.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/neighborhood
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/neighborhood.o code/neighborhood/neighborhood.cpp
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/Neighborhood.o code/neighborhood/Neighborhood.cpp
 
 ${OBJECTDIR}/code/parse/tspParser.o: code/parse/tspParser.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/parse
@@ -142,30 +142,30 @@ ${TESTDIR}/tests/tspParserTests.o: tests/tspParserTests.cpp
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/tspParserTests.o tests/tspParserTests.cpp
 
 
-${OBJECTDIR}/code/core/city_nomain.o: ${OBJECTDIR}/code/core/city.o code/core/city.cpp 
+${OBJECTDIR}/code/core/City_nomain.o: ${OBJECTDIR}/code/core/City.o code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/city.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/City.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/city_nomain.o code/core/city.cpp;\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/City_nomain.o code/core/City.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/code/core/city.o ${OBJECTDIR}/code/core/city_nomain.o;\
+	    ${CP} ${OBJECTDIR}/code/core/City.o ${OBJECTDIR}/code/core/City_nomain.o;\
 	fi
 
-${OBJECTDIR}/code/core/problem_nomain.o: ${OBJECTDIR}/code/core/problem.o code/core/problem.cpp 
+${OBJECTDIR}/code/core/Problem_nomain.o: ${OBJECTDIR}/code/core/Problem.o code/core/Problem.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/problem.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/Problem.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/problem_nomain.o code/core/problem.cpp;\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/Problem_nomain.o code/core/Problem.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/code/core/problem.o ${OBJECTDIR}/code/core/problem_nomain.o;\
+	    ${CP} ${OBJECTDIR}/code/core/Problem.o ${OBJECTDIR}/code/core/Problem_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/main_nomain.o: ${OBJECTDIR}/code/main.o code/main.cpp 
@@ -181,17 +181,17 @@ ${OBJECTDIR}/code/main_nomain.o: ${OBJECTDIR}/code/main.o code/main.cpp
 	    ${CP} ${OBJECTDIR}/code/main.o ${OBJECTDIR}/code/main_nomain.o;\
 	fi
 
-${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o: ${OBJECTDIR}/code/neighborhood/neighborhood.o code/neighborhood/neighborhood.cpp 
+${OBJECTDIR}/code/neighborhood/Neighborhood_nomain.o: ${OBJECTDIR}/code/neighborhood/Neighborhood.o code/neighborhood/Neighborhood.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/neighborhood
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/neighborhood/neighborhood.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/neighborhood/Neighborhood.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o code/neighborhood/neighborhood.cpp;\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/neighborhood/Neighborhood_nomain.o code/neighborhood/Neighborhood.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/code/neighborhood/neighborhood.o ${OBJECTDIR}/code/neighborhood/neighborhood_nomain.o;\
+	    ${CP} ${OBJECTDIR}/code/neighborhood/Neighborhood.o ${OBJECTDIR}/code/neighborhood/Neighborhood_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/parse/tspParser_nomain.o: ${OBJECTDIR}/code/parse/tspParser.o code/parse/tspParser.cpp 

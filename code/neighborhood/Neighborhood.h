@@ -16,7 +16,6 @@
 
 class Neighborhood {
 public:
-    Neighborhood();
     Neighborhood(Problem& problem);
     Neighborhood(const Neighborhood& orig);
     virtual ~Neighborhood();
@@ -25,7 +24,6 @@ private:
     int* path;
 public:
     void generateRandomNeighborhood();
-    Neighborhood& applyRelation(Relation r);
     int* getPath();
 };
 

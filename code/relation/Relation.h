@@ -8,11 +8,14 @@
 #ifndef RELATION_H
 #define	RELATION_H
 
+#include "../neighborhood/Neighborhood.h"
+
 class Relation {
 public:
     Relation();
     Relation(const Relation& orig);
     virtual ~Relation();
+    virtual Neighborhood& applyRelation(Neighborhood& n) = 0;
 private:
 
 };
