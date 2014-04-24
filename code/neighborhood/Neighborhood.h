@@ -26,6 +26,7 @@ private:
 public:
     void generateRandomNeighborhood();
     int calculateCost();
+    int calculatePotentialCost(int index1, int index2);
     // Getters / Setters
     int* getPath();
     void setPath(int* path);

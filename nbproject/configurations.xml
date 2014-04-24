@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>code/relation/Relation.h</itemPath>
+      <itemPath>code/strategy/Strategy.h</itemPath>
       <itemPath>code/relation/Swap.h</itemPath>
       <itemPath>code/parse/tspParser.h</itemPath>
     </logicalFolder>
@@ -17,6 +18,7 @@
                    projectFiles="true">
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
+      <itemPath>code/strategy/Strategy.cpp</itemPath>
       <itemPath>code/relation/Swap.cpp</itemPath>
       <itemPath>code/main.cpp</itemPath>
       <itemPath>code/parse/tspParser.cpp</itemPath>
@@ -95,6 +97,10 @@
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -202,6 +208,10 @@
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>

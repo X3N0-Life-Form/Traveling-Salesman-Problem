@@ -51,7 +51,13 @@ std::vector<int> Problem::getCityIds() {
     return v;
 }
 
+/**
+ * Retrieves the distance beween two cities.
+ * @param id1 City id (NOT AN INDEX, ie. 1..number of cities)
+ * @param id2 City id
+ * @return Distance between these two cities
+ */
 int Problem::getDistance(int id1, int id2) {
-    return distanceMatrix[id1][id2];
+    return distanceMatrix[id1 - 1][id2 - 1];
 }
 

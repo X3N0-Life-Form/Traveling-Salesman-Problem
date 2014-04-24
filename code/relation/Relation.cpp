@@ -7,10 +7,12 @@
 
 #include "Relation.h"
 
-Relation::Relation(Problem& problem) : problem(problem) {
+Relation::Relation(Problem& problem, Strategy& strategy) :
+    problem(problem), strategy(strategy) {
 }
 
-Relation::Relation(const Relation& orig) : problem(orig.problem) {
+Relation::Relation(const Relation& orig) :
+    problem(orig.problem), strategy(orig.strategy) {
 }
 
 Relation::~Relation() {

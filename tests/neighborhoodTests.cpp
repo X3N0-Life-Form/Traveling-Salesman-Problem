@@ -41,6 +41,16 @@ void neighborhoodTests::test_calculateCost() {
         path[i - 1] = i;
     }
     n.setPath(path);
-    CPPUNIT_ASSERT_EQUAL(2749, n.calculateCost());
+    CPPUNIT_ASSERT_EQUAL(2786, n.calculateCost());
+}
+
+void neighborhoodTests::test_calculatePotentialCost() {
+    int* path = new int[p.getDimension()];
+    for (int i = 1; i <= p.getDimension(); i++) {
+        path[i - 1] = i;
+    }
+    n.setPath(path);
+    // see above cost
+    CPPUNIT_ASSERT(n.calculatePotentialCost(0,1) != 2786);
 }
 

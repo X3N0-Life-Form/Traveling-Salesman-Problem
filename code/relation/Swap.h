@@ -12,7 +12,7 @@
 
 class Swap : public Relation {
 public:
-    Swap(Problem& problem);
+    Swap(Problem& problem, Strategy& strategy);
     Swap(const Swap& orig);
     virtual ~Swap();
     virtual Neighborhood& applyRelation(Neighborhood& n);

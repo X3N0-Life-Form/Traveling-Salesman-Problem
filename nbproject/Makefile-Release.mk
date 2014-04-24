@@ -41,7 +41,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/neighborhood/Neighborhood.o \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Relation.o \
-	${OBJECTDIR}/code/relation/Swap.o
+	${OBJECTDIR}/code/relation/Swap.o \
+	${OBJECTDIR}/code/strategy/Strategy.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -110,6 +111,11 @@ ${OBJECTDIR}/code/relation/Swap.o: code/relation/Swap.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/relation
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap.o code/relation/Swap.cpp
+
+${OBJECTDIR}/code/strategy/Strategy.o: code/strategy/Strategy.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/Strategy.o code/strategy/Strategy.cpp
 
 # Subprojects
 .build-subprojects:
@@ -254,6 +260,19 @@ ${OBJECTDIR}/code/relation/Swap_nomain.o: ${OBJECTDIR}/code/relation/Swap.o code
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap_nomain.o code/relation/Swap.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/relation/Swap.o ${OBJECTDIR}/code/relation/Swap_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/strategy/Strategy_nomain.o: ${OBJECTDIR}/code/strategy/Strategy.o code/strategy/Strategy.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/strategy
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/strategy/Strategy.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/strategy/Strategy_nomain.o code/strategy/Strategy.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/strategy/Strategy.o ${OBJECTDIR}/code/strategy/Strategy_nomain.o;\
 	fi
 
 # Run Test Targets

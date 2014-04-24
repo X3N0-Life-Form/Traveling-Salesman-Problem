@@ -29,7 +29,7 @@ void problemTests::tearDown() {
 
 void problemTests::test_getDistance() {
     //Note: what's in the matrix
-    CPPUNIT_ASSERT_EQUAL(18, p.getDistance(1, 2));
+    CPPUNIT_ASSERT_EQUAL(20, p.getDistance(1, 2));
 }
 
 void problemTests::testFailedMethod() {
