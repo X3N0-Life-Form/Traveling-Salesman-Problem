@@ -8,6 +8,7 @@
       <itemPath>code/strategy/Strategy.h</itemPath>
       <itemPath>code/relation/Swap.h</itemPath>
       <itemPath>code/parse/tspParser.h</itemPath>
+      <itemPath>code/utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -101,6 +102,8 @@
       <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/utils.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
@@ -212,6 +215,8 @@
       <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/utils.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
         <cTool>
