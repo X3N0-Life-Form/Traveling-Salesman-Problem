@@ -22,9 +22,14 @@ public:
 private:
     Problem& problem;
     int* path;
+    int cost;
 public:
     void generateRandomNeighborhood();
+    int calculateCost();
+    // Getters / Setters
     int* getPath();
+    void setPath(int* path);
+    int getCost();
 };
 
 #endif	/* NEIGHBORHOOD_H */

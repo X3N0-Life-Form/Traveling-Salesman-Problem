@@ -35,7 +35,12 @@ void neighborhoodTests::test_generateRandomNeighborhood() {
     }
 }
 
-void neighborhoodTests::testFailedMethod() {
-    //CPPUNIT_ASSERT(false);
+void neighborhoodTests::test_calculateCost() {
+    int* path = new int[p.getDimension()];
+    for (int i = 1; i <= p.getDimension(); i++) {
+        path[i - 1] = i;
+    }
+    n.setPath(path);
+    CPPUNIT_ASSERT_EQUAL(2749, n.calculateCost());
 }
 

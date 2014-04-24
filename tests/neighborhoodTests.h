@@ -19,7 +19,7 @@ class neighborhoodTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(neighborhoodTests);
 
     CPPUNIT_TEST(test_generateRandomNeighborhood);
-    CPPUNIT_TEST(testFailedMethod);
+    CPPUNIT_TEST(test_calculateCost);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -35,7 +35,7 @@ private:
 
     
     void test_generateRandomNeighborhood();
-    void testFailedMethod();
+    void test_calculateCost();
 };
 
 #endif	/* NEIGHBORHOODTESTS_H */

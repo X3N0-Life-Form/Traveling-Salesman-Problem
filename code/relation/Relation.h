@@ -12,10 +12,12 @@
 
 class Relation {
 public:
-    Relation();
+    Relation(Problem& problem);
     Relation(const Relation& orig);
     virtual ~Relation();
     virtual Neighborhood& applyRelation(Neighborhood& n) = 0;
+protected:
+    Problem& problem;
 private:
 
 };

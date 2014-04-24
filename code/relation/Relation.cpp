@@ -7,10 +7,10 @@
 
 #include "Relation.h"
 
-Relation::Relation() {
+Relation::Relation(Problem& problem) : problem(problem) {
 }
 
-Relation::Relation(const Relation& orig) {
+Relation::Relation(const Relation& orig) : problem(orig.problem) {
 }
 
 Relation::~Relation() {

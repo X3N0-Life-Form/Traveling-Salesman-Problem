@@ -38,7 +38,9 @@ public:
     void setDistanceMatrix(float** d_f);
     std::vector<City*> getCities();
     void setCities(std::vector<City*>& cities);
+    // Advanced Getters
     std::vector<int> getCityIds();
+    int getDistance(int id1, int id2);
 };
 
 #endif	/* PROBLEM_H */

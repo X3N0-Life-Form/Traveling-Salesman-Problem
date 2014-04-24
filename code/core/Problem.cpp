@@ -51,3 +51,7 @@ std::vector<int> Problem::getCityIds() {
     return v;
 }
 
+int Problem::getDistance(int id1, int id2) {
+    return distanceMatrix[id1][id2];
+}
+

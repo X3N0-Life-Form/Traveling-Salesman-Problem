@@ -8,12 +8,12 @@
 #include "Neighborhood.h"
 
 Neighborhood::Neighborhood(Problem& problem) :
-    problem(problem) {
+    problem(problem), cost(0) {
     path = new int[problem.getDimension()];
 }
 
 Neighborhood::Neighborhood(const Neighborhood& orig) : 
-    problem(orig.problem) {
+    problem(orig.problem), cost(orig.cost), path(orig.path) {
 }
 
 
@@ -35,4 +35,20 @@ int* Neighborhood::getPath() {
     return path;
 }
 
+void Neighborhood::setPath(int* path) {
+    this->path = path;
+}
+
+int Neighborhood::getCost() {
+    return cost;
+}
+
+int Neighborhood::calculateCost() {
+    cost = 0;
+    for (int i = 0; i < problem.getDimension() - 1; i++) {
+        cost += problem.getDistance(path[i], path[i+1]);
+    }
+    cost += problem.getDistance(path[0], path[problem.getDimension() - 1]);
+    return cost;
+}
 
