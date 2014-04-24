@@ -12,7 +12,7 @@ Strategy::Strategy(int initialCost, int dimension) :
 }
 
 Strategy::Strategy(const Strategy& orig) :
-    history(orig.history), dimension(orig.dimension) {
+    initialCost(orig.initialCost), dimension(orig.dimension), fit(orig.fit) {
 }
 
 Strategy::~Strategy() {

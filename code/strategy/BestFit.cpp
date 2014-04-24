@@ -20,7 +20,7 @@ BestFit::~BestFit() {
 bool BestFit::applyStrategy(int* nuPath, int nuCost) {
     counter++;
     if (nuCost < initialCost) {
-        history.insert(PAIR(nuPath, nuCost));
+        //history.insert(PAIR(nuPath, nuCost));
         if (counter >= dimension) {
             return true;
         } else {
@@ -32,12 +32,11 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost) {
 }
 
 int* BestFit::getFit() {
-    //TODO
-    return NULL;
+    //return history.find()[0].first;
 }
 
 void BestFit::reset() {
-    history.clear();
+    fit = NULL;
     counter = 0;
 }
 

@@ -15,9 +15,7 @@ public:
     FirstFit(int initialCost, int dimension);
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
-private:
-    int* fit;
-public:
+    // overridden methods
     virtual bool applyStrategy(int* nuPath, int nuCost);
     virtual int* getFit();
     virtual void reset();

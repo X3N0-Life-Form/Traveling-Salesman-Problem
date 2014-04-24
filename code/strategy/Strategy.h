@@ -9,10 +9,6 @@
 #define	STRATEGY_H
 
 #include "../neighborhood/Neighborhood.h"
-#include <set>
-
-#define PAIR std::pair<int*, int>
-
 class Strategy {
 public:
     Strategy(int initialCost, int dimension);
@@ -26,14 +22,8 @@ public:
     int getInitialCost();
     void setInitialCost(int initialCost);
     
-    class HistoryComparator {
-    public:
-        bool operator()(const PAIR& left, const PAIR& right) {
-            return left.second < right.second;
-        }
-    };
 protected:
-    std::set<PAIR, HistoryComparator> history;
+    int* fit;
     int initialCost;
     int dimension;
 };
