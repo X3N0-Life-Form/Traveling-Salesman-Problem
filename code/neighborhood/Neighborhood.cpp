@@ -97,4 +97,20 @@ int Neighborhood::getCost() {
     return cost;
 }
 
+/**
+ * 
+ * @return This Neighborhood Problem's dimension.
+ */
+int Neighborhood::getDimension() {
+    return problem.getDimension();
+}
 
+
+std::ostream& operator<<(std::ostream& out, Neighborhood& n) {
+    out << "Neighborhood: cost=" << n.getCost() << "; path=[";
+    for (int i = 0; i < n.getDimension() - 1; i++) {
+        out << n.getPath()[i] << ", ";
+    }
+    out << n.getPath()[n.getDimension() - 1] << "]";
+    return out;
+}

@@ -31,7 +31,10 @@ public:
     int* getPath();
     void setPath(int* path);
     int getCost();
+    int getDimension();
 };
+
+std::ostream& operator<<(std::ostream& out, Neighborhood& n);
 
 #endif	/* NEIGHBORHOOD_H */
 
