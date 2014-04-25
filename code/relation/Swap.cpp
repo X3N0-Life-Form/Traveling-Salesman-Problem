@@ -31,12 +31,15 @@ Neighborhood& Swap::applyRelation(const Neighborhood& n) {
         int nuCost = n.calculatePotentialCost(randomIndex1, randomIndex2);
         // is it a good move
         if (nuCost < n.getCost()) {
+            std::cout << "\nSwap: "<< randomIndex1 << " & "<< randomIndex2<<"(i="<<i<<")";
             int* nuPath = new int[dimension];
             ARRAY_COPY(nuPath, n.getPath(), dimension);
             SWAP(nuPath, randomIndex1, randomIndex2);
-            std::cout << "\nSwap: "<< randomIndex1 << " & "<< randomIndex2;
+            std::cout<<" - done";
             
-            if (strategy.applyStrategy(nuPath, nuCost)) {
+            std::cout << "\nBefore applyS: "<<nuCost<<"--";//ARRAY_PRINT(nuPath, dimension);
+            if (strategy.applyStrategy(nuPath, nuCost, i)) {
+                std::cout << "\nDone - "<<strategy.getFitCost();
                 Neighborhood nuN(n);
                 nuN.setPath(strategy.getFit());
                 nuN.setCost(strategy.getFitCost());

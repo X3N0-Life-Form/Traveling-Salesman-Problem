@@ -17,7 +17,7 @@ FirstFit::FirstFit(const FirstFit& orig) : Strategy(orig) {
 FirstFit::~FirstFit() {
 }
 
-bool FirstFit::applyStrategy(int* nuPath, int nuCost) {
+bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     if (nuCost < initialCost) {
         fit = nuPath;
         fitCost = nuCost;

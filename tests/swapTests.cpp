@@ -35,6 +35,7 @@ void swapTests::setUp() {
     n.generateRandomNeighborhood();
     n.calculateCost();
     ff.setInitialCost(n.getCost());
+    BestFit bf(n.getCost(), 280);
 }
 
 void swapTests::tearDown() {

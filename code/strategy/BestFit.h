@@ -15,10 +15,8 @@ public:
     BestFit(int initialCost, int dimension);
     BestFit(const BestFit& orig);
     virtual ~BestFit();
-private:
-    int counter;
-public:
-    virtual bool applyStrategy(int* nuPath, int nuCost);
+
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter);
     virtual void reset();
 };
 

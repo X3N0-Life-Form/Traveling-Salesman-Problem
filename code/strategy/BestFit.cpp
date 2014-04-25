@@ -7,8 +7,10 @@
 
 #include "BestFit.h"
 
+#include "../utils.h"
+
 BestFit::BestFit(int initialCost, int dimension) :
-    Strategy(initialCost, dimension), counter(0) {
+    Strategy(initialCost, dimension) {
 }
 
 BestFit::BestFit(const BestFit& orig) : Strategy(orig) {
@@ -17,8 +19,8 @@ BestFit::BestFit(const BestFit& orig) : Strategy(orig) {
 BestFit::~BestFit() {
 }
 
-bool BestFit::applyStrategy(int* nuPath, int nuCost) {
-    counter++;
+bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
+    std::cout << "\napplyStrategy #"<<counter<<": "<<nuCost<<"("<<fitCost<<")";
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
             fitCost = nuCost;
@@ -37,6 +39,5 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost) {
 void BestFit::reset() {
     fit = NULL;
     fitCost = initialCost;
-    counter = 0;
 }
 

@@ -15,7 +15,7 @@ public:
     Strategy(const Strategy& orig);
     virtual ~Strategy();
     // abstract methods
-    virtual bool applyStrategy(int* nuPath, int nuCost) = 0;
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter) = 0;
     virtual void reset() = 0;
     // Getters / Setters
     int getInitialCost();
