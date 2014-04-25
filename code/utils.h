@@ -10,6 +10,7 @@
 
 #define ARRAY_COPY(target, source, length) for (int i = 0; i < length; i++) {target[i] = source[i];}
 #define SWAP(target, i, j) auto c = target[i]; target[i]=target[j]; target[j]=c;
+#define ARRAY_PRINT(target, length) for (int i=0; i<length; i++) {std::cout<<target[i]<<" ";}
 
 #endif	/* UTILS_H */
 

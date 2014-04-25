@@ -19,7 +19,7 @@ Swap::Swap(const Swap& orig) : Relation(orig) {
 Swap::~Swap() {
 }
 
-Neighborhood& Swap::applyRelation(Neighborhood& n) {
+Neighborhood& Swap::applyRelation(const Neighborhood& n) {
     std::vector<int> idList = problem.getCityIds();
     int dimension = problem.getDimension();
     
@@ -34,10 +34,12 @@ Neighborhood& Swap::applyRelation(Neighborhood& n) {
             int* nuPath = new int[dimension];
             ARRAY_COPY(nuPath, n.getPath(), dimension);
             SWAP(nuPath, randomIndex1, randomIndex2);
+            std::cout << "\nSwap: "<< randomIndex1 << " & "<< randomIndex2;
+            
             if (strategy.applyStrategy(nuPath, nuCost)) {
                 Neighborhood nuN(n);
                 nuN.setPath(strategy.getFit());
-                nuN.setCost(nuCost);
+                nuN.setCost(strategy.getFitCost());
                 return nuN;
             }
         }

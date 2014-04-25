@@ -16,7 +16,7 @@ public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);
     virtual ~Relation();
-    virtual Neighborhood& applyRelation(Neighborhood& n) = 0;
+    virtual Neighborhood& applyRelation(const Neighborhood& n) = 0;
 protected:
     Problem& problem;
     Strategy& strategy;

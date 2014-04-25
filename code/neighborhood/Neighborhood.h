@@ -26,13 +26,14 @@ private:
 public:
     void generateRandomNeighborhood();
     int calculateCost();
-    int calculatePotentialCost(int index1, int index2);
+    int calculatePotentialCost(int index1, int index2) const;
     // Getters / Setters
-    int* getPath();
+    int* getPath() const;
     void setPath(int* path);
-    int getCost();
+    int getCost() const;
     void setCost(int cost);
     int getDimension();
+    Problem& getProblem();
 };
 
 std::ostream& operator<<(std::ostream& out, Neighborhood& n);

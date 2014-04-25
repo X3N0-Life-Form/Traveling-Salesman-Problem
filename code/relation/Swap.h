@@ -15,7 +15,7 @@ public:
     Swap(Problem& problem, Strategy& strategy);
     Swap(const Swap& orig);
     virtual ~Swap();
-    virtual Neighborhood& applyRelation(Neighborhood& n);
+    virtual Neighborhood& applyRelation(const Neighborhood& n);
 
 private:
 

@@ -9,16 +9,21 @@
 
 #include "../code/relation/Swap.h"
 #include "../code/strategy/FirstFit.h"
+#include "../code/strategy/BestFit.h"
 #include "../code/core/Problem.h"
 #include "../code/neighborhood/Neighborhood.h"
 #include "tspParserTests.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);
 
-FirstFit f(-1, 280);
+FirstFit ff(-1, 280);
+BestFit bf(-1, 280);
+
 Problem p = parseProblem(path_a280);
 Neighborhood n(p);
-Swap s(p, f);
+
+Swap swap_ff(p, ff);
+Swap swap_bf(p, bf);
 
 swapTests::swapTests() {
 }
@@ -29,15 +34,21 @@ swapTests::~swapTests() {
 void swapTests::setUp() {
     n.generateRandomNeighborhood();
     n.calculateCost();
-    f.setInitialCost(n.getCost());
+    ff.setInitialCost(n.getCost());
 }
 
 void swapTests::tearDown() {
 }
 
-void swapTests::test_applyRelation() {
-    Neighborhood result = s.applyRelation(n);
+void swapTests::test_applyRelation_firstFit() {
+    Neighborhood& result = swap_ff.applyRelation(n);
+    //std::cout <<result.getCost() << "###"<<n.getCost();
     CPPUNIT_ASSERT(result.getCost() < n.getCost());
 }
 
-
+void swapTests::test_applyRelation_bestFit() {
+    Neighborhood& result = swap_bf.applyRelation(n);
+    CPPUNIT_ASSERT(result.getCost() < n.getCost());
+    //Neighborhood r2 = swap_bf.applyRelation(n);
+    //CPPUNIT_ASSERT_EQUAL(result.getCost(), r2.getCost());
+}

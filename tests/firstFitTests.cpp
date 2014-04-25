@@ -9,7 +9,7 @@
 
 #include "../code/strategy/FirstFit.h"
 
-FirstFit f(50, 280);
+FirstFit ff(50, 280);
 
 CPPUNIT_TEST_SUITE_REGISTRATION(firstFitTests);
 
@@ -26,9 +26,9 @@ void firstFitTests::tearDown() {
 }
 
 void firstFitTests::test_applyStrategy_OK() {
-    CPPUNIT_ASSERT(f.applyStrategy(NULL, 40));
+    CPPUNIT_ASSERT(ff.applyStrategy(NULL, 40));
 }
 
 void firstFitTests::test_applyStrategy_KO() {
-    CPPUNIT_ASSERT(!f.applyStrategy(NULL, 60));
+    CPPUNIT_ASSERT(!ff.applyStrategy(NULL, 60));
 }

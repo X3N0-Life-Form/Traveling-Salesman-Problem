@@ -8,6 +8,7 @@
 #include "Neighborhood.h"
 
 #include <iostream>
+#include "../utils.h"
 
 Neighborhood::Neighborhood(Problem& problem) :
     problem(problem), cost(0) {
@@ -15,9 +16,10 @@ Neighborhood::Neighborhood(Problem& problem) :
 }
 
 Neighborhood::Neighborhood(const Neighborhood& orig) : 
-    problem(orig.problem), cost(orig.cost), path(orig.path) {
+    problem(orig.problem), cost(orig.cost), path(NULL) {
+    path = new int[problem.getDimension()];
+    ARRAY_COPY(path, orig.path, problem.getDimension());
 }
-
 
 Neighborhood::~Neighborhood() {
 }
@@ -53,7 +55,7 @@ int Neighborhood::calculateCost() {
  * @param index2 index of a city in the current path
  * @return cost of this Neighborhood if we swapped these two cities.
  */
-int Neighborhood::calculatePotentialCost(int index1, int index2) {
+int Neighborhood::calculatePotentialCost(int index1, int index2) const {
     int nuCost = cost;
     int id1 = path[index1];
     int id2 = path[index2];
@@ -85,15 +87,16 @@ int Neighborhood::calculatePotentialCost(int index1, int index2) {
     return nuCost;
 }
 
-int* Neighborhood::getPath() {
+int* Neighborhood::getPath() const {
     return path;
 }
 
 void Neighborhood::setPath(int* path) {
-    this->path = path;
+    ARRAY_COPY(this->path, path, problem.getDimension());
+    //this->path = path;
 }
 
-int Neighborhood::getCost() {
+int Neighborhood::getCost() const {
     return cost;
 }
 
@@ -107,6 +110,10 @@ void Neighborhood::setCost(int cost) {
  */
 int Neighborhood::getDimension() {
     return problem.getDimension();
+}
+
+Problem& Neighborhood::getProblem() {
+    return problem;
 }
 
 
