@@ -16,7 +16,7 @@ public:
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
     // overridden methods
-    virtual bool applyStrategy(int* nuPath, int nuCost, int counter);
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0);
     virtual void reset();
 };
 

@@ -42,13 +42,22 @@ void Problem::setCities(std::vector<City*>& cities) {
     this->cities = cities;
 }
 
-std::vector<int> Problem::getCityIds() {
+std::vector<int> Problem::getCityIdsAsVector() {
     std::vector<int> v;
     for (City* city : cities) {
         int id = city->getId();
         v.push_back(id);
     }
     return v;
+}
+
+std::list<int> Problem::getCityIdsAsList() {
+    std::list<int> l;
+    for (City* city : cities) {
+        int id = city->getId();
+        l.push_back(id);
+    }
+    return l;
 }
 
 /**

@@ -20,17 +20,17 @@ BestFit::~BestFit() {
 }
 
 bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
-    std::cout << "\napplyStrategy #"<<counter<<": "<<nuCost<<"("<<fitCost<<")";
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
             fitCost = nuCost;
-            fit = nuPath;
+            fit = new int[dimension];
+            ARRAY_COPY(fit, nuPath, dimension);
         }
-        if (counter >= dimension) {
-            return true;
-        } else {
-            return false;
-        }
+        
+    }
+    // are we there yet?
+    if (counter >= dimension) {
+        return true;
     } else {
         return false;
     }

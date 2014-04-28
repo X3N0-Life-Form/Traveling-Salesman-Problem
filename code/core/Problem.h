@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include "City.h"
 
 enum DistanceType {
@@ -39,7 +40,8 @@ public:
     std::vector<City*> getCities();
     void setCities(std::vector<City*>& cities);
     // Advanced Getters
-    std::vector<int> getCityIds();
+    std::vector<int> getCityIdsAsVector();
+    std::list<int> getCityIdsAsList();
     int getDistance(int id1, int id2);
 };
 

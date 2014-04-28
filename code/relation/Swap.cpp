@@ -8,6 +8,7 @@
 #include "Swap.h"
 
 #include <random>
+#include <list>
 #include "../utils.h"
 
 Swap::Swap(Problem& problem, Strategy& strategy) : Relation(problem, strategy) {
@@ -20,37 +21,38 @@ Swap::~Swap() {
 }
 
 Neighborhood& Swap::applyRelation(const Neighborhood& n) {
-    std::vector<int> idList = problem.getCityIds();
+    std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
     
     for (int i = 0; i < dimension; i++) {
         // make your move
         std::random_device rd;
         int randomIndex1 = rd() % idList.size();
-        int randomIndex2 = rd() % idList.size();
-        int nuCost = n.calculatePotentialCost(randomIndex1, randomIndex2);
-        // is it a good move
-        if (nuCost < n.getCost()) {
-            std::cout << "\nSwap: "<< randomIndex1 << " & "<< randomIndex2<<"(i="<<i<<")";
-            int* nuPath = new int[dimension];
-            ARRAY_COPY(nuPath, n.getPath(), dimension);
-            SWAP(nuPath, randomIndex1, randomIndex2);
-            std::cout<<" - done";
-            
-            std::cout << "\nBefore applyS: "<<nuCost<<"--";//ARRAY_PRINT(nuPath, dimension);
-            if (strategy.applyStrategy(nuPath, nuCost, i)) {
-                std::cout << "\nDone - "<<strategy.getFitCost();
-                Neighborhood nuN(n);
-                nuN.setPath(strategy.getFit());
-                nuN.setCost(strategy.getFitCost());
-                return nuN;
+        std::list<int> idList2 = problem.getCityIdsAsList();
+        
+        for (int j = 0; j < dimension; j++) {
+            int randomIndex2 = rd() % idList2.size();
+            int nuCost = n.calculatePotentialCost(randomIndex1, randomIndex2);
+            // is it a good move
+            if (nuCost < n.getCost()) {
+                int* nuPath = new int[dimension];
+                ARRAY_COPY(nuPath, n.getPath(), dimension);
+                SWAP(nuPath, randomIndex1, randomIndex2);
+
+                if (strategy.applyStrategy(nuPath, nuCost, i)) {
+                    Neighborhood nuN(n);
+                    nuN.setPath(strategy.getFit());
+                    nuN.setCost(strategy.getFitCost());
+                    return nuN;
+                }
+                // delete nuPath
+                delete[](nuPath);
             }
+            // remove second id
+            idList2.remove(randomIndex2);
         }
-        // remove these two ids
-        auto toErase = idList.begin() + randomIndex1;
-        idList.erase(toErase);
-        toErase = idList.begin() + randomIndex2;
-        idList.erase(toErase);
+        // remove first id
+        idList.remove(randomIndex1);
     }
  
     

@@ -25,7 +25,7 @@ Neighborhood::~Neighborhood() {
 }
 
 void Neighborhood::generateRandomNeighborhood() {
-    std::vector<int> v_city = problem.getCityIds();
+    std::vector<int> v_city = problem.getCityIdsAsVector();
     for (int i = 0; i < problem.getDimension(); i++) {
         std::random_device rd;
         int randomIndex = rd() % v_city.size();
