@@ -11,6 +11,9 @@
       <itemPath>code/relation/Swap.h</itemPath>
       <itemPath>code/parse/tspParser.h</itemPath>
       <itemPath>code/utils.h</itemPath>
+      <itemPath>code/core/Neighborhood.h</itemPath>
+      <itemPath>code/core/Problem.h</itemPath>
+      <itemPath>code/core/City.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -27,6 +30,8 @@
       <itemPath>code/relation/Swap.cpp</itemPath>
       <itemPath>code/main.cpp</itemPath>
       <itemPath>code/parse/tspParser.cpp</itemPath>
+      <itemPath>code/core/Neighborhood.cpp</itemPath>
+      <itemPath>code/core/Problem.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -111,9 +116,9 @@
       </item>
       <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="code/neighborhood/Neighborhood.cpp" ex="false" tool="1" flavor2="0">
+      <item path="code/core/Neighborhood.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="code/neighborhood/Neighborhood.h" ex="false" tool="3" flavor2="0">
+      <item path="code/core/Neighborhood.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/parse/tspParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -298,9 +303,9 @@
       </item>
       <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="code/neighborhood/Neighborhood.cpp" ex="false" tool="1" flavor2="0">
+      <item path="code/core/Neighborhood.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="code/neighborhood/Neighborhood.h" ex="false" tool="3" flavor2="0">
+      <item path="code/core/Neighborhood.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/parse/tspParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
