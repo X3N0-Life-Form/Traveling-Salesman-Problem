@@ -54,7 +54,8 @@ Neighborhood& Swap::applyRelation(const Neighborhood& n) {
         // remove first id
         idList.remove(randomIndex1);
     }
- 
-    
+    // nothing better was found
+    Neighborhood oldN(n);
+    return oldN;
 }
 

@@ -21,6 +21,7 @@ bestFitTests::~bestFitTests() {
 }
 
 void bestFitTests::setUp() {
+    bf = BestFit(200, 10);
     path = new int[10];
 }
 
@@ -29,11 +30,13 @@ void bestFitTests::tearDown() {
 }
 
 void bestFitTests::test_applyStrategy_OK() {
-    CPPUNIT_ASSERT(bf.applyStrategy(path, 190));
+    bf.applyStrategy(path, 190);
+    CPPUNIT_ASSERT(bf.getFitCost() == 190);
 }
 
 void bestFitTests::test_applyStrategy_KO_worseCost() {
-    CPPUNIT_ASSERT(!bf.applyStrategy(path, 290));
+    bf.applyStrategy(path, 290);
+    CPPUNIT_ASSERT(bf.getFitCost() == 200);
 }
 
 void bestFitTests::test_applyStrategy_KO_betterCost() {

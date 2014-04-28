@@ -16,8 +16,8 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);
 
-FirstFit ff(-1, 280);
-BestFit bf(-1, 280);
+FirstFit ff(50000, 280);
+BestFit bf(50000, 280);
 
 Problem p = parseProblem(path_a280);
 Neighborhood n(p);
@@ -43,13 +43,21 @@ void swapTests::tearDown() {
 
 void swapTests::test_applyRelation_firstFit() {
     Neighborhood& result = swap_ff.applyRelation(n);
-    //std::cout <<result.getCost() << "###"<<n.getCost();
-    CPPUNIT_ASSERT(result.getCost() < n.getCost());
+    //std::cout <<"\n"<<result.getCost() << " < "<<n.getCost()<<"\n";
+    int result_cost, original_cost;
+    result_cost = result.getCost();
+    original_cost = n.getCost();
+    //CPPUNIT_ASSERT(result.getCost() < n.getCost());
+    CPPUNIT_ASSERT(result_cost < original_cost);
 }
 
 void swapTests::test_applyRelation_bestFit() {
     Neighborhood& result = swap_bf.applyRelation(n);
-    CPPUNIT_ASSERT(result.getCost() < n.getCost());
-    //Neighborhood r2 = swap_bf.applyRelation(n);
-    //CPPUNIT_ASSERT_EQUAL(result.getCost(), r2.getCost());
+    int result_cost, original_cost, r2_cost;
+    result_cost = result.getCost();
+    original_cost = n.getCost();
+    CPPUNIT_ASSERT(result_cost < original_cost);
+    Neighborhood& r2 = swap_bf.applyRelation(n);
+    r2_cost = r2.getCost();
+    CPPUNIT_ASSERT_EQUAL(result_cost, r2_cost);
 }

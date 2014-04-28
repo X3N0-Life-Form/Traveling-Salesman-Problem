@@ -22,14 +22,14 @@ BestFit::~BestFit() {
 bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
+            //PRINTLN(nuCost<<" < "<<fitCost);
             fitCost = nuCost;
             fit = new int[dimension];
             ARRAY_COPY(fit, nuPath, dimension);
         }
-        
     }
     // are we there yet?
-    if (counter >= dimension) {
+    if (counter >= dimension - 1) {
         return true;
     } else {
         return false;
