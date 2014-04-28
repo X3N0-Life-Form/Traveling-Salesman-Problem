@@ -17,6 +17,7 @@ const std::string path_berlin52 = "data/berlin52.tsp";
 #define ARRAY_COPY(target, source, length) for (int i = 0; i < length; i++) {target[i] = source[i];}
 #define SWAP(target, i, j) auto c = target[i]; target[i]=target[j]; target[j]=c;
 #define ARRAY_PRINT(target, length) for (int i=0; i<length; i++) {std::cout<<target[i]<<" ";}
+#define PRINTLN(line) std::cout << "\n" << line;
 
 #endif	/* UTILS_H */
 
