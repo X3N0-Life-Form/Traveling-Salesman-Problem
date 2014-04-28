@@ -8,7 +8,7 @@
 #ifndef RELATION_H
 #define	RELATION_H
 
-#include "../neighborhood/Neighborhood.h"
+#include "../core/Neighborhood.h"
 #include "../strategy/Strategy.h"
 
 class Relation {

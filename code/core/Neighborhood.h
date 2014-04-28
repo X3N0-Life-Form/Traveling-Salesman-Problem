@@ -12,7 +12,7 @@
 #include <random>
 #include <iostream>
 
-#include "../core/Problem.h"
+#include "Problem.h"
 
 class Neighborhood {
 public:

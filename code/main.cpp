@@ -22,8 +22,6 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
-    
-
     Problem p = parseProblem(path_a280);
     Neighborhood n(p);
     n.generateRandomNeighborhood();

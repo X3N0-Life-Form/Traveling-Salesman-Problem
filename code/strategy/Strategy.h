@@ -8,14 +8,14 @@
 #ifndef STRATEGY_H
 #define	STRATEGY_H
 
-#include "../neighborhood/Neighborhood.h"
+#include "../core/Neighborhood.h"
 class Strategy {
 public:
     Strategy(int initialCost, int dimension);
     Strategy(const Strategy& orig);
     virtual ~Strategy();
     // abstract methods
-    virtual bool applyStrategy(int* nuPath, int nuCost, int counter) = 0;
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0) = 0;
     virtual void reset() = 0;
     // Getters / Setters
     int getInitialCost();
