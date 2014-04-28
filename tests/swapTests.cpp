@@ -11,7 +11,7 @@
 #include "../code/strategy/FirstFit.h"
 #include "../code/strategy/BestFit.h"
 #include "../code/core/Problem.h"
-#include "../code/neighborhood/Neighborhood.h"
+#include "../code/core/Neighborhood.h"
 #include "tspParserTests.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);

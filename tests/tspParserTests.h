@@ -12,10 +12,7 @@
 #include <string>
 #include "../code/core/Problem.h"
 #include "../code/parse/tspParser.h"
-
-std::string path_a280 = "data/a280.tsp";
-std::string path_att48 = "data/att48.tsp";
-std::string path_berlin52 = "data/berlin52.tsp";
+#include "../code/utils.h"
 
 class tspParserTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(tspParserTests);
