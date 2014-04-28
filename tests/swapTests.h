@@ -15,6 +15,7 @@ class swapTests : public CPPUNIT_NS::TestFixture {
 
     CPPUNIT_TEST(test_applyRelation_firstFit);
     CPPUNIT_TEST(test_applyRelation_bestFit);
+    CPPUNIT_TEST(test_applyRelation_worstFit);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -27,6 +28,7 @@ public:
 private:
     void test_applyRelation_firstFit();
     void test_applyRelation_bestFit();
+    void test_applyRelation_worstFit();
 };
 
 #endif	/* SWAPTESTS_H */
