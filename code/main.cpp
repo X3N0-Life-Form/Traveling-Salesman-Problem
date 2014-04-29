@@ -12,24 +12,22 @@
 #include "strategy/Strategy.h"
 #include "relation/Swap.h"
 #include "strategy/BestFit.h"
+#include "run/Runner.h"
 #include "utils.h"
 
 using namespace std;
+
+
+void dealWithArgs(int argc, char** argv) {
+    
+}
 
 /*
  * 
  */
 int main(int argc, char** argv) {
 
-    Problem p = parseProblem(path_a280);
-    Neighborhood n(p);
-    n.generateRandomNeighborhood();
-    n.calculateCost();
-
-    BestFit bf(n.getCost(), 280);
-    Swap swap_bf(p, bf);
-    
-    Neighborhood& result = swap_bf.applyRelation(n);
+    dealWithArgs(argc, argv);
     
     return 0;
 }
