@@ -8,14 +8,14 @@ Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     
 }
 
-Problem::Problem(const Problem& orig) {//TODO
-
-}
-
-Problem::Problem() {
-//TODO
-}
-
+Problem::Problem(const Problem& orig) :
+        name(orig.name),
+        comment(orig.comment),
+        dimension(orig.dimension),
+        distanceType(orig.distanceType),
+        cities(orig.cities),
+        distanceMatrix(orig.distanceMatrix)
+{}
 
 int Problem::getDimension() {
     return dimension;
@@ -70,3 +70,7 @@ int Problem::getDistance(int id1, int id2) {
     return distanceMatrix[id1 - 1][id2 - 1];
 }
 
+Problem& Problem::operator =(const Problem& right) {
+    Problem* p = new Problem(right);
+    return *p;
+}

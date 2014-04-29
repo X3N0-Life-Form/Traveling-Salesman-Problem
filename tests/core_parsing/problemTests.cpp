@@ -12,7 +12,7 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(problemTests);
 
-Problem p;
+Problem p = parseProblem(path_a280);
 
 problemTests::problemTests() {
 }
@@ -32,7 +32,4 @@ void problemTests::test_getDistance() {
     CPPUNIT_ASSERT_EQUAL(20, p.getDistance(1, 2));
 }
 
-void problemTests::testFailedMethod() {
-    //CPPUNIT_ASSERT(false);
-}
 

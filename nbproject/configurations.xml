@@ -68,7 +68,7 @@
         <itemPath>tests/core_parsing/neighborhoodTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1"
-                     displayName="New CppUnit Test"
+                     displayName="parserTests"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/core_parsing/tspParserTests.cpp</itemPath>
@@ -100,7 +100,7 @@
         <itemPath>tests/relation/swapTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7"
-                     displayName="WorstFitTests"
+                     displayName="worstFitTests"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/strategy/WorstFitTests.cpp</itemPath>

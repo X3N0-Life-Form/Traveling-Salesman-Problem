@@ -31,7 +31,6 @@ public:
     // Constructors
     Problem(std::string name, int dimension, DistanceType distanceType);
     Problem(const Problem& orig);
-    Problem();
     // Getters / Setters
     int getDimension();
     std::string getName();
@@ -39,6 +38,7 @@ public:
     void setDistanceMatrix(float** d_f);
     std::vector<City*> getCities();
     void setCities(std::vector<City*>& cities);
+    Problem& operator=(const Problem& right);
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();
