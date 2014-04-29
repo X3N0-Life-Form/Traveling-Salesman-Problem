@@ -12,7 +12,7 @@
 
 class BestFit : public Strategy {
 public:
-    BestFit(int initialCost, int dimension);
+    BestFit(int dimension, int initialCost = INT_MAX);
     BestFit(const BestFit& orig);
     virtual ~BestFit();
     // implemented methods

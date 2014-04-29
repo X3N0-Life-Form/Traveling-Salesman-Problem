@@ -67,7 +67,7 @@ void Runner::run() {
 }
 
 std::ostream& Runner::outputResults(std::ostream& out) {
-    out << "\nRun Results:\n";
+    out << "\nRun Results for " << problem.getName() << ":\n";
     for (RunData data : results) {
         out << data << std::endl;
     }

@@ -8,10 +8,13 @@
 #ifndef STRATEGY_H
 #define	STRATEGY_H
 
+#include <climits>
 #include "../core/Neighborhood.h"
+
 class Strategy {
 public:
-    Strategy(int initialCost, int dimension);
+    Strategy();
+    Strategy(int dimension, int initialCost = INT_MAX);
     Strategy(const Strategy& orig);
     virtual ~Strategy();
     // abstract methods

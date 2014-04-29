@@ -13,7 +13,7 @@
 
 class WorstFit : public Strategy {
 public:
-    WorstFit(int initialCost, int dimension);
+    WorstFit(int dimension, int initialCost = INT_MAX);
     WorstFit(const WorstFit& orig);
     virtual ~WorstFit();
     // implemented methods

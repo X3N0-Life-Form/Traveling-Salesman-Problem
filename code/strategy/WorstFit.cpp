@@ -9,7 +9,7 @@
 
 #include "../utils.h"
 
-WorstFit::WorstFit(int initialCost, int dimension) :
+WorstFit::WorstFit(int dimension, int initialCost) :
     Strategy(initialCost, dimension) {
 }
 

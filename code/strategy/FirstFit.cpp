@@ -7,7 +7,7 @@
 
 #include "FirstFit.h"
 
-FirstFit::FirstFit(int initialCost, int dimension) :
+FirstFit::FirstFit(int dimension, int initialCost) :
     Strategy(initialCost, dimension) {
 }
 

@@ -12,7 +12,7 @@
 
 class FirstFit : public Strategy {
 public:
-    FirstFit(int initialCost, int dimension);
+    FirstFit(int dimension, int initialCost = INT_MAX);
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
     // overridden methods
