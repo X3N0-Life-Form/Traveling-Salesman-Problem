@@ -7,7 +7,7 @@
 
 #include "WorstFitTests.h"
 
-#include "../code/strategy/WorstFit.h"
+#include "../../code/strategy/WorstFit.h"
 
 WorstFit wf(200, 1);
 int* path;

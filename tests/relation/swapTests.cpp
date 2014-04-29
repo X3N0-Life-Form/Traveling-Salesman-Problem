@@ -7,13 +7,14 @@
 
 #include "swapTests.h"
 
-#include "../code/relation/Swap.h"
-#include "../code/strategy/FirstFit.h"
-#include "../code/strategy/BestFit.h"
-#include "../code/strategy/WorstFit.h"
-#include "../code/core/Problem.h"
-#include "../code/core/Neighborhood.h"
-#include "tspParserTests.h"
+#include "../../code/relation/Swap.h"
+#include "../../code/strategy/FirstFit.h"
+#include "../../code/strategy/BestFit.h"
+#include "../../code/strategy/WorstFit.h"
+#include "../../code/core/Problem.h"
+#include "../../code/core/Neighborhood.h"
+#include "../../code/utils.h"
+#include "../../code/parse/tspParser.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);
 

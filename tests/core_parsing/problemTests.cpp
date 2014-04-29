@@ -7,7 +7,7 @@
 
 #include "problemTests.h"
 
-#include "../code/core/Problem.h"
+#include "../../code/core/Problem.h"
 #include "tspParserTests.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(problemTests);

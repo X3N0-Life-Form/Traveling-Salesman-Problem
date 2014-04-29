@@ -10,6 +10,7 @@
       <itemPath>code/core/Neighborhood.h</itemPath>
       <itemPath>code/core/Problem.h</itemPath>
       <itemPath>code/relation/Relation.h</itemPath>
+      <itemPath>code/run/Runner.h</itemPath>
       <itemPath>code/strategy/Strategy.h</itemPath>
       <itemPath>code/relation/Swap.h</itemPath>
       <itemPath>code/strategy/WorstFit.h</itemPath>
@@ -29,6 +30,7 @@
       <itemPath>code/core/Neighborhood.cpp</itemPath>
       <itemPath>code/core/Problem.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
+      <itemPath>code/run/Runner.cpp</itemPath>
       <itemPath>code/strategy/Strategy.cpp</itemPath>
       <itemPath>code/relation/Swap.cpp</itemPath>
       <itemPath>code/strategy/WorstFit.cpp</itemPath>
@@ -43,57 +45,57 @@
                      displayName="bestFitTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/bestFitTests.cpp</itemPath>
-        <itemPath>tests/bestFitTests.h</itemPath>
-        <itemPath>tests/bestFitTests_testrunner.cpp</itemPath>
+        <itemPath>tests/strategy/bestFitTests.cpp</itemPath>
+        <itemPath>tests/strategy/bestFitTests.h</itemPath>
+        <itemPath>tests/strategy/bestFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f5"
                      displayName="firstFitTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/firstFitTests.cpp</itemPath>
-        <itemPath>tests/firstFitTests.h</itemPath>
-        <itemPath>tests/firstFitTests_testrunner.cpp</itemPath>
+        <itemPath>tests/strategy/firstFitTests.cpp</itemPath>
+        <itemPath>tests/strategy/firstFitTests.h</itemPath>
+        <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f2"
                      displayName="neighborhoodTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/neighborhoodTests.cpp</itemPath>
-        <itemPath>tests/neighborhoodTests.h</itemPath>
-        <itemPath>tests/neighborhoodTests_testrunner.cpp</itemPath>
+        <itemPath>tests/core_parsing/neighborhoodTests.cpp</itemPath>
+        <itemPath>tests/core_parsing/neighborhoodTests.h</itemPath>
+        <itemPath>tests/core_parsing/neighborhoodTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f1"
                      displayName="New CppUnit Test"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/tspParserTests.cpp</itemPath>
-        <itemPath>tests/tspParserTests.h</itemPath>
-        <itemPath>tests/tspTests_testrunner.cpp</itemPath>
+        <itemPath>tests/core_parsing/tspParserTests.cpp</itemPath>
+        <itemPath>tests/core_parsing/tspParserTests.h</itemPath>
+        <itemPath>tests/core_parsing/tspTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f3"
                      displayName="problemTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/problemTests.cpp</itemPath>
-        <itemPath>tests/problemTests.h</itemPath>
-        <itemPath>tests/problemTests_newtestrunner.cpp</itemPath>
+        <itemPath>tests/core_parsing/problemTests.cpp</itemPath>
+        <itemPath>tests/core_parsing/problemTests.h</itemPath>
+        <itemPath>tests/core_parsing/problemTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f4"
                      displayName="swapTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/swapTests.cpp</itemPath>
+        <itemPath>tests/relation/swapTests.cpp</itemPath>
         <itemPath>tests/swapTests.h</itemPath>
-        <itemPath>tests/swapTests_testrunner.cpp</itemPath>
+        <itemPath>tests/relation/swapTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7"
                      displayName="WorstFitTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/WorstFitTests.cpp</itemPath>
-        <itemPath>tests/WorstFitTests.h</itemPath>
-        <itemPath>tests/WorstFitTests_testrunner.cpp</itemPath>
+        <itemPath>tests/strategy/WorstFitTests.cpp</itemPath>
+        <itemPath>tests/strategy/WorstFitTests.h</itemPath>
+        <itemPath>tests/strategy/WorstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -142,6 +144,10 @@
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/run/Runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/run/Runner.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
@@ -258,53 +264,83 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
-      <item path="tests/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/WorstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/WorstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests_testrunner.cpp"
+      <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/problemTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/core_parsing/neighborhoodTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="tests/problemTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/problemTests_newtestrunner.cpp"
+      <item path="tests/core_parsing/neighborhoodTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/core_parsing/problemTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/swapTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/tspParserTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/tspParserTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/tspTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -353,6 +389,10 @@
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/run/Runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/run/Runner.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
@@ -469,53 +509,83 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
-      <item path="tests/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/WorstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/WorstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/bestFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/firstFitTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/neighborhoodTests_testrunner.cpp"
+      <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/problemTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/core_parsing/neighborhoodTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
-      <item path="tests/problemTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/problemTests_newtestrunner.cpp"
+      <item path="tests/core_parsing/neighborhoodTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/core_parsing/problemTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/WorstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/swapTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/tspParserTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/tspParserTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/tspTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

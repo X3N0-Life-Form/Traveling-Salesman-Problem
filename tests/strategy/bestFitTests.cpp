@@ -7,7 +7,7 @@
 
 #include "bestFitTests.h"
 
-#include "../code/strategy/BestFit.h"
+#include "../../code/strategy/BestFit.h"
 
 BestFit bf(200, 1);
 int* path;

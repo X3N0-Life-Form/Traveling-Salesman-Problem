@@ -9,11 +9,10 @@
 
 #include "parse/tspParser.h"
 #include "core/Problem.h"
-
-#include "../tests/tspParserTests.h"
 #include "strategy/Strategy.h"
 #include "relation/Swap.h"
 #include "strategy/BestFit.h"
+#include "utils.h"
 
 using namespace std;
 

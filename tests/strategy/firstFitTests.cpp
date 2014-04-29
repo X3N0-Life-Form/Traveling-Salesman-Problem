@@ -7,7 +7,7 @@
 
 #include "firstFitTests.h"
 
-#include "../code/strategy/FirstFit.h"
+#include "../../code/strategy/FirstFit.h"
 
 FirstFit ff(50, 280);
 

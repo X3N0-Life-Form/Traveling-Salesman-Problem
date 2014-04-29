@@ -11,7 +11,7 @@
 #include <cppunit/extensions/HelperMacros.h>
 
 #include "tspParserTests.h"
-#include "../code/core/Neighborhood.h"
+#include "../../code/core/Neighborhood.h"
 #include <algorithm>
 #include <iterator>
 

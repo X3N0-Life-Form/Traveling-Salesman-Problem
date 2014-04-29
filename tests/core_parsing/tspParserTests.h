@@ -10,9 +10,9 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <string>
-#include "../code/core/Problem.h"
-#include "../code/parse/tspParser.h"
-#include "../code/utils.h"
+#include "../../code/core/Problem.h"
+#include "../../code/parse/tspParser.h"
+#include "../../code/utils.h"
 
 class tspParserTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(tspParserTests);
