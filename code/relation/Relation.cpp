@@ -18,3 +18,6 @@ Relation::Relation(const Relation& orig) :
 Relation::~Relation() {
 }
 
+void Relation::setStrategy(Strategy& s) {
+    strategy = s;
+}

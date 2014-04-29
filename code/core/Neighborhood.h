@@ -15,15 +15,16 @@
 #include "Problem.h"
 
 class Neighborhood {
-public:
-    Neighborhood(Problem& problem);
-    Neighborhood(const Neighborhood& orig);
-    virtual ~Neighborhood();
 private:
     Problem& problem;
     int* path;
     int cost;
 public:
+    Neighborhood(Problem& problem);
+    Neighborhood(const Neighborhood& orig);
+    virtual ~Neighborhood();
+    Neighborhood& operator=(const Neighborhood& right);
+    // other methods
     void generateRandomNeighborhood();
     int calculateCost();
     int calculatePotentialCost(int index1, int index2) const;
@@ -34,6 +35,7 @@ public:
     void setCost(int cost);
     int getDimension();
     Problem& getProblem();
+    
 };
 
 std::ostream& operator<<(std::ostream& out, Neighborhood& n);

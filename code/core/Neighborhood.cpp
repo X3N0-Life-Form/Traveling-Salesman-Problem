@@ -24,6 +24,13 @@ Neighborhood::Neighborhood(const Neighborhood& orig) :
 Neighborhood::~Neighborhood() {
 }
 
+Neighborhood& Neighborhood::operator =(const Neighborhood& right) {
+    this->problem = right.problem;
+    this->cost = right.cost;
+    this->path = right.path;
+}
+
+
 void Neighborhood::generateRandomNeighborhood() {
     std::vector<int> v_city = problem.getCityIdsAsVector();
     for (int i = 0; i < problem.getDimension(); i++) {

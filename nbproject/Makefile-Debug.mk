@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Relation.o \
 	${OBJECTDIR}/code/relation/Swap.o \
+	${OBJECTDIR}/code/run/RunData.o \
 	${OBJECTDIR}/code/run/Runner.o \
 	${OBJECTDIR}/code/strategy/BestFit.o \
 	${OBJECTDIR}/code/strategy/FirstFit.o \
@@ -119,6 +120,11 @@ ${OBJECTDIR}/code/relation/Swap.o: code/relation/Swap.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/relation
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap.o code/relation/Swap.cpp
+
+${OBJECTDIR}/code/run/RunData.o: code/run/RunData.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/RunData.o code/run/RunData.cpp
 
 ${OBJECTDIR}/code/run/Runner.o: code/run/Runner.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/run
@@ -352,6 +358,19 @@ ${OBJECTDIR}/code/relation/Swap_nomain.o: ${OBJECTDIR}/code/relation/Swap.o code
 	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Swap_nomain.o code/relation/Swap.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/relation/Swap.o ${OBJECTDIR}/code/relation/Swap_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/run/RunData_nomain.o: ${OBJECTDIR}/code/run/RunData.o code/run/RunData.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/run/RunData.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/RunData_nomain.o code/run/RunData.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/run/RunData.o ${OBJECTDIR}/code/run/RunData_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/run/Runner_nomain.o: ${OBJECTDIR}/code/run/Runner.o code/run/Runner.cpp 

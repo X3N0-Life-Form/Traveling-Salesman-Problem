@@ -12,15 +12,16 @@
 #include "../strategy/Strategy.h"
 
 class Relation {
+protected:
+    Problem& problem;
+    Strategy& strategy;
 public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);
     virtual ~Relation();
+    
     virtual Neighborhood& applyRelation(const Neighborhood& n) = 0;
-protected:
-    Problem& problem;
-    Strategy& strategy;
-private:
+    void setStrategy(Strategy& s);
 
 };
 
