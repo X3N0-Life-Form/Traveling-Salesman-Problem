@@ -27,12 +27,14 @@ public:
     Runner(const Runner& orig);
     virtual ~Runner();
     // Getters/Setters/Adders
+    std::list<RunData>& getResults();
     void addStrategy(Strategy* s);
     void addStrategy(Strategy& s);
     void addRelation(Relation* r);
     void addRelation(Relation& r);
     // other methods
     void run();
+    std::ostream& outputResults(std::ostream& out = std::cout);
 };
 
 #endif	/* RUNNER_H */

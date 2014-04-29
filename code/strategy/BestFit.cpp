@@ -41,3 +41,6 @@ void BestFit::reset() {
     fitCost = initialCost;
 }
 
+std::string BestFit::getType() {
+    return std::string("Best Fit");
+}

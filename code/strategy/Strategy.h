@@ -15,8 +15,21 @@ public:
     Strategy(const Strategy& orig);
     virtual ~Strategy();
     // abstract methods
+    /**
+     * 
+     * @param nuPath
+     * @param nuCost
+     * @param counter
+     * @return true the Strategy's requirements are met (ie. not need to
+     * continue looping).
+     */
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0) = 0;
     virtual void reset() = 0;
+    /**
+     * Useful when outputting a Strategy.
+     * @return The name of this type of Strategy (ie. First Fit, Best Fit, ...)
+     */
+    virtual std::string getType() = 0;
     // Getters / Setters
     int getInitialCost();
     void setInitialCost(int initialCost);

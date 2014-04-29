@@ -30,3 +30,7 @@ bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
 void FirstFit::reset() {
     fit = NULL;
 }
+
+std::string FirstFit::getType() {
+    return std::string("First Fit");
+}

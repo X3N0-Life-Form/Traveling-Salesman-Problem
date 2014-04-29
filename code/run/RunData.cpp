@@ -25,10 +25,38 @@ RunData::RunData(const RunData& orig) :
 RunData::~RunData() {
 }
 
+Relation* RunData::getRelation() {
+    return relation;
+}
+
+Strategy* RunData::getStrategy() {
+    return strategy;
+}
+
+int RunData::getDepth() {
+    return depth;
+}
+
 void RunData::setDepth(int depth) {
     this->depth = depth;
 }
 
+Neighborhood& RunData::getStartingPoint() {
+    return startingPoint;
+}
+
+Neighborhood& RunData::getEndPoint() {
+    return endPoint;
+}
+
 void RunData::setEndPoint(Neighborhood& endPoint) {
     this->endPoint = endPoint;
+}
+
+std::ostream& operator<<(std::ostream& out, RunData& data) {
+    out << "Run Data: Relation=" << data.getRelation()->getType()
+            << "; Strategy=" << data.getStrategy()->getType()
+            << "; starting cost=" << data.getStartingPoint().getCost()
+            << ", end cost=" << data.getEndPoint().getCost();
+    return out;
 }

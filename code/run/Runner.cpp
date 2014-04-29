@@ -21,6 +21,10 @@ Runner::Runner(const Runner& orig) :
 Runner::~Runner() {
 }
 
+std::list<RunData>& Runner::getResults() {
+    return results;
+}
+
 void Runner::addStrategy(Strategy* s) {
     strategies.push_back(s);
 }
@@ -57,6 +61,15 @@ void Runner::run() {
                 }
             }
             data.setEndPoint(*n);
+            results.push_back(data);
         }
     }
+}
+
+std::ostream& Runner::outputResults(std::ostream& out) {
+    out << "\nRun Results:\n";
+    for (RunData data : results) {
+        out << data << std::endl;
+    }
+    return out;
 }

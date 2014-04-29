@@ -15,9 +15,10 @@ public:
     BestFit(int initialCost, int dimension);
     BestFit(const BestFit& orig);
     virtual ~BestFit();
-
+    // implemented methods
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0);
     virtual void reset();
+    virtual std::string getType();
 };
 
 #endif	/* BESTFIT_H */

@@ -15,10 +15,9 @@ public:
     Swap(Problem& problem, Strategy& strategy);
     Swap(const Swap& orig);
     virtual ~Swap();
+    // implemented methods
     virtual Neighborhood& applyRelation(const Neighborhood& n);
-
-private:
-
+    virtual std::string getType();
 };
 
 #endif	/* SWAP_H */

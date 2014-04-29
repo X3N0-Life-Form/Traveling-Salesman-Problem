@@ -24,9 +24,16 @@ public:
     RunData(const RunData& orig);
     virtual ~RunData();
     // Getters/Setters
+    Relation* getRelation();
+    Strategy* getStrategy();
+    Neighborhood& getStartingPoint();
+    Neighborhood& getEndPoint();
     void setEndPoint(Neighborhood& endPoint);
+    int getDepth();
     void setDepth(int depth);
 };
+
+std::ostream& operator<<(std::ostream& out, RunData& data);
 
 #endif	/* RUNDATA_H */
 

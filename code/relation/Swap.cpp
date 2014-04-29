@@ -59,3 +59,6 @@ Neighborhood& Swap::applyRelation(const Neighborhood& n) {
     return oldN;
 }
 
+std::string Swap::getType() {
+    return "Swap";
+}
