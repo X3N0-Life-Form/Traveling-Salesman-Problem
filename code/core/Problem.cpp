@@ -1,27 +1,33 @@
 #include "Problem.h"
 
+#include "../utils.h"
+#include <iostream>
+
 Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     dimension(dimension),
     name(name),
     distanceType(distanceType),
     distanceMatrix() {
-    
 }
 
 Problem::Problem(const Problem& orig) :
         name(orig.name),
         comment(orig.comment),
         dimension(orig.dimension),
-        distanceType(orig.distanceType),
-        cities(orig.cities),
-        distanceMatrix(orig.distanceMatrix)
-{}
+        distanceType(orig.distanceType) {
+    distanceMatrix = new float*[dimension];
+    for (int i = 0; i < dimension; i++) {
+        distanceMatrix[i] = new float[dimension];
+        ARRAY_COPY(distanceMatrix[i], orig.distanceMatrix[i], dimension);
+        cities.push_back(orig.cities[i]);
+    }
+}
 
-int Problem::getDimension() {
+int Problem::getDimension() const {
     return dimension;
 }
 
-std::string Problem::getName() {
+std::string Problem::getName() const {
     return name;
 }
 
@@ -73,4 +79,10 @@ int Problem::getDistance(int id1, int id2) {
 Problem& Problem::operator =(const Problem& right) {
     Problem* p = new Problem(right);
     return *p;
+}
+
+std::ostream& operator<<(std::ostream out, const Problem& problem) {
+    out << "Problem " << problem.getName()
+            << ": size=" << problem.getDimension();
+    return out;
 }

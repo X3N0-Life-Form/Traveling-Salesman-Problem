@@ -32,8 +32,8 @@ public:
     Problem(std::string name, int dimension, DistanceType distanceType);
     Problem(const Problem& orig);
     // Getters / Setters
-    int getDimension();
-    std::string getName();
+    int getDimension() const;
+    std::string getName() const;
     float** getDistanceMatrix();
     void setDistanceMatrix(float** d_f);
     std::vector<City*> getCities();
@@ -44,6 +44,8 @@ public:
     std::list<int> getCityIdsAsList();
     int getDistance(int id1, int id2);
 };
+
+std::ostream& operator<<(std::ostream out, const Problem& problem);
 
 #endif	/* PROBLEM_H */
 

@@ -47,10 +47,12 @@ void Runner::run() {
             
             r->setStrategy(*s);
             Neighborhood* n = new Neighborhood(problem);
+            PRINTLN("#1 n.dimension="<<n->getDimension()<<"; problem.dimension="<<problem.getDimension());
             n->generateRandomNeighborhood();
             n->calculateCost();
             RunData data(r, s, n);
             data.setDepth(maxDepth);
+            PRINTLN("#2 n.dimension="<<n->getDimension()<<"; problem.dimension="<<problem.getDimension());
             
             for (int i = 0; i < maxDepth; i++) {
                 int cost = n->getCost();
@@ -60,7 +62,10 @@ void Runner::run() {
                     break;
                 }
             }
-            data.setEndPoint(*n);
+            PRINTLN("#3 n.dimension="<<n->getDimension()<<"; problem.dimension="<<problem.getDimension());
+            
+            PRINTLN("End point="<<n);
+            data.setEndPoint(n);
             results.push_back(data);
         }
     }

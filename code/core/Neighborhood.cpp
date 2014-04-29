@@ -123,6 +123,9 @@ Problem& Neighborhood::getProblem() {
     return problem;
 }
 
+void Neighborhood::setProblem(Problem& problem) {
+    this->problem = problem;
+}
 
 std::ostream& operator<<(std::ostream& out, Neighborhood& n) {
     out << "Neighborhood: cost=" << n.getCost() << "; path=[";

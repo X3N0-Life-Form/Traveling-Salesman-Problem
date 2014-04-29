@@ -28,7 +28,11 @@ public:
     Strategy* getStrategy();
     Neighborhood& getStartingPoint();
     Neighborhood& getEndPoint();
-    void setEndPoint(Neighborhood& endPoint);
+    /**
+     * Note: copies the contents of the pointed Neighborhood.
+     * @param endPoint
+     */
+    void setEndPoint(Neighborhood* endPoint);
     int getDepth();
     void setDepth(int depth);
 };

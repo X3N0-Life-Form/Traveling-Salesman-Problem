@@ -1,13 +1,17 @@
 #include "City.h"
 
+City::City(const City& orig) :
+        id(orig.id),
+        x_i(orig.x_i), x_f(orig.x_f),
+        y_i(orig.y_i), y_f(orig.y_f)
+{}
+
 City::City(int id, int x, int y) :
     id(id), x_i(x), y_i(y) {
-
 }
 
 City::City(int id, float x, float y) :
     id(id), x_f(x), y_f(y)  {
-    
 }
 
 const int City::getId() {
@@ -29,10 +33,6 @@ const int City::getXI() {
 const int City::getYI() {
     return y_i;
 }
-
-
-
-
 
 bool operator <(City& left, City& right) {
     return left.getId() < right.getId();

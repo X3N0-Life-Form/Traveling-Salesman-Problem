@@ -38,8 +38,8 @@ void runnerTests::tearDown() {
 }
 
 void runnerTests::test_start_OK() {
-    //runner.run();
-    //runner.outputResults();
+    runner.run();
+    runner.outputResults();
     CPPUNIT_ASSERT(true);
 }
 

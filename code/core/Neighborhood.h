@@ -35,6 +35,7 @@ public:
     void setCost(int cost);
     int getDimension();
     Problem& getProblem();
+    void setProblem(Problem& problem);
     
 };
 

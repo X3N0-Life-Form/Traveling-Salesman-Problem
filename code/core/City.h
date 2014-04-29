@@ -18,6 +18,7 @@ private:
     float x_f;
     float y_f;
 public:
+    City(const City& orig);
     City(int id, int x, int y);
     City(int id, float x, float y);
     // Getters / Setters

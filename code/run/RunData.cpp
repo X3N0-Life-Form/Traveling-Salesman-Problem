@@ -7,6 +7,8 @@
 
 #include "RunData.h"
 
+#include "../utils.h"
+
 RunData::RunData(Relation* r, Strategy* s, Neighborhood* startingPoint) :
     relation(r),
     strategy(s),
@@ -49,8 +51,12 @@ Neighborhood& RunData::getEndPoint() {
     return endPoint;
 }
 
-void RunData::setEndPoint(Neighborhood& endPoint) {
-    this->endPoint = endPoint;
+void RunData::setEndPoint(Neighborhood* endPoint) {
+    PRINTLN("Problem="<<endPoint->getProblem().getName());
+    this->endPoint.setProblem(endPoint->getProblem());
+    this->endPoint.setPath(endPoint->getPath());
+    this->endPoint.setCost(endPoint->getCost());
+    PRINTLN("setEndPoint="<<this->endPoint.getDimension());
 }
 
 std::ostream& operator<<(std::ostream& out, RunData& data) {
