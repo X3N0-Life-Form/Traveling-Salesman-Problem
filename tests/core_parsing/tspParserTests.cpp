@@ -26,7 +26,7 @@ void tspParserTests::test_parseProblem_int() {
     Problem p = parseProblem(path_a280);
     CPPUNIT_ASSERT_EQUAL(std::string("a280"), p.getName());
     CPPUNIT_ASSERT_EQUAL(280, p.getDimension());
-    CPPUNIT_ASSERT(p.getDistanceMatrix() != NULL);
+    CPPUNIT_ASSERT(p.getDistanceMatrix_i() != NULL);
     // test city nodes as well
     CPPUNIT_ASSERT_EQUAL(std::set<City>::size_type(280), p.getCities().size());
     CPPUNIT_ASSERT_EQUAL(1, p.getCities()[0]->getId());

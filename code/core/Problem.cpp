@@ -7,7 +7,8 @@ Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     dimension(dimension),
     name(name),
     distanceType(distanceType),
-    distanceMatrix() {
+    distanceMatrix_f(),
+    distanceMatrix_i() {
 }
 
 Problem::Problem(const Problem& orig) :
@@ -15,11 +16,20 @@ Problem::Problem(const Problem& orig) :
         comment(orig.comment),
         dimension(orig.dimension),
         distanceType(orig.distanceType) {
-    distanceMatrix = new float*[dimension];
-    for (int i = 0; i < dimension; i++) {
-        distanceMatrix[i] = new float[dimension];
-        ARRAY_COPY(distanceMatrix[i], orig.distanceMatrix[i], dimension);
-        cities.push_back(orig.cities[i]);
+    if (distanceType == FLOAT) {
+        distanceMatrix_f = new float*[dimension];
+        for (int i = 0; i < dimension; i++) {
+            distanceMatrix_f[i] = new float[dimension];
+            ARRAY_COPY(distanceMatrix_f[i], orig.distanceMatrix_f[i], dimension);
+            cities.push_back(orig.cities[i]);
+        }
+    } else {
+        distanceMatrix_i = new int*[dimension];
+        for (int i = 0; i < dimension; i++) {
+            distanceMatrix_i[i] = new int[dimension];
+            ARRAY_COPY(distanceMatrix_i[i], orig.distanceMatrix_i[i], dimension);
+            cities.push_back(orig.cities[i]);
+        }
     }
 }
 
@@ -31,14 +41,25 @@ std::string Problem::getName() const {
     return name;
 }
 
-float** Problem::getDistanceMatrix() const {
-    return distanceMatrix;
+DistanceType Problem::getDistanceType() const {
+    return distanceType;
+}
+
+float** Problem::getDistanceMatrix_f() const {
+    return distanceMatrix_f;
 }
 
 void Problem::setDistanceMatrix(float** d_f) {
-    distanceMatrix = d_f;
+    distanceMatrix_f = d_f;
 }
 
+int** Problem::getDistanceMatrix_i() const {
+    return distanceMatrix_i;
+}
+
+void Problem::setDistanceMatrix(int** d_i) {
+    distanceMatrix_i = d_i;
+}
 
 std::vector<City*> Problem::getCities() const {
     return cities;
@@ -73,7 +94,10 @@ std::list<int> Problem::getCityIdsAsList() {
  * @return Distance between these two cities
  */
 int Problem::getDistance(int id1, int id2) {
-    return distanceMatrix[id1 - 1][id2 - 1];
+    if (distanceType == FLOAT)
+        return distanceMatrix_f[id1 - 1][id2 - 1];
+    else
+        return distanceMatrix_i[id1 - 1][id2 - 1];
 }
 
 Problem& Problem::operator =(const Problem& right) {
@@ -100,8 +124,15 @@ bool operator==(const Problem& left, const Problem& right) {
     // compare the matrix
     for (int i = 0; i < left.getDimension(); i++) {
         for (int j = 0; j < left.getDimension(); j++) {
-            if (left.getDistanceMatrix()[i][j] != right.getDistanceMatrix()[i][j])
+            if (left.getDistanceType() == FLOAT) {
+                if (left.getDistanceMatrix_f()[i][j]
+                        != right.getDistanceMatrix_f()[i][j])
                 return false;
+            } else {
+                if (left.getDistanceMatrix_i()[i][j]
+                        != right.getDistanceMatrix_i()[i][j])
+                return false;
+            }
         }
     }
     return true;
