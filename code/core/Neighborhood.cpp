@@ -65,8 +65,6 @@ int Neighborhood::calculateCost() {
  */
 int Neighborhood::calculatePotentialCost(int index1, int index2) const {
     int nuCost = cost;
-    int id1 = path[index1];
-    int id2 = path[index2];
     // previous & next ids
     int prev1 = index1 - 1;
     int next1 = index1 + 1;
@@ -82,15 +80,21 @@ int Neighborhood::calculatePotentialCost(int index1, int index2) const {
     else if (next2 >= problem.getDimension())
         next2 = 0;
     // remove old distance costs
-    nuCost -= problem.getDistance(path[prev1], id1)
-            + problem.getDistance(id1, path[next1])
-            + problem.getDistance(path[prev2], id2)
-            + problem.getDistance(id2, path[next2]);
+    // be careful when dealing with two cities right after the other in the path
+    if (path[prev1] != path[index2])
+        nuCost -= problem.getDistance(path[prev1],  path[index1]);
+    if (path[next1] != path[index2])
+        nuCost -= problem.getDistance(path[index1], path[next1]);
+    if (path[prev2] != path[index1])
+        nuCost -= problem.getDistance(path[prev2],  path[index2]);
+    if (path[next2] != path[index1])
+        nuCost -= problem.getDistance(path[index2], path[next2]);
     // add the new costs
-    nuCost += problem.getDistance(path[prev1], id2)
-            + problem.getDistance(id2, path[next1])
-            + problem.getDistance(path[prev2], id1)
-            + problem.getDistance(id1, path[next2]);
+    // no need extra checks here, distance between cities #i & #i = 0
+    nuCost += problem.getDistance(path[prev1],  path[index2]);
+    nuCost += problem.getDistance(path[index2], path[next1]);
+    nuCost += problem.getDistance(path[prev2],  path[index1]);
+    nuCost += problem.getDistance(path[index1], path[next2]);
     
     return nuCost;
 }
