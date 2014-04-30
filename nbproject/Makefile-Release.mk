@@ -185,7 +185,7 @@ ${TESTDIR}/TestFiles/f4: ${TESTDIR}/tests/relation/swapTests.o ${TESTDIR}/tests/
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f4 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
-${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/strategy/WorstFitTests.o ${TESTDIR}/tests/strategy/WorstFitTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+${TESTDIR}/TestFiles/f7: ${TESTDIR}/tests/strategy/worstFitTests.o ${TESTDIR}/tests/strategy/worstFitTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f7 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
@@ -274,16 +274,16 @@ ${TESTDIR}/tests/relation/swapTests_testrunner.o: tests/relation/swapTests_testr
 	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/relation/swapTests_testrunner.o tests/relation/swapTests_testrunner.cpp
 
 
-${TESTDIR}/tests/strategy/WorstFitTests.o: tests/strategy/WorstFitTests.cpp 
+${TESTDIR}/tests/strategy/worstFitTests.o: tests/strategy/worstFitTests.cpp 
 	${MKDIR} -p ${TESTDIR}/tests/strategy
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy/WorstFitTests.o tests/strategy/WorstFitTests.cpp
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy/worstFitTests.o tests/strategy/worstFitTests.cpp
 
 
-${TESTDIR}/tests/strategy/WorstFitTests_testrunner.o: tests/strategy/WorstFitTests_testrunner.cpp 
+${TESTDIR}/tests/strategy/worstFitTests_testrunner.o: tests/strategy/worstFitTests_testrunner.cpp 
 	${MKDIR} -p ${TESTDIR}/tests/strategy
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy/WorstFitTests_testrunner.o tests/strategy/WorstFitTests_testrunner.cpp
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy/worstFitTests_testrunner.o tests/strategy/worstFitTests_testrunner.cpp
 
 
 ${OBJECTDIR}/code/core/City_nomain.o: ${OBJECTDIR}/code/core/City.o code/core/City.cpp 

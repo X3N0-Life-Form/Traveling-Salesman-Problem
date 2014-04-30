@@ -40,8 +40,8 @@ void swapTests::setUp() {
     n->generateRandomNeighborhood();
     n->calculateCost();
     ff.setInitialCost(n->getCost());
-    bf = BestFit(n->getCost(), 280);
-    wf = WorstFit(n->getCost(), 280);
+    bf = BestFit(280, n->getCost());
+    wf = WorstFit(280, n->getCost());
 }
 
 void swapTests::tearDown() {

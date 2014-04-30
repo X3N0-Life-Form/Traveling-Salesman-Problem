@@ -5,11 +5,11 @@
  * Created on 28 avr. 2014, 15:13:02
  */
 
-#include "WorstFitTests.h"
+#include "worstFitTests.h"
 
 #include "../../code/strategy/WorstFit.h"
 
-WorstFit wf(200, 1);
+WorstFit wf(1, 200);
 int* path;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(WorstFitTests);
@@ -21,7 +21,7 @@ WorstFitTests::~WorstFitTests() {
 }
 
 void WorstFitTests::setUp() {
-    wf = WorstFit(200, 10);
+    wf = WorstFit(10, 200);
     path = new int[10];
 }
 
@@ -42,7 +42,6 @@ void WorstFitTests::test_applyStrategy_KO_worseCost() {
 
 // here is the actually interesting test
 void WorstFitTests::test_applyStrategy_KO_betterCost() {
-    wf = WorstFit(200, 10);
     CPPUNIT_ASSERT(!wf.applyStrategy(path, 190));
     CPPUNIT_ASSERT(wf.getFitCost() == 190);
     CPPUNIT_ASSERT(!wf.applyStrategy(path, 195));

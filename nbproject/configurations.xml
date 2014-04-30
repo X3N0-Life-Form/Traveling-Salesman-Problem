@@ -103,9 +103,9 @@
                      displayName="worstFitTests"
                      projectFiles="true"
                      kind="TEST">
-        <itemPath>tests/strategy/WorstFitTests.cpp</itemPath>
-        <itemPath>tests/strategy/WorstFitTests.h</itemPath>
-        <itemPath>tests/strategy/WorstFitTests_testrunner.cpp</itemPath>
+        <itemPath>tests/strategy/worstFitTests.cpp</itemPath>
+        <itemPath>tests/strategy/worstFitTests.h</itemPath>
+        <itemPath>tests/strategy/worstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -350,15 +350,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/strategy/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/strategy/WorstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/strategy/WorstFitTests_testrunner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="tests/strategy/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/strategy/bestFitTests.h" ex="false" tool="3" flavor2="0">
@@ -373,6 +364,15 @@
       <item path="tests/strategy/firstFitTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/strategy/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -622,15 +622,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/strategy/WorstFitTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/strategy/WorstFitTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/strategy/WorstFitTests_testrunner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="tests/strategy/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/strategy/bestFitTests.h" ex="false" tool="3" flavor2="0">
@@ -645,6 +636,15 @@
       <item path="tests/strategy/firstFitTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/strategy/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">

@@ -9,7 +9,7 @@
 
 #include "../../code/strategy/FirstFit.h"
 
-FirstFit ff(50, 280);
+FirstFit ff(280, 50);
 
 CPPUNIT_TEST_SUITE_REGISTRATION(firstFitTests);
 

@@ -9,7 +9,7 @@
 
 #include "../../code/strategy/BestFit.h"
 
-BestFit bf(200, 1);
+BestFit bf(1, 200);
 int* path;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(bestFitTests);
@@ -21,7 +21,7 @@ bestFitTests::~bestFitTests() {
 }
 
 void bestFitTests::setUp() {
-    bf = BestFit(200, 10);
+    bf = BestFit(10, 200);
     path = new int[10];
 }
 
@@ -31,7 +31,7 @@ void bestFitTests::tearDown() {
 
 void bestFitTests::test_applyStrategy_OK() {
     bf.applyStrategy(path, 190);
-    CPPUNIT_ASSERT(bf.getFitCost() == 190);
+    CPPUNIT_ASSERT_EQUAL(190, bf.getFitCost());
 }
 
 void bestFitTests::test_applyStrategy_KO_worseCost() {
@@ -40,7 +40,6 @@ void bestFitTests::test_applyStrategy_KO_worseCost() {
 }
 
 void bestFitTests::test_applyStrategy_KO_betterCost() {
-    bf = BestFit(200, 10);
     CPPUNIT_ASSERT(!bf.applyStrategy(path, 190));
     CPPUNIT_ASSERT(bf.getFitCost() == 190);
     CPPUNIT_ASSERT(!bf.applyStrategy(path, 195));
