@@ -20,7 +20,7 @@ Swap::Swap(const Swap& orig) : Relation(orig) {
 Swap::~Swap() {
 }
 
-Neighborhood& Swap::applyRelation(const Neighborhood& n) {
+Neighborhood* Swap::applyRelation(const Neighborhood& n) {
     std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
     
@@ -40,9 +40,9 @@ Neighborhood& Swap::applyRelation(const Neighborhood& n) {
                 SWAP(nuPath, randomIndex1, randomIndex2);
 
                 if (strategy.applyStrategy(nuPath, nuCost, i)) {
-                    Neighborhood nuN(n);
-                    nuN.setPath(strategy.getFit());
-                    nuN.setCost(strategy.getFitCost());
+                    Neighborhood* nuN = new Neighborhood(n);
+                    nuN->setPath(strategy.getFit());
+                    nuN->setCost(strategy.getFitCost());
                     return nuN;
                 }
                 // delete nuPath
@@ -55,7 +55,7 @@ Neighborhood& Swap::applyRelation(const Neighborhood& n) {
         idList.remove(randomIndex1);
     }
     // nothing better was found
-    Neighborhood oldN(n);
+    Neighborhood* oldN = new Neighborhood(n);
     return oldN;
 }
 

@@ -52,11 +52,9 @@ Neighborhood& RunData::getEndPoint() {
 }
 
 void RunData::setEndPoint(Neighborhood* endPoint) {
-    PRINTLN("Problem="<<endPoint->getProblem().getName());
     this->endPoint.setProblem(endPoint->getProblem());
     this->endPoint.setPath(endPoint->getPath());
     this->endPoint.setCost(endPoint->getCost());
-    PRINTLN("setEndPoint="<<this->endPoint.getDimension());
 }
 
 std::ostream& operator<<(std::ostream& out, RunData& data) {

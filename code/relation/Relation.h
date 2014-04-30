@@ -20,7 +20,7 @@ public:
     Relation(const Relation& orig);
     virtual ~Relation();
     // abstract methods
-    virtual Neighborhood& applyRelation(const Neighborhood& n) = 0;
+    virtual Neighborhood* applyRelation(const Neighborhood& n) = 0;
     virtual std::string getType() = 0;
     // Getters/Setters
     void setStrategy(Strategy& s);
