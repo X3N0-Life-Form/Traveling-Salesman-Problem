@@ -59,8 +59,9 @@ void RunData::setEndPoint(Neighborhood* endPoint) {
 
 std::ostream& operator<<(std::ostream& out, RunData& data) {
     out << "Run Data: Relation=" << data.getRelation()->getType()
-            << "; Strategy=" << data.getStrategy()->getType()
-            << "; starting cost=" << data.getStartingPoint().getCost()
-            << ", end cost=" << data.getEndPoint().getCost();
+            << ";\tStrategy=" << data.getStrategy()->getType()
+            << ";\tstarting cost=" << data.getStartingPoint().getCost()
+            << ",\tend cost=" << data.getEndPoint().getCost()
+            << ";\tdepth=" << data.getDepth();
     return out;
 }

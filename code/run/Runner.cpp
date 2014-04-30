@@ -45,23 +45,27 @@ void Runner::run() {
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {
             
+            PRINTLN("Running " << r->getType()
+                    << " with strategy " << s->getType());//TODO: ability to specify which output stream should be used
             r->setStrategy(*s);
             Neighborhood* n = new Neighborhood(problem);
             n->generateRandomNeighborhood();
             n->calculateCost();
             RunData data(r, s, n);
             data.setDepth(maxDepth);
+            PRINTLN("Initial cost=\t"<<n->getCost());//see println above
             
             for (int i = 0; i < maxDepth; i++) {
-                int cost = n->getCost();
+                int oldCost = n->getCost();
                 n = r->applyRelation(*n);
                 // no better result was produced
-                if (n->getCost() == cost) {
+                if (n->getCost() == oldCost) {
                     data.setDepth(i);
                     break;
                 }//TODO:delete old n?
             }
             
+            PRINTLN("End cost=\t"<<n->getCost());// //
             data.setEndPoint(n);
             results.push_back(data);
         }

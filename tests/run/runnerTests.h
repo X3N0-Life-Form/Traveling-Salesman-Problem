@@ -13,7 +13,7 @@
 class runnerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(runnerTests);
 
-    CPPUNIT_TEST(test_start_OK);
+    CPPUNIT_TEST(test_start_OK_depth_1);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -24,7 +24,7 @@ public:
     void tearDown();
 
 private:
-    void test_start_OK();
+    void test_start_OK_depth_1();
 };
 
 #endif	/* RUNNERTESTS_H */

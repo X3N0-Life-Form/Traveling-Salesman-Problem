@@ -37,9 +37,9 @@ void runnerTests::setUp() {
 void runnerTests::tearDown() {
 }
 
-void runnerTests::test_start_OK() {
+void runnerTests::test_start_OK_depth_1() {
     runner.run();
-    runner.outputResults();
+    //runner.outputResults();
     for (RunData data : runner.getResults()) {
         CPPUNIT_ASSERT(data.getStartingPoint().getCost()
                 > data.getEndPoint().getCost());
