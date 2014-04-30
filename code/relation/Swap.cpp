@@ -23,6 +23,9 @@ Swap::~Swap() {
 Neighborhood* Swap::applyRelation(const Neighborhood& n) {
     std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
+    if (strategy.getInitialCost() == INT_MAX) {
+        strategy.setInitialCost(n.getCost());
+    }
     
     for (int i = 0; i < dimension; i++) {
         // make your move
@@ -38,7 +41,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
                 int* nuPath = new int[dimension];
                 ARRAY_COPY(nuPath, n.getPath(), dimension);
                 SWAP(nuPath, randomIndex1, randomIndex2);
-
+                
                 if (strategy.applyStrategy(nuPath, nuCost, i)) {
                     Neighborhood* nuN = new Neighborhood(n);
                     nuN->setPath(strategy.getFit());

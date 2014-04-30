@@ -10,7 +10,7 @@
 #include "../utils.h"
 
 BestFit::BestFit(int dimension, int initialCost) :
-    Strategy(initialCost, dimension) {
+    Strategy(dimension, initialCost) {
 }
 
 BestFit::BestFit(const BestFit& orig) : Strategy(orig) {
