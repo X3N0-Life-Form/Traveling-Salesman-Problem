@@ -40,6 +40,9 @@ void runnerTests::tearDown() {
 void runnerTests::test_start_OK() {
     runner.run();
     runner.outputResults();
-    CPPUNIT_ASSERT(true);
+    for (RunData data : runner.getResults()) {
+        CPPUNIT_ASSERT(data.getStartingPoint().getCost()
+                > data.getEndPoint().getCost());
+    }
 }
 
