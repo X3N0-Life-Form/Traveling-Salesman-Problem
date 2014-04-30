@@ -28,12 +28,14 @@ public:
     virtual ~Runner();
     // Getters/Setters/Adders
     std::list<RunData>& getResults();
+    void setMaxDepth(int maxDepth);
     void addStrategy(Strategy* s);
     void addStrategy(Strategy& s);
     void addRelation(Relation* r);
     void addRelation(Relation& r);
     // other methods
     void run();
+    void clear();
     std::ostream& outputResults(std::ostream& out = std::cout);
 };
 

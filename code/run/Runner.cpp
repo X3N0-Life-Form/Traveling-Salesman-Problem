@@ -25,6 +25,10 @@ std::list<RunData>& Runner::getResults() {
     return results;
 }
 
+void Runner::setMaxDepth(int maxDepth) {
+    this->maxDepth = maxDepth;
+}
+
 void Runner::addStrategy(Strategy* s) {
     strategies.push_back(s);
 }
@@ -78,4 +82,10 @@ std::ostream& Runner::outputResults(std::ostream& out) {
         out << data << std::endl;
     }
     return out;
+}
+
+void Runner::clear() {
+    strategies.clear();
+    relations.clear();
+    results.clear();
 }

@@ -35,14 +35,38 @@ void runnerTests::setUp() {
 }
 
 void runnerTests::tearDown() {
+    runner.clear();
 }
 
 void runnerTests::test_start_OK_depth_1() {
     runner.run();
-    //runner.outputResults();
+    runner.outputResults();
     for (RunData data : runner.getResults()) {
         CPPUNIT_ASSERT(data.getStartingPoint().getCost()
                 > data.getEndPoint().getCost());
     }
 }
 
+void runnerTests::test_start_OK_depth_5() {
+    runner.setMaxDepth(5);
+    runner.run();
+    runner.outputResults();
+}
+
+void runnerTests::test_start_OK_depth_10() {
+    runner.setMaxDepth(10);
+    runner.run();
+    runner.outputResults();
+}
+
+void runnerTests::test_start_OK_depth_100() {
+    runner.setMaxDepth(100);
+    runner.run();
+    runner.outputResults();
+}
+
+void runnerTests::test_start_OK_depth_1000() {
+    runner.setMaxDepth(1000);
+    runner.run();
+    runner.outputResults();
+}

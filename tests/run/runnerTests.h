@@ -14,6 +14,10 @@ class runnerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(runnerTests);
 
     CPPUNIT_TEST(test_start_OK_depth_1);
+    CPPUNIT_TEST(test_start_OK_depth_5);
+    CPPUNIT_TEST(test_start_OK_depth_10);
+    CPPUNIT_TEST(test_start_OK_depth_100);
+    CPPUNIT_TEST(test_start_OK_depth_1000);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -25,6 +29,10 @@ public:
 
 private:
     void test_start_OK_depth_1();
+    void test_start_OK_depth_5();
+    void test_start_OK_depth_10();
+    void test_start_OK_depth_100();
+    void test_start_OK_depth_1000();
 };
 
 #endif	/* RUNNERTESTS_H */
