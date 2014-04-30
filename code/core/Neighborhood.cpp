@@ -8,6 +8,7 @@
 #include "Neighborhood.h"
 
 #include <iostream>
+#include <random>
 #include "../utils.h"
 
 Neighborhood::Neighborhood(Problem& problem) :
@@ -112,14 +113,14 @@ void Neighborhood::setCost(int cost) {
 }
 
 /**
- * 
+ * <=> problem.getDimension()
  * @return This Neighborhood Problem's dimension.
  */
-int Neighborhood::getDimension() {
+int Neighborhood::getDimension() const {
     return problem.getDimension();
 }
 
-Problem& Neighborhood::getProblem() {
+Problem& Neighborhood::getProblem() const {
     return problem;
 }
 
@@ -135,3 +136,25 @@ std::ostream& operator<<(std::ostream& out, Neighborhood& n) {
     out << n.getPath()[n.getDimension() - 1] << "]";
     return out;
 }
+
+bool operator==(const Neighborhood& left, const Neighborhood& right) {
+    if (left.getProblem() != right.getProblem())
+        return false;
+    else if (left.getDimension() != right.getDimension())
+        return false;
+    else if (left.getCost() != right.getCost())
+        return false;
+    else if (left.getPath() == right.getPath())
+        return true;
+    // compare path contents
+    for (int i = 0; i < left.getDimension(); i++) {
+        if (left.getPath()[i] != right.getPath()[i])
+            return false;
+    }
+    return true;
+}
+
+bool operator!=(const Neighborhood& left, const Neighborhood& right) {
+    return !(left == right);
+}
+

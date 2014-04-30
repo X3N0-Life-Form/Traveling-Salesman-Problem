@@ -34,9 +34,9 @@ public:
     // Getters / Setters
     int getDimension() const;
     std::string getName() const;
-    float** getDistanceMatrix();
+    float** getDistanceMatrix() const;
     void setDistanceMatrix(float** d_f);
-    std::vector<City*> getCities();
+    std::vector<City*> getCities() const;
     void setCities(std::vector<City*>& cities);
     Problem& operator=(const Problem& right);
     // Advanced Getters
@@ -45,7 +45,9 @@ public:
     int getDistance(int id1, int id2);
 };
 
-std::ostream& operator<<(std::ostream out, const Problem& problem);
+std::ostream& operator<<(std::ostream& out, const Problem& problem);
+bool operator==(const Problem& left, const Problem& right);
+bool operator!=(const Problem& left, const Problem& right);
 
 #endif	/* PROBLEM_H */
 

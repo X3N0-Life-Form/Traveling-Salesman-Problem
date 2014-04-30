@@ -9,7 +9,6 @@
 #define	NEIGHBORHOOD_H
 
 #include <vector>
-#include <random>
 #include <iostream>
 
 #include "Problem.h"
@@ -33,13 +32,15 @@ public:
     void setPath(int* path);
     int getCost() const;
     void setCost(int cost);
-    int getDimension();
-    Problem& getProblem();
+    int getDimension() const;
+    Problem& getProblem() const;
     void setProblem(Problem& problem);
     
 };
 
 std::ostream& operator<<(std::ostream& out, Neighborhood& n);
+bool operator==(const Neighborhood& left, const Neighborhood& right);
+bool operator!=(const Neighborhood& left, const Neighborhood& right);
 
 #endif	/* NEIGHBORHOOD_H */
 

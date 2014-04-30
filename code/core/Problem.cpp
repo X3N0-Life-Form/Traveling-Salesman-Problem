@@ -31,7 +31,7 @@ std::string Problem::getName() const {
     return name;
 }
 
-float** Problem::getDistanceMatrix() {
+float** Problem::getDistanceMatrix() const {
     return distanceMatrix;
 }
 
@@ -40,7 +40,7 @@ void Problem::setDistanceMatrix(float** d_f) {
 }
 
 
-std::vector<City*> Problem::getCities() {
+std::vector<City*> Problem::getCities() const {
     return cities;
 }
 
@@ -81,8 +81,32 @@ Problem& Problem::operator =(const Problem& right) {
     return *p;
 }
 
-std::ostream& operator<<(std::ostream out, const Problem& problem) {
+std::ostream& operator<<(std::ostream& out, const Problem& problem) {
     out << "Problem " << problem.getName()
             << ": size=" << problem.getDimension();
     return out;
+}
+
+bool operator==(const Problem& left, const Problem& right) {
+    if (left.getName() != right.getName())
+        return false;
+    else if (left.getDimension() != right.getDimension())
+        return false;
+    // compare cities
+    for (int i = 0; i < left.getCities().size(); i++) {
+        if (left.getCities()[i] != right.getCities()[i])
+            return false;
+    }
+    // compare the matrix
+    for (int i = 0; i < left.getDimension(); i++) {
+        for (int j = 0; j < left.getDimension(); j++) {
+            if (left.getDistanceMatrix()[i][j] != right.getDistanceMatrix()[i][j])
+                return false;
+        }
+    }
+    return true;
+}
+
+bool operator!=(const Problem& left, const Problem& right) {
+    return !(left == right);
 }
