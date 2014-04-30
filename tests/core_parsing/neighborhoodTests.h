@@ -10,10 +10,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "tspParserTests.h"
 #include "../../code/core/Neighborhood.h"
-#include <algorithm>
-#include <iterator>
 
 class neighborhoodTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(neighborhoodTests);
