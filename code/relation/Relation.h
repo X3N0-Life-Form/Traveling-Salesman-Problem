@@ -23,6 +23,7 @@ public:
     virtual Neighborhood* applyRelation(const Neighborhood& n) = 0;
     virtual std::string getType() = 0;
     // Getters/Setters
+    Strategy& getStrategy() const;
     void setStrategy(Strategy& s);
 };
 

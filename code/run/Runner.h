@@ -29,8 +29,10 @@ public:
     // Getters/Setters/Adders
     std::list<RunData>& getResults();
     void setMaxDepth(int maxDepth);
+    std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);
     void addStrategy(Strategy& s);
+    std::list<Relation*> getRelations();
     void addRelation(Relation* r);
     void addRelation(Relation& r);
     // other methods

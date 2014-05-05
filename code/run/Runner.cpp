@@ -29,12 +29,20 @@ void Runner::setMaxDepth(int maxDepth) {
     this->maxDepth = maxDepth;
 }
 
+std::list<Strategy*>& Runner::getStrategies() {
+    return strategies;
+}
+
 void Runner::addStrategy(Strategy* s) {
     strategies.push_back(s);
 }
 
 void Runner::addStrategy(Strategy& s) {
     strategies.push_back(&s);
+}
+
+std::list<Relation*> Runner::getRelations() {
+    return relations;
 }
 
 void Runner::addRelation(Relation* r) {
