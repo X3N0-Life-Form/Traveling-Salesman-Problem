@@ -28,7 +28,7 @@ using namespace std;
             }
 
 Runner* runner;
-Problem* problem;
+Problem* main_problem;
 int maxDepth = 1;
 ofstream* f_out = NULL;
 
@@ -41,11 +41,11 @@ ofstream* f_out = NULL;
 Strategy* createStrategy(std::string type) {
     Strategy* s;
     if (type == "firstFit") {
-        s = new FirstFit(problem->getDimension());
+        s = new FirstFit(main_problem->getDimension());
     } else if (type == "bestFit") {
-        s = new BestFit(problem->getDimension());
+        s = new BestFit(main_problem->getDimension());
     } else if (type == "worstFit") {
-        s = new WorstFit(problem->getDimension());
+        s = new WorstFit(main_problem->getDimension());
     } else {
         throw string("Unrecognized Stategy type ").append(type);
     }
@@ -65,7 +65,7 @@ Relation* createRelation(std::string type, Strategy* strategy) {
     if (strategy == NULL) {
         throw "NULL Strategy* passed";
     } else if (type == "swap") {
-        r = new Swap(*problem, *strategy);
+        r = new Swap(*main_problem, *strategy);
     } else if (type == "insert") {
         throw "Not implemented";
     } else if (type == "?invert/revert/?") {
@@ -103,7 +103,7 @@ void dealWithArgs(int argc, char** argv) {
     for (int i = 1; i < argc; i++) {
         string arg(argv[i]);
         if (arg == "-file") {
-            ARG_CHECK(problem = new Problem(parseProblem(string(argv[i])));,
+            ARG_CHECK(main_problem = new Problem(parseProblem(string(argv[i])));,
                     "file name");
         } else if (arg == "-maxDepth") {
             ARG_CHECK(maxDepth = atoi(argv[i]) , "integer");
@@ -122,7 +122,7 @@ void dealWithArgs(int argc, char** argv) {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
     }
-    runner = new Runner(*problem, maxDepth);
+    runner = new Runner(*main_problem, maxDepth);
     // Now that we should have all the data we need, actually create & add these
     for (pair<string, string> p : rs) {
         Strategy* s = createStrategy(p.second);
@@ -137,7 +137,7 @@ void dealWithArgs(int argc, char** argv) {
  * @return true if it is.
  */
 bool checkData() {
-    if (problem == NULL || runner == NULL) {//TODO:print errors
+    if (main_problem == NULL || runner == NULL) {//TODO:print errors
         return false;
     } else if (runner->getRelations().size() == 0
             || runner->getStrategies().size() == 0) {
@@ -151,7 +151,7 @@ bool checkData() {
  * strategies.
  */
 void printRecap() {
-    PRINTLN(problem);
+    PRINTLN(main_problem);
     for (Relation* r : runner->getRelations()) {
         PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
     }
@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
                 runner->outputResults(*f_out);
             }
             // delete things
-            delete(problem);
+            delete(main_problem);
             delete(runner);
             if (f_out != NULL) {
                 f_out->close();

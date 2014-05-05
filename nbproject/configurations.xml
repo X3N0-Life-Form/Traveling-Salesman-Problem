@@ -59,6 +59,14 @@
         <itemPath>tests/strategy/firstFitTests.h</itemPath>
         <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f9"
+                     displayName="main tests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/mainTests.cpp</itemPath>
+        <itemPath>tests/mainTests.h</itemPath>
+        <itemPath>tests/mainTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f2"
                      displayName="neighborhoodTests"
                      projectFiles="true"
@@ -292,6 +300,20 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f9">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f9</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
@@ -333,6 +355,12 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -564,6 +592,20 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f9">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f9</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
@@ -605,6 +647,12 @@
             ex="false"
             tool="1"
             flavor2="0">
+      </item>
+      <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>

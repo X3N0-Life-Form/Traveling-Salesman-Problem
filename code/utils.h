@@ -19,5 +19,13 @@ const std::string path_berlin52 = "data/berlin52.tsp";
 #define ARRAY_PRINT(target, length) for (int i=0; i<length; i++) {std::cout<<target[i]<<" ";}
 #define PRINTLN(line) std::cout << "\n" << line; std::cout.flush();
 
+// stuff for main.cpp
+#include "strategy/Strategy.h"
+#include "relation/Relation.h"
+Strategy* createStrategy(std::string type);
+Relation* createRelation(std::string type, Strategy* strategy);
+void dealWithArgs(int argc, char** argv);
+bool checkData();
+
 #endif	/* UTILS_H */
 
