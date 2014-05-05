@@ -76,6 +76,28 @@ Relation* createRelation(std::string type, Strategy* strategy) {
     return r;
 }
 
+/**
+ * Displays help.
+ */
+void printHelp() {
+    PRINTLN("TSP - help");
+    PRINTLN("\t-help\t\t\tdisplays this text");
+    PRINTLN("\t-file [file path]\tspecify which file to read the problem from");
+    PRINTLN("\t-maxDepth [int]\t\tspecify how many times a"
+            << " relation will be applied; default = 1");
+    PRINTLN("\t-rs [relation] [strategy]\tspecify a relation & strategy"
+            << " to apply to the problem. Note that several -rs can/should"
+            << " be specified.");
+    PRINTLN("");
+    PRINTLN("\tValid Relations are\tswap");
+    PRINTLN("\tValid Strategies are\tfirstFit, bestFit, worstFit");
+}
+
+/**
+ * Handles the command line arguments.
+ * @param argc
+ * @param argv
+ */
 void dealWithArgs(int argc, char** argv) {
     list<pair<string, string>> rs;
     for (int i = 1; i < argc; i++) {
@@ -94,6 +116,8 @@ void dealWithArgs(int argc, char** argv) {
             string fName;
             ARG_CHECK(fName = string(argv[i]), "output file name");
             f_out = new ofstream(fName);
+        } else if (arg == "-help") {
+            printHelp();
         } else {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
@@ -108,6 +132,10 @@ void dealWithArgs(int argc, char** argv) {
     }
 }
 
+/**
+ * Checks whether the data we have so far is good enough to be run.
+ * @return true if it is.
+ */
 bool checkData() {
     if (problem == NULL || runner == NULL) {//TODO:print errors
         return false;
@@ -133,27 +161,31 @@ void printRecap() {
  * 
  */
 int main(int argc, char** argv) {
-    // initialize things
-    dealWithArgs(argc, argv);
-    // verify that the supplied data is correct
-    if (checkData()) {
-        printRecap();
-        // run things
-        runner->run();
-        // output things
-        runner->outputResults();
-        if (f_out != NULL) {
-            runner->outputResults(*f_out);
-        }
-        // delete things
-        delete(problem);
-        delete(runner);
-        if (f_out != NULL) {
-            f_out->close();
-            delete(f_out);
+    if (argc > 1) {
+        // initialize things
+        dealWithArgs(argc, argv);
+        // verify that the supplied data is correct
+        if (checkData()) {
+            printRecap();
+            // run things
+            runner->run();
+            // output things
+            runner->outputResults();
+            if (f_out != NULL) {
+                runner->outputResults(*f_out);
+            }
+            // delete things
+            delete(problem);
+            delete(runner);
+            if (f_out != NULL) {
+                f_out->close();
+                delete(f_out);
+            }
+        } else {
+            PRINTLN("Detected incorrectly entered data. Exiting.");
         }
     } else {
-        PRINTLN("Detected incorrectly entered data. Exiting.");
+        printHelp();
     }
     // exit things
     return 0;
