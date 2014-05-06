@@ -181,6 +181,7 @@ bool checkData() {
  */
 void printRecap() {
     PRINTLN(*main_problem);
+    PRINTLN("maxDepth=" << main_maxDepth);
     for (Relation* r : main_runner->getRelations()) {
         PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
     }
