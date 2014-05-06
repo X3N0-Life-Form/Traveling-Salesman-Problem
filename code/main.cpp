@@ -29,8 +29,9 @@ using namespace std;
 
 Runner* main_runner;
 Problem* main_problem;
-int maxDepth = 1;
-ofstream* f_out = NULL;
+int main_maxDepth = 1;
+ofstream* main_f_out = NULL;
+string main_ofName("");
 
 /**
  * Note: requires problem to be initialized.
@@ -81,16 +82,39 @@ Relation* createRelation(std::string type, Strategy* strategy) {
  */
 void printHelp() {
     PRINTLN("TSP - help");
-    PRINTLN("\t-help\t\t\tdisplays this text");
-    PRINTLN("\t-file [file path]\tspecify which file to read the problem from");
-    PRINTLN("\t-maxDepth [int]\t\tspecify how many times a"
+    PRINTLN("\t-help\t\t\t\tdisplays this text");
+    PRINTLN("\t-file [file path]\t\tspecify which file to read the problem from");
+    PRINTLN("\t-maxDepth [int]\t\t\tspecify how many times a"
             << " relation will be applied; default = 1");
     PRINTLN("\t-rs [relation] [strategy]\tspecify a relation & strategy"
             << " to apply to the problem. Note that several -rs can/should"
             << " be specified.");
+    PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
+    PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
     PRINTLN("");
-    PRINTLN("\tValid Relations are\tswap");
-    PRINTLN("\tValid Strategies are\tfirstFit, bestFit, worstFit");
+    PRINTLN("Valid Relations are\tswap");
+    PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
+}
+
+std::string getOutputName(std::string problemName) {
+    string res("data/results/");
+    res.append(problemName);
+    time_t t = time(0);
+    struct tm* now = localtime( & t );
+    res.append(".");
+    res.append(std::to_string(1900 + now->tm_year));
+    res.append("-");
+    res.append(std::to_string(1 + now->tm_mon));
+    res.append("-");
+    res.append(std::to_string(now->tm_mday));
+    res.append("__");
+    res.append(std::to_string(1 + now->tm_hour));
+    res.append("_");
+    res.append(std::to_string(1 + now->tm_min));
+    res.append("_");
+    res.append(std::to_string(1 + now->tm_sec));
+    res.append(".results");
+    return res;
 }
 
 /**
@@ -106,23 +130,28 @@ void dealWithArgs(int argc, char** argv) {
             ARG_CHECK(main_problem = new Problem(parseProblem(string(argv[i])));,
                     "file name");
         } else if (arg == "-maxDepth") {
-            ARG_CHECK(maxDepth = atoi(argv[i]) , "integer");
+            ARG_CHECK(main_maxDepth = atoi(argv[i]) , "integer");
         } else if (arg == "-rs") {
             string rName, sName;
             ARG_CHECK(rName = string(argv[i]), "relation name");
             ARG_CHECK(sName = string(argv[i]), "strategy name");
             rs.push_back(pair<string, string>(rName, sName));
         } else if (arg == "-o") {
-            string fName;
-            ARG_CHECK(fName = string(argv[i]), "output file name");
-            f_out = new ofstream(fName);
+            ARG_CHECK(main_ofName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
             printHelp();
         } else {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
     }
-    main_runner = new Runner(*main_problem, maxDepth);
+    if (main_ofName == "auto") {
+                main_ofName = getOutputName(main_problem->getName());
+    }
+    if (main_ofName != "") {
+        main_f_out = new ofstream(main_ofName);
+    }
+    
+    main_runner = new Runner(*main_problem, main_maxDepth);
     // Now that we should have all the data we need, actually create & add these
     for (pair<string, string> p : rs) {
         Strategy* s = createStrategy(p.second);
@@ -151,7 +180,7 @@ bool checkData() {
  * strategies.
  */
 void printRecap() {
-    PRINTLN(main_problem);
+    PRINTLN(*main_problem);
     for (Relation* r : main_runner->getRelations()) {
         PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
     }
@@ -171,15 +200,16 @@ int main(int argc, char** argv) {
             main_runner->run();
             // output things
             main_runner->outputResults();
-            if (f_out != NULL) {
-                main_runner->outputResults(*f_out);
+            if (main_f_out != NULL) {
+                PRINTLN("Results saved in " << main_ofName);
+                main_runner->outputResults(*main_f_out);
             }
             // delete things
             delete(main_problem);
             delete(main_runner);
-            if (f_out != NULL) {
-                f_out->close();
-                delete(f_out);
+            if (main_f_out != NULL) {
+                main_f_out->close();
+                delete(main_f_out);
             }
         } else {
             PRINTLN("Detected incorrectly entered data. Exiting.");
@@ -187,6 +217,7 @@ int main(int argc, char** argv) {
     } else {
         printHelp();
     }
+    PRINTLN("");
     // exit things
     return 0;
 }

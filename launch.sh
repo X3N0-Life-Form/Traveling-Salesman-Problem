@@ -11,4 +11,4 @@
     -rs swap firstFit \
     -rs swap bestFit \
     -rs swap worstFit \
-    -o data/results/a280.results
+    -o auto
