@@ -32,9 +32,10 @@ public:
      * Useful when outputting a Strategy.
      * @return The name of this type of Strategy (ie. First Fit, Best Fit, ...)
      */
-    virtual std::string getType() = 0;
+    virtual std::string getType() const = 0;
     // Getters / Setters
-    int getInitialCost();
+    int getDimension() const;
+    int getInitialCost() const;
     void setInitialCost(int initialCost);
     int* getFit();
     int getFitCost();
@@ -45,6 +46,9 @@ protected:
     int initialCost;
     int dimension;
 };
+
+bool operator==(const Strategy& left, const Strategy& right);
+bool operator!=(const Strategy& left, const Strategy& right);
 
 #endif	/* STRATEGY_H */
 

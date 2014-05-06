@@ -22,7 +22,11 @@ Strategy::Strategy(const Strategy& orig) :
 Strategy::~Strategy() {
 }
 
-int Strategy::getInitialCost() {
+int Strategy::getDimension() const {
+    return dimension;
+}
+
+int Strategy::getInitialCost() const {
     return initialCost;
 }
 
@@ -36,4 +40,19 @@ int* Strategy::getFit() {
 
 int Strategy::getFitCost() {
     return fitCost;
+}
+
+bool operator !=(const Strategy& left, const Strategy& right) {
+    return !(left == right);
+}
+
+bool operator ==(const Strategy& left, const Strategy& right) {
+    if (left.getType() != right.getType())
+        return false;
+    else if (left.getDimension() != right.getDimension())
+        return false;
+    else if (left.getInitialCost() != right.getInitialCost())
+        return false;
+    // not so sure about comparing paths & fit costs
+    return true;
 }

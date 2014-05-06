@@ -31,6 +31,6 @@ void FirstFit::reset() {
     fit = NULL;
 }
 
-std::string FirstFit::getType() {
+std::string FirstFit::getType() const {
     return std::string("First Fit");
 }

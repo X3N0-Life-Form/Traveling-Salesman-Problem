@@ -19,7 +19,7 @@ public:
     // implemented methods
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0);
     virtual void reset();
-    virtual std::string getType();
+    virtual std::string getType() const;
 };
 
 #endif	/* WORSTFIT_H */
