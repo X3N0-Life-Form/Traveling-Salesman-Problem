@@ -13,10 +13,12 @@
 #include "../code/strategy/BestFit.h"
 #include "../code/strategy/FirstFit.h"
 #include "../code/relation/Swap.h"
+#include "../code/run/Runner.h"
 
 CPPUNIT_TEST_SUITE_REGISTRATION(mainTests);
 
 extern Problem* main_problem;
+extern Runner* main_runner;
 
 mainTests::mainTests() {
 }
@@ -74,13 +76,31 @@ void mainTests::test_createRelation_KO_bogusType() {
 }
 
 void mainTests::test_createRelation_KO_badStrategy() {
-CPPUNIT_FAIL("TODO");
+    try {
+        createRelation(std::string("swap"), NULL);
+        CPPUNIT_FAIL("an exception should have been thrown");
+    } catch (...) {
+        // all clear
+    }
 }
 
-void mainTests::test_dealWithArgs() {
-CPPUNIT_FAIL("TODO");
-}
-
-void mainTests::test_checkData() {
-CPPUNIT_FAIL("TODO");
+void mainTests::test_dealWithArgs_standard() {
+    // set up
+    const int argc = 11;
+    char* argv[argc];
+    argv[0] = "hohoho";
+    argv[1] = "-file"; argv[2] = "data/a280.tsp";
+    argv[3] = "-maxDepth"; argv[4] = "404";
+    argv[5] = "-rs"; argv[6] = "swap"; argv[7] = "firstFit";
+    argv[8] = "-rs"; argv[9] = "swap"; argv[10] = "bestFit";
+    //argv[11] = NULL;
+    // actual test
+    dealWithArgs(argc, argv);
+    CPPUNIT_ASSERT(main_runner != NULL);
+    CPPUNIT_ASSERT_EQUAL(404, main_runner->getMaxDepth());
+    CPPUNIT_ASSERT_EQUAL(std::string("a280"), main_problem->getName());
+    CPPUNIT_ASSERT_EQUAL(std::list<Relation*>::size_type(2),
+            main_runner->getRelations().size());
+    CPPUNIT_ASSERT_EQUAL(std::list<Strategy*>::size_type(2),
+            main_runner->getStrategies().size());
 }

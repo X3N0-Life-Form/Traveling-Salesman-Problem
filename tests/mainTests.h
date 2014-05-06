@@ -18,8 +18,7 @@ class mainTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_createRelation_OK);
     CPPUNIT_TEST(test_createRelation_KO_bogusType);
     CPPUNIT_TEST(test_createRelation_KO_badStrategy);
-    CPPUNIT_TEST(test_dealWithArgs);
-    CPPUNIT_TEST(test_checkData);
+    CPPUNIT_TEST(test_dealWithArgs_standard);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -35,8 +34,7 @@ private:
     void test_createRelation_OK();
     void test_createRelation_KO_bogusType();
     void test_createRelation_KO_badStrategy();
-    void test_dealWithArgs();
-    void test_checkData();
+    void test_dealWithArgs_standard();
 };
 
 #endif	/* MAINTESTS_H */

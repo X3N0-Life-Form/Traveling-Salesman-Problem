@@ -25,6 +25,10 @@ std::list<RunData>& Runner::getResults() {
     return results;
 }
 
+int Runner::getMaxDepth() const {
+    return maxDepth;
+}
+
 void Runner::setMaxDepth(int maxDepth) {
     this->maxDepth = maxDepth;
 }

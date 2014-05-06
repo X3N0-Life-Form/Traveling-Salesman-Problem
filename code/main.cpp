@@ -27,7 +27,7 @@ using namespace std;
                     << expected);\
             }
 
-Runner* runner;
+Runner* main_runner;
 Problem* main_problem;
 int maxDepth = 1;
 ofstream* f_out = NULL;
@@ -122,13 +122,13 @@ void dealWithArgs(int argc, char** argv) {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
     }
-    runner = new Runner(*main_problem, maxDepth);
+    main_runner = new Runner(*main_problem, maxDepth);
     // Now that we should have all the data we need, actually create & add these
     for (pair<string, string> p : rs) {
         Strategy* s = createStrategy(p.second);
         Relation* r = createRelation(p.first, s);
-        runner->addStrategy(s);
-        runner->addRelation(r);
+        main_runner->addStrategy(s);
+        main_runner->addRelation(r);
     }
 }
 
@@ -137,10 +137,10 @@ void dealWithArgs(int argc, char** argv) {
  * @return true if it is.
  */
 bool checkData() {
-    if (main_problem == NULL || runner == NULL) {//TODO:print errors
+    if (main_problem == NULL || main_runner == NULL) {//TODO:print errors
         return false;
-    } else if (runner->getRelations().size() == 0
-            || runner->getStrategies().size() == 0) {
+    } else if (main_runner->getRelations().size() == 0
+            || main_runner->getStrategies().size() == 0) {
         return false;
     }
     return true;
@@ -152,7 +152,7 @@ bool checkData() {
  */
 void printRecap() {
     PRINTLN(main_problem);
-    for (Relation* r : runner->getRelations()) {
+    for (Relation* r : main_runner->getRelations()) {
         PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
     }
 }
@@ -168,15 +168,15 @@ int main(int argc, char** argv) {
         if (checkData()) {
             printRecap();
             // run things
-            runner->run();
+            main_runner->run();
             // output things
-            runner->outputResults();
+            main_runner->outputResults();
             if (f_out != NULL) {
-                runner->outputResults(*f_out);
+                main_runner->outputResults(*f_out);
             }
             // delete things
             delete(main_problem);
-            delete(runner);
+            delete(main_runner);
             if (f_out != NULL) {
                 f_out->close();
                 delete(f_out);

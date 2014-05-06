@@ -28,6 +28,7 @@ public:
     virtual ~Runner();
     // Getters/Setters/Adders
     std::list<RunData>& getResults();
+    int getMaxDepth() const;
     void setMaxDepth(int maxDepth);
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);
