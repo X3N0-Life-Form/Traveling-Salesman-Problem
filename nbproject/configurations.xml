@@ -122,6 +122,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>launch.sh</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -314,6 +315,8 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <item path="launch.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
@@ -606,6 +609,8 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <item path="launch.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
             tool="1"
