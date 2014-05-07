@@ -1,0 +1,5 @@
+
+Run Results for att48:
+Run Data: Relation=Swap;	Strategy=First Fit;	starting cost=161779,	end cost=51070;	depth=138
+Run Data: Relation=Swap;	Strategy=Best Fit;	starting cost=150463,	end cost=57802;	depth=89
+Run Data: Relation=Swap;	Strategy=Worst Fit;	starting cost=164437,	end cost=51269;	depth=120

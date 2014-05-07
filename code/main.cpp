@@ -31,7 +31,7 @@ Runner* main_runner;
 Problem* main_problem;
 int main_maxDepth = 1;
 ofstream* main_f_out = NULL;
-string main_ofName("");
+string main_oFileName("");
 
 /**
  * Note: requires problem to be initialized.
@@ -124,6 +124,10 @@ std::string getOutputName(std::string problemName) {
  */
 void dealWithArgs(int argc, char** argv) {
     list<pair<string, string>> rs;
+    list<string> r_list;
+    list<string> s_list;
+    string rName, sName;
+    
     for (int i = 1; i < argc; i++) {
         string arg(argv[i]);
         if (arg == "-file") {
@@ -132,27 +136,44 @@ void dealWithArgs(int argc, char** argv) {
         } else if (arg == "-maxDepth") {
             ARG_CHECK(main_maxDepth = atoi(argv[i]) , "integer");
         } else if (arg == "-rs") {
-            string rName, sName;
+            PRINTLN("Warning: \"-rs\" argument is deprecated."
+                    << " Use \"-r\" and \"-s\" instead.");
             ARG_CHECK(rName = string(argv[i]), "relation name");
             ARG_CHECK(sName = string(argv[i]), "strategy name");
             rs.push_back(pair<string, string>(rName, sName));
+        } else if (arg == "-r") {
+            ARG_CHECK(rName = string(argv[i]), "relation name");
+            r_list.push_back(rName);
+        } else if (arg == "-s") {
+            ARG_CHECK(sName = string(argv[i]), "strategy name");
+            s_list.push_back(sName);
         } else if (arg == "-o") {
-            ARG_CHECK(main_ofName = string(argv[i]), "output file name");
+            ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
             printHelp();
         } else {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
     }
-    if (main_ofName == "auto") {
-                main_ofName = getOutputName(main_problem->getName());
+    if (main_oFileName == "auto") {
+                main_oFileName = getOutputName(main_problem->getName());
     }
-    if (main_ofName != "") {
-        main_f_out = new ofstream(main_ofName);
+    if (main_oFileName != "") {
+        main_f_out = new ofstream(main_oFileName);
     }
     
     main_runner = new Runner(*main_problem, main_maxDepth);
     // Now that we should have all the data we need, actually create & add these
+    for (string s_type : s_list) {
+        Strategy* s = createStrategy(s_type);
+        main_runner->addStrategy(s);
+    }
+    Strategy* s_default = main_runner->getStrategies().front();
+    for (string r_type : r_list) {
+        Relation* r = createRelation(r_type, s_default);
+        main_runner->addRelation(r);
+    }
+    // deprecated
     for (pair<string, string> p : rs) {
         Strategy* s = createStrategy(p.second);
         Relation* r = createRelation(p.first, s);
@@ -202,7 +223,7 @@ int main(int argc, char** argv) {
             // output things
             main_runner->outputResults();
             if (main_f_out != NULL) {
-                PRINTLN("Results saved in " << main_ofName);
+                PRINTLN("Results saved in " << main_oFileName);
                 main_runner->outputResults(*main_f_out);
             }
             // delete things
