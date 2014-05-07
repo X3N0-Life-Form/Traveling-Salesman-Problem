@@ -13,8 +13,12 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
+            <option name="debug_command"
+                    value="&quot;${OUTPUT_PATH}&quot; -file data/a280.tsp -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit -o auto"/>
           </DebugOptions>
         </gdb_options>
         <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
@@ -24,9 +28,19 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" \
+    -file data/a280.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" \     -file data/a280.tsp \     -maxDepth 2000 \     -r swap \     -s firstFit \     -s bestFit \     -s worstFit \     -o auto </runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}" \     -file data/a280.tsp \     -maxDepth 2000 \     -r swap \     -s firstFit \     -s bestFit \     -s worstFit \     -o auto</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
