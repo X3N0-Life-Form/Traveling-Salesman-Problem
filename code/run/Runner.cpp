@@ -7,6 +7,8 @@
 
 #include "Runner.h"
 
+#include <chrono>
+
 Runner::Runner(Problem& problem, int maxDepth) :
     problem(problem), maxDepth(maxDepth) {
 }
@@ -58,6 +60,7 @@ void Runner::addRelation(Relation& r) {
 }
 
 void Runner::run() {
+    std::chrono::steady_clock clock;
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {
             r->setStrategy(*s);
@@ -71,6 +74,8 @@ void Runner::run() {
             data.setDepth(maxDepth);
             PRINTLN("Initial cost=\t" << n->getCost());
             
+            std::chrono::steady_clock::time_point* beginning =
+                    new std::chrono::steady_clock::time_point(clock.now());
             for (int i = 0; i < maxDepth; i++) {
                 int oldCost = n->getCost();
                 n = r->applyRelation(*n);
@@ -80,9 +85,13 @@ void Runner::run() {
                     break;
                 }//TODO:delete old n?
             }
+            std::chrono::steady_clock::time_point* end =
+                    new std::chrono::steady_clock::time_point(clock.now());
             
             PRINTLN("End cost=\t" << n->getCost());
             data.setEndPoint(n);
+            data.setBeginTime(beginning);
+            data.setEndTime(end);
             results.push_back(data);
         }
     }
