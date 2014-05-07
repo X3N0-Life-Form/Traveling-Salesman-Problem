@@ -60,16 +60,16 @@ void Runner::addRelation(Relation& r) {
 void Runner::run() {
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {
+            r->setStrategy(*s);
             
             PRINTLN("Running " << r->getType()
-                    << " with strategy " << s->getType());//TODO: ability to specify which output stream should be used
-            r->setStrategy(*s);
+                    << " with strategy " << s->getType());
             Neighborhood* n = new Neighborhood(problem);
             n->generateRandomNeighborhood();
             n->calculateCost();
             RunData data(r, s, n);
             data.setDepth(maxDepth);
-            PRINTLN("Initial cost=\t"<<n->getCost());//see println above
+            PRINTLN("Initial cost=\t" << n->getCost());
             
             for (int i = 0; i < maxDepth; i++) {
                 int oldCost = n->getCost();
@@ -81,7 +81,7 @@ void Runner::run() {
                 }//TODO:delete old n?
             }
             
-            PRINTLN("End cost=\t"<<n->getCost());// //
+            PRINTLN("End cost=\t" << n->getCost());
             data.setEndPoint(n);
             results.push_back(data);
         }
