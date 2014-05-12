@@ -74,8 +74,7 @@ void Runner::run() {
             data.setDepth(maxDepth);
             PRINTLN("Initial cost=\t" << n->getCost());
             
-            std::chrono::steady_clock::time_point* beginning =
-                    new std::chrono::steady_clock::time_point(clock.now());
+            std::chrono::steady_clock::time_point beginning = clock.now();
             for (int i = 0; i < maxDepth; i++) {
                 int oldCost = n->getCost();
                 n = r->applyRelation(*n);
@@ -85,13 +84,13 @@ void Runner::run() {
                     break;
                 }//TODO:delete old n?
             }
-            std::chrono::steady_clock::time_point* end =
-                    new std::chrono::steady_clock::time_point(clock.now());
+            std::chrono::steady_clock::time_point end = clock.now();
             
             PRINTLN("End cost=\t" << n->getCost());
             data.setEndPoint(n);
             data.setBeginTime(beginning);
             data.setEndTime(end);
+            PRINTLN("\tRuntime= " << data.getRunTimeString());
             results.push_back(data);
         }
     }

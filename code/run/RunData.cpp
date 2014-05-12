@@ -19,10 +19,10 @@ RunData::RunData(Relation* r, Strategy* s, Neighborhood* startingPoint) :
 RunData::RunData(const RunData& orig) :
         relation(orig.relation),
         strategy(orig.strategy),
-        startingPoint(orig.startingPoint),
-        endPoint(orig.endPoint),
-        depth(orig.depth) {
-}
+        startingPoint(orig.startingPoint), endPoint(orig.endPoint),
+        depth(orig.depth),
+        beginTime(orig.beginTime), endTime(orig.endTime)
+{}
 
 RunData::~RunData() {
 }
@@ -57,24 +57,21 @@ void RunData::setEndPoint(Neighborhood* endPoint) {
     this->endPoint.setCost(endPoint->getCost());
 }
 
-void RunData::setBeginTime(std::chrono::steady_clock::time_point* beginTime) {
+void RunData::setBeginTime(std::chrono::steady_clock::time_point beginTime) {
     this->beginTime = beginTime;
 }
 
-void RunData::setEndTime(std::chrono::steady_clock::time_point* endTime) {
+void RunData::setEndTime(std::chrono::steady_clock::time_point endTime) {
     this->endTime = endTime;
 }
 
 std::string RunData::getRunTimeString() {
     std::string res;
-    auto h = std::chrono::duration_cast<std::chrono::hours>
-        (*endTime - *beginTime);
-    auto min = std::chrono::duration_cast<std::chrono::minutes>
-        (*endTime - *beginTime);
-    auto sec = std::chrono::duration_cast<std::chrono::seconds>
-        (*endTime - *beginTime);
-    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>
-        (*endTime - *beginTime);
+    std::chrono::steady_clock::duration diff = endTime - beginTime;
+    auto h = std::chrono::duration_cast<std::chrono::hours> (diff);
+    auto min = std::chrono::duration_cast<std::chrono::minutes> (diff);
+    auto sec = std::chrono::duration_cast<std::chrono::seconds> (diff);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds> (diff);
     
     if (h.count() > 0) {
         res.append(std::to_string(h.count()));
@@ -82,13 +79,17 @@ std::string RunData::getRunTimeString() {
     }
     
     if (min.count() > 0) {
-        res.append(std::to_string(min.count()));
+        res.append(std::to_string(min.count() % 60));
         res.append(" min ");
     }
     
-    res.append(std::to_string(sec.count()));
+    res.append(std::to_string(sec.count() % 60));
     res.append(".");
-    res.append(std::to_string(ms.count()));
+    if (ms.count() < 100)
+        res.append("0");
+    if (ms.count() < 10)
+        res.append("0");
+    res.append(std::to_string(ms.count() % 1000));
     res.append(" sec");
     
     return res;

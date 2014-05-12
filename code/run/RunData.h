@@ -21,8 +21,8 @@ private:
     Neighborhood startingPoint;
     Neighborhood endPoint;
     int depth;
-    std::chrono::steady_clock::time_point* beginTime;
-    std::chrono::steady_clock::time_point* endTime;
+    std::chrono::steady_clock::time_point beginTime;
+    std::chrono::steady_clock::time_point endTime;
 public:
     RunData(Relation* r, Strategy* s, Neighborhood* startingPoint);
     RunData(const RunData& orig);
@@ -39,8 +39,8 @@ public:
     void setEndPoint(Neighborhood* endPoint);
     int getDepth();
     void setDepth(int depth);
-    void setBeginTime(std::chrono::steady_clock::time_point* beginTime);
-    void setEndTime(std::chrono::steady_clock::time_point* endTime);
+    void setBeginTime(std::chrono::steady_clock::time_point beginTime);
+    void setEndTime(std::chrono::steady_clock::time_point endTime);
     // Advanced Getters
     std::string getRunTimeString();
 };
