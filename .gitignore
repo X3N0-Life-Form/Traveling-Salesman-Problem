@@ -1,7 +1,7 @@
 build/
 dist/
 personalLog.txt
-nbproject/private/private.xml
+nbproject/private/*
 .~lock.*
 data/results/
 
