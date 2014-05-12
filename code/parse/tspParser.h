@@ -18,7 +18,7 @@
 #include "../core/Problem.h"
 #include "../core/City.h"
 
-#define NUMBER "1234567890"
+#define NUMBER "1234567890-"
 
 enum ParsingMode {
     DISCOVER,
