@@ -95,6 +95,18 @@ std::string RunData::getRunTimeString() {
     return res;
 }
 
+std::string RunData::getRunTimeSeconds() {
+    std::string res;
+    std::chrono::steady_clock::duration diff = endTime - beginTime;
+    auto sec = std::chrono::duration_cast<std::chrono::seconds> (diff);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds> (diff);
+    
+    res.append(std::to_string(sec.count()));
+    res.append(".");
+    res.append(std::to_string(ms.count() % 1000));
+    return res;
+}
+
 
 std::ostream& operator<<(std::ostream& out, RunData& data) {
     out << "Run Data: Relation=" << data.getRelation()->getType()

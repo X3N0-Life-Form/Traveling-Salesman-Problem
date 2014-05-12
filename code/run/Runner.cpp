@@ -104,6 +104,20 @@ std::ostream& Runner::outputResults(std::ostream& out) {
     return out;
 }
 
+std::ostream& Runner::outputResultsCSV(std::ostream& out) {
+    for (RunData data : results) {
+        out << problem.getName() << ","
+                << data.getRelation()->getType() << ","
+                << data.getStrategy()->getType() << ","
+                << data.getStartingPoint().getCost() << ","
+                << data.getEndPoint().getCost() << ","
+                << data.getDepth() << ","
+                << data.getRunTimeSeconds()
+                << "\n";
+    }
+    return out;
+}
+
 void Runner::clear() {
     strategies.clear();
     relations.clear();

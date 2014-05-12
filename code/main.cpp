@@ -31,7 +31,9 @@ Runner* main_runner;
 Problem* main_problem;
 int main_maxDepth = 1;
 ofstream* main_f_out = NULL;
+ofstream* main_f_out_csv = NULL;
 string main_oFileName("");
+string main_oFileNameCSV("");
 
 /**
  * Note: requires problem to be initialized.
@@ -96,7 +98,7 @@ void printHelp() {
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
 }
 
-std::string getOutputName(std::string problemName) {
+std::string getOutputName(std::string problemName, bool csv = false) {
     string res("data/results/");
     res.append(problemName);
     time_t t = time(0);
@@ -113,7 +115,10 @@ std::string getOutputName(std::string problemName) {
     res.append(std::to_string(1 + now->tm_min));
     res.append("_");
     res.append(std::to_string(1 + now->tm_sec));
-    res.append(".results");
+    if (csv)
+        res.append(".csv");
+    else
+        res.append(".results");
     return res;
 }
 
@@ -156,10 +161,12 @@ void dealWithArgs(int argc, char** argv) {
         }
     }
     if (main_oFileName == "auto") {
-                main_oFileName = getOutputName(main_problem->getName());
+        main_oFileName = getOutputName(main_problem->getName());
+        main_oFileNameCSV = getOutputName(main_problem->getName(), true);
     }
     if (main_oFileName != "") {
         main_f_out = new ofstream(main_oFileName);
+        main_f_out_csv = new ofstream(main_oFileNameCSV);
     }
     
     main_runner = new Runner(*main_problem, main_maxDepth);
@@ -224,14 +231,18 @@ int main(int argc, char** argv) {
             main_runner->outputResults();
             if (main_f_out != NULL) {
                 PRINTLN("Results saved in " << main_oFileName);
+                PRINTLN("\tas CSV in " << main_oFileNameCSV);
                 main_runner->outputResults(*main_f_out);
+                main_runner->outputResultsCSV(*main_f_out_csv);
             }
             // delete things
             delete(main_problem);
             delete(main_runner);
             if (main_f_out != NULL) {
                 main_f_out->close();
+                main_f_out_csv->close();
                 delete(main_f_out);
+                delete(main_f_out_csv);
             }
         } else {
             PRINTLN("Detected incorrectly entered data. Exiting.");

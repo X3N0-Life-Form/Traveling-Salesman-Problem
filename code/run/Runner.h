@@ -40,6 +40,7 @@ public:
     void run();
     void clear();
     std::ostream& outputResults(std::ostream& out = std::cout);
+    std::ostream& outputResultsCSV(std::ostream& out = std::cout);
 };
 
 #endif	/* RUNNER_H */

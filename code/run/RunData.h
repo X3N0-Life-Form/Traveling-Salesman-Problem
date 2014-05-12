@@ -43,6 +43,7 @@ public:
     void setEndTime(std::chrono::steady_clock::time_point endTime);
     // Advanced Getters
     std::string getRunTimeString();
+    std::string getRunTimeSeconds();
 };
 
 std::ostream& operator<<(std::ostream& out, RunData& data);
