@@ -1,0 +1,5 @@
+
+Run Results for berlin52:
+Run Data: Relation=Swap;	Strategy=First Fit;	starting cost=19490,	end cost=6580;	depth=90
+Run Data: Relation=Swap;	Strategy=Best Fit;	starting cost=24180,	end cost=4160;	depth=140
+Run Data: Relation=Swap;	Strategy=Worst Fit;	starting cost=25700,	end cost=5510;	depth=110

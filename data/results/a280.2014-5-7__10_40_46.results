@@ -1,0 +1,5 @@
+
+Run Results for a280:
+Run Data: Relation=Swap;	Strategy=First Fit;	starting cost=34568,	end cost=6743;	depth=1212
+Run Data: Relation=Swap;	Strategy=Best Fit;	starting cost=34211,	end cost=6859;	depth=1185
+Run Data: Relation=Swap;	Strategy=Worst Fit;	starting cost=34235,	end cost=6525;	depth=1278
