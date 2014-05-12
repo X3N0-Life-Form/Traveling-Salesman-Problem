@@ -122,6 +122,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>cleanResults.sh</itemPath>
     <itemPath>launch.sh</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -137,6 +138,8 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
+      <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/core/City.h" ex="false" tool="3" flavor2="0">
@@ -431,6 +434,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/core/City.h" ex="false" tool="3" flavor2="0">
