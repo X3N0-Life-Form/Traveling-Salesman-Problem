@@ -1,6 +1,21 @@
 #include "tspParser.h"
 
 using namespace std;
+#include "../utils.h"
+/**
+ * Move along, nothing to see here.
+ * @param dim
+ * @return Something that wouldn't be needed if those damn regex worked
+ */
+int doom(int dim) {
+    int dom = 1;
+    int dem = 1;
+    while (dim / dom > 1) {
+        dom *= 10;
+        dem++;
+    }
+    return dem;
+}
 
 Problem parseProblem(string filePath) {
     string name("");
@@ -16,6 +31,7 @@ Problem parseProblem(string filePath) {
             std::regex_constants::basic);
     
     ifstream stream(filePath);
+    PRINTLN("Parsing file " << filePath);
     while (stream.is_open() && !stream.eof()) {
         char line[256];
         stream.getline(line, 256, '\n');
@@ -36,7 +52,7 @@ Problem parseProblem(string filePath) {
             line_str = line_str.substr(pos + 1);
             dimension = stoi(trim(line_str));
             
-        } else if (line_str.find_first_of(NUMBER) <= 3 //ugly hack
+        } else if (line_str.find_first_of(NUMBER) <= doom(dimension) //ugly hack
                 || regex_search(line_str, rex)) {
             switch(parsingMode) {
                 case DISCOVER:

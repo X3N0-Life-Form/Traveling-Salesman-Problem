@@ -19,6 +19,7 @@
 #include "../core/City.h"
 
 #define NUMBER "1234567890-"
+int doom(int dim);
 
 enum ParsingMode {
     DISCOVER,
