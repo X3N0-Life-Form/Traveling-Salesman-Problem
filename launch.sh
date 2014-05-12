@@ -33,3 +33,48 @@
     -s worstFit \
     -o auto
 
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/ali535.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/bayg29.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/bays29.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/ch130.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/ch150.tsp \
+    -maxDepth 2000 \
+    -r swap \
+    -s firstFit \
+    -s bestFit \
+    -s worstFit \
+    -o auto
+
