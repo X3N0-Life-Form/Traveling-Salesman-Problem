@@ -2,6 +2,7 @@ build/
 dist/
 personalLog.txt
 nbproject/private/private.xml
+data/results/
 
 # Compiled Object files
 *.slo
