@@ -39,9 +39,9 @@
 #    -file data/burma14.tsp \
 #    -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit -o auto
 
-#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
-#    -file data/brd14051.tsp \
-#    -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit -o auto
+./dist/Debug/GNU-Linux-x86/traveling_salesman_problem \
+    -file data/brd14051.tsp \
+    -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit -o auto
 
 echo "Merging all .csv into allResults.csv"
 cat data/results/*.csv > data/allResults.csv
