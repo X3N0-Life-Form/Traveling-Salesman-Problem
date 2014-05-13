@@ -46,6 +46,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
                     Neighborhood* nuN = new Neighborhood(n);
                     nuN->setPath(strategy.getFit());
                     nuN->setCost(strategy.getFitCost());
+                    delete[](nuPath);
                     return nuN;
                 }
                 // delete nuPath

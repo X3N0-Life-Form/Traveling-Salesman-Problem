@@ -25,8 +25,6 @@ RunData::RunData(const RunData& orig) :
 {}
 
 RunData::~RunData() {
-    //delete(strategy);
-    //delete(relation);
 }
 
 Relation* RunData::getRelation() {

@@ -21,12 +21,6 @@ Runner::Runner(const Runner& orig) :
 }
 
 Runner::~Runner() {
-    /*for (Strategy* s : strategies) {
-        delete(s);
-    }
-    for (Relation* r : relations) {
-        delete(r);
-    }*/
 }
 
 std::list<RunData>& Runner::getResults() {
