@@ -12,6 +12,11 @@
 #include "../core/Neighborhood.h"
 
 class Strategy {
+protected:
+    int* fit;
+    int fitCost;
+    int initialCost;
+    int dimension;
 public:
     Strategy();
     Strategy(int dimension, int initialCost = INT_MAX);
@@ -40,11 +45,6 @@ public:
     int* getFit();
     int getFitCost();
     
-protected:
-    int* fit;
-    int fitCost;
-    int initialCost;
-    int dimension;
 };
 
 bool operator==(const Strategy& left, const Strategy& right);

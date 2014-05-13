@@ -23,7 +23,7 @@ private:
     std::string name;
     std::string comment;
     int dimension;
-    std::vector<City*> cities;
+    std::vector<City> cities;
     float** distanceMatrix_f;
     int** distanceMatrix_i;
     DistanceType distanceType;
@@ -32,6 +32,7 @@ public:
     // Constructors
     Problem(std::string name, int dimension, DistanceType distanceType);
     Problem(const Problem& orig);
+    virtual ~Problem();
     // Getters / Setters
     int getDimension() const;
     std::string getName() const;
@@ -42,10 +43,10 @@ public:
     int** getDistanceMatrix_i() const;
     void setDistanceMatrix(int** d_i);
     
-    std::vector<City*> getCities() const;
-    void setCities(std::vector<City*>& cities);
+    std::vector<City> getCities() const;
+    void setCities(std::vector<City>& cities);
     
-    Problem& operator=(const Problem& right);
+    Problem operator=(const Problem& right);
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();

@@ -20,6 +20,7 @@ Strategy::Strategy(const Strategy& orig) :
 }
 
 Strategy::~Strategy() {
+    delete[](fit);
 }
 
 int Strategy::getDimension() const {

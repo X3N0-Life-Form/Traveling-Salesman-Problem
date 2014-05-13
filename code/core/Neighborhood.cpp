@@ -23,6 +23,7 @@ Neighborhood::Neighborhood(const Neighborhood& orig) :
 }
 
 Neighborhood::~Neighborhood() {
+    delete[](path);
 }
 
 Neighborhood& Neighborhood::operator =(const Neighborhood& right) {

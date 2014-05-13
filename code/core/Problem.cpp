@@ -33,6 +33,21 @@ Problem::Problem(const Problem& orig) :
     }
 }
 
+Problem::~Problem() {
+    if (distanceMatrix_i != NULL) {
+        for (int i = 0; i < dimension; i++) {
+            delete[](distanceMatrix_i[i]);
+        }
+        delete[](distanceMatrix_i);
+    }
+    if (distanceMatrix_f != NULL) {
+        for (int f = 0; f < dimension; f++) {
+            delete[](distanceMatrix_f[f]);
+        }
+        delete[](distanceMatrix_f);
+    }
+}
+
 int Problem::getDimension() const {
     return dimension;
 }
@@ -61,18 +76,18 @@ void Problem::setDistanceMatrix(int** d_i) {
     distanceMatrix_i = d_i;
 }
 
-std::vector<City*> Problem::getCities() const {
+std::vector<City> Problem::getCities() const {
     return cities;
 }
 
-void Problem::setCities(std::vector<City*>& cities) {
+void Problem::setCities(std::vector<City>& cities) {
     this->cities = cities;
 }
 
 std::vector<int> Problem::getCityIdsAsVector() {
     std::vector<int> v;
-    for (City* city : cities) {
-        int id = city->getId();
+    for (City city : cities) {
+        int id = city.getId();
         v.push_back(id);
     }
     return v;
@@ -80,8 +95,8 @@ std::vector<int> Problem::getCityIdsAsVector() {
 
 std::list<int> Problem::getCityIdsAsList() {
     std::list<int> l;
-    for (City* city : cities) {
-        int id = city->getId();
+    for (City city : cities) {
+        int id = city.getId();
         l.push_back(id);
     }
     return l;
@@ -100,9 +115,9 @@ int Problem::getDistance(int id1, int id2) {
         return distanceMatrix_i[id1 - 1][id2 - 1];
 }
 
-Problem& Problem::operator =(const Problem& right) {
-    Problem* p = new Problem(right);
-    return *p;
+Problem Problem::operator =(const Problem& right) {
+    Problem p(right);
+    return p;
 }
 
 std::ostream& operator<<(std::ostream& out, const Problem& problem) {
@@ -117,10 +132,10 @@ bool operator==(const Problem& left, const Problem& right) {
     else if (left.getDimension() != right.getDimension())
         return false;
     // compare cities
-    for (int i = 0; i < left.getCities().size(); i++) {
-        if (left.getCities()[i] != right.getCities()[i])
+    /*for (int i = 0; i < left.getCities().size(); i++) {
+        if (left.getCities()[i] != right.getCities()[i])//TODO: fix this
             return false;
-    }
+    }*/
     // compare the matrix
     for (int i = 0; i < left.getDimension(); i++) {
         for (int j = 0; j < left.getDimension(); j++) {

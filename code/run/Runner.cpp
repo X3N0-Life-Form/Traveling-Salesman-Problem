@@ -21,6 +21,12 @@ Runner::Runner(const Runner& orig) :
 }
 
 Runner::~Runner() {
+    /*for (Strategy* s : strategies) {
+        delete(s);
+    }
+    for (Relation* r : relations) {
+        delete(r);
+    }*/
 }
 
 std::list<RunData>& Runner::getResults() {
@@ -77,12 +83,14 @@ void Runner::run() {
             std::chrono::steady_clock::time_point beginning = clock.now();
             for (int i = 0; i < maxDepth; i++) {
                 int oldCost = n->getCost();
+                Neighborhood* oldN = n;
                 n = r->applyRelation(*n);
                 // no better result was produced
                 if (n->getCost() == oldCost) {
                     data.setDepth(i);
                     break;
-                }//TODO:delete old n?
+                }
+                delete(oldN);
             }
             std::chrono::steady_clock::time_point end = clock.now();
             

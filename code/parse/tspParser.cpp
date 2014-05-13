@@ -25,7 +25,7 @@ Problem parseProblem(string filePath) {
     
     float** distanceMatrix_f;
     int** distanceMatrix_i;
-    vector<City*> cities;
+    vector<City> cities;
     //[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*
     regex rex("[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*",
             std::regex_constants::basic);
@@ -106,7 +106,7 @@ string trim(std::string toTrim) {
     return toTrim;
 }
 
-City* parseInt(std::string line) {
+City parseInt(std::string line) {
     line = trim(line);
     //find first whitespace
     string::size_type pos = line.find_first_not_of(NUMBER);
@@ -117,10 +117,10 @@ City* parseInt(std::string line) {
     int x = stoi(trim(line.substr(0, pos)));
     int y = stoi(trim(line.substr(pos)));
     // create city object
-    return new City(id, x, y);
+    return City(id, x, y);
 }
 
-City* parseFloat(std::string line) {
+City parseFloat(std::string line) {
     line = trim(line);
     //find first whitespace
     string::size_type pos = line.find_first_not_of(NUMBER);
@@ -131,25 +131,25 @@ City* parseFloat(std::string line) {
     float x = stof(trim(line.substr(0, pos)));
     float y = stof(trim(line.substr(pos)));
     // create city object
-    return new City(id, x, y);
+    return City(id, x, y);
 }
 
-void calculateDistances(std::vector<City*>& cities, float** distanceMatrix) {
+void calculateDistances(std::vector<City>& cities, float** distanceMatrix) {
     for (int i = 0; i < cities.size(); i++) {
         for (int j = 0; j < cities.size(); j++) {
-            int dx = cities[i]->getXF() - cities[j]->getXF();
-            int dy = cities[i]->getYF() - cities[j]->getYF();
+            int dx = cities[i].getXF() - cities[j].getXF();
+            int dy = cities[i].getYF() - cities[j].getYF();
             float dij = sqrt(dx*dx + dy*dy);
             distanceMatrix[i][j] = dij;
         }
     }
 }
 
-void calculateDistances(std::vector<City*>& cities, int** distanceMatrix) {
+void calculateDistances(std::vector<City>& cities, int** distanceMatrix) {
     for (int i = 0; i < cities.size(); i++) {
         for (int j = 0; j < cities.size(); j++) {
-            int dx = cities[i]->getXI() - cities[j]->getXI();
-            int dy = cities[i]->getYI() - cities[j]->getYI();
+            int dx = cities[i].getXI() - cities[j].getXI();
+            int dy = cities[i].getYI() - cities[j].getYI();
             int dij = sqrt(dx*dx + dy*dy);
             distanceMatrix[i][j] = dij;
         }
