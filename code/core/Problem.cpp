@@ -34,7 +34,7 @@ Problem::Problem(const Problem& orig) :
 }
 
 Problem::~Problem() {
-    /*if (distanceMatrix_i != NULL) {
+    if (distanceMatrix_i != NULL) {
         for (int i = 0; i < dimension; i++) {
             delete[](distanceMatrix_i[i]);
         }
@@ -45,7 +45,7 @@ Problem::~Problem() {
             delete[](distanceMatrix_f[f]);
         }
         delete[](distanceMatrix_f);
-    }*/
+    }
 }
 
 int Problem::getDimension() const {
