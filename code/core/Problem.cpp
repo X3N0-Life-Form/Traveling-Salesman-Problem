@@ -34,13 +34,13 @@ Problem::Problem(const Problem& orig) :
 }
 
 Problem::~Problem() {
-    if (distanceMatrix_i != NULL) {
+    if (distanceType == INTEGER) {
         for (int i = 0; i < dimension; i++) {
             delete[](distanceMatrix_i[i]);
         }
         delete[](distanceMatrix_i);
     }
-    if (distanceMatrix_f != NULL) {
+    if (distanceType == FLOAT) {
         for (int f = 0; f < dimension; f++) {
             delete[](distanceMatrix_f[f]);
         }
