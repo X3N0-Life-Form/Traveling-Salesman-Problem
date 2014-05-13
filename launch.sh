@@ -7,7 +7,7 @@
 #
 #-file data/a280.tsp -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit -o auto
 
-maxDepth=4000
+maxDepth=64000
 relations="-r swap"
 strategies="-s firstFit -s bestFit -s worstFit"
 
