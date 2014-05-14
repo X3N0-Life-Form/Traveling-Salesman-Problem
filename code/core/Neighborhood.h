@@ -26,7 +26,8 @@ public:
     // other methods
     void generateRandomNeighborhood();
     int calculateCost();
-    int calculatePotentialCost(int index1, int index2) const;
+    int calculatePotentialCostSwap(int index1, int index2) const;
+    int calculatePotentialCostInsert(int origin, int target) const;
     // Getters / Setters
     int* getPath() const;
     void setPath(int* path);

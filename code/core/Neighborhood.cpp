@@ -64,7 +64,7 @@ int Neighborhood::calculateCost() {
  * @param index2 index of a city in the current path
  * @return cost of this Neighborhood if we swapped these two cities.
  */
-int Neighborhood::calculatePotentialCost(int index1, int index2) const {
+int Neighborhood::calculatePotentialCostSwap(int index1, int index2) const {
     int nuCost = cost;
     // previous & next ids
     int prev1 = index1 - 1;
@@ -96,6 +96,43 @@ int Neighborhood::calculatePotentialCost(int index1, int index2) const {
     nuCost += problem.getDistance(path[index2], path[next1]);
     nuCost += problem.getDistance(path[prev2],  path[index1]);
     nuCost += problem.getDistance(path[index1], path[next2]);
+    
+    return nuCost;
+}
+
+int Neighborhood::calculatePotentialCostInsert(int origin, int target) const {
+    // Note: this section is identical to Swap's
+    int nuCost = cost;
+     // previous & next ids
+    int prev_origin = origin - 1;
+    int next_origin = origin + 1;
+    int prev_target = target - 1;
+    int next_target = target + 1;
+    // WARNING: special cases: first & last cities in our path
+    if (prev_origin < 0)
+        prev_origin = problem.getDimension() - 1;
+    else if (next_origin >= problem.getDimension())
+        next_origin = 0;
+    if (prev_target < 0)
+        prev_target = problem.getDimension() - 1;
+    else if (next_target >= problem.getDimension())
+        next_target = 0;
+    // remove old distance costs
+    // be careful when dealing with two cities right after the other in the path
+    // Note: Insert specific code begins here
+    if (path[target] == path[next_origin])
+        return cost;
+    nuCost -= problem.getDistance(path[prev_origin],  path[origin]);
+    nuCost -= problem.getDistance(path[origin], path[next_origin]);
+    nuCost -= problem.getDistance(path[prev_target],  path[target]);
+    if (path[next_target] != path[origin]) //if target before origin, = first line
+        nuCost -= problem.getDistance(path[target], path[next_target]);
+    // add the new costs
+    nuCost += problem.getDistance(path[prev_origin], path[next_origin]);
+    nuCost += problem.getDistance(path[prev_target], path[origin]);
+    nuCost += problem.getDistance(path[origin], path[target]);
+    if (path[next_target] != path[origin]) //if target before origin, = first line
+        nuCost += problem.getDistance(path[target], path[next_target]);
     
     return nuCost;
 }

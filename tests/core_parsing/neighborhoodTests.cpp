@@ -65,7 +65,7 @@ void neighborhoodTests::test_calculateCost() {
     CPPUNIT_ASSERT_EQUAL(18, n.calculateCost());
 }
 
-void neighborhoodTests::test_calculatePotentialCost() {
+void neighborhoodTests::test_calculatePotentialCostSwap() {
     int* path = new int[p.getDimension()];
     for (int i = 1; i <= p.getDimension(); i++) {
         path[i - 1] = i;
@@ -73,7 +73,7 @@ void neighborhoodTests::test_calculatePotentialCost() {
     n.setPath(path);
     n.calculateCost();
     // see above cost calculation
-    int nuCost = n.calculatePotentialCost(0,1);
+    int nuCost = n.calculatePotentialCostSwap(0,1);
     SWAP(path, 0, 1);
     n.setPath(path);
     CPPUNIT_ASSERT_EQUAL(nuCost, n.calculateCost());
@@ -84,3 +84,14 @@ void neighborhoodTests::test_calculatePotentialCost() {
     //nuts
 }
 
+void neighborhoodTests::test_calculatePotentialCostInsert() {
+    int* path = new int[p.getDimension()];
+    for (int i = 1; i <= p.getDimension(); i++) {
+        path[i - 1] = i;
+    }
+    n.setPath(path);
+    n.calculateCost();
+    
+    int nuCost = n.calculatePotentialCostInsert(0, 5);
+    CPPUNIT_ASSERT_EQUAL(24, nuCost);
+}

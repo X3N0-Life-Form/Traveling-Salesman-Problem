@@ -35,7 +35,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
         
         for (int j = 0; j < dimension; j++) {
             int randomIndex2 = rd() % idList2.size();
-            int nuCost = n.calculatePotentialCost(randomIndex1, randomIndex2);
+            int nuCost = n.calculatePotentialCostSwap(randomIndex1, randomIndex2);
             // is it a good move
             if (nuCost < n.getCost()) {
                 int* nuPath = new int[dimension];
