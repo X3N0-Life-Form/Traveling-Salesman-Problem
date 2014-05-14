@@ -1,0 +1,9 @@
+Big TODO list:
+    -implement multithreading in Runner
+    -fix the screwed up tests:
+        for the record:
+            bestFit
+            worstFit
+            swap
+            runner
+        ideas: investigate reused paths in tests
