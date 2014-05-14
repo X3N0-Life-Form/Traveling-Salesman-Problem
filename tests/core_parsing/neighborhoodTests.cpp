@@ -23,10 +23,10 @@ neighborhoodTests::~neighborhoodTests() {
 }
 
 void neighborhoodTests::setUp() {
-    std::vector<City*> cities;
+    std::vector<City> cities;
     int** matrix = new int*[p.getDimension()];
     for (int i = 0; i < p.getDimension(); i++) {
-        cities.push_back(new City(i, i, 0));
+        cities.push_back(City(i, i, 0));
         matrix[i] = new int[p.getDimension()];
     }
     

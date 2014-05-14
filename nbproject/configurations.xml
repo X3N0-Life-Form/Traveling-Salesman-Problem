@@ -7,6 +7,7 @@
       <itemPath>code/strategy/BestFit.h</itemPath>
       <itemPath>code/core/City.h</itemPath>
       <itemPath>code/strategy/FirstFit.h</itemPath>
+      <itemPath>code/relation/Insert.h</itemPath>
       <itemPath>code/core/Neighborhood.h</itemPath>
       <itemPath>code/core/Problem.h</itemPath>
       <itemPath>code/relation/Relation.h</itemPath>
@@ -28,6 +29,7 @@
       <itemPath>code/strategy/BestFit.cpp</itemPath>
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/strategy/FirstFit.cpp</itemPath>
+      <itemPath>code/relation/Insert.cpp</itemPath>
       <itemPath>code/core/Neighborhood.cpp</itemPath>
       <itemPath>code/core/Problem.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
@@ -122,8 +124,10 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>TODO.txt</itemPath>
     <itemPath>cleanResults.sh</itemPath>
     <itemPath>launch.sh</itemPath>
+    <itemPath>notes.txt</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -138,6 +142,8 @@
           <standard>8</standard>
         </ccTool>
       </compileType>
+      <item path="TODO.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
@@ -157,6 +163,10 @@
       <item path="code/parse/tspParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/parse/tspParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/relation/Relation.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -319,6 +329,8 @@
         </linkerTool>
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="notes.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
@@ -434,6 +446,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="TODO.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
@@ -453,6 +467,10 @@
       <item path="code/parse/tspParser.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/parse/tspParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/relation/Relation.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -615,6 +633,8 @@
         </linkerTool>
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="notes.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"

@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/core/Problem.o \
 	${OBJECTDIR}/code/main.o \
 	${OBJECTDIR}/code/parse/tspParser.o \
+	${OBJECTDIR}/code/relation/Insert.o \
 	${OBJECTDIR}/code/relation/Relation.o \
 	${OBJECTDIR}/code/relation/Swap.o \
 	${OBJECTDIR}/code/run/RunData.o \
@@ -112,6 +113,11 @@ ${OBJECTDIR}/code/parse/tspParser.o: code/parse/tspParser.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/parse
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/parse/tspParser.o code/parse/tspParser.cpp
+
+${OBJECTDIR}/code/relation/Insert.o: code/relation/Insert.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Insert.o code/relation/Insert.cpp
 
 ${OBJECTDIR}/code/relation/Relation.o: code/relation/Relation.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/relation
@@ -366,6 +372,19 @@ ${OBJECTDIR}/code/parse/tspParser_nomain.o: ${OBJECTDIR}/code/parse/tspParser.o 
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/parse/tspParser_nomain.o code/parse/tspParser.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/parse/tspParser.o ${OBJECTDIR}/code/parse/tspParser_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/relation/Insert_nomain.o: ${OBJECTDIR}/code/relation/Insert.o code/relation/Insert.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/relation/Insert.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Insert_nomain.o code/relation/Insert.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/relation/Insert.o ${OBJECTDIR}/code/relation/Insert_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/relation/Relation_nomain.o: ${OBJECTDIR}/code/relation/Relation.o code/relation/Relation.cpp 
