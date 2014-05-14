@@ -62,7 +62,7 @@ void Runner::addRelation(Relation& r) {
 void Runner::run() {
     std::chrono::steady_clock clock;
     for (Relation* r : relations) {
-        for (Strategy* s : strategies) {
+        for (Strategy* s : strategies) {//TODO: use multiple threads
             r->setStrategy(*s);
             
             PRINTLN("Running " << r->getType()
