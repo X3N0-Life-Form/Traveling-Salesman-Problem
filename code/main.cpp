@@ -16,6 +16,7 @@
 #include "utils.h"
 #include "strategy/FirstFit.h"
 #include "strategy/WorstFit.h"
+#include "relation/Insert.h"
 
 using namespace std;
 
@@ -60,17 +61,14 @@ Strategy* createStrategy(std::string type) {
  * @param type swap
  * @param strategy not NULL
  * @return Relation object of the requested type
- * @throws NULL strategy passed
  * @throws Unrecognized Relation type
  */
 Relation* createRelation(std::string type, Strategy* strategy) {
     Relation* r;
-    if (strategy == NULL) {
-        throw "NULL Strategy* passed";
-    } else if (type == "swap") {
+    if (type == "swap") {
         r = new Swap(*main_problem, *strategy);
     } else if (type == "insert") {
-        throw "Not implemented";
+        r = new Insert(*main_problem, *strategy);
     } else if (type == "?invert/revert/?") {
         throw "Not implemented";
     } else {
@@ -88,13 +86,15 @@ void printHelp() {
     PRINTLN("\t-file [file path]\t\tspecify which file to read the problem from");
     PRINTLN("\t-maxDepth [int]\t\t\tspecify how many times a"
             << " relation will be applied; default = 1");
-    PRINTLN("\t-rs [relation] [strategy]\tspecify a relation & strategy"
+    PRINTLN("\t-r [relation]\t\t\tspecify a relation to apply to the problem");
+    PRINTLN("\t-s [strategy]\t\t\tspecify a strategy to apply to the problem");
+    PRINTLN("\t(deprecated) -rs [relation] [strategy]\tspecify a relation & strategy"
             << " to apply to the problem. Note that several -rs can/should"
             << " be specified.");
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
     PRINTLN("");
-    PRINTLN("Valid Relations are\tswap");
+    PRINTLN("Valid Relations are\tswap, insert");
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
 }
 
@@ -210,9 +210,9 @@ bool checkData() {
 void printRecap() {
     PRINTLN(*main_problem);
     PRINTLN("maxDepth=" << main_maxDepth);
-    for (Relation* r : main_runner->getRelations()) {
-        PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
-    }
+    //for (Relation* r : main_runner->getRelations()) {
+    //    PRINTLN(r->getType() << " ==> " << r->getStrategy().getType());
+    //}
 }
 
 /*
