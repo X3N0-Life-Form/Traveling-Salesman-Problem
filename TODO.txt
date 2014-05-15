@@ -10,4 +10,4 @@ Big TODO list:
     distance calculations
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
     -refactoring: new constructor format (see Strategy constructors)
-    -add insert to main & launch script
+    -get the regex-based parsing working
