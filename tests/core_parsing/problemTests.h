@@ -14,6 +14,7 @@ class problemTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(problemTests);
 
     CPPUNIT_TEST(test_getDistance);
+    CPPUNIT_TEST(test_getCitiesAsList);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -25,7 +26,7 @@ public:
 
 private:
     void test_getDistance();
-    void testFailedMethod();
+    void test_getCitiesAsList();
 };
 
 #endif	/* PROBLEMTESTS_H */

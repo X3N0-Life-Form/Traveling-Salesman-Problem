@@ -9,6 +9,7 @@
 
 #include "../../code/core/Problem.h"
 #include "tspParserTests.h"
+#include <list>
 
 CPPUNIT_TEST_SUITE_REGISTRATION(problemTests);
 
@@ -32,4 +33,17 @@ void problemTests::test_getDistance() {
     CPPUNIT_ASSERT_EQUAL(20, p.getDistance(1, 2));
 }
 
+void problemTests::test_getCitiesAsList() {
+    std::list<int> cityIds = p.getCityIdsAsList();
+    Problem copy(p);
+    for (int i = 0; i < p.getDimension(); i++) {
+        CPPUNIT_ASSERT_EQUAL(i + 1, cityIds.front());
+        cityIds.pop_front();
+    }
+    cityIds = copy.getCityIdsAsList();
+    for (int i = 0; i < p.getDimension(); i++) {
+        CPPUNIT_ASSERT_EQUAL(i + 1, cityIds.front());
+        cityIds.pop_front();
+    }
+}
 

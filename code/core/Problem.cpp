@@ -15,7 +15,8 @@ Problem::Problem(const Problem& orig) :
         name(orig.name),
         comment(orig.comment),
         dimension(orig.dimension),
-        distanceType(orig.distanceType) {
+        distanceType(orig.distanceType)
+{
     if (distanceType == FLOAT) {
         distanceMatrix_f = new float*[dimension];
         for (int i = 0; i < dimension; i++) {
@@ -23,6 +24,7 @@ Problem::Problem(const Problem& orig) :
             ARRAY_COPY(distanceMatrix_f[i], orig.distanceMatrix_f[i], dimension);
             cities.push_back(orig.cities[i]);
         }
+        distanceMatrix_i = NULL;
     } else {
         distanceMatrix_i = new int*[dimension];
         for (int i = 0; i < dimension; i++) {
@@ -30,6 +32,7 @@ Problem::Problem(const Problem& orig) :
             ARRAY_COPY(distanceMatrix_i[i], orig.distanceMatrix_i[i], dimension);
             cities.push_back(orig.cities[i]);
         }
+        distanceMatrix_f = NULL;
     }
 }
 

@@ -7,16 +7,28 @@
 
 #include "Strategy.h"
 
-Strategy::Strategy() : dimension(0), initialCost(INT_MAX){
+#include "../utils.h"
+
+Strategy::Strategy() : dimension(0), initialCost(INT_MAX)
+{
+    fit = new int[dimension];
 }
 
 Strategy::Strategy(int dimension, int initialCost) :
-    initialCost(initialCost), dimension(dimension), fitCost(initialCost) {
+        initialCost(initialCost),
+        dimension(dimension),
+        fitCost(initialCost)
+{
+    fit = new int[dimension];
 }
 
 Strategy::Strategy(const Strategy& orig) :
-    initialCost(orig.initialCost), dimension(orig.dimension),
-    fit(orig.fit), fitCost(orig.fitCost) {
+        initialCost(orig.initialCost),
+        dimension(orig.dimension),
+        fitCost(orig.fitCost)
+{
+    fit = new int[dimension];
+    ARRAY_COPY(fit, orig.fit, dimension);
 }
 
 Strategy::~Strategy() {

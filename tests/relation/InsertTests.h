@@ -13,8 +13,9 @@
 class InsertTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(InsertTests);
 
-    CPPUNIT_TEST(testMethod);
-    CPPUNIT_TEST(testFailedMethod);
+    CPPUNIT_TEST(test_applyRelation_firstFit);
+    CPPUNIT_TEST(test_applyRelation_bestFit);
+    CPPUNIT_TEST(test_applyRelation_worstFit);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -25,8 +26,9 @@ public:
     void tearDown();
 
 private:
-    void testMethod();
-    void testFailedMethod();
+    void test_applyRelation_firstFit();
+    void test_applyRelation_bestFit();
+    void test_applyRelation_worstFit();
 };
 
 #endif	/* INSERTTESTS_H */
