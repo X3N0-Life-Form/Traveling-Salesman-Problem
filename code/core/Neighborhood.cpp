@@ -120,19 +120,17 @@ int Neighborhood::calculatePotentialCostInsert(int origin, int target) const {
     // remove old distance costs
     // be careful when dealing with two cities right after the other in the path
     // Note: Insert specific code begins here
-    if (path[target] == path[next_origin])
+    if (path[target] == path[next_origin] || path[target] == path[origin])
         return cost;
     nuCost -= problem.getDistance(path[prev_origin],  path[origin]);
     nuCost -= problem.getDistance(path[origin], path[next_origin]);
     nuCost -= problem.getDistance(path[prev_target],  path[target]);
-    if (path[next_target] != path[origin]) //if target before origin, = first line
-        nuCost -= problem.getDistance(path[target], path[next_target]);
+    nuCost -= problem.getDistance(path[target], path[next_target]);
     // add the new costs
     nuCost += problem.getDistance(path[prev_origin], path[next_origin]);
     nuCost += problem.getDistance(path[prev_target], path[origin]);
     nuCost += problem.getDistance(path[origin], path[target]);
-    if (path[next_target] != path[origin]) //if target before origin, = first line
-        nuCost += problem.getDistance(path[target], path[next_target]);
+    nuCost += problem.getDistance(path[target], path[next_target]);
     
     return nuCost;
 }

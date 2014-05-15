@@ -65,13 +65,15 @@ void neighborhoodTests::test_calculateCost() {
     CPPUNIT_ASSERT_EQUAL(18, n.calculateCost());
 }
 
-void neighborhoodTests::test_calculatePotentialCostSwap() {
-    int* path = new int[p.getDimension()];
-    for (int i = 1; i <= p.getDimension(); i++) {
-        path[i - 1] = i;
-    }
-    n.setPath(path);
+#define FASTSETUP(path) int* path = new int[p.getDimension()];\
+    for (int i = 1; i <= p.getDimension(); i++) {\
+        path[i - 1] = i;\
+    }\
+    n.setPath(path);\
     n.calculateCost();
+
+void neighborhoodTests::test_calculatePotentialCostSwap() {
+    FASTSETUP(path)
     // see above cost calculation
     int nuCost = n.calculatePotentialCostSwap(0,1);
     SWAP(path, 0, 1);
@@ -84,14 +86,62 @@ void neighborhoodTests::test_calculatePotentialCostSwap() {
     //nuts
 }
 
-void neighborhoodTests::test_calculatePotentialCostInsert() {
-    int* path = new int[p.getDimension()];
-    for (int i = 1; i <= p.getDimension(); i++) {
-        path[i - 1] = i;
-    }
-    n.setPath(path);
-    n.calculateCost();
+void neighborhoodTests::test_calculatePotentialCostInsert_before() {
+    FASTSETUP(path)
     
     int nuCost = n.calculatePotentialCostInsert(0, 5);
     CPPUNIT_ASSERT_EQUAL(24, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    insert(nuPath, path, p.getDimension(), 0, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostInsert_after() {
+    FASTSETUP(path)
+    
+    int nuCost = n.calculatePotentialCostInsert(5, 0);
+    CPPUNIT_ASSERT_EQUAL(18, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    insert(nuPath, path, p.getDimension(), 5, 0);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostInsert_ot() {
+    FASTSETUP(path)
+    
+    int nuCost = n.calculatePotentialCostInsert(4, 5);
+    CPPUNIT_ASSERT_EQUAL(18, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    insert(nuPath, path, p.getDimension(), 4, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostInsert_to() {
+    FASTSETUP(path)
+    
+    int nuCost = n.calculatePotentialCostInsert(5, 4);
+    CPPUNIT_ASSERT_EQUAL(20, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    insert(nuPath, path, p.getDimension(), 5, 4);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostInsert_itself() {
+    FASTSETUP(path)
+    
+    int nuCost = n.calculatePotentialCostInsert(5, 5);
+    CPPUNIT_ASSERT_EQUAL(18, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    insert(nuPath, path, p.getDimension(), 5, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
 }

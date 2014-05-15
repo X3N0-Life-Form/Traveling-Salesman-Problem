@@ -18,7 +18,11 @@ class neighborhoodTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_generateRandomNeighborhood);
     CPPUNIT_TEST(test_calculateCost);
     CPPUNIT_TEST(test_calculatePotentialCostSwap);
-    CPPUNIT_TEST(test_calculatePotentialCostInsert);
+    CPPUNIT_TEST(test_calculatePotentialCostInsert_before);
+    CPPUNIT_TEST(test_calculatePotentialCostInsert_after);
+    CPPUNIT_TEST(test_calculatePotentialCostInsert_ot);
+    CPPUNIT_TEST(test_calculatePotentialCostInsert_to);
+    CPPUNIT_TEST(test_calculatePotentialCostInsert_itself);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -31,12 +35,15 @@ public:
 private:
     Problem p;
     Neighborhood n;
-
     
     void test_generateRandomNeighborhood();
     void test_calculateCost();
     void test_calculatePotentialCostSwap();
-    void test_calculatePotentialCostInsert();
+    void test_calculatePotentialCostInsert_before();
+    void test_calculatePotentialCostInsert_after();
+    void test_calculatePotentialCostInsert_ot();
+    void test_calculatePotentialCostInsert_to();
+    void test_calculatePotentialCostInsert_itself();
 };
 
 #endif	/* NEIGHBORHOODTESTS_H */
