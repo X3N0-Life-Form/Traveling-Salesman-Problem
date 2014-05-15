@@ -7,6 +7,7 @@
 
 #include "Insert.h"
 
+#include "../utils.h"
 #include <random>
 #include <list>
 
@@ -31,15 +32,36 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n) {
     for (int i = 0; i < dimension; i++) {
         // make your move
         std::random_device rd;
-        int randomIndex1 = rd() % idList.size();
+        int origin = rd() % idList.size();
         std::list<int> idList2 = problem.getCityIdsAsList();
         
         for (int j = 0; j < dimension; j++) {
-            int randomIndex2 = rd() % idList2.size();
+            int target = rd() % idList2.size();
             // Note: Insert-specific code begins here
-            //int nuCost = n.calculatePotentialCostInsert(randomIndex1, randomIndex2);
+            int nuCost = n.calculatePotentialCostInsert(origin, target);
+            if (nuCost < n.getCost()) {
+                int* nuPath = new int[dimension];
+                insert(nuPath, n.getPath(), dimension, origin, target);
+                // Note: end of the Insert-specific code
+                if (strategy.applyStrategy(nuPath, nuCost, i)) {
+                    Neighborhood* nuN = new Neighborhood(n);
+                    nuN->setPath(strategy.getFit());
+                    nuN->setCost(strategy.getFitCost());
+                    delete[](nuPath);
+                    return nuN;
+                }
+                // delete nuPath
+                delete[](nuPath);
+            }
+            // remove second id
+            idList2.remove(target);
         }
+        // remove first id
+        idList.remove(origin);
     }
+    // nothing better was found
+    Neighborhood* oldN = new Neighborhood(n);
+    return oldN;
 }
 
 std::string Insert::getType() {

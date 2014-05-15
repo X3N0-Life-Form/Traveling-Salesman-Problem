@@ -40,6 +40,7 @@
       <itemPath>code/strategy/WorstFit.cpp</itemPath>
       <itemPath>code/main.cpp</itemPath>
       <itemPath>code/parse/tspParser.cpp</itemPath>
+      <itemPath>code/utils.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -60,6 +61,14 @@
         <itemPath>tests/strategy/firstFitTests.cpp</itemPath>
         <itemPath>tests/strategy/firstFitTests.h</itemPath>
         <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f10"
+                     displayName="InsertTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/relation/InsertTests.cpp</itemPath>
+        <itemPath>tests/relation/InsertTests.h</itemPath>
+        <itemPath>tests/relation/InsertTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f9"
                      displayName="main tests"
@@ -108,6 +117,14 @@
         <itemPath>tests/relation/swapTests.cpp</itemPath>
         <itemPath>tests/swapTests.h</itemPath>
         <itemPath>tests/relation/swapTests_testrunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f11"
+                     displayName="utilsTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/utilsTests.cpp</itemPath>
+        <itemPath>tests/utilsTests.h</itemPath>
+        <itemPath>tests/utilsTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f7"
                      displayName="worstFitTests"
@@ -200,6 +217,8 @@
       </item>
       <item path="code/strategy/WorstFit.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="code/utils.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -211,6 +230,34 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f10">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f10</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f11">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f11</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
@@ -380,6 +427,15 @@
       </item>
       <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/relation/InsertTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/relation/swapTests_testrunner.cpp"
@@ -424,6 +480,12 @@
             flavor2="0">
       </item>
       <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -504,6 +566,8 @@
       </item>
       <item path="code/strategy/WorstFit.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="code/utils.h" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -515,6 +579,34 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f10">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f10</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f11">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f11</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
@@ -684,6 +776,15 @@
       </item>
       <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="tests/relation/InsertTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/relation/swapTests_testrunner.cpp"
@@ -728,6 +829,12 @@
             flavor2="0">
       </item>
       <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>
