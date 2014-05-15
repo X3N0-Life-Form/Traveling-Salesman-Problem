@@ -18,6 +18,8 @@ class utilsTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_insert_before);
     CPPUNIT_TEST(test_insert_after);
     CPPUNIT_TEST(test_insert_same);
+    CPPUNIT_TEST(test_insert_endTarget);
+    CPPUNIT_TEST(test_insert_endOrigin);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -33,6 +35,8 @@ private:
     void test_insert_before();
     void test_insert_after();
     void test_insert_same();
+    void test_insert_endTarget();
+    void test_insert_endOrigin();
 };
 
 #endif	/* UTILSTESTS_H */
