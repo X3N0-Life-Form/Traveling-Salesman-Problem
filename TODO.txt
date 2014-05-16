@@ -11,3 +11,10 @@ Big TODO list:
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
     -refactoring: new constructor format (see Strategy constructors)
     -get the regex-based parsing working
+    -allow limitless depth
+    -to investigate: insert/firstFit stopping at depth = 0
+        seems to happen mostly to ch130 & ch150
+    -properly test nu random search thingy
+    -port it to insert
+    -give completion% when running big things
+    -add runtime stop condition
