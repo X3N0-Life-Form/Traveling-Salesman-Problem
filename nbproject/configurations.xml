@@ -157,6 +157,7 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
+          <commandLine>-O3</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
