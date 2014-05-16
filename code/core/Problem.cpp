@@ -105,6 +105,22 @@ std::list<int> Problem::getCityIdsAsList() {
     return l;
 }
 
+std::vector<std::pair<int, int> > Problem::getCityPairs() {
+    std::vector<std::pair<int, int> > pairs(dimension * dimension);
+    int c = 0;
+    for (int i = 0; i < dimension; i++) {
+        for (int j = 1; j < dimension; j++) {
+            if (i == j)
+                continue;
+            std::pair<int, int> p(i, j);
+            pairs[c] = p;
+            c++;
+        }
+    }
+    pairs.shrink_to_fit();
+    return pairs;
+}
+
 /**
  * Retrieves the distance beween two cities.
  * @param id1 City id (NOT AN INDEX, ie. 1..number of cities)

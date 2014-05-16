@@ -7,7 +7,7 @@
 
 #include "Swap.h"
 
-#include <random>
+#include <algorithm>
 #include <list>
 #include "../utils.h"
 
@@ -21,6 +21,47 @@ Swap::~Swap() {
 }
 
 Neighborhood* Swap::applyRelation(const Neighborhood& n) {
+    std::list<int> idList = problem.getCityIdsAsList();
+    int dimension = problem.getDimension();
+    if (strategy.getInitialCost() == INT_MAX) {
+        strategy.setInitialCost(n.getCost());
+    }
+    //pair & shuffle
+    std::vector<std::pair<int, int> > pairs = problem.getCityPairs();
+    strategy.setStopCount(pairs.size());
+    std::random_shuffle(pairs.begin(), pairs.end()); //takes a lot of time ...
+    for (int i = 0; i < pairs.size(); i++) {
+        std::pair<int, int> randomPair = pairs[i];
+        // make your move
+        int nuCost = n.calculatePotentialCostSwap(
+            randomPair.first, randomPair.second);
+        // is it a good move
+        if (nuCost < n.getCost()) {
+            int* nuPath = new int[dimension];
+            ARRAY_COPY(nuPath, n.getPath(), dimension);
+            SWAP(nuPath, randomPair.first, randomPair.second);
+
+            if (strategy.applyStrategy(nuPath, nuCost, i)) {
+                Neighborhood* nuN = new Neighborhood(n);
+                nuN->setPath(strategy.getFit());
+                nuN->setCost(strategy.getFitCost());
+                delete[](nuPath);
+                return nuN;
+            }
+            // delete nuPath
+            delete[](nuPath);
+        }
+        // swap our pair with the end
+        pairs.at(i) = pairs.at(pairs.size() - i - 1);
+        pairs.at(pairs.size() - i - 1) = randomPair;
+    }
+    
+    // nothing better was found
+    Neighborhood* oldN = new Neighborhood(n);
+    return oldN;
+}
+
+Neighborhood* Swap::applyRelationPartial(const Neighborhood& n) {
     std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
     if (strategy.getInitialCost() == INT_MAX) {
@@ -47,7 +88,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
                     nuN->setPath(strategy.getFit());
                     nuN->setCost(strategy.getFitCost());
                     delete[](nuPath);
-                    return nuN;
+                    return nuN;//!!!!keep this logic ==> partial worst
                 }
                 // delete nuPath
                 delete[](nuPath);

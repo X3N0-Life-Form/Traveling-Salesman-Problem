@@ -17,6 +17,7 @@ protected:
     int fitCost;
     int initialCost;
     int dimension;
+    int stopCount;
 public:
     Strategy();
     Strategy(int dimension, int initialCost = INT_MAX);
@@ -44,7 +45,8 @@ public:
     void setInitialCost(int initialCost);
     int* getFit();
     int getFitCost();
-    
+    int getStopCount();
+    void setStopCount(int count);
 };
 
 bool operator==(const Strategy& left, const Strategy& right);

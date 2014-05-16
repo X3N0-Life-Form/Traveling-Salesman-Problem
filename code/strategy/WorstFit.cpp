@@ -30,7 +30,7 @@ bool WorstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
         }
     }
     // are we there yet?
-    if (counter >= dimension - 1) {
+    if (counter == stopCount) {
         return true;
     } else {
         return false;

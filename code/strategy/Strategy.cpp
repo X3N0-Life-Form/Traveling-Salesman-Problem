@@ -55,6 +55,14 @@ int Strategy::getFitCost() {
     return fitCost;
 }
 
+int Strategy::getStopCount() {
+    return stopCount;
+}
+
+void Strategy::setStopCount(int count) {
+    stopCount = count;
+}
+
 bool operator !=(const Strategy& left, const Strategy& right) {
     return !(left == right);
 }

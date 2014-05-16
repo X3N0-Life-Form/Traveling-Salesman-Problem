@@ -50,6 +50,7 @@ public:
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();
+    std::vector<std::pair<int, int>> getCityPairs();
     int getDistance(int id1, int id2);
 };
 

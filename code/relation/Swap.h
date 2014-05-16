@@ -18,6 +18,7 @@ public:
     virtual ~Swap();
     // implemented methods
     virtual Neighborhood* applyRelation(const Neighborhood& n);
+    Neighborhood* applyRelationPartial(const Neighborhood& n);
     virtual std::string getType();
 };
 
