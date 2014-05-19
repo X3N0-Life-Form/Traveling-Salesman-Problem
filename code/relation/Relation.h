@@ -15,17 +15,23 @@ class Relation {
 protected:
     Problem& problem;
     Strategy& strategy;
-    bool firstLoop = true;
+    bool isFirstLoop = true;
+    std::vector<std::pair<int, int> > pairs;
 public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);
     virtual ~Relation();
     // abstract methods
-    virtual Neighborhood* applyRelation(const Neighborhood& n) = 0;
+    virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true) = 0;
     virtual std::string getType() = 0;
+    // common methods
+    void pairAndShuffle(PairingMode mode);
+    Neighborhood* useThisPath(int* nuPath, const Neighborhood& n);
+    std::pair<int, int> getPair(int index, bool randomPick);
     // Getters/Setters
     Strategy& getStrategy() const;
     void setStrategy(Strategy& s);
+    void setIsFirstLoop(bool isFirstLoop);
 };
 
 #endif	/* RELATION_H */

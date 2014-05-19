@@ -16,7 +16,7 @@ public:
     Insert(const Insert& orig);
     virtual ~Insert();
     // implemented methods
-    virtual Neighborhood* applyRelation(const Neighborhood& n);
+    virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
     virtual std::string getType();
 };
 

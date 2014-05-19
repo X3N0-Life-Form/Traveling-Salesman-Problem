@@ -6,7 +6,6 @@ Big TODO list:
             worstFit
             runner
         ideas: investigate reused paths in tests
-    -do refactoring operations to eliminate duplicated code in Swap & Insert
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
     -get the regex-based parsing working
     -allow limitless depth

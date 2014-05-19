@@ -122,7 +122,7 @@ std::vector<std::pair<int, int> > Problem::getCityPairs(PairingMode mode) {
             break;
         case PM_INSERT:
             for (int i = 0; i < dimension; i++) {
-                for (int j = i + 1; j < dimension; j++) {
+                for (int j = 1; j < dimension; j++) {
                     // if target = origin + 1
                     if (j == i + 1)
                         continue;

@@ -12,8 +12,8 @@
 RunData::RunData(Relation* r, Strategy* s, Neighborhood* startingPoint) :
     relation(r),
     strategy(s),
-    startingPoint(*startingPoint), endPoint(*startingPoint) {
-}
+    startingPoint(*startingPoint), endPoint(*startingPoint)
+{}
 
 
 RunData::RunData(const RunData& orig) :

@@ -142,9 +142,8 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>TODO.txt</itemPath>
-    <itemPath>cleanResults.sh</itemPath>
+    <itemPath>clean.sh</itemPath>
     <itemPath>launch.sh</itemPath>
-    <itemPath>notes.txt</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -162,7 +161,7 @@
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
+      <item path="clean.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -377,8 +376,6 @@
         </linkerTool>
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="notes.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"
@@ -511,7 +508,7 @@
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cleanResults.sh" ex="false" tool="3" flavor2="0">
+      <item path="clean.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -726,8 +723,6 @@
         </linkerTool>
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="notes.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/core_parsing/neighborhoodTests.cpp"
             ex="false"

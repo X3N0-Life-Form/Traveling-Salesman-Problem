@@ -22,21 +22,19 @@ Swap::Swap(const Swap& orig) :
 Swap::~Swap() {
 }
 
-Neighborhood* Swap::applyRelation(const Neighborhood& n) {
+Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     int dimension = problem.getDimension();
     if (strategy.getInitialCost() == INT_MAX) {
         strategy.setInitialCost(n.getCost());
     }
     //pair & shuffle
-    std::vector<std::pair<int, int> > pairs = problem.getCityPairs(PM_SWAP);
-    strategy.setStopCount(pairs.size());
-    std::random_shuffle(pairs.begin(), pairs.end()); //takes a while ...
-    if (firstLoop) {
-        PRINTLN("Going through " << pairs.size() << " pairs...");
-        firstLoop = false;
+    if (isFirstLoop) {
+        pairAndShuffle(PM_SWAP);
     }
+    
     for (int i = 0; i < pairs.size(); i++) {
-        std::pair<int, int> randomPair = pairs[i];
+        std::pair<int, int> randomPair = getPair(i, randomPick); 
+        
         // make your move
         int nuCost = n.calculatePotentialCostSwap(
             randomPair.first, randomPair.second);
@@ -47,11 +45,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
             SWAP(nuPath, randomPair.first, randomPair.second);
 
             if (strategy.applyStrategy(nuPath, nuCost, i)) {
-                Neighborhood* nuN = new Neighborhood(n);
-                nuN->setPath(strategy.getFit());
-                nuN->setCost(strategy.getFitCost());
-                delete[](nuPath);
-                return nuN;
+                return useThisPath(nuPath, n);
             }
             // delete nuPath
             delete[](nuPath);

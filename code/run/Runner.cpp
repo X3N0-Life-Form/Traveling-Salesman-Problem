@@ -10,15 +10,16 @@
 #include <chrono>
 
 Runner::Runner(Problem& problem, int maxDepth) :
-    problem(problem), maxDepth(maxDepth) {
-}
+        problem(problem),
+        maxDepth(maxDepth)
+{}
 
 Runner::Runner(const Runner& orig) :
     problem(orig.problem),
     strategies(orig.strategies),
     relations(orig.relations),
-    maxDepth(orig.maxDepth) {
-}
+    maxDepth(orig.maxDepth)
+{}
 
 Runner::~Runner() {
 }
@@ -64,6 +65,10 @@ void Runner::run() {
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {//TODO: use multiple threads
             r->setStrategy(*s);
+            bool randomPick = true;
+            if (s->getType() != "First Fit") {
+                randomPick = false;
+            }
             
             PRINTLN("Running " << r->getType()
                     << " with strategy " << s->getType());
@@ -78,7 +83,7 @@ void Runner::run() {
             for (int i = 0; i < maxDepth; i++) {
                 int oldCost = n->getCost();
                 Neighborhood* oldN = n;
-                n = r->applyRelation(*n);
+                n = r->applyRelation(*n, randomPick);
                 // no better result was produced
                 if (n->getCost() == oldCost) {
                     data.setDepth(i);
@@ -87,6 +92,7 @@ void Runner::run() {
                 delete(oldN);
             }
             std::chrono::steady_clock::time_point end = clock.now();
+            r->setIsFirstLoop(true);
             
             PRINTLN("End cost=\t" << n->getCost());
             data.setEndPoint(n);
