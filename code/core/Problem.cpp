@@ -109,17 +109,29 @@ std::vector<std::pair<int, int> > Problem::getCityPairs(PairingMode mode) {
     std::vector<std::pair<int, int> > pairs(dimension * dimension);
     int c = 0;
     switch (mode) {
-    case PM_SWAP:
-        for (int i = 0; i < dimension; i++) {
-            for (int j = i + 1; j < dimension; j++) {
-                if (i == j)
-                    continue;
-                std::pair<int, int> p(i, j);
-                pairs[c] = p;
-                c++;
+        case PM_SWAP:
+            for (int i = 0; i < dimension; i++) {
+                for (int j = i + 1; j < dimension; j++) {
+                    if (i == j)
+                        continue;
+                    std::pair<int, int> p(i, j);
+                    pairs[c] = p;
+                    c++;
+                }
             }
-        }
-        break;
+            break;
+        case PM_INSERT:
+            for (int i = 0; i < dimension; i++) {
+                for (int j = i + 1; j < dimension; j++) {
+                    // if target = origin + 1
+                    if (j == i + 1)
+                        continue;
+                    std::pair<int, int> p(i, j);
+                    pairs[c] = p;
+                    c++;
+                }
+            }
+            break;
     }
     pairs.shrink_to_fit();
     return pairs;
