@@ -4,6 +4,7 @@ personalLog.txt
 nbproject/private/*
 .~lock.*
 data/results/
+callgrind.out.*
 
 # Compiled Object files
 *.slo
