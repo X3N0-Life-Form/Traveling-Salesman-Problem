@@ -29,9 +29,13 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n) {
         strategy.setInitialCost(n.getCost());
     }
     //pair & shuffle
-    std::vector<std::pair<int, int> > pairs = problem.getCityPairs();
+    std::vector<std::pair<int, int> > pairs = problem.getCityPairs(PM_INSERT);
     strategy.setStopCount(pairs.size());
     std::random_shuffle(pairs.begin(), pairs.end()); //takes a while ...
+    if (firstLoop) {
+        PRINTLN("Going through " << pairs.size() << " pairs...");
+        firstLoop = false;
+    }
     for (int i = 0; i < pairs.size(); i++) {
         std::pair<int, int> randomPair = pairs[i];
         // make your move

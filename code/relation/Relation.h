@@ -15,6 +15,7 @@ class Relation {
 protected:
     Problem& problem;
     Strategy& strategy;
+    bool firstLoop = true;
 public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);

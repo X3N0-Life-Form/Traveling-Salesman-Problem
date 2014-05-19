@@ -6,15 +6,11 @@ Big TODO list:
             worstFit
             runner
         ideas: investigate reused paths in tests
-    -do refactoring operations to eliminate duplicated code in Swap, Insert &
-    distance calculations
+    -do refactoring operations to eliminate duplicated code in Swap & Insert
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
     -get the regex-based parsing working
     -allow limitless depth
     -to investigate: insert/firstFit stopping at depth = 0
-        seems to happen mostly to ch130 & ch150
-    -properly test nu random search thingy
-    -port it to insert
     -give completion% when running big things
     -add runtime stop condition
     -to optimize:
