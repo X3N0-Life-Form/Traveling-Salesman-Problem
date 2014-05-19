@@ -5,9 +5,9 @@
 #
 # Created on 6 mai 2014, 10:35:01
 #
-#-file data/a280.tsp -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit
+#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -r swap -s firstFit -s bestFit -s worstFit
 
-maxDepth=10
+maxDepth=2000
 relations="-r swap"
 strategies="-s firstFit -s bestFit -s worstFit"
 
@@ -22,7 +22,9 @@ $execPath -file data/ch130.tsp $args
 $execPath -file data/ch150.tsp $args
 $execPath -file data/bier127.tsp $args     #malloc error w/ insert
 #$execPath -file data/burma14.tsp $args     #parsing error
-$execPath -file data/brd14051.tsp $args    #big
+#big
+$execPath -file data/brd14051.tsp -maxDepth 5 $relations $strategies -o auto
+
 
 echo "Merging all .csv into allResults.csv"
 cat data/results/*.csv > data/allResults.csv
