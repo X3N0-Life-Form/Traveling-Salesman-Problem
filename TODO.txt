@@ -9,7 +9,6 @@ Big TODO list:
     -do refactoring operations to eliminate duplicated code in Swap, Insert &
     distance calculations
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
-    -refactoring: new constructor format (see Strategy constructors)
     -get the regex-based parsing working
     -allow limitless depth
     -to investigate: insert/firstFit stopping at depth = 0
@@ -18,3 +17,7 @@ Big TODO list:
     -port it to insert
     -give completion% when running big things
     -add runtime stop condition
+    -to optimize:
+        Problem.getDistance()
+        reduce redundant calls to Problem.getDimension()
+        see what we can do about the pair vector's random shuffle
