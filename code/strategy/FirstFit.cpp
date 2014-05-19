@@ -8,11 +8,12 @@
 #include "FirstFit.h"
 
 FirstFit::FirstFit(int dimension, int initialCost) :
-    Strategy(dimension, initialCost) {
-}
+    Strategy(dimension, initialCost)
+{}
 
-FirstFit::FirstFit(const FirstFit& orig) : Strategy(orig) {
-}
+FirstFit::FirstFit(const FirstFit& orig) :
+    Strategy(orig)
+{}
 
 FirstFit::~FirstFit() {
 }

@@ -18,6 +18,12 @@ enum DistanceType {
     FLOAT
 };
 
+enum PairingMode {
+    PM_SWAP,
+    PM_INSERT,
+    PM_REVERSE
+};
+
 class Problem {
 private:
     std::string name;
@@ -50,7 +56,7 @@ public:
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();
-    std::vector<std::pair<int, int>> getCityPairs();
+    std::vector<std::pair<int, int>> getCityPairs(PairingMode mode = PM_SWAP);
     int getDistance(int id1, int id2);
 };
 

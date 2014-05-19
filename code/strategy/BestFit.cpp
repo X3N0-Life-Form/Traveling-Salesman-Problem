@@ -10,11 +10,12 @@
 #include "../utils.h"
 
 BestFit::BestFit(int dimension, int initialCost) :
-    Strategy(dimension, initialCost) {
-}
+    Strategy(dimension, initialCost)
+{}
 
-BestFit::BestFit(const BestFit& orig) : Strategy(orig) {
-}
+BestFit::BestFit(const BestFit& orig) :
+    Strategy(orig)
+{}
 
 BestFit::~BestFit() {
 }
@@ -24,7 +25,7 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
         if (nuCost < fitCost) {
             //PRINTLN(nuCost<<" < "<<fitCost);
             fitCost = nuCost;
-            fit = new int[dimension];
+            //fit = new int[dimension];
             ARRAY_COPY(fit, nuPath, dimension);
         }
     }

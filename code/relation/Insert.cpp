@@ -15,8 +15,9 @@ Insert::Insert(Problem& problem, Strategy& strategy) :
     Relation(problem, strategy)
 {}
 
-Insert::Insert(const Insert& orig) : Relation(orig) {
-}
+Insert::Insert(const Insert& orig) :
+    Relation(orig)
+{}
 
 Insert::~Insert() {
 }

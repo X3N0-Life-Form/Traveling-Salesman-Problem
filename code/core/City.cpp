@@ -7,12 +7,16 @@ City::City(const City& orig) :
 {}
 
 City::City(int id, int x, int y) :
-    id(id), x_i(x), y_i(y) {
-}
+        id(id),
+        x_i(x),
+        y_i(y)
+{}
 
 City::City(int id, float x, float y) :
-    id(id), x_f(x), y_f(y)  {
-}
+        id(id),
+        x_f(x),
+        y_f(y)
+{}
 
 const int City::getId() {
     return id;

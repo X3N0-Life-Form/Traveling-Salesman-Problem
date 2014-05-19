@@ -8,12 +8,14 @@
 #include "Relation.h"
 
 Relation::Relation(Problem& problem, Strategy& strategy) :
-    problem(problem), strategy(strategy) {
-}
+        problem(problem),
+        strategy(strategy)
+{}
 
 Relation::Relation(const Relation& orig) :
-    problem(orig.problem), strategy(orig.strategy) {
-}
+        problem(orig.problem),
+        strategy(orig.strategy)
+{}
 
 Relation::~Relation() {
 }

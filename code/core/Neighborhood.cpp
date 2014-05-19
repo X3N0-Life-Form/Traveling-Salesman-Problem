@@ -12,12 +12,17 @@
 #include "../utils.h"
 
 Neighborhood::Neighborhood(Problem& problem) :
-    problem(problem), cost(0) {
+        problem(problem),
+        cost(0)
+{
     path = new int[problem.getDimension()];
 }
 
 Neighborhood::Neighborhood(const Neighborhood& orig) : 
-    problem(orig.problem), cost(orig.cost), path(NULL) {
+        problem(orig.problem),
+        cost(orig.cost),
+        path(NULL)
+{
     path = new int[problem.getDimension()];
     ARRAY_COPY(path, orig.path, problem.getDimension());
 }

@@ -11,17 +11,18 @@
 #include <list>
 #include "../utils.h"
 
-Swap::Swap(Problem& problem, Strategy& strategy) : Relation(problem, strategy) {
-}
+Swap::Swap(Problem& problem, Strategy& strategy) :
+    Relation(problem, strategy)
+{}
 
-Swap::Swap(const Swap& orig) : Relation(orig) {
-}
+Swap::Swap(const Swap& orig) :
+    Relation(orig)
+{}
 
 Swap::~Swap() {
 }
 
 Neighborhood* Swap::applyRelation(const Neighborhood& n) {
-    std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
     if (strategy.getInitialCost() == INT_MAX) {
         strategy.setInitialCost(n.getCost());
@@ -29,7 +30,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n) {
     //pair & shuffle
     std::vector<std::pair<int, int> > pairs = problem.getCityPairs();
     strategy.setStopCount(pairs.size());
-    std::random_shuffle(pairs.begin(), pairs.end()); //takes a lot of time ...
+    std::random_shuffle(pairs.begin(), pairs.end()); //takes a while ...
     for (int i = 0; i < pairs.size(); i++) {
         std::pair<int, int> randomPair = pairs[i];
         // make your move
