@@ -38,15 +38,15 @@ Problem::Problem(const Problem& orig) :
 
 Problem::~Problem() {
     if (distanceType == INTEGER) {
-        for (int i = 0; i < dimension; i++) {
+        /*for (int i = 0; i < dimension; i++) {
             delete[](distanceMatrix_i[i]);
-        }
+        }*/
         delete[](distanceMatrix_i);
     }
     if (distanceType == FLOAT) {
-        for (int f = 0; f < dimension; f++) {
+        /*for (int f = 0; f < dimension; f++) {
             delete[](distanceMatrix_f[f]);
-        }
+        }*/
         delete[](distanceMatrix_f);
     }
 }
@@ -150,9 +150,16 @@ int Problem::getDistance(int id1, int id2) {
         return distanceMatrix_i[id1 - 1][id2 - 1];
 }
 
-Problem Problem::operator =(const Problem& right) {
-    Problem p(right);
-    return p;
+Problem& Problem::operator =(const Problem& right) {
+    this->name = right.name;
+    this->comment = right.comment;
+    this->dimension = right.dimension;
+    this->distanceType = right.distanceType;
+    this->cities = right.cities;
+    this->distanceMatrix_i = right.distanceMatrix_i;
+    this->distanceMatrix_f = right.distanceMatrix_f;
+    
+    return *this;
 }
 
 std::ostream& operator<<(std::ostream& out, const Problem& problem) {

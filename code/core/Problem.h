@@ -52,7 +52,7 @@ public:
     std::vector<City> getCities() const;
     void setCities(std::vector<City>& cities);
     
-    Problem operator=(const Problem& right);
+    Problem& operator=(const Problem& right);
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();
