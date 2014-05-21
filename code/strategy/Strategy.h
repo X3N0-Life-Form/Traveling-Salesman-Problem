@@ -33,7 +33,6 @@ public:
      * continue looping).
      */
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0) = 0;
-    virtual void reset() = 0;
     /**
      * Useful when outputting a Strategy.
      * @return The name of this type of Strategy (ie. First Fit, Best Fit, ...)

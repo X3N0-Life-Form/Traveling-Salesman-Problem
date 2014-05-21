@@ -109,8 +109,11 @@ void Runner::run() {
             data.setBeginTime(beginning);
             data.setEndTime(end);
             PRINTLN("\tRuntime= " << data.getRunTimeString());
+            delete(n);
             results.push_back(data);
         }
+        // don't keep stuff that's too memory heavy
+        r->deletePairs();
     }
 }
 

@@ -38,11 +38,6 @@ bool WorstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     }
 }
 
-void WorstFit::reset() {
-    fit = NULL;
-    fitCost = initialCost;
-}
-
 std::string WorstFit::getType() const {
     return std::string("Worst Fit");
 }

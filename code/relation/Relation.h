@@ -16,7 +16,7 @@ protected:
     Problem& problem;
     Strategy& strategy;
     bool isFirstLoop = true;
-    std::vector<std::pair<int, int> > pairs;
+    std::vector<std::pair<int, int> >* pairs;
 public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);
@@ -28,6 +28,7 @@ public:
     void pairAndShuffle(PairingMode mode);
     Neighborhood* useThisPath(int* nuPath, const Neighborhood& n);
     std::pair<int, int> getPair(int index, bool randomPick);
+    void deletePairs();
     // Getters/Setters
     Strategy& getStrategy() const;
     void setStrategy(Strategy& s);

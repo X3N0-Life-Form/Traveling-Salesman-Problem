@@ -105,8 +105,9 @@ std::list<int> Problem::getCityIdsAsList() {
     return l;
 }
 
-std::vector<std::pair<int, int> > Problem::getCityPairs(PairingMode mode) {
-    std::vector<std::pair<int, int> > pairs(dimension * dimension);
+std::vector<std::pair<int, int> >* Problem::getCityPairs(PairingMode mode) {
+    std::vector<std::pair<int, int> >* pairs = 
+        new std::vector<std::pair<int, int> >(dimension * dimension);
     int c = 0;
     switch (mode) {
         case PM_SWAP:
@@ -115,7 +116,7 @@ std::vector<std::pair<int, int> > Problem::getCityPairs(PairingMode mode) {
                     if (i == j)
                         continue;
                     std::pair<int, int> p(i, j);
-                    pairs[c] = p;
+                    pairs->at(c) = p;
                     c++;
                 }
             }
@@ -127,13 +128,13 @@ std::vector<std::pair<int, int> > Problem::getCityPairs(PairingMode mode) {
                     if (j == i + 1)
                         continue;
                     std::pair<int, int> p(i, j);
-                    pairs[c] = p;
+                    pairs->at(c) = p;
                     c++;
                 }
             }
             break;
     }
-    pairs.shrink_to_fit();
+    pairs->shrink_to_fit();
     return pairs;
 }
 

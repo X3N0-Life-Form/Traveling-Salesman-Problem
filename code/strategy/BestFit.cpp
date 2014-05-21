@@ -37,11 +37,6 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     }
 }
 
-void BestFit::reset() {
-    fit = NULL;
-    fitCost = initialCost;
-}
-
 std::string BestFit::getType() const {
     return std::string("Best Fit");
 }

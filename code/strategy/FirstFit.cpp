@@ -7,6 +7,8 @@
 
 #include "FirstFit.h"
 
+#include "../utils.h"
+
 FirstFit::FirstFit(int dimension, int initialCost) :
     Strategy(dimension, initialCost)
 {}
@@ -20,7 +22,7 @@ FirstFit::~FirstFit() {
 
 bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     if (nuCost < initialCost) {
-        fit = nuPath;
+        ARRAY_COPY(fit, nuPath, dimension);
         fitCost = nuCost;
         return true;
     } else {
@@ -28,9 +30,6 @@ bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
     }
 }
 
-void FirstFit::reset() {
-    fit = NULL;
-}
 
 std::string FirstFit::getType() const {
     return std::string("First Fit");

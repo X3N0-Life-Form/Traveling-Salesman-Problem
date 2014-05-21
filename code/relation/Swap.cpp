@@ -32,7 +32,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
         pairAndShuffle(PM_SWAP);
     }
     
-    for (int i = 0; i < pairs.size(); i++) {
+    for (int i = 0; i < pairs->size(); i++) {
         std::pair<int, int> randomPair = getPair(i, randomPick); 
         
         // make your move
@@ -51,8 +51,8 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
             delete[](nuPath);
         }
         // swap our pair with the end
-        pairs.at(i) = pairs.at(pairs.size() - i - 1);
-        pairs.at(pairs.size() - i - 1) = randomPair;
+        pairs->at(i) = pairs->at(pairs->size() - i - 1);
+        pairs->at(pairs->size() - i - 1) = randomPair;
     }
     
     // nothing better was found
