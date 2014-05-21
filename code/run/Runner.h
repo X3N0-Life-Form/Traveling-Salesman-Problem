@@ -18,6 +18,7 @@ class Runner {
 private:
     Problem& problem;
     int maxDepth;
+    bool noDepth;
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
@@ -28,11 +29,16 @@ public:
     virtual ~Runner();
     // Getters/Setters/Adders
     std::list<RunData>& getResults();
+    
     int getMaxDepth() const;
     void setMaxDepth(int maxDepth);
+    bool getNoDepth();
+    void setNoDepth(bool noDepth);
+    
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);
     void addStrategy(Strategy& s);
+    
     std::list<Relation*> getRelations();
     void addRelation(Relation* r);
     void addRelation(Relation& r);

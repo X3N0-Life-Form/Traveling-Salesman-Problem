@@ -11,14 +11,16 @@
 
 Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
-        maxDepth(maxDepth)
+        maxDepth(maxDepth),
+        noDepth(false)
 {}
 
 Runner::Runner(const Runner& orig) :
-    problem(orig.problem),
-    strategies(orig.strategies),
-    relations(orig.relations),
-    maxDepth(orig.maxDepth)
+        problem(orig.problem),
+        strategies(orig.strategies),
+        relations(orig.relations),
+        maxDepth(orig.maxDepth),
+        noDepth(orig.noDepth)
 {}
 
 Runner::~Runner() {
@@ -34,6 +36,14 @@ int Runner::getMaxDepth() const {
 
 void Runner::setMaxDepth(int maxDepth) {
     this->maxDepth = maxDepth;
+}
+
+bool Runner::getNoDepth() {
+    return noDepth;
+}
+
+void Runner::setNoDepth(bool noDepth) {
+    this->noDepth = noDepth;
 }
 
 std::list<Strategy*>& Runner::getStrategies() {
@@ -80,7 +90,7 @@ void Runner::run() {
             PRINTLN("Initial cost=\t" << n->getCost());
             
             std::chrono::steady_clock::time_point beginning = clock.now();
-            for (int i = 0; i < maxDepth; i++) {
+            for (int i = 0; i < maxDepth || noDepth; i++) {
                 int oldCost = n->getCost();
                 Neighborhood* oldN = n;
                 n = r->applyRelation(*n, randomPick);

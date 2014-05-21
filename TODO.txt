@@ -8,7 +8,6 @@ Big TODO list:
         ideas: investigate reused paths in tests
     -investigate what sometimes causes best/worst fit to produce a bad neighbor
     -get the regex-based parsing working
-    -allow limitless depth
     -to investigate: insert/firstFit stopping at depth = 0
     -give completion% when running big things
     -add runtime stop condition
@@ -16,3 +15,4 @@ Big TODO list:
         Problem.getDistance()
         reduce redundant calls to Problem.getDimension()
         see what we can do about the pair vector's random shuffle
+    -investigate new memory leaks
