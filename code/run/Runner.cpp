@@ -103,6 +103,7 @@ void Runner::run() {
                 n->calculateCost();
                 if (startingPoint->useSameStartingPoint) {
                     startingPoint->cost = n->getCost();
+                    startingPoint->path = new int[problem.getDimension()];
                     ARRAY_COPY(startingPoint->path, n->getPath(), problem.getDimension());
                     startingPoint->initialized = true;
                 }
