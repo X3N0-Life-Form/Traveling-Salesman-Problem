@@ -13,17 +13,25 @@ Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
         maxDepth(maxDepth),
         noDepth(false)
-{}
+{
+    startingPoint = new StartingPoint();
+    startingPoint->cost = -1;
+    startingPoint->initialized = false;
+    startingPoint->useSameStartingPoint = false;
+    startingPoint->path = NULL;
+}
 
 Runner::Runner(const Runner& orig) :
         problem(orig.problem),
         strategies(orig.strategies),
         relations(orig.relations),
         maxDepth(orig.maxDepth),
-        noDepth(orig.noDepth)
+        noDepth(orig.noDepth),
+        startingPoint(orig.startingPoint)
 {}
 
 Runner::~Runner() {
+    delete(startingPoint);
 }
 
 std::list<RunData>& Runner::getResults() {
@@ -44,6 +52,10 @@ bool Runner::getNoDepth() {
 
 void Runner::setNoDepth(bool noDepth) {
     this->noDepth = noDepth;
+}
+
+void Runner::setSameStartingPoint(bool useSameStartingPoint) {
+    startingPoint->useSameStartingPoint = useSameStartingPoint;
 }
 
 std::list<Strategy*>& Runner::getStrategies() {
@@ -83,8 +95,18 @@ void Runner::run() {
             PRINTLN("Running " << r->getType()
                     << " with strategy " << s->getType());
             Neighborhood* n = new Neighborhood(problem);
-            n->generateRandomNeighborhood();
-            n->calculateCost();
+            if (startingPoint->useSameStartingPoint && startingPoint->initialized) {
+                n->setCost(startingPoint->cost);
+                ARRAY_COPY(n->getPath(), startingPoint->path, problem.getDimension());
+            } else {
+                n->generateRandomNeighborhood();
+                n->calculateCost();
+                if (startingPoint->useSameStartingPoint) {
+                    startingPoint->cost = n->getCost();
+                    ARRAY_COPY(startingPoint->path, n->getPath(), problem.getDimension());
+                    startingPoint->initialized = true;
+                }
+            }
             RunData data(r, s, n);
             data.setDepth(maxDepth);
             PRINTLN("Initial cost=\t" << n->getCost());

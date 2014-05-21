@@ -14,11 +14,20 @@
 #include "../strategy/Strategy.h"
 #include "RunData.h"
 
+struct t_startingPoint {
+    bool useSameStartingPoint;
+    bool initialized;
+    int* path;
+    int cost;
+};
+typedef t_startingPoint StartingPoint;
+
 class Runner {
 private:
     Problem& problem;
     int maxDepth;
     bool noDepth;
+    StartingPoint* startingPoint;
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
@@ -34,6 +43,8 @@ public:
     void setMaxDepth(int maxDepth);
     bool getNoDepth();
     void setNoDepth(bool noDepth);
+    
+    void setSameStartingPoint(bool useSameStartingPoint);
     
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);

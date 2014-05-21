@@ -32,6 +32,7 @@ Runner* main_runner;
 Problem* main_problem;
 int main_maxDepth = 1;
 bool main_noDepth = false;
+bool main_sameStartingPoint= false;
 ofstream* main_f_out = NULL;
 ofstream* main_f_out_csv = NULL;
 string main_oFileName("");
@@ -88,6 +89,7 @@ void printHelp() {
     PRINTLN("\t-maxDepth [int]\t\t\tspecify how many times a"
             << " relation will be applied; default = 1");
     PRINTLN("\t-noMaxDepth\t\t\tremoves the depth limit; overrides the previous option");
+    PRINTLN("\t-sameStartingPoint\treuse the same starting path for each run");
     PRINTLN("\t-r [relation]\t\t\tspecify a relation to apply to the problem");
     PRINTLN("\t-s [strategy]\t\t\tspecify a strategy to apply to the problem");
     PRINTLN("\t(deprecated) -rs [relation] [strategy]\tspecify a relation & strategy"
@@ -145,6 +147,8 @@ void dealWithArgs(int argc, char** argv) {
         } else if (arg == "-noMaxDepth") {
             PRINTLN("Selecting no max depth");
             main_noDepth = true;
+        } else if (arg == "-sameStartingPoint") {
+            main_sameStartingPoint = true;
         } else if (arg == "-rs") {
             PRINTLN("Warning: \"-rs\" argument is deprecated."
                     << " Use \"-r\" and \"-s\" instead.");
@@ -175,8 +179,10 @@ void dealWithArgs(int argc, char** argv) {
     }
     
     main_runner = new Runner(*main_problem, main_maxDepth);
-    // Now that we should have all the data we need, actually create & add these
+    // set runner settings
     main_runner->setNoDepth(main_noDepth);
+    main_runner->setSameStartingPoint(main_sameStartingPoint);
+    // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);
         main_runner->addStrategy(s);
