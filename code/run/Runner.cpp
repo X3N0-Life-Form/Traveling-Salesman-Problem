@@ -9,6 +9,8 @@
 
 #include <chrono>
 
+extern bool main_quietMode;
+
 Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
         maxDepth(maxDepth),
@@ -34,7 +36,7 @@ Runner::~Runner() {
     delete(startingPoint);
 }
 
-std::list<RunData>& Runner::getResults() {
+std::list<RunData*>& Runner::getResults() {
     return results;
 }
 
@@ -108,18 +110,20 @@ void Runner::run() {
                     startingPoint->initialized = true;
                 }
             }
-            RunData data(r, s, n);
-            data.setDepth(maxDepth);
+            RunData* data = new RunData(r, s, n);
+            data->setDepth(maxDepth);
             PRINTLN("Initial cost=\t" << n->getCost());
             
             std::chrono::steady_clock::time_point beginning = clock.now();
             for (int i = 0; i < maxDepth || noDepth; i++) {
                 int oldCost = n->getCost();
                 Neighborhood* oldN = n;
+                if (!main_quietMode)
+                    PRINTLN("Current depth: " << i);
                 n = r->applyRelation(*n, randomPick);
                 // no better result was produced
                 if (n->getCost() == oldCost) {
-                    data.setDepth(i);
+                    data->setDepth(i);
                     break;
                 }
                 delete(oldN);
@@ -128,10 +132,10 @@ void Runner::run() {
             r->setIsFirstLoop(true);
             
             PRINTLN("End cost=\t" << n->getCost());
-            data.setEndPoint(n);
-            data.setBeginTime(beginning);
-            data.setEndTime(end);
-            PRINTLN("\tRuntime= " << data.getRunTimeString());
+            data->setEndPoint(n);
+            data->setBeginTime(beginning);
+            data->setEndTime(end);
+            PRINTLN("\tRuntime= " << data->getRunTimeString());
             delete(n);
             results.push_back(data);
         }
@@ -142,21 +146,21 @@ void Runner::run() {
 
 std::ostream& Runner::outputResults(std::ostream& out) {
     out << "\nRun Results for " << problem.getName() << ":\n";
-    for (RunData data : results) {
-        out << data << std::endl;
+    for (RunData* data : results) {
+        out << *data << std::endl;
     }
     return out;
 }
 
 std::ostream& Runner::outputResultsCSV(std::ostream& out) {
-    for (RunData data : results) {
+    for (RunData* data : results) {
         out << problem.getName() << ","
-                << data.getRelation()->getType() << ","
-                << data.getStrategy()->getType() << ","
-                << data.getStartingPoint().getCost() << ","
-                << data.getEndPoint().getCost() << ","
-                << data.getDepth() << ","
-                << data.getRunTimeSeconds()
+                << data->getRelation()->getType() << ","
+                << data->getStrategy()->getType() << ","
+                << data->getStartingPoint()->cost << ","
+                << data->getEndPoint()->cost << ","
+                << data->getDepth() << ","
+                << data->getRunTimeSeconds()
                 << "\n";
     }
     return out;

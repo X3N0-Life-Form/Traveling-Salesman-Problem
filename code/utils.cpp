@@ -8,13 +8,19 @@ void insert(int* target_array, int* source_array, int size, int origin, int targ
             target_array[t_i] = source_array[s_i];
         } else if (s_i == target) {
             target_array[t_i]   = source_array[origin];
-            target_array[++t_i] = source_array[target];
+            t_i = (t_i + 1) % size;
+            target_array[t_i] = source_array[target];
         } else if (i == origin) {
-            target_array[t_i] = source_array[++s_i];
+            s_i = (s_i + 1) % size;
+            target_array[t_i] = source_array[s_i];
         } else {
             target_array[t_i] = source_array[s_i];
         }
         t_i++;
         s_i++;
+        if (t_i == size)
+            t_i = 0;
+        if (s_i == size)
+            s_i = 0;
     }
 }

@@ -63,6 +63,10 @@ void Strategy::setStopCount(int count) {
     stopCount = count;
 }
 
+bool Strategy::hasBetter() {
+    return fitCost < initialCost;
+}
+
 bool operator !=(const Strategy& left, const Strategy& right) {
     return !(left == right);
 }

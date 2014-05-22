@@ -12,6 +12,8 @@
 #include "../utils.h"
 #include "../core/Neighborhood.h"
 
+extern bool main_quietMode;
+
 Relation::Relation(Problem& problem, Strategy& strategy) :
         problem(problem),
         strategy(strategy),
@@ -40,11 +42,12 @@ void Relation::pairAndShuffle(PairingMode mode) {
     isFirstLoop = false;
 }
 
-Neighborhood* Relation::useThisPath(int* nuPath, const Neighborhood& n) {
+Neighborhood* Relation::useThisPath(const Neighborhood& n, int* nuPath) {
     Neighborhood* nuN = new Neighborhood(n);
     nuN->setPath(strategy.getFit());
     nuN->setCost(strategy.getFitCost());
-    delete[](nuPath);
+    if (nuPath != NULL)
+        delete[](nuPath);
     return nuN;
 }
 
@@ -66,6 +69,16 @@ std::pair<int, int> Relation::getPair(int index, bool randomPick) {
 void Relation::deletePairs() {
     delete(pairs);
     pairs = NULL;
+}
+
+void Relation::printLoopStatus(int count) {
+    if (!main_quietMode
+            && (float) (count % (pairs->size() / 10) == 0.0f)) {
+        //int percent = (float) ((count / pairs->size()) * 100);
+        PRINTLN("Loop #" << count << " / " << pairs->size()
+                //<< " (" << percent << "% complete)"
+                << " ==> Current cost=" << strategy.getFitCost());
+    }
 }
 
 Strategy& Relation::getStrategy() const {

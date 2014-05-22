@@ -37,6 +37,7 @@ ofstream* main_f_out = NULL;
 ofstream* main_f_out_csv = NULL;
 string main_oFileName("");
 string main_oFileNameCSV("");
+bool main_quietMode = true;
 
 /**
  * Note: requires problem to be initialized.
@@ -95,6 +96,7 @@ void printHelp() {
     PRINTLN("\t(deprecated) -rs [relation] [strategy]\tspecify a relation & strategy"
             << " to apply to the problem. Note that several -rs can/should"
             << " be specified.");
+    PRINTLN("\t-quietMode [yes|no]\t\tIf set to no, printd depth and loop info Defaults to yes.");
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
     PRINTLN("");
@@ -161,6 +163,12 @@ void dealWithArgs(int argc, char** argv) {
         } else if (arg == "-s") {
             ARG_CHECK(sName = string(argv[i]), "strategy name");
             s_list.push_back(sName);
+        } else if (arg == "-quietMode") {
+            if (string(argv[++i]) == "no") {
+                main_quietMode = false;
+            } else {
+                main_quietMode = true;
+            }
         } else if (arg == "-o") {
             ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {

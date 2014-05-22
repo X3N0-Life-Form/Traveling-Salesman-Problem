@@ -46,6 +46,8 @@ public:
     int getFitCost();
     int getStopCount();
     void setStopCount(int count);
+    
+    bool hasBetter();
 };
 
 bool operator==(const Strategy& left, const Strategy& right);

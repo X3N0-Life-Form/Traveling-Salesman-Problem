@@ -33,6 +33,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     }
     
     for (int i = 0; i < pairs->size(); i++) {
+        printLoopStatus(i);
         std::pair<int, int> randomPair = getPair(i, randomPick); 
         
         // make your move
@@ -45,7 +46,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
             SWAP(nuPath, randomPair.first, randomPair.second);
 
             if (strategy.applyStrategy(nuPath, nuCost, i)) {
-                return useThisPath(nuPath, n);
+                return useThisPath(n, nuPath);
             }
             // delete nuPath
             delete[](nuPath);
@@ -55,6 +56,9 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
         pairs->at(pairs->size() - i - 1) = randomPair;
     }
     
+    if (strategy.hasBetter()) {
+        return useThisPath(n);
+    }
     // nothing better was found
     Neighborhood* oldN = new Neighborhood(n);
     return oldN;

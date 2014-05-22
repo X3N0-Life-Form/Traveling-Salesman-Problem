@@ -34,7 +34,8 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
     }
     
     for (int i = 0; i < pairs->size(); i++) {
-        std::pair<int, int> randomPair = getPair(i, randomPick); 
+        printLoopStatus(i);
+        std::pair<int, int> randomPair = getPair(i, randomPick);
         // make your move
         // Note: Insert-specific code begins here
         int origin = randomPair.first;
@@ -45,7 +46,7 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
             insert(nuPath, n.getPath(), dimension, origin, target);
             // Note: end of the Insert-specific code
             if (strategy.applyStrategy(nuPath, nuCost, i)) {
-                return useThisPath(nuPath, n);
+                return useThisPath(n, nuPath);
             }
             // delete nuPath
             delete[](nuPath);
@@ -55,6 +56,9 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
         pairs->at(pairs->size() - i - 1) = randomPair;
     }
     
+    if (strategy.hasBetter()) {
+        return useThisPath(n);
+    }
     // nothing better was found
     Neighborhood* oldN = new Neighborhood(n);
     return oldN;

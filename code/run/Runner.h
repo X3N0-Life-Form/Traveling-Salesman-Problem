@@ -31,13 +31,14 @@ private:
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
-    std::list<RunData> results;
+    // and because copying shit around is kinda bad for you memory usage
+    std::list<RunData*> results;
 public:
     Runner(Problem& problem, int depth = 1);
     Runner(const Runner& orig);
     virtual ~Runner();
     // Getters/Setters/Adders
-    std::list<RunData>& getResults();
+    std::list<RunData*>& getResults();
     
     int getMaxDepth() const;
     void setMaxDepth(int maxDepth);

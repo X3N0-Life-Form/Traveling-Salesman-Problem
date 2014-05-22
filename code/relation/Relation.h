@@ -26,9 +26,10 @@ public:
     virtual std::string getType() = 0;
     // common methods
     void pairAndShuffle(PairingMode mode);
-    Neighborhood* useThisPath(int* nuPath, const Neighborhood& n);
+    Neighborhood* useThisPath(const Neighborhood& n, int* nuPath = NULL);
     std::pair<int, int> getPair(int index, bool randomPick);
     void deletePairs();
+    void printLoopStatus(int count);
     // Getters/Setters
     Strategy& getStrategy() const;
     void setStrategy(Strategy& s);

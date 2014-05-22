@@ -14,12 +14,18 @@
 #include "../strategy/Strategy.h"
 #include "../core/Neighborhood.h"
 
+struct t_neighborhoodLite {
+    //Problem& problem;
+    int cost;
+};
+typedef t_neighborhoodLite NeighborhoodLite;
+
 class RunData {
 private:
     Relation* relation;
     Strategy* strategy;
-    Neighborhood startingPoint;
-    Neighborhood endPoint;
+    NeighborhoodLite* startingPoint;
+    NeighborhoodLite* endPoint;
     int depth;
     std::chrono::steady_clock::time_point beginTime;
     std::chrono::steady_clock::time_point endTime;
@@ -30,8 +36,8 @@ public:
     // Getters/Setters
     Relation* getRelation();
     Strategy* getStrategy();
-    Neighborhood& getStartingPoint();
-    Neighborhood& getEndPoint();
+    NeighborhoodLite* getStartingPoint();
+    NeighborhoodLite* getEndPoint();
     /**
      * Note: copies the contents of the pointed Neighborhood.
      * @param endPoint

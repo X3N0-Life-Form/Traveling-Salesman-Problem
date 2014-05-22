@@ -10,10 +10,15 @@
 #include "../utils.h"
 
 RunData::RunData(Relation* r, Strategy* s, Neighborhood* startingPoint) :
-    relation(r),
-    strategy(s),
-    startingPoint(*startingPoint), endPoint(*startingPoint)
-{}
+        relation(r),
+        strategy(s),
+        //startingPoint(*startingPoint), endPoint(*startingPoint)
+        startingPoint(NULL), endPoint(NULL)
+{
+    this->startingPoint = new NeighborhoodLite();
+    //this->startingPoint->problem = startingPoint->getProblem();
+    this->startingPoint->cost = startingPoint->getCost();
+}
 
 
 RunData::RunData(const RunData& orig) :
@@ -25,6 +30,8 @@ RunData::RunData(const RunData& orig) :
 {}
 
 RunData::~RunData() {
+    delete(startingPoint);
+    delete(endPoint);
 }
 
 Relation* RunData::getRelation() {
@@ -43,18 +50,21 @@ void RunData::setDepth(int depth) {
     this->depth = depth;
 }
 
-Neighborhood& RunData::getStartingPoint() {
+NeighborhoodLite* RunData::getStartingPoint() {
     return startingPoint;
 }
 
-Neighborhood& RunData::getEndPoint() {
+NeighborhoodLite* RunData::getEndPoint() {
     return endPoint;
 }
 
 void RunData::setEndPoint(Neighborhood* endPoint) {
-    this->endPoint.setProblem(endPoint->getProblem());
-    this->endPoint.setPath(endPoint->getPath());
-    this->endPoint.setCost(endPoint->getCost());
+    if (this->endPoint == NULL) {
+        this->endPoint = new NeighborhoodLite();
+    }
+    //this->endPoint->problem = endPoint->getProblem();
+    //this->endPoint.setPath(endPoint->getPath());
+    this->endPoint->cost = endPoint->getCost();
 }
 
 void RunData::setBeginTime(std::chrono::steady_clock::time_point beginTime) {
@@ -111,8 +121,8 @@ std::string RunData::getRunTimeSeconds() {
 std::ostream& operator<<(std::ostream& out, RunData& data) {
     out << "Run Data: Relation=" << data.getRelation()->getType()
             << ";\tStrategy=" << data.getStrategy()->getType()
-            << ";\tstarting cost=" << data.getStartingPoint().getCost()
-            << ",\tend cost=" << data.getEndPoint().getCost()
+            << ";\tstarting cost=" << data.getStartingPoint()->cost
+            << ",\tend cost=" << data.getEndPoint()->cost
             << ";\tdepth=" << data.getDepth()
             << ";\trun time= " << data.getRunTimeString();
     return out;
