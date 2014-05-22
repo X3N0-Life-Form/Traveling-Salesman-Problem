@@ -13,18 +13,20 @@
 
 Neighborhood::Neighborhood(Problem& problem) :
         problem(problem),
-        cost(0)
+        cost(0),
+        dimension(problem.getDimension())
 {
-    path = new int[problem.getDimension()];
+    path = new int[dimension];
 }
 
 Neighborhood::Neighborhood(const Neighborhood& orig) : 
         problem(orig.problem),
         cost(orig.cost),
+        dimension(orig.dimension),
         path(NULL)
 {
-    path = new int[problem.getDimension()];
-    ARRAY_COPY(path, orig.path, problem.getDimension());
+    path = new int[dimension];
+    ARRAY_COPY(path, orig.path, dimension);
 }
 
 Neighborhood::~Neighborhood() {
@@ -40,7 +42,7 @@ Neighborhood& Neighborhood::operator =(const Neighborhood& right) {
 
 void Neighborhood::generateRandomNeighborhood() {
     std::vector<int> v_city = problem.getCityIdsAsVector();
-    for (int i = 0; i < problem.getDimension(); i++) {
+    for (int i = 0; i < dimension; i++) {
         std::random_device rd;
         int randomIndex = rd() % v_city.size();
         path[i] = v_city[randomIndex];
@@ -55,10 +57,10 @@ void Neighborhood::generateRandomNeighborhood() {
  */
 int Neighborhood::calculateCost() {
     cost = 0;
-    for (int i = 0; i < problem.getDimension() - 1; i++) {
+    for (int i = 0; i < dimension - 1; i++) {
         cost += problem.getDistance(path[i], path[i+1]);
     }
-    cost += problem.getDistance(path[0], path[problem.getDimension() - 1]);
+    cost += problem.getDistance(path[0], path[dimension - 1]);
     return cost;
 }
 
@@ -78,12 +80,12 @@ int Neighborhood::calculatePotentialCostSwap(int index1, int index2) const {
     int next2 = index2 + 1;
     // WARNING: special cases: first & last cities in our path
     if (prev1 < 0)
-        prev1 = problem.getDimension() - 1;
-    else if (next1 >= problem.getDimension())
+        prev1 = dimension - 1;
+    else if (next1 >= dimension)
         next1 = 0;
     if (prev2 < 0)
-        prev2 = problem.getDimension() - 1;
-    else if (next2 >= problem.getDimension())
+        prev2 = dimension - 1;
+    else if (next2 >= dimension)
         next2 = 0;
     // remove old distance costs
     // be careful when dealing with two cities right after the other in the path
@@ -115,12 +117,12 @@ int Neighborhood::calculatePotentialCostInsert(int origin, int target) const {
     int next_target = target + 1;
     // WARNING: special cases: first & last cities in our path
     if (prev_origin < 0)
-        prev_origin = problem.getDimension() - 1;
-    else if (next_origin >= problem.getDimension())
+        prev_origin = dimension - 1;
+    else if (next_origin >= dimension)
         next_origin = 0;
     if (prev_target < 0)
-        prev_target = problem.getDimension() - 1;
-    else if (next_target >= problem.getDimension())
+        prev_target = dimension - 1;
+    else if (next_target >= dimension)
         next_target = 0;
     // remove old distance costs
     // be careful when dealing with two cities right after the other in the path
@@ -143,7 +145,7 @@ int* Neighborhood::getPath() const {
 }
 
 void Neighborhood::setPath(int* path) {
-    ARRAY_COPY(this->path, path, problem.getDimension());
+    ARRAY_COPY(this->path, path, dimension);
     //this->path = path;
 }
 
@@ -160,7 +162,7 @@ void Neighborhood::setCost(int cost) {
  * @return This Neighborhood Problem's dimension.
  */
 int Neighborhood::getDimension() const {
-    return problem.getDimension();
+    return dimension;
 }
 
 Problem& Neighborhood::getProblem() const {

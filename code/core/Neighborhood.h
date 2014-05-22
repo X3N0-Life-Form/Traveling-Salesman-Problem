@@ -16,6 +16,7 @@
 class Neighborhood {
 private:
     Problem& problem;
+    int dimension;
     int* path;
     int cost;
 public:
