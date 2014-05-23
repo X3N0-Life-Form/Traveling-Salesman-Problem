@@ -5,7 +5,7 @@
 #
 # Created on 6 mai 2014, 10:35:01
 #
-#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint  -r swap -r insert -s firstFit -s bestFit -s worstFit
+#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint -r swap -r insert -s firstFit -s bestFit -s worstFit
 
 maxDepth=2000
 relations="-r swap -r insert"
