@@ -23,8 +23,8 @@ Problem parseProblem(string filePath) {
     DistanceType type = INTEGER;
     ParsingMode parsingMode = DISCOVER;
     
-    float* distanceMatrix_f;
-    int* distanceMatrix_i;
+    float** distanceMatrix_f;
+    int** distanceMatrix_i;
     vector<City> cities;
     //[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*
     regex rex("[ \t]*[0-9]+[ \t]+[0-9]+(\\.[0-9]+)?[ \t]+[0-9]+(\\.[0-9]+)?[ \t]*",
@@ -58,12 +58,18 @@ Problem parseProblem(string filePath) {
                 case DISCOVER:
                     if (line_str.find_first_of('.') != string::npos) {
                         parsingMode = PARSE_FLOAT;
-                        distanceMatrix_f = new float[dimension * dimension];
+                        distanceMatrix_f = new float*[dimension];
+                        for (int i = 0; i < dimension; i++) {
+                            distanceMatrix_f[i] = new float[dimension];
+                        }
                         type = FLOAT;
                         cities.push_back(parseFloat(line_str));
                     } else {
                         parsingMode = PARSE_INTEGER;
-                        distanceMatrix_i = new int[dimension * dimension];
+                        distanceMatrix_i = new int*[dimension];
+                        for (int i = 0; i < dimension; i++) {
+                            distanceMatrix_i[i] = new int[dimension];
+                        }
                         type = INTEGER;
                         cities.push_back(parseInt(line_str));
                     }
@@ -128,25 +134,24 @@ City parseFloat(std::string line) {
     return City(id, x, y);
 }
 
-void calculateDistances(std::vector<City>& cities, float* distanceMatrix) {
-    int dimension = cities.size();
-    for (int i = 0; i < dimension; i++) {
-        for (int j = 0; j < dimension; j++) {
+void calculateDistances(std::vector<City>& cities, float** distanceMatrix) {
+    for (int i = 0; i < cities.size(); i++) {
+        for (int j = 0; j < cities.size(); j++) {
             int dx = cities[i].getXF() - cities[j].getXF();
             int dy = cities[i].getYF() - cities[j].getYF();
             float dij = sqrt(dx*dx + dy*dy);
-            distanceMatrix[i * dimension + j] = dij;
+            distanceMatrix[i][j] = dij;
         }
     }
 }
 
-void calculateDistances(std::vector<City>& cities, int* distanceMatrix) {
+void calculateDistances(std::vector<City>& cities, int** distanceMatrix) {
     for (int i = 0; i < cities.size(); i++) {
         for (int j = 0; j < cities.size(); j++) {
             int dx = cities[i].getXI() - cities[j].getXI();
             int dy = cities[i].getYI() - cities[j].getYI();
             int dij = sqrt(dx*dx + dy*dy);
-            distanceMatrix[i * cities.size() + j] = dij;
+            distanceMatrix[i][j] = dij;
         }
     }
 }

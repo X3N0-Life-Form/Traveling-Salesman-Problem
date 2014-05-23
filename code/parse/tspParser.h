@@ -31,8 +31,8 @@ Problem parseProblem(std::string filePath);
 std::string trim(std::string toTrim);
 City parseInt(std::string line);
 City parseFloat(std::string line);
-void calculateDistances(std::vector<City>& cities, float* distanceMatrix);
-void calculateDistances(std::vector<City>& cities, int* distanceMatrix);
+void calculateDistances(std::vector<City>& cities, float** distanceMatrix);
+void calculateDistances(std::vector<City>& cities, int** distanceMatrix);
 
 #endif	/* TSPPARSER_H */
 

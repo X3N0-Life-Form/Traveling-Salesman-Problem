@@ -30,8 +30,8 @@ private:
     std::string comment;
     int dimension;
     std::vector<City> cities;
-    float* distanceMatrix_f;
-    int* distanceMatrix_i;
+    float** distanceMatrix_f;
+    int** distanceMatrix_i;
     DistanceType distanceType;
     
 public:
@@ -44,10 +44,10 @@ public:
     std::string getName() const;
     DistanceType getDistanceType() const;
     
-    float* getDistanceMatrix_f() const;
-    void setDistanceMatrix(float* d_f);
-    int* getDistanceMatrix_i() const;
-    void setDistanceMatrix(int* d_i);
+    float** getDistanceMatrix_f() const;
+    void setDistanceMatrix(float** d_f);
+    int** getDistanceMatrix_i() const;
+    void setDistanceMatrix(int** d_i);
     
     std::vector<City> getCities() const;
     void setCities(std::vector<City>& cities);
