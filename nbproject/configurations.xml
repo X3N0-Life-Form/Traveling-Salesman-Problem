@@ -165,7 +165,6 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
-          <commandLine>-O3</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
@@ -539,6 +538,370 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+      </compileType>
+      <item path="TODO.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/core/City.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/core/Neighborhood.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/core/Neighborhood.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/core/Problem.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/core/Problem.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/parse/tspParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/parse/tspParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Insert.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Relation.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Relation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/run/RunData.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/run/RunData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/run/Runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/run/Runner.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/FirstFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/FirstFit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/Strategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/WorstFit.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/strategy/WorstFit.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/strategy/strategies.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/utils.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/utils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f10">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f10</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f11">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f11</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f12">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f12</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f3">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f3</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f4">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f4</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f5">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f5</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f6">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f6</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f7">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f7</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f8">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f8</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f9">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f9</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="launch.sh" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/core_parsing/neighborhoodTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/neighborhoodTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/neighborhoodTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/core_parsing/problemTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspParserTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/swapTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run/runnerTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/run/runnerTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/run/runnerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/bestFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy/worstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/utilsTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/utilsTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Debug_O3" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <commandLine>-O3</commandLine>
+        </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
