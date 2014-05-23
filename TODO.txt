@@ -13,6 +13,4 @@ Big TODO list:
     -add runtime stop condition
     -to optimize:
         Problem.getDistance()
-        reduce redundant calls to Problem.getDimension()
         see what we can do about the pair vector's random shuffle
-    -use same starting point
