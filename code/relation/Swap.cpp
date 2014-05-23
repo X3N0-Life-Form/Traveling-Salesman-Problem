@@ -38,7 +38,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
         
         // make your move
         int nuCost = n.calculatePotentialCostSwap(
-            randomPair.first, randomPair.second);
+                        randomPair.first, randomPair.second);
         // is it a good move
         if (nuCost < n.getCost()) {
             int* nuPath = new int[dimension];

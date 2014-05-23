@@ -41,9 +41,9 @@ void runnerTests::tearDown() {
 void runnerTests::test_start_OK_depth_1() {
     r.run();
     r.outputResults();
-    for (RunData data : r.getResults()) {
-        CPPUNIT_ASSERT(data.getStartingPoint().getCost()
-                > data.getEndPoint().getCost());
+    for (RunData* data : r.getResults()) {
+        CPPUNIT_ASSERT(data->getStartingPoint()->cost
+                > data->getEndPoint()->cost);
     }
 }
 

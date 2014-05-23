@@ -41,6 +41,7 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
         int origin = randomPair.first;
         int target = randomPair.second;
         int nuCost = n.calculatePotentialCostInsert(origin, target);
+        // is it a good move
         if (nuCost < n.getCost()) {
             int* nuPath = new int[dimension];
             insert(nuPath, n.getPath(), dimension, origin, target);

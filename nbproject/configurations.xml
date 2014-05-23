@@ -142,7 +142,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>TODO.txt</itemPath>
-    <itemPath>clean.sh</itemPath>
+    <itemPath>cleanStuff.sh</itemPath>
     <itemPath>launch.sh</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -161,7 +161,7 @@
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="clean.sh" ex="false" tool="3" flavor2="0">
+      <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -508,7 +508,7 @@
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="clean.sh" ex="false" tool="3" flavor2="0">
+      <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
