@@ -58,6 +58,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 TESTFILES= \
 	${TESTDIR}/TestFiles/f6 \
 	${TESTDIR}/TestFiles/f5 \
+	${TESTDIR}/TestFiles/f12 \
 	${TESTDIR}/TestFiles/f10 \
 	${TESTDIR}/TestFiles/f9 \
 	${TESTDIR}/TestFiles/f2 \
@@ -180,6 +181,10 @@ ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/strategy/firstFitTests.o ${TESTDIR}/te
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
+${TESTDIR}/TestFiles/f12: ${TESTDIR}/tests/insertCostTests.o ${TESTDIR}/tests/insertCostTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f12 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f10: ${TESTDIR}/tests/relation/InsertTests.o ${TESTDIR}/tests/relation/InsertTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f10 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
@@ -239,6 +244,18 @@ ${TESTDIR}/tests/strategy/firstFitTests_testrunner.o: tests/strategy/firstFitTes
 	${MKDIR} -p ${TESTDIR}/tests/strategy
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy/firstFitTests_testrunner.o tests/strategy/firstFitTests_testrunner.cpp
+
+
+${TESTDIR}/tests/insertCostTests.o: tests/insertCostTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/insertCostTests.o tests/insertCostTests.cpp
+
+
+${TESTDIR}/tests/insertCostTests_testrunner.o: tests/insertCostTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/insertCostTests_testrunner.o tests/insertCostTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/relation/InsertTests.o: tests/relation/InsertTests.cpp 
@@ -550,6 +567,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	then  \
 	    ${TESTDIR}/TestFiles/f6 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
+	    ${TESTDIR}/TestFiles/f12 || true; \
 	    ${TESTDIR}/TestFiles/f10 || true; \
 	    ${TESTDIR}/TestFiles/f9 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \

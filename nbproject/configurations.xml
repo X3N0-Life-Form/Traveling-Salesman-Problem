@@ -16,6 +16,7 @@
       <itemPath>code/strategy/Strategy.h</itemPath>
       <itemPath>code/relation/Swap.h</itemPath>
       <itemPath>code/strategy/WorstFit.h</itemPath>
+      <itemPath>code/strategy/strategies.h</itemPath>
       <itemPath>code/parse/tspParser.h</itemPath>
       <itemPath>code/utils.h</itemPath>
     </logicalFolder>
@@ -61,6 +62,14 @@
         <itemPath>tests/strategy/firstFitTests.cpp</itemPath>
         <itemPath>tests/strategy/firstFitTests.h</itemPath>
         <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f12"
+                     displayName="Insert Cost Advanced Tests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/insertCostTests.cpp</itemPath>
+        <itemPath>tests/insertCostTests.h</itemPath>
+        <itemPath>tests/insertCostTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f10"
                      displayName="InsertTests"
@@ -217,6 +226,8 @@
       </item>
       <item path="code/strategy/WorstFit.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/strategy/strategies.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/utils.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/utils.h" ex="false" tool="3" flavor2="0">
@@ -258,6 +269,20 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f11</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f12">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f12</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
@@ -415,6 +440,15 @@
             flavor2="0">
       </item>
       <item path="tests/core_parsing/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -564,6 +598,8 @@
       </item>
       <item path="code/strategy/WorstFit.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/strategy/strategies.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/utils.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/utils.h" ex="false" tool="3" flavor2="0">
@@ -605,6 +641,20 @@
         </ccTool>
         <linkerTool>
           <output>${TESTDIR}/TestFiles/f11</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f12">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f12</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
@@ -762,6 +812,15 @@
             flavor2="0">
       </item>
       <item path="tests/core_parsing/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/insertCostTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
