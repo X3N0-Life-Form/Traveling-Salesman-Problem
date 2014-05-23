@@ -23,7 +23,7 @@ $execPath -file data/ali535.tsp $args
 $execPath -file data/ch130.tsp $args
 $execPath -file data/ch150.tsp $args
 $execPath -file data/bier127.tsp $args
-#$execPath -file data/burma14.tsp $args     #parsing error
+$execPath -file data/burma14.tsp $args
 #big
 #$execPath -file data/brd14051.tsp -maxDepth 4 $relations $strategies -o auto
 
