@@ -63,7 +63,8 @@ void RunData::setEndPoint(Neighborhood* endPoint) {
         this->endPoint = new NeighborhoodLite();
     }
     //this->endPoint->problem = endPoint->getProblem();
-    //this->endPoint.setPath(endPoint->getPath());
+    //this->endPoint->path = new int[endPoint->getDimension()];
+    //ARRAY_COPY(this->endPoint->path, endPoint->getPath(), endPoint->getDimension());
     this->endPoint->cost = endPoint->getCost();
 }
 

@@ -17,6 +17,7 @@
 struct t_neighborhoodLite {
     //Problem& problem;
     int cost;
+    //int* path;
 };
 typedef t_neighborhoodLite NeighborhoodLite;
 

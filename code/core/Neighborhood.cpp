@@ -110,7 +110,7 @@ int Neighborhood::calculatePotentialCostSwap(int index1, int index2) const {
 int Neighborhood::calculatePotentialCostInsert(int origin, int target) const {
     // Note: this section is identical to Swap's
     int nuCost = cost;
-     // previous & next ids
+    // previous & next ids
     int prev_origin = origin - 1;
     int next_origin = origin + 1;
     int prev_target = target - 1;
