@@ -14,19 +14,30 @@ strategies="-s firstFit -s bestFit -s worstFit"
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
 args="-maxDepth $maxDepth -sameStartingPoint $relations $strategies -o auto"
 
+loopCount=1
+
 make
 
-$execPath -file data/a280.tsp $args
-$execPath -file data/att48.tsp $args
-$execPath -file data/berlin52.tsp $args
-$execPath -file data/ali535.tsp $args
-$execPath -file data/ch130.tsp $args
-$execPath -file data/ch150.tsp $args
-$execPath -file data/bier127.tsp $args
-$execPath -file data/burma14.tsp $args
-#big
-#$execPath -file data/brd14051.tsp -maxDepth 4 $relations $strategies -o auto
+if [ "$#" -ge 1 ]
+then
+    echo "Setting loop count to $1"
+    loopCount=$1
+fi
 
+for i in `seq 1 $loopCount`
+do
+    $execPath -file data/a280.tsp $args
+    $execPath -file data/att48.tsp $args
+    $execPath -file data/berlin52.tsp $args
+    $execPath -file data/ali535.tsp $args
+    $execPath -file data/ch130.tsp $args
+    $execPath -file data/ch150.tsp $args
+    $execPath -file data/bier127.tsp $args
+    $execPath -file data/burma14.tsp $args
+    #big
+    #$execPath -file data/brd14051.tsp -maxDepth 4 $relations $strategies -o auto
+done
 
+echo "Looped $loopCount times"
 echo "Merging all .csv into allResults.csv"
 cat data/results/*.csv > data/allResults.csv
