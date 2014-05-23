@@ -125,7 +125,7 @@ std::vector<std::pair<int, int> >* Problem::getCityPairs(PairingMode mode) {
             for (int i = 0; i < dimension; i++) {
                 for (int j = 1; j < dimension; j++) {
                     // if target = origin + 1
-                    if (j == i + 1)
+                    if (j == i + 1 || i == j)
                         continue;
                     std::pair<int, int> p(i, j);
                     pairs->at(c) = p;
