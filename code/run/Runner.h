@@ -28,10 +28,11 @@ private:
     int maxDepth;
     bool noDepth;
     StartingPoint* startingPoint;
+    bool doubleCheckCost;
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
-    // and because copying shit around is kinda bad for you memory usage
+    // and because copying shit around is kinda bad for your memory usage
     std::list<RunData*> results;
 public:
     Runner(Problem& problem, int depth = 1);
@@ -46,6 +47,7 @@ public:
     void setNoDepth(bool noDepth);
     
     void setSameStartingPoint(bool useSameStartingPoint);
+    void setDoubleCheckCost(bool doubleCheck);
     
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);

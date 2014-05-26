@@ -14,7 +14,8 @@ extern bool main_quietMode;
 Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
         maxDepth(maxDepth),
-        noDepth(false)
+        noDepth(false),
+        doubleCheckCost(false)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -29,7 +30,8 @@ Runner::Runner(const Runner& orig) :
         relations(orig.relations),
         maxDepth(orig.maxDepth),
         noDepth(orig.noDepth),
-        startingPoint(orig.startingPoint)
+        startingPoint(orig.startingPoint),
+        doubleCheckCost(orig.doubleCheckCost)
 {}
 
 Runner::~Runner() {
@@ -58,6 +60,10 @@ void Runner::setNoDepth(bool noDepth) {
 
 void Runner::setSameStartingPoint(bool useSameStartingPoint) {
     startingPoint->useSameStartingPoint = useSameStartingPoint;
+}
+
+void Runner::setDoubleCheckCost(bool doubleCheck) {
+    this->doubleCheckCost = doubleCheck;
 }
 
 std::list<Strategy*>& Runner::getStrategies() {
@@ -127,6 +133,15 @@ void Runner::run() {
                     break;
                 }
                 delete(oldN);
+            }
+            if (doubleCheckCost) {
+                int potentialCost = n->getCost();
+                int actualCost = n->calculateCost();
+                if (potentialCost != actualCost) {
+                    PRINTLN("WARNING: potential cost & actual cost differ: "
+                            << "potential cost = " << potentialCost << "; "
+                            << "actual cost = " << actualCost);
+                }
             }
             std::chrono::steady_clock::time_point end = clock.now();
             r->setIsFirstLoop(true);
