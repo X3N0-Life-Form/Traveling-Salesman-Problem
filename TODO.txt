@@ -5,12 +5,10 @@ Big TODO list:
             bestFit
             worstFit
             runner
-        ideas: investigate reused paths in tests
-    -?investigate what sometimes causes best/worst fit to produce a bad neighbor
     -get the regex-based parsing working
-    -to investigate: insert/firstFit stopping at depth = 0
     -give completion% when running big things
     -add runtime stop condition
-    -to optimize:
-        Problem.getDistance()
-        see what we can do about the pair vector's random shuffle
+    -measure time down to the nano second
+    -implement Reverse
+    -get brd14051 to run
+    -upgrade stat sheet

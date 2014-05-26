@@ -9,3 +9,5 @@ echo "rm data/results/*.results"
 rm data/results/*.results
 echo "rm callgrind.out.*"
 rm callgrind.out.*
+echo "rm cachegrind.out.*"
+rm cachegrind.out.*
