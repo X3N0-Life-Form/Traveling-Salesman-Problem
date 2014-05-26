@@ -21,7 +21,8 @@ enum DistanceType {
 enum PairingMode {
     PM_SWAP,
     PM_INSERT,
-    PM_REVERSE
+    PM_REVERSE,
+    PM_FULL
 };
 
 class Problem {

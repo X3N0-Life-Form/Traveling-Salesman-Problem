@@ -39,6 +39,7 @@ string main_oFileName("");
 string main_oFileNameCSV("");
 bool main_quietMode = true;
 bool main_doubleCheckCost = false;
+bool main_noNeighborhoodCutoff = false;
 
 /**
  * Note: requires problem to be initialized.
@@ -102,6 +103,8 @@ void printHelp() {
             << " Defaults to yes.");
     PRINTLN("\t-doubleCheckCost\t\t\tperform a full calculation check at "
             << "the end of each execution and report inconsitencies");
+    PRINTLN("\t-noNeighborhoodCutoff\tdo not remove any value when "
+            << "creating pair lists, even useless or redundant ones");
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
     PRINTLN("");
@@ -176,6 +179,8 @@ void dealWithArgs(int argc, char** argv) {
             }
         } else if (arg == "-doubleCheckCost") {
             main_doubleCheckCost = true;
+        } else if (arg == "-noNeighborhoodCutoff") {
+            main_noNeighborhoodCutoff = true;
         } else if (arg == "-o") {
             ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
@@ -198,6 +203,7 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setNoDepth(main_noDepth);
     main_runner->setSameStartingPoint(main_sameStartingPoint);
     main_runner->setDoubleCheckCost(main_doubleCheckCost);
+    main_runner->setNoNeighborhoodCutoff(main_noNeighborhoodCutoff);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);

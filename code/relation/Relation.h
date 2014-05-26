@@ -17,6 +17,7 @@ protected:
     Strategy& strategy;
     bool isFirstLoop = true;
     std::vector<std::pair<int, int> >* pairs;
+    bool noNeighborhoodCutoff;
 public:
     Relation(Problem& problem, Strategy& strategy);
     Relation(const Relation& orig);
@@ -34,6 +35,7 @@ public:
     Strategy& getStrategy() const;
     void setStrategy(Strategy& s);
     void setIsFirstLoop(bool isFirstLoop);
+    void setNoNeighborhoodCutoff(bool cutoff);
 };
 
 #endif	/* RELATION_H */

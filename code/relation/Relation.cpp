@@ -35,7 +35,11 @@ void Relation::pairAndShuffle(PairingMode mode) {
         delete(pairs);
         pairs = NULL;
     }
-    pairs = problem.getCityPairs(mode);
+    if (noNeighborhoodCutoff) {
+        pairs = problem.getCityPairs(PM_FULL);
+    } else {
+        pairs = problem.getCityPairs(mode);
+    }
     strategy.setStopCount(pairs->size());
     std::random_shuffle(pairs->begin(), pairs->end());
     PRINTLN("Going through " << pairs->size() << " pairs...");
@@ -91,4 +95,8 @@ void Relation::setStrategy(Strategy& s) {
 
 void Relation::setIsFirstLoop(bool isFirstLoop) {
     this->isFirstLoop = isFirstLoop;
+}
+
+void Relation::setNoNeighborhoodCutoff(bool cutoff) {
+    this->noNeighborhoodCutoff = cutoff;
 }

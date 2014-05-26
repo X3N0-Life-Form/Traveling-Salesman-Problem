@@ -15,7 +15,8 @@ Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
         maxDepth(maxDepth),
         noDepth(false),
-        doubleCheckCost(false)
+        doubleCheckCost(false),
+        noNeighborhoodCutoff(false)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -31,7 +32,8 @@ Runner::Runner(const Runner& orig) :
         maxDepth(orig.maxDepth),
         noDepth(orig.noDepth),
         startingPoint(orig.startingPoint),
-        doubleCheckCost(orig.doubleCheckCost)
+        doubleCheckCost(orig.doubleCheckCost),
+        noNeighborhoodCutoff(orig.noNeighborhoodCutoff)
 {}
 
 Runner::~Runner() {
@@ -64,6 +66,10 @@ void Runner::setSameStartingPoint(bool useSameStartingPoint) {
 
 void Runner::setDoubleCheckCost(bool doubleCheck) {
     this->doubleCheckCost = doubleCheck;
+}
+
+void Runner::setNoNeighborhoodCutoff(bool cutoff) {
+    this->noNeighborhoodCutoff = cutoff;
 }
 
 std::list<Strategy*>& Runner::getStrategies() {
@@ -99,6 +105,9 @@ void Runner::run() {
             if (s->getType() != "First Fit") {
                 randomPick = false;
             }
+            // default = false
+            r->setNoNeighborhoodCutoff(noNeighborhoodCutoff);
+
             
             PRINTLN("Running " << r->getType()
                     << " with strategy " << s->getType());

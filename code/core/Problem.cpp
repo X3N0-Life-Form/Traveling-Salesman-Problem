@@ -133,6 +133,16 @@ std::vector<std::pair<int, int> >* Problem::getCityPairs(PairingMode mode) {
                 }
             }
             break;
+            
+        case PM_FULL:
+            for (int i = 0; i < dimension; i++) {
+                for (int j = 0; j < dimension; j++) {
+                    std::pair<int, int> p(i, j);
+                    pairs->at(c) = p;
+                    c++;
+                }
+            }
+            break;
     }
     pairs->shrink_to_fit();
     return pairs;
