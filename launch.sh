@@ -10,9 +10,10 @@
 maxDepth=2000
 relations="-r swap -r insert"
 strategies="-s firstFit -s bestFit -s worstFit"
+miscArgs="-sameStartingPoint -doubleCheckCost -noNeighborhoodCutoff"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
-args="-maxDepth $maxDepth -sameStartingPoint $relations $strategies -o auto"
+args="-maxDepth $maxDepth $miscArgs $relations $strategies -o auto"
 
 loopCount=1
 
