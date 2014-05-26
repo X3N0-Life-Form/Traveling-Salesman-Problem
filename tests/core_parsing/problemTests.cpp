@@ -13,7 +13,7 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION(problemTests);
 
-Problem p = parseProblem(path_a280);
+Problem* p;
 
 problemTests::problemTests() {
 }
@@ -22,28 +22,31 @@ problemTests::~problemTests() {
 }
 
 void problemTests::setUp() {
-    p = parseProblem(path_a280);
+    Problem temp = parseProblem(path_a280);
+    p = new Problem(temp);
 }
 
 void problemTests::tearDown() {
+    delete(p);
 }
 
 void problemTests::test_getDistance() {
     //Note: what's in the matrix
-    CPPUNIT_ASSERT_EQUAL(20, p.getDistance(1, 2));
+    CPPUNIT_ASSERT_EQUAL(20, p->getDistance(1, 2));
 }
 
 void problemTests::test_getCitiesAsList() {
-    std::list<int> cityIds = p.getCityIdsAsList();
-    Problem copy(p);
-    for (int i = 0; i < p.getDimension(); i++) {
+    std::list<int> cityIds = p->getCityIdsAsList();
+    Problem* copy = new Problem(*p);
+    for (int i = 0; i < p->getDimension(); i++) {
         CPPUNIT_ASSERT_EQUAL(i + 1, cityIds.front());
         cityIds.pop_front();
     }
-    cityIds = copy.getCityIdsAsList();
-    for (int i = 0; i < p.getDimension(); i++) {
+    cityIds = copy->getCityIdsAsList();
+    for (int i = 0; i < p->getDimension(); i++) {
         CPPUNIT_ASSERT_EQUAL(i + 1, cityIds.front());
         cityIds.pop_front();
     }
+    delete(copy);
 }
 

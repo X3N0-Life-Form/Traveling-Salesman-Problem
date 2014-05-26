@@ -1,10 +1,5 @@
 Big TODO list:
     -implement multithreading in Runner
-    -fix the screwed up tests:
-        for the record:
-            bestFit
-            worstFit
-            runner
     -get the regex-based parsing working
     -give completion% when running big things
     -add runtime stop condition
