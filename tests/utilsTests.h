@@ -20,6 +20,14 @@ class utilsTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_insert_same);
     CPPUNIT_TEST(test_insert_endTarget);
     CPPUNIT_TEST(test_insert_endOrigin);
+    CPPUNIT_TEST(test_reverse_std);
+    CPPUNIT_TEST(test_reverse_stdRev);
+    CPPUNIT_TEST(test_reverse_begMid);
+    CPPUNIT_TEST(test_reverse_midEnd);
+    CPPUNIT_TEST(test_reverse_begEnd);
+    CPPUNIT_TEST(test_reverse_next);
+    CPPUNIT_TEST(test_reverse_nextRev);
+    CPPUNIT_TEST(test_reverse_self);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -37,6 +45,14 @@ private:
     void test_insert_same();
     void test_insert_endTarget();
     void test_insert_endOrigin();
+    void test_reverse_std();
+    void test_reverse_stdRev();
+    void test_reverse_begMid();
+    void test_reverse_midEnd();
+    void test_reverse_begEnd();
+    void test_reverse_next();
+    void test_reverse_nextRev();
+    void test_reverse_self();
 };
 
 #endif	/* UTILSTESTS_H */

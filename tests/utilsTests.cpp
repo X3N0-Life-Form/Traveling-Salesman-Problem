@@ -102,7 +102,102 @@ void utilsTests::test_insert_endOrigin() {
     int expected[10] = {0, 1, 2, 3, 4, 9, 5, 6, 7, 8};
     int produced[10];
     insert(produced, original, 10, origin, target);
-    ARRAY_PRINT(produced, 10);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_std() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 5;
+    int right = 8;
+    int expected[10] = {0, 1, 2, 3, 4, 8, 7, 6, 5, 9};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_stdRev() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 8;
+    int right = 5;
+    int expected[10] = {3, 2, 1, 0, 9, 8, 6, 7, 5, 4};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_begMid() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 0;
+    int right = 5;
+    int expected[10] = {5, 4, 3, 2, 1, 0, 6, 7, 8, 9};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_midEnd() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 5;
+    int right = 9;
+    int expected[10] = {0, 1, 2, 3, 4, 9, 8, 7, 6, 5};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_begEnd() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 0;
+    int right = 9;
+    int expected[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_next() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 5;
+    int right = 6;
+    int expected[10] = {0, 1, 2, 3, 4, 6, 5, 7, 8, 9};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_nextRev() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 6;
+    int right = 5;
+    int expected[10] = {1, 0, 9, 8, 7, 6, 5, 4, 3, 2};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
+    for (int i = 0; i < 10; i++) {
+        CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
+    }
+}
+
+void utilsTests::test_reverse_self() {
+    int original[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int left = 5;
+    int right = 5;
+    int expected[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int produced[10];
+    reverse(produced, original, 10, left, right);
     for (int i = 0; i < 10; i++) {
         CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
     }
