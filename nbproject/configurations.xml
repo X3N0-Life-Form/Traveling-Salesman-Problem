@@ -63,14 +63,6 @@
         <itemPath>tests/strategy/firstFitTests.h</itemPath>
         <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
-      <logicalFolder name="f12"
-                     displayName="Insert Cost Advanced Tests"
-                     projectFiles="true"
-                     kind="TEST">
-        <itemPath>tests/insertCostTests.cpp</itemPath>
-        <itemPath>tests/insertCostTests.h</itemPath>
-        <itemPath>tests/insertCostTests_testrunner.cpp</itemPath>
-      </logicalFolder>
       <logicalFolder name="f10"
                      displayName="InsertTests"
                      projectFiles="true"
@@ -443,15 +435,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests_testrunner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
@@ -815,15 +798,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests_testrunner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
@@ -1175,15 +1149,6 @@
             flavor2="0">
       </item>
       <item path="tests/core_parsing/tspTests_testrunner.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="tests/insertCostTests.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="tests/insertCostTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
