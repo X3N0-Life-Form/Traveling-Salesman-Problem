@@ -144,25 +144,37 @@ int Neighborhood::calculatePotentialCostReverse(int left, int right) const {
     // Note: this section is identical to Swap & Insert's
     int nuCost = cost;
     // previous & next ids
-    int prev_origin = left - 1;
-    int next_origin = left + 1;
-    int prev_target = right - 1;
-    int next_target = right + 1;
+    int prev_left = left - 1;
+    int next_left = left + 1;
+    int prev_right = right - 1;
+    int next_right = right + 1;
     // WARNING: special cases: first & last cities in our path
-    if (prev_origin < 0)
-        prev_origin = dimension - 1;
-    else if (next_origin >= dimension)
-        next_origin = 0;
-    if (prev_target < 0)
-        prev_target = dimension - 1;
-    else if (next_target >= dimension)
-        next_target = 0;
+    if (prev_left < 0)
+        prev_left = dimension - 1;
+    else if (next_left >= dimension)
+        next_left = 0;
+    if (prev_right < 0)
+        prev_right = dimension - 1;
+    else if (next_right >= dimension)
+        next_right = 0;
     // remove old distance costs
     // be careful when dealing with two cities right after the other in the path
     // Note: Insert specific code begins here
-    
-    
-    
+    if (left < right) {
+        nuCost -= problem.getDistance(path[prev_left], path[left]);
+        nuCost -= problem.getDistance(path[right], path[next_right]);
+
+        nuCost += problem.getDistance(path[prev_left], path[right]);
+        nuCost += problem.getDistance(path[left], path[next_right]);
+    } else if (left == right) {
+        return nuCost;
+    } else {
+        nuCost -= problem.getDistance(path[left], path[next_left]);
+        nuCost -= problem.getDistance(path[prev_right], path[right]);
+        
+        nuCost += problem.getDistance(path[prev_right], path[left]);
+        nuCost += problem.getDistance(path[right], path[next_left]);
+    }
     
     return nuCost;
 }

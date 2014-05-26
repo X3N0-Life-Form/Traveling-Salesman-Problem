@@ -23,6 +23,14 @@ class neighborhoodTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_calculatePotentialCostInsert_ot);
     CPPUNIT_TEST(test_calculatePotentialCostInsert_to);
     CPPUNIT_TEST(test_calculatePotentialCostInsert_itself);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_std);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_stdRev);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_begMid);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_midEnd);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_begEnd);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_next);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_nextRev);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_self);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -44,6 +52,14 @@ private:
     void test_calculatePotentialCostInsert_ot();
     void test_calculatePotentialCostInsert_to();
     void test_calculatePotentialCostInsert_itself();
+    void test_calculatePotentialCostReverse_std();
+    void test_calculatePotentialCostReverse_stdRev();
+    void test_calculatePotentialCostReverse_begMid();
+    void test_calculatePotentialCostReverse_midEnd();
+    void test_calculatePotentialCostReverse_begEnd();
+    void test_calculatePotentialCostReverse_next();
+    void test_calculatePotentialCostReverse_nextRev();
+    void test_calculatePotentialCostReverse_self();
 };
 
 #endif	/* NEIGHBORHOODTESTS_H */

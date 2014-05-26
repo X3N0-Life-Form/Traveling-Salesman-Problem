@@ -145,3 +145,92 @@ void neighborhoodTests::test_calculatePotentialCostInsert_itself() {
     n.calculateCost();
     CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
 }
+
+void neighborhoodTests::test_calculatePotentialCostReverse_std() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(5, 8);
+    CPPUNIT_ASSERT_EQUAL(24, nuCost);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 5, 8);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_stdRev() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(8, 5);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 8, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_begMid() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(0, 5);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 0, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_midEnd() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(5, 9);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 5, 9);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_begEnd() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(0, 9);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 0, 9);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_next() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(5, 6);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 5, 6);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_nextRev() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(6, 5);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 6, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
+void neighborhoodTests::test_calculatePotentialCostReverse_self() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(5, 5);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 5, 5);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
