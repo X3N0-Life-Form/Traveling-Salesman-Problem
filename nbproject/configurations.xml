@@ -11,6 +11,7 @@
       <itemPath>code/core/Neighborhood.h</itemPath>
       <itemPath>code/core/Problem.h</itemPath>
       <itemPath>code/relation/Relation.h</itemPath>
+      <itemPath>code/relation/Reverse.h</itemPath>
       <itemPath>code/run/RunData.h</itemPath>
       <itemPath>code/run/Runner.h</itemPath>
       <itemPath>code/strategy/Strategy.h</itemPath>
@@ -34,6 +35,7 @@
       <itemPath>code/core/Neighborhood.cpp</itemPath>
       <itemPath>code/core/Problem.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
+      <itemPath>code/relation/Reverse.cpp</itemPath>
       <itemPath>code/run/RunData.cpp</itemPath>
       <itemPath>code/run/Runner.cpp</itemPath>
       <itemPath>code/strategy/Strategy.cpp</itemPath>
@@ -188,6 +190,10 @@
       <item path="code/relation/Relation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Relation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Reverse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Reverse.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -552,6 +558,10 @@
       </item>
       <item path="code/relation/Relation.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/relation/Reverse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Reverse.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Swap.h" ex="false" tool="3" flavor2="0">
@@ -906,6 +916,10 @@
       <item path="code/relation/Relation.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/relation/Relation.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/relation/Reverse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/relation/Reverse.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/relation/Swap.cpp" ex="false" tool="1" flavor2="0">
       </item>

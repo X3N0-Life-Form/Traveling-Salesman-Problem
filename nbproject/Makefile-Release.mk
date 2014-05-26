@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Insert.o \
 	${OBJECTDIR}/code/relation/Relation.o \
+	${OBJECTDIR}/code/relation/Reverse.o \
 	${OBJECTDIR}/code/relation/Swap.o \
 	${OBJECTDIR}/code/run/RunData.o \
 	${OBJECTDIR}/code/run/Runner.o \
@@ -126,6 +127,11 @@ ${OBJECTDIR}/code/relation/Relation.o: code/relation/Relation.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/relation
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Relation.o code/relation/Relation.cpp
+
+${OBJECTDIR}/code/relation/Reverse.o: code/relation/Reverse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Reverse.o code/relation/Reverse.cpp
 
 ${OBJECTDIR}/code/relation/Swap.o: code/relation/Swap.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/relation
@@ -438,6 +444,19 @@ ${OBJECTDIR}/code/relation/Relation_nomain.o: ${OBJECTDIR}/code/relation/Relatio
 	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Relation_nomain.o code/relation/Relation.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/relation/Relation.o ${OBJECTDIR}/code/relation/Relation_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/relation/Reverse_nomain.o: ${OBJECTDIR}/code/relation/Reverse.o code/relation/Reverse.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/relation
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/relation/Reverse.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/relation/Reverse_nomain.o code/relation/Reverse.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/relation/Reverse.o ${OBJECTDIR}/code/relation/Reverse_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/relation/Swap_nomain.o: ${OBJECTDIR}/code/relation/Swap.o code/relation/Swap.cpp 

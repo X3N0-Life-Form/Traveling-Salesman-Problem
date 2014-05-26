@@ -140,6 +140,33 @@ int Neighborhood::calculatePotentialCostInsert(int origin, int target) const {
     return nuCost;
 }
 
+int Neighborhood::calculatePotentialCostReverse(int left, int right) const {
+    // Note: this section is identical to Swap & Insert's
+    int nuCost = cost;
+    // previous & next ids
+    int prev_origin = left - 1;
+    int next_origin = left + 1;
+    int prev_target = right - 1;
+    int next_target = right + 1;
+    // WARNING: special cases: first & last cities in our path
+    if (prev_origin < 0)
+        prev_origin = dimension - 1;
+    else if (next_origin >= dimension)
+        next_origin = 0;
+    if (prev_target < 0)
+        prev_target = dimension - 1;
+    else if (next_target >= dimension)
+        next_target = 0;
+    // remove old distance costs
+    // be careful when dealing with two cities right after the other in the path
+    // Note: Insert specific code begins here
+    
+    
+    
+    
+    return nuCost;
+}
+
 int* Neighborhood::getPath() const {
     return path;
 }

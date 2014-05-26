@@ -17,6 +17,7 @@
 #include "strategy/FirstFit.h"
 #include "strategy/WorstFit.h"
 #include "relation/Insert.h"
+#include "relation/Reverse.h"
 
 using namespace std;
 
@@ -74,8 +75,8 @@ Relation* createRelation(std::string type, Strategy* strategy) {
         r = new Swap(*main_problem, *strategy);
     } else if (type == "insert") {
         r = new Insert(*main_problem, *strategy);
-    } else if (type == "?invert/revert/?") {
-        throw "Not implemented";
+    } else if (type == "reverse") {
+        r = new Reverse(*main_problem, *strategy);
     } else {
         throw string("Unrecognized Relation type ").append(type);
     }
@@ -108,7 +109,7 @@ void printHelp() {
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
     PRINTLN("");
-    PRINTLN("Valid Relations are\tswap, insert");
+    PRINTLN("Valid Relations are\tswap, insert, reverse");
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
 }
 
