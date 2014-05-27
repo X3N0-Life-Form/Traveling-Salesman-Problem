@@ -66,7 +66,7 @@
         <itemPath>tests/strategy/firstFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f10"
-                     displayName="InsertTests"
+                     displayName="insertTests"
                      projectFiles="true"
                      kind="TEST">
         <itemPath>tests/relation/InsertTests.cpp</itemPath>
@@ -104,6 +104,14 @@
         <itemPath>tests/core_parsing/problemTests.cpp</itemPath>
         <itemPath>tests/core_parsing/problemTests.h</itemPath>
         <itemPath>tests/core_parsing/problemTests_testrunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f12"
+                     displayName="reverseTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/relation/ReverseTests.cpp</itemPath>
+        <itemPath>tests/relation/ReverseTests.h</itemPath>
+        <itemPath>tests/relation/ReverseTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f8"
                      displayName="runnerTests"
@@ -282,6 +290,7 @@
           <output>${TESTDIR}/TestFiles/f12</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -452,6 +461,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -649,6 +667,7 @@
           <output>${TESTDIR}/TestFiles/f12</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -819,6 +838,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1008,6 +1036,7 @@
           <output>${TESTDIR}/TestFiles/f12</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -1178,6 +1207,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/ReverseTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">

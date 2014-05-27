@@ -16,7 +16,7 @@ public:
     Reverse(const Reverse& orig);
     virtual ~Reverse();
 
-    virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick);
+    virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
     virtual std::string getType();
 
 };

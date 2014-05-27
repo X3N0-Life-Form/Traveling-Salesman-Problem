@@ -7,6 +7,8 @@
 
 #include "Reverse.h"
 
+#include "../utils.h"
+
 Reverse::Reverse(Problem& problem, Strategy& strategy) :
     Relation(problem, strategy)
 {}
