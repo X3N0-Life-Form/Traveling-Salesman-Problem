@@ -159,21 +159,16 @@ int Neighborhood::calculatePotentialCostReverse(int left, int right) const {
         next_right = 0;
     // remove old distance costs
     // be careful when dealing with two cities right after the other in the path
-    // Note: Insert specific code begins here
-    if (left < right) {
+    // Note: Reverse specific code begins here
+    if (left == right
+            || (prev_left == right && next_right == left)) {
+        return nuCost;
+    } else {
         nuCost -= problem.getDistance(path[prev_left], path[left]);
         nuCost -= problem.getDistance(path[right], path[next_right]);
 
         nuCost += problem.getDistance(path[prev_left], path[right]);
         nuCost += problem.getDistance(path[left], path[next_right]);
-    } else if (left == right) {
-        return nuCost;
-    } else {
-        nuCost -= problem.getDistance(path[left], path[next_left]);
-        nuCost -= problem.getDistance(path[prev_right], path[right]);
-        
-        nuCost += problem.getDistance(path[prev_right], path[left]);
-        nuCost += problem.getDistance(path[right], path[next_left]);
     }
     
     return nuCost;

@@ -28,6 +28,7 @@ class neighborhoodTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST(test_calculatePotentialCostReverse_begMid);
     CPPUNIT_TEST(test_calculatePotentialCostReverse_midEnd);
     CPPUNIT_TEST(test_calculatePotentialCostReverse_begEnd);
+    CPPUNIT_TEST(test_calculatePotentialCostReverse_begEndRev);
     CPPUNIT_TEST(test_calculatePotentialCostReverse_next);
     CPPUNIT_TEST(test_calculatePotentialCostReverse_nextRev);
     CPPUNIT_TEST(test_calculatePotentialCostReverse_self);
@@ -57,6 +58,7 @@ private:
     void test_calculatePotentialCostReverse_begMid();
     void test_calculatePotentialCostReverse_midEnd();
     void test_calculatePotentialCostReverse_begEnd();
+    void test_calculatePotentialCostReverse_begEndRev();
     void test_calculatePotentialCostReverse_next();
     void test_calculatePotentialCostReverse_nextRev();
     void test_calculatePotentialCostReverse_self();

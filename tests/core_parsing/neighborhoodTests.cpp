@@ -202,6 +202,17 @@ void neighborhoodTests::test_calculatePotentialCostReverse_begEnd() {
     CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
 }
 
+void neighborhoodTests::test_calculatePotentialCostReverse_begEndRev() {
+    FASTSETUP(path);
+    
+    int nuCost = n.calculatePotentialCostReverse(9, 0);
+    int* nuPath = new int[p.getDimension()];
+    reverse(nuPath, path, p.getDimension(), 9, 0);
+    n.setPath(nuPath);
+    n.calculateCost();
+    CPPUNIT_ASSERT_EQUAL(n.getCost(), nuCost);
+}
+
 void neighborhoodTests::test_calculatePotentialCostReverse_next() {
     FASTSETUP(path);
     

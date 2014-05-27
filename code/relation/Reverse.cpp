@@ -40,8 +40,8 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
         // is it a good move
         if (nuCost < n.getCost()) {
             int* nuPath = new int[dimension];
-            //insert(nuPath, n.getPath(), dimension, origin, target);
-            // Note: end of the Insert-specific code
+            reverse(nuPath, n.getPath(), dimension, left, right);
+            // Note: end of the Reverse-specific code
             if (strategy.applyStrategy(nuPath, nuCost, i)) {
                 return useThisPath(n, nuPath);
             }
