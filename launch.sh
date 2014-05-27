@@ -5,12 +5,12 @@
 #
 # Created on 6 mai 2014, 10:35:01
 #
-#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint -doubleCheckCost -noNeighborhoodCutoff -r swap -r insert -r reverse -s firstFit -s bestFit -s worstFit
+#./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint -doubleCheckCost -r swap -r insert -r reverse -s firstFit -s bestFit -s worstFit
 
 maxDepth=2000
 relations="-r swap -r insert -r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
-miscArgs="-sameStartingPoint -doubleCheckCost -noNeighborhoodCutoff"
+miscArgs="-sameStartingPoint -doubleCheckCost"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
 args="-maxDepth $maxDepth $miscArgs $relations $strategies -o auto"
