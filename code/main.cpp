@@ -40,7 +40,7 @@ string main_oFileName("");
 string main_oFileNameCSV("");
 bool main_quietMode = true;
 bool main_doubleCheckCost = false;
-bool main_noNeighborhoodCutoff = false;
+bool main_noNeighborhoodCutoff = true;
 
 /**
  * Note: requires problem to be initialized.
@@ -89,25 +89,37 @@ Relation* createRelation(std::string type, Strategy* strategy) {
 void printHelp() {
     PRINTLN("TSP - help");
     PRINTLN("\t-help\t\t\t\tdisplays this text");
+    
     PRINTLN("\t-file [file path]\t\tspecify which file to read the problem from");
+    
     PRINTLN("\t-maxDepth [int]\t\t\tspecify how many times a"
             << " relation will be applied; default = 1");
     PRINTLN("\t-noMaxDepth\t\t\tremoves the depth limit;"
             << " overrides the previous option");
+    
     PRINTLN("\t-sameStartingPoint\treuse the same starting path for each run");
+    
     PRINTLN("\t-r [relation]\t\t\tspecify a relation to apply to the problem");
     PRINTLN("\t-s [strategy]\t\t\tspecify a strategy to apply to the problem");
     PRINTLN("\t(deprecated) -rs [relation] [strategy]\tspecify a relation & strategy"
             << " to apply to the problem. Note that several -rs can/should"
             << " be specified.");
+    
     PRINTLN("\t-quietMode [yes|no]\t\tIf set to no, print depth and loop info."
             << " Defaults to yes.");
+    
     PRINTLN("\t-doubleCheckCost\t\t\tperform a full calculation check at "
             << "the end of each execution and report inconsitencies");
-    PRINTLN("\t-noNeighborhoodCutoff\tdo not remove any value when "
-            << "creating pair lists, even useless or redundant ones");
+    
+    PRINTLN("\t-neighborhoodCutoff\t\tactivate the neighborhood cutoff "
+            << "feature, see below");
+    PRINTLN("\t(deprecated) -noNeighborhoodCutoff\tdo not remove any value "
+            << "when creating pair lists, even meaningless or redundant ones. "
+            << "Note: on by default");
+    
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
+    
     PRINTLN("");
     PRINTLN("Valid Relations are\tswap, insert, reverse");
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
@@ -182,6 +194,8 @@ void dealWithArgs(int argc, char** argv) {
             main_doubleCheckCost = true;
         } else if (arg == "-noNeighborhoodCutoff") {
             main_noNeighborhoodCutoff = true;
+        } else if (arg == "-neighborhoodCutoff") {
+            main_noNeighborhoodCutoff = false;
         } else if (arg == "-o") {
             ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
