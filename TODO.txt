@@ -3,7 +3,5 @@ Big TODO list:
     -get the regex-based parsing working
     -give completion% when running big things
     -add runtime stop condition
-    -measure time down to the nano second
-    -implement Reverse
     -get brd14051 to run
     -upgrade stat sheet

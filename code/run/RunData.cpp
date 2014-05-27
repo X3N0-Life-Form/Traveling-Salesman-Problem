@@ -83,6 +83,7 @@ std::string RunData::getRunTimeString() {
     auto min = std::chrono::duration_cast<std::chrono::minutes> (diff);
     auto sec = std::chrono::duration_cast<std::chrono::seconds> (diff);
     auto ms = std::chrono::duration_cast<std::chrono::milliseconds> (diff);
+    auto ns = std::chrono::duration_cast<std::chrono::nanoseconds> (diff);
     
     if (h.count() > 0) {
         res.append(std::to_string(h.count()));
@@ -96,11 +97,19 @@ std::string RunData::getRunTimeString() {
     
     res.append(std::to_string(sec.count() % 60));
     res.append(".");
-    if (ms.count() < 100)
+    if (ms.count() % 1000 < 100)
         res.append("0");
-    if (ms.count() < 10)
+    if (ms.count() % 1000 < 10)
         res.append("0");
     res.append(std::to_string(ms.count() % 1000));
+    
+    if (ms.count() == 0) {
+        if (ns.count() % 1000 < 100)
+            res.append("0");
+        if (ns.count() % 1000 < 10)
+            res.append("0");
+        res.append(std::to_string(ns.count() % 1000));
+    }
     res.append(" sec");
     
     return res;
