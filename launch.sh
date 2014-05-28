@@ -35,9 +35,10 @@ do
     $execPath -file data/ch150.tsp $args
     $execPath -file data/bier127.tsp $args
     $execPath -file data/burma14.tsp $args
-    #big
-    #$execPath -file data/brd14051.tsp -maxDepth 4 $relations $strategies -o auto
 done
+
+#big
+$execPath -file data/brd14051.tsp -maxDepth 256000 $relations $strategies -o auto
 
 echo "Looped $loopCount times"
 echo "Merging all .csv into allResults.csv"
