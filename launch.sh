@@ -38,7 +38,7 @@ do
 done
 
 #big
-$execPath -file data/brd14051.tsp -maxDepth 256000 $relations $strategies -o auto
+#$execPath -file data/brd14051.tsp -maxDepth 256000 $miscArgs $relations $strategies -o auto
 
 echo "Looped $loopCount times"
 echo "Merging all .csv into allResults.csv"
