@@ -6,6 +6,7 @@ nbproject/private/*
 data/results/
 callgrind.out.*
 cachegrind.out.*
+mem-check.txt
 *~
 
 # Compiled Object files
