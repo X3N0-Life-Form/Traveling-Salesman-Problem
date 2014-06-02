@@ -46,6 +46,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/relation/Swap.o \
 	${OBJECTDIR}/code/run/RunData.o \
 	${OBJECTDIR}/code/run/Runner.o \
+	${OBJECTDIR}/code/run/interval/Action.o \
+	${OBJECTDIR}/code/run/interval/Interval.o \
+	${OBJECTDIR}/code/run/interval/IntervalManager.o \
 	${OBJECTDIR}/code/strategy/BestFit.o \
 	${OBJECTDIR}/code/strategy/FirstFit.o \
 	${OBJECTDIR}/code/strategy/Strategy.o \
@@ -60,6 +63,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f6 \
 	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f10 \
+	${TESTDIR}/TestFiles/f13 \
 	${TESTDIR}/TestFiles/f9 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
@@ -149,6 +153,21 @@ ${OBJECTDIR}/code/run/Runner.o: code/run/Runner.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/Runner.o code/run/Runner.cpp
 
+${OBJECTDIR}/code/run/interval/Action.o: code/run/interval/Action.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/Action.o code/run/interval/Action.cpp
+
+${OBJECTDIR}/code/run/interval/Interval.o: code/run/interval/Interval.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/Interval.o code/run/interval/Interval.cpp
+
+${OBJECTDIR}/code/run/interval/IntervalManager.o: code/run/interval/IntervalManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/IntervalManager.o code/run/interval/IntervalManager.cpp
+
 ${OBJECTDIR}/code/strategy/BestFit.o: code/strategy/BestFit.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
 	${RM} "$@.d"
@@ -190,6 +209,10 @@ ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/strategy/firstFitTests.o ${TESTDIR}/te
 ${TESTDIR}/TestFiles/f10: ${TESTDIR}/tests/relation/InsertTests.o ${TESTDIR}/tests/relation/InsertTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f10 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
+${TESTDIR}/TestFiles/f13: ${TESTDIR}/tests/run/interval/IntervalManagerTests.o ${TESTDIR}/tests/run/interval/intervalManagerTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f13 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
 ${TESTDIR}/TestFiles/f9: ${TESTDIR}/tests/mainTests.o ${TESTDIR}/tests/mainTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
@@ -262,6 +285,18 @@ ${TESTDIR}/tests/relation/InsertTests_testrunner.o: tests/relation/InsertTests_t
 	${MKDIR} -p ${TESTDIR}/tests/relation
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/relation/InsertTests_testrunner.o tests/relation/InsertTests_testrunner.cpp
+
+
+${TESTDIR}/tests/run/interval/IntervalManagerTests.o: tests/run/interval/IntervalManagerTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/run/interval/IntervalManagerTests.o tests/run/interval/IntervalManagerTests.cpp
+
+
+${TESTDIR}/tests/run/interval/intervalManagerTests_testrunner.o: tests/run/interval/intervalManagerTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/run/interval/intervalManagerTests_testrunner.o tests/run/interval/intervalManagerTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/mainTests.o: tests/mainTests.cpp 
@@ -515,6 +550,45 @@ ${OBJECTDIR}/code/run/Runner_nomain.o: ${OBJECTDIR}/code/run/Runner.o code/run/R
 	    ${CP} ${OBJECTDIR}/code/run/Runner.o ${OBJECTDIR}/code/run/Runner_nomain.o;\
 	fi
 
+${OBJECTDIR}/code/run/interval/Action_nomain.o: ${OBJECTDIR}/code/run/interval/Action.o code/run/interval/Action.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/run/interval/Action.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/Action_nomain.o code/run/interval/Action.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/run/interval/Action.o ${OBJECTDIR}/code/run/interval/Action_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/run/interval/Interval_nomain.o: ${OBJECTDIR}/code/run/interval/Interval.o code/run/interval/Interval.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/run/interval/Interval.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/Interval_nomain.o code/run/interval/Interval.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/run/interval/Interval.o ${OBJECTDIR}/code/run/interval/Interval_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o: ${OBJECTDIR}/code/run/interval/IntervalManager.o code/run/interval/IntervalManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/run/interval/IntervalManager.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o code/run/interval/IntervalManager.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/run/interval/IntervalManager.o ${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o;\
+	fi
+
 ${OBJECTDIR}/code/strategy/BestFit_nomain.o: ${OBJECTDIR}/code/strategy/BestFit.o code/strategy/BestFit.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/strategy/BestFit.o`; \
@@ -587,6 +661,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	    ${TESTDIR}/TestFiles/f6 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f10 || true; \
+	    ${TESTDIR}/TestFiles/f13 || true; \
 	    ${TESTDIR}/TestFiles/f9 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
