@@ -20,10 +20,12 @@ FirstFit::FirstFit(const FirstFit& orig) :
 FirstFit::~FirstFit() {
 }
 
-bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter) {
+bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter,
+        std::pair<int, int> pair) {
     if (nuCost < initialCost) {
         ARRAY_COPY(fit, nuPath, dimension);
         fitCost = nuCost;
+        this->pair = pair;
         return true;
     } else {
         return false;

@@ -20,13 +20,15 @@ BestFit::BestFit(const BestFit& orig) :
 BestFit::~BestFit() {
 }
 
-bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter) {
+bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter,
+        std::pair<int, int> pair) {
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
             //PRINTLN(nuCost<<" < "<<fitCost);
             fitCost = nuCost;
             //fit = new int[dimension];
             ARRAY_COPY(fit, nuPath, dimension);
+            this->pair = pair;
         }
     }
     // are we there yet?

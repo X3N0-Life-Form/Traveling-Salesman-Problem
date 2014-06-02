@@ -44,7 +44,7 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
             int* nuPath = new int[dimension];
             reverse(nuPath, n.getPath(), dimension, left, right);
             // Note: end of the Reverse-specific code
-            if (strategy.applyStrategy(nuPath, nuCost, i)) {
+            if (strategy.applyStrategy(nuPath, nuCost, i, randomPair)) {
                 return useThisPath(n, nuPath);
             }
             // delete nuPath

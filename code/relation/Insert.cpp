@@ -46,7 +46,7 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
             int* nuPath = new int[dimension];
             insert(nuPath, n.getPath(), dimension, origin, target);
             // Note: end of the Insert-specific code
-            if (strategy.applyStrategy(nuPath, nuCost, i)) {
+            if (strategy.applyStrategy(nuPath, nuCost, i, randomPair)) {
                 return useThisPath(n, nuPath);
             }
             // delete nuPath

@@ -18,6 +18,7 @@ protected:
     int initialCost;
     int dimension;
     int stopCount;
+    std::pair<int, int> pair;
 public:
     Strategy();
     Strategy(int dimension, int initialCost = INT_MAX);
@@ -32,7 +33,8 @@ public:
      * @return true the Strategy's requirements are met (ie. not need to
      * continue looping).
      */
-    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0) = 0;
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0,
+        std::pair<int, int> pair = std::make_pair(-1, -1)) = 0;
     /**
      * Useful when outputting a Strategy.
      * @return The name of this type of Strategy (ie. First Fit, Best Fit, ...)

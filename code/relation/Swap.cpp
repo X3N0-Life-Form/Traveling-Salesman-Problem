@@ -45,7 +45,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
             ARRAY_COPY(nuPath, n.getPath(), dimension);
             SWAP(nuPath, randomPair.first, randomPair.second);
 
-            if (strategy.applyStrategy(nuPath, nuCost, i)) {
+            if (strategy.applyStrategy(nuPath, nuCost, i, randomPair)) {
                 return useThisPath(n, nuPath);
             }
             // delete nuPath

@@ -16,7 +16,8 @@ public:
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
     // overridden methods
-    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0);
+    virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0,
+            std::pair<int, int> pair = std::make_pair(-1, -1));
     virtual std::string getType() const;
 };
 
