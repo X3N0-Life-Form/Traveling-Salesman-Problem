@@ -63,6 +63,10 @@ void Strategy::setStopCount(int count) {
     stopCount = count;
 }
 
+std::pair<int, int>& Strategy::getPair() {
+    return pair;
+}
+
 bool Strategy::hasBetter() {
     return fitCost < initialCost;
 }

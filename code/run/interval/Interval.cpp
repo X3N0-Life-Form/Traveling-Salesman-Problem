@@ -26,6 +26,10 @@ int Interval::getMaxDistance() {
     return maxDistance;
 }
 
+std::vector<Action*>& Interval::getActions() {
+    return actions;
+}
+
 void Interval::addAction(Action* action) {
     actions.push_back(action);
 }

@@ -24,6 +24,7 @@ public:
     // Getters/Setters/Adders
     int getMinDistance();
     int getMaxDistance();
+    std::vector<Action*>& getActions();
     void addAction(Action* action);
 };
 

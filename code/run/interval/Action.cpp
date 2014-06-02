@@ -20,3 +20,10 @@ Action::Action(const Action& orig):
 Action::~Action() {
 }
 
+int Action::getCostDiff() {
+    return costDiff;
+}
+
+std::pair<int, int>& Action::getPair() {
+    return pair;
+}

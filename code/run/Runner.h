@@ -13,6 +13,7 @@
 #include "../relation/Relation.h"
 #include "../strategy/Strategy.h"
 #include "RunData.h"
+#include "interval/IntervalManager.h"
 
 struct t_startingPoint {
     bool useSameStartingPoint;
@@ -35,6 +36,7 @@ private:
     std::list<Relation*> relations;
     // and because copying shit around is kinda bad for your memory usage
     std::list<RunData*> results;
+    std::list<IntervalManager*> intervalManagers;
 public:
     Runner(Problem& problem, int depth = 1);
     Runner(const Runner& orig);

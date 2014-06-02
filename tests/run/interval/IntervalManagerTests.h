@@ -14,6 +14,7 @@ class IntervalManagerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(IntervalManagerTests);
 
     CPPUNIT_TEST(test_prepareIntervals);
+    CPPUNIT_TEST(test_memorizeAction);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -25,6 +26,7 @@ public:
 
 private:
     void test_prepareIntervals();
+    void test_memorizeAction();
 };
 
 #endif	/* INTERVALMANAGERTESTS_H */

@@ -48,6 +48,7 @@ public:
     int getFitCost();
     int getStopCount();
     void setStopCount(int count);
+    std::pair<int, int>& getPair();
     
     bool hasBetter();
 };

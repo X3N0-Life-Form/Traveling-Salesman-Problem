@@ -33,7 +33,8 @@ Runner::Runner(const Runner& orig) :
         noDepth(orig.noDepth),
         startingPoint(orig.startingPoint),
         doubleCheckCost(orig.doubleCheckCost),
-        noNeighborhoodCutoff(orig.noNeighborhoodCutoff)
+        noNeighborhoodCutoff(orig.noNeighborhoodCutoff),
+        intervalManagers(orig.intervalManagers)
 {}
 
 Runner::~Runner() {
@@ -101,6 +102,9 @@ void Runner::run() {
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {//TODO: use multiple threads
             r->setStrategy(*s);
+            IntervalManager* intervalManager = new IntervalManager(s, r);
+            intervalManager->prepareIntervals(problem.getDimension());
+            
             bool randomPick = true;
             if (s->getType() != "First Fit") {
                 randomPick = false;
@@ -141,6 +145,8 @@ void Runner::run() {
                     data->setDepth(i);
                     break;
                 }
+                int costDiff = oldCost - n->getCost();
+                intervalManager->memorizeAction(s->getPair(), costDiff);
                 delete(oldN);
             }
             if (doubleCheckCost) {

@@ -29,7 +29,7 @@ public:
     void setRelation(Relation* relation);
     // other methods
     void prepareIntervals(int dimension);
-    void memorizeAction(std::pair<int, int> pair, int costDiff);
+    void memorizeAction(std::pair<int, int>& pair, int costDiff);
 };
 
 #endif	/* INTERVALMANAGER_H */

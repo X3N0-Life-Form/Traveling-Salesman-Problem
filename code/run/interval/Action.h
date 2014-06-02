@@ -18,7 +18,9 @@ public:
     Action(std::pair<int, int> pair, int costDiff);
     Action(const Action& orig);
     virtual ~Action();
-
+    // Getters/Setters
+    int getCostDiff();
+    std::pair<int, int>& getPair();
 };
 
 #endif	/* ACTION_H */
