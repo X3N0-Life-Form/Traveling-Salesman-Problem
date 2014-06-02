@@ -9,6 +9,7 @@
 #define	ACTION_H
 
 #include <vector>
+#include <ostream>
 
 class Action {
 private:
@@ -19,9 +20,12 @@ public:
     Action(const Action& orig);
     virtual ~Action();
     // Getters/Setters
-    int getCostDiff();
-    std::pair<int, int>& getPair();
+    int getCostDiff() const;
+    const std::pair<int, int>& getPair() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Action& action);
+std::ostream& operator<<(std::ostream& out, const Action* action);
 
 #endif	/* ACTION_H */
 

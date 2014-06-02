@@ -24,7 +24,7 @@ public:
     virtual ~Relation();
     // abstract methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true) = 0;
-    virtual std::string getType() = 0;
+    virtual std::string getType() const = 0;
     // common methods
     void pairAndShuffle(PairingMode mode);
     Neighborhood* useThisPath(const Neighborhood& n, int* nuPath = NULL);

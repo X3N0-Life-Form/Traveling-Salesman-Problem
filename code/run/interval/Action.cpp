@@ -20,10 +20,22 @@ Action::Action(const Action& orig):
 Action::~Action() {
 }
 
-int Action::getCostDiff() {
+int Action::getCostDiff() const {
     return costDiff;
 }
 
-std::pair<int, int>& Action::getPair() {
+const std::pair<int, int>& Action::getPair() const {
     return pair;
+}
+
+std::ostream& operator<<(std::ostream& out, const Action& action) {
+    out << "Action: <"
+            << action.getPair().first << ", " << action.getPair().second << ">"
+            << "; costDiff=" << action.getCostDiff();
+    return out;
+}
+
+std::ostream& operator<<(std::ostream& out, const Action* action) {
+    out << *action;
+    return out;
 }

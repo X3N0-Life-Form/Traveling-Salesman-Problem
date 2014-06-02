@@ -19,7 +19,7 @@ public:
     // implemented methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
     Neighborhood* applyRelationPartial(const Neighborhood& n);
-    virtual std::string getType();
+    virtual std::string getType() const;
 };
 
 #endif	/* SWAP_H */

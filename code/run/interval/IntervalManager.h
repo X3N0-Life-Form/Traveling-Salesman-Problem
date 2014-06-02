@@ -24,13 +24,18 @@ public:
     IntervalManager(const IntervalManager& orig);
     virtual ~IntervalManager();
     // Getters/Setters/Adders
-    std::list<Interval*>& getIntervals();
+    const std::list<Interval*>& getIntervals() const;
+    const Strategy* getStrategy() const;
     void setStrategy(Strategy* strategy);
+    const Relation* getRelation() const;
     void setRelation(Relation* relation);
     // other methods
     void prepareIntervals(int dimension);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
 };
+
+std::ostream& operator<<(std::ostream& out, const IntervalManager& manager);
+std::ostream& operator<<(std::ostream& out, const IntervalManager* manager);
 
 #endif	/* INTERVALMANAGER_H */
 

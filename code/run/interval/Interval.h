@@ -22,11 +22,14 @@ public:
     Interval(const Interval& orig);
     virtual ~Interval();
     // Getters/Setters/Adders
-    int getMinDistance();
-    int getMaxDistance();
-    std::vector<Action*>& getActions();
+    int getMinDistance() const;
+    int getMaxDistance() const;
+    const std::vector<Action*>& getActions() const;
     void addAction(Action* action);
 };
+
+std::ostream& operator<<(std::ostream& out, const Interval& interval);
+std::ostream& operator<<(std::ostream& out, const Interval* interval);
 
 #endif	/* INTERVAL_H */
 

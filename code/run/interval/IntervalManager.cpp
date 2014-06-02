@@ -23,12 +23,20 @@ IntervalManager::IntervalManager(const IntervalManager& orig) :
 IntervalManager::~IntervalManager() {
 }
 
-std::list<Interval*>& IntervalManager::getIntervals() {
+const std::list<Interval*>& IntervalManager::getIntervals() const {
     return intervals;
+}
+
+const Relation* IntervalManager::getRelation() const {
+    return relation;
 }
 
 void IntervalManager::setRelation(Relation* relation) {
     this->relation = relation;
+}
+
+const Strategy* IntervalManager::getStrategy() const {
+    return strategy;
 }
 
 void IntervalManager::setStrategy(Strategy* strategy) {
@@ -56,4 +64,18 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
             interval->addAction(action);
         }
     }
+}
+
+std::ostream& operator<<(std::ostream& out, const IntervalManager& manager) {
+    out << "IntervalManager: " << manager.getRelation()->getType()
+            << " - " << manager.getStrategy()->getType();
+    for (Interval* interval : manager.getIntervals()) {
+        out << "\n\t" << interval;
+    }
+    return out;
+}
+
+std::ostream& operator<<(std::ostream& out, const IntervalManager* manager) {
+    out << *manager;
+    return out;
 }

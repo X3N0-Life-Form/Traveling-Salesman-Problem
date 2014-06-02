@@ -63,6 +63,6 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
     return oldN;
 }
 
-std::string Reverse::getType() {
+std::string Reverse::getType() const {
     return "Reverse";
 }

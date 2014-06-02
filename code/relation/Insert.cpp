@@ -65,6 +65,6 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
     return oldN;
 }
 
-std::string Insert::getType() {
+std::string Insert::getType() const {
     return std::string("Insert");
 }

@@ -107,6 +107,6 @@ Neighborhood* Swap::applyRelationPartial(const Neighborhood& n) {
     return oldN;
 }
 
-std::string Swap::getType() {
+std::string Swap::getType() const {
     return "Swap";
 }

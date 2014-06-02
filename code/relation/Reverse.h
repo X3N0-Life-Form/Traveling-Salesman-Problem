@@ -17,7 +17,7 @@ public:
     virtual ~Reverse();
 
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
-    virtual std::string getType();
+    virtual std::string getType() const;
 
 };
 
