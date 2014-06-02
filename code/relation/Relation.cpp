@@ -14,7 +14,7 @@
 
 extern bool main_quietMode;
 
-Relation::Relation(Problem& problem, Strategy& strategy) :
+Relation::Relation(Problem& problem, Strategy* strategy) :
         problem(problem),
         strategy(strategy),
         pairs(NULL)
@@ -40,7 +40,7 @@ void Relation::pairAndShuffle(PairingMode mode) {
     } else {
         pairs = problem.getCityPairs(mode);
     }
-    strategy.setStopCount(pairs->size());
+    strategy->setStopCount(pairs->size());
     std::random_shuffle(pairs->begin(), pairs->end());
     PRINTLN("Going through " << pairs->size() << " pairs...");
     isFirstLoop = false;
@@ -48,8 +48,8 @@ void Relation::pairAndShuffle(PairingMode mode) {
 
 Neighborhood* Relation::useThisPath(const Neighborhood& n, int* nuPath) {
     Neighborhood* nuN = new Neighborhood(n);
-    nuN->setPath(strategy.getFit());
-    nuN->setCost(strategy.getFitCost());
+    nuN->setPath(strategy->getFit());
+    nuN->setCost(strategy->getFitCost());
     if (nuPath != NULL)
         delete[](nuPath);
     return nuN;
@@ -81,15 +81,15 @@ void Relation::printLoopStatus(int count) {
         //int percent = (float) ((count / pairs->size()) * 100);
         PRINTLN("Loop #" << count << " / " << pairs->size()
                 //<< " (" << percent << "% complete)"
-                << " ==> Current cost=" << strategy.getFitCost());
+                << " ==> Current cost=" << strategy->getFitCost());
     }
 }
 
-Strategy& Relation::getStrategy() const {
+Strategy* Relation::getStrategy() const {
     return strategy;
 }
 
-void Relation::setStrategy(Strategy& s) {
+void Relation::setStrategy(Strategy* s) {
     strategy = s;
 }
 

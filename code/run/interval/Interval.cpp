@@ -36,7 +36,7 @@ void Interval::addAction(Action* action) {
 
 std::ostream& operator<<(std::ostream& out, const Interval& interval) {
     out << "Interval: [" << interval.getMinDistance() << ", "
-            << interval.getMaxDistance() << "[\n"
+            << interval.getMaxDistance() << "[\t"
             << "Actions:" << interval.getActions().size();
     return out;
 }

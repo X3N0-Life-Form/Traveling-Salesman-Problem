@@ -57,6 +57,7 @@ void IntervalManager::prepareIntervals(int dimension) {
 
 void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
     int distance = pair.second - pair.first;
+    PRINTLN("distance="<<distance);
     for (Interval* interval : intervals) {
         if (distance < interval->getMaxDistance()
                 && distance >= interval->getMinDistance()) {

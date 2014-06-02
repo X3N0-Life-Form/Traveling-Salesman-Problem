@@ -12,7 +12,7 @@
 
 class Insert : public Relation {
 public:
-    Insert(Problem& problem, Strategy& strategy);
+    Insert(Problem& problem, Strategy* strategy);
     Insert(const Insert& orig);
     virtual ~Insert();
     // implemented methods

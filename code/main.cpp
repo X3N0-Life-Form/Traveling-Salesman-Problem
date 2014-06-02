@@ -72,11 +72,11 @@ Strategy* createStrategy(std::string type) {
 Relation* createRelation(std::string type, Strategy* strategy) {
     Relation* r = NULL;
     if (type == "swap") {
-        r = new Swap(*main_problem, *strategy);
+        r = new Swap(*main_problem, strategy);
     } else if (type == "insert") {
-        r = new Insert(*main_problem, *strategy);
+        r = new Insert(*main_problem, strategy);
     } else if (type == "reverse") {
-        r = new Reverse(*main_problem, *strategy);
+        r = new Reverse(*main_problem, strategy);
     } else {
         throw string("Unrecognized Relation type ").append(type);
     }

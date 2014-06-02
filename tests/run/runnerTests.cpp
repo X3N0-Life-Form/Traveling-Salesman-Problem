@@ -28,7 +28,7 @@ runnerTests::~runnerTests() {
 }
 
 void runnerTests::setUp() {
-    r.addRelation(new Swap(p, ff));
+    r.addRelation(new Swap(p, &ff));
     r.addStrategy(new FirstFit(p.getDimension()));
     r.addStrategy(new BestFit(p.getDimension()));
     r.addStrategy(new WorstFit(p.getDimension()));

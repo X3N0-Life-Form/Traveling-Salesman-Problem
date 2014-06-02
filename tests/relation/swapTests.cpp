@@ -46,9 +46,9 @@ void swapTests::setUp() {
     bf = new BestFit(p.getDimension(), n->getCost());
     wf = new WorstFit(p.getDimension(), n->getCost());
     
-    swap_ff = new Swap(p, *ff);
-    swap_bf = new Swap(p, *bf);
-    swap_wf = new Swap(p, *wf);
+    swap_ff = new Swap(p, ff);
+    swap_bf = new Swap(p, bf);
+    swap_wf = new Swap(p, wf);
 }
 
 void swapTests::tearDown() {

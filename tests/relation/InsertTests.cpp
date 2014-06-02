@@ -45,9 +45,9 @@ void InsertTests::setUp() {
     bf = new BestFit(problem.getDimension(), n->getCost());
     wf = new WorstFit(problem.getDimension(), n->getCost());
     
-    i_ff = new Insert(problem, *ff);
-    i_bf = new Insert(problem, *bf);
-    i_wf = new Insert(problem, *wf);
+    i_ff = new Insert(problem, ff);
+    i_bf = new Insert(problem, bf);
+    i_wf = new Insert(problem, wf);
 }
 
 void InsertTests::tearDown() {

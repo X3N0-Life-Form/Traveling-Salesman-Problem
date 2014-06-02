@@ -11,7 +11,7 @@
 #include <list>
 #include "../utils.h"
 
-Swap::Swap(Problem& problem, Strategy& strategy) :
+Swap::Swap(Problem& problem, Strategy* strategy) :
     Relation(problem, strategy)
 {}
 
@@ -24,8 +24,8 @@ Swap::~Swap() {
 
 Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     int dimension = problem.getDimension();
-    if (strategy.getInitialCost() == INT_MAX) {
-        strategy.setInitialCost(n.getCost());
+    if (strategy->getInitialCost() == INT_MAX) {
+        strategy->setInitialCost(n.getCost());
     }
     //pair & shuffle
     if (isFirstLoop) {
@@ -45,7 +45,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
             ARRAY_COPY(nuPath, n.getPath(), dimension);
             SWAP(nuPath, randomPair.first, randomPair.second);
 
-            if (strategy.applyStrategy(nuPath, nuCost, i, randomPair)) {
+            if (strategy->applyStrategy(nuPath, nuCost, i, randomPair)) {
                 return useThisPath(n, nuPath);
             }
             // delete nuPath
@@ -56,7 +56,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
         pairs->at(pairs->size() - i - 1) = randomPair;
     }
     
-    if (strategy.hasBetter()) {
+    if (strategy->hasBetter()) {
         return useThisPath(n);
     }
     // nothing better was found
@@ -67,8 +67,8 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
 Neighborhood* Swap::applyRelationPartial(const Neighborhood& n) {
     std::list<int> idList = problem.getCityIdsAsList();
     int dimension = problem.getDimension();
-    if (strategy.getInitialCost() == INT_MAX) {
-        strategy.setInitialCost(n.getCost());
+    if (strategy->getInitialCost() == INT_MAX) {
+        strategy->setInitialCost(n.getCost());
     }
     
     for (int i = 0; i < dimension; i++) {
@@ -86,10 +86,10 @@ Neighborhood* Swap::applyRelationPartial(const Neighborhood& n) {
                 ARRAY_COPY(nuPath, n.getPath(), dimension);
                 SWAP(nuPath, randomIndex1, randomIndex2);
                 
-                if (strategy.applyStrategy(nuPath, nuCost, i)) {
+                if (strategy->applyStrategy(nuPath, nuCost, i)) {
                     Neighborhood* nuN = new Neighborhood(n);
-                    nuN->setPath(strategy.getFit());
-                    nuN->setCost(strategy.getFitCost());
+                    nuN->setPath(strategy->getFit());
+                    nuN->setCost(strategy->getFitCost());
                     delete[](nuPath);
                     return nuN;//!!!!keep this logic ==> partial worst
                 }

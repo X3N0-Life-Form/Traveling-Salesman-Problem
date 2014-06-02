@@ -119,6 +119,14 @@
         <itemPath>tests/core_parsing/problemTests.h</itemPath>
         <itemPath>tests/core_parsing/problemTests_testrunner.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f14"
+                     displayName="RelationTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/relation/RelationTests.cpp</itemPath>
+        <itemPath>tests/relation/RelationTests.h</itemPath>
+        <itemPath>tests/relation/RelationTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f12"
                      displayName="reverseTests"
                      projectFiles="true"
@@ -340,6 +348,20 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f14">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f14</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -507,6 +529,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -764,6 +795,20 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f14">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f14</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -931,6 +976,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1180,6 +1234,20 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f14">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f14</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -1347,6 +1415,15 @@
       <item path="tests/relation/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/relation/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation/RelationTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">

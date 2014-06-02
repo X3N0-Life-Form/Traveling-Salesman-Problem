@@ -9,7 +9,7 @@
 
 #include "../utils.h"
 
-Reverse::Reverse(Problem& problem, Strategy& strategy) :
+Reverse::Reverse(Problem& problem, Strategy* strategy) :
     Relation(problem, strategy)
 {}
 
@@ -23,8 +23,8 @@ Reverse::~Reverse() {
 Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
     // Note: this section is identical to Swap & Insert's
     int dimension = problem.getDimension();
-    if (strategy.getInitialCost() == INT_MAX) {
-        strategy.setInitialCost(n.getCost());
+    if (strategy->getInitialCost() == INT_MAX) {
+        strategy->setInitialCost(n.getCost());
     }
     //pair & shuffle
     if (isFirstLoop) {
@@ -44,7 +44,7 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
             int* nuPath = new int[dimension];
             reverse(nuPath, n.getPath(), dimension, left, right);
             // Note: end of the Reverse-specific code
-            if (strategy.applyStrategy(nuPath, nuCost, i, randomPair)) {
+            if (strategy->applyStrategy(nuPath, nuCost, i, randomPair)) {
                 return useThisPath(n, nuPath);
             }
             // delete nuPath
@@ -55,7 +55,7 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
         pairs->at(pairs->size() - i - 1) = randomPair;
     }
     
-    if (strategy.hasBetter()) {
+    if (strategy->hasBetter()) {
         return useThisPath(n);
     }
     // nothing better was found

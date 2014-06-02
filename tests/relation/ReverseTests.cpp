@@ -43,9 +43,9 @@ void ReverseTests::setUp() {
     bf = new BestFit(problem.getDimension(), n->getCost());
     wf = new WorstFit(problem.getDimension(), n->getCost());
     
-    r_ff = new Reverse(problem, *ff);
-    r_bf = new Reverse(problem, *bf);
-    r_wf = new Reverse(problem, *wf);
+    r_ff = new Reverse(problem, ff);
+    r_bf = new Reverse(problem, bf);
+    r_wf = new Reverse(problem, wf);
 }
 
 void ReverseTests::tearDown() {

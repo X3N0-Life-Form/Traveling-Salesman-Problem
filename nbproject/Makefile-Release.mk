@@ -68,6 +68,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
 	${TESTDIR}/TestFiles/f3 \
+	${TESTDIR}/TestFiles/f14 \
 	${TESTDIR}/TestFiles/f12 \
 	${TESTDIR}/TestFiles/f8 \
 	${TESTDIR}/TestFiles/f4 \
@@ -230,6 +231,10 @@ ${TESTDIR}/TestFiles/f3: ${TESTDIR}/tests/core_parsing/problemTests.o ${TESTDIR}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f3 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
+${TESTDIR}/TestFiles/f14: ${TESTDIR}/tests/relation/RelationTests.o ${TESTDIR}/tests/relation/RelationTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f14 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f12: ${TESTDIR}/tests/relation/ReverseTests.o ${TESTDIR}/tests/relation/ReverseTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f12 $^ ${LDLIBSOPTIONS} `cppunit-config --libs` `cppunit-config --libs`   
@@ -345,6 +350,18 @@ ${TESTDIR}/tests/core_parsing/problemTests_testrunner.o: tests/core_parsing/prob
 	${MKDIR} -p ${TESTDIR}/tests/core_parsing
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/core_parsing/problemTests_testrunner.o tests/core_parsing/problemTests_testrunner.cpp
+
+
+${TESTDIR}/tests/relation/RelationTests.o: tests/relation/RelationTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/relation
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/relation/RelationTests.o tests/relation/RelationTests.cpp
+
+
+${TESTDIR}/tests/relation/RelationTests_testrunner.o: tests/relation/RelationTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/relation
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/relation/RelationTests_testrunner.o tests/relation/RelationTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/relation/ReverseTests.o: tests/relation/ReverseTests.cpp 
@@ -666,6 +683,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \
 	    ${TESTDIR}/TestFiles/f3 || true; \
+	    ${TESTDIR}/TestFiles/f14 || true; \
 	    ${TESTDIR}/TestFiles/f12 || true; \
 	    ${TESTDIR}/TestFiles/f8 || true; \
 	    ${TESTDIR}/TestFiles/f4 || true; \

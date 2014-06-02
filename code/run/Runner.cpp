@@ -101,7 +101,7 @@ void Runner::run() {
     std::chrono::steady_clock clock;
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {//TODO: use multiple threads
-            r->setStrategy(*s);
+            r->setStrategy(s);
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension());
             
@@ -147,6 +147,7 @@ void Runner::run() {
                 }
                 int costDiff = oldCost - n->getCost();
                 intervalManager->memorizeAction(s->getPair(), costDiff);
+                PRINTLN(intervalManager);
                 delete(oldN);
             }
             if (doubleCheckCost) {
@@ -167,6 +168,7 @@ void Runner::run() {
             data->setEndTime(end);
             PRINTLN("\tRuntime= " << data->getRunTimeString());
             delete(n);
+            delete(intervalManager);
             results.push_back(data);
         }
         // don't keep stuff that's too memory heavy

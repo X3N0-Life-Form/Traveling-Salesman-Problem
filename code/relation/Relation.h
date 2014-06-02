@@ -14,13 +14,16 @@
 class Relation {
 protected:
     Problem& problem;
-    Strategy& strategy;
+    Strategy* strategy;
     bool isFirstLoop = true;
     std::vector<std::pair<int, int> >* pairs;
     bool noNeighborhoodCutoff;
 public:
-    Relation(Problem& problem, Strategy& strategy);
+    Relation(Problem& problem, Strategy* strategy);
     Relation(const Relation& orig);
+    /**
+     * Does NOT delete the Strategy pointer.
+     */
     virtual ~Relation();
     // abstract methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true) = 0;
@@ -32,8 +35,8 @@ public:
     void deletePairs();
     void printLoopStatus(int count);
     // Getters/Setters
-    Strategy& getStrategy() const;
-    void setStrategy(Strategy& s);
+    Strategy* getStrategy() const;
+    void setStrategy(Strategy* s);
     void setIsFirstLoop(bool isFirstLoop);
     void setNoNeighborhoodCutoff(bool cutoff);
 };

@@ -12,7 +12,7 @@
 
 class Reverse : public Relation {
 public:
-    Reverse(Problem& problem, Strategy& strategy);
+    Reverse(Problem& problem, Strategy* strategy);
     Reverse(const Reverse& orig);
     virtual ~Reverse();
 
