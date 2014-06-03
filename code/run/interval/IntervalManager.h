@@ -19,6 +19,7 @@ private:
     std::list<Interval*> intervals;
     Strategy* strategy;
     Relation* relation;
+    int dimension;
 public:
     IntervalManager(Strategy* strategy, Relation* relation);
     IntervalManager(const IntervalManager& orig);

@@ -11,13 +11,15 @@
 
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
-        relation(relation)
+        relation(relation),
+        dimension(-1)
 {}
 
 IntervalManager::IntervalManager(const IntervalManager& orig) :
         strategy(orig.strategy),
         relation(orig.relation),
-        intervals(orig.intervals)
+        intervals(orig.intervals),
+        dimension(orig.dimension)
 {}
 
 IntervalManager::~IntervalManager() {
@@ -44,10 +46,15 @@ void IntervalManager::setStrategy(Strategy* strategy) {
 }
 
 void IntervalManager::prepareIntervals(int dimension) {
+    this->dimension = dimension;
     int min = 1;
     int max = 4;
     while (min < dimension) {
-        PRINTLN("IntervalManager: new interval: " << min << "; " << max);
+        if (max > dimension) {
+            max = dimension + 1;
+        }
+        PRINTLN("IntervalManager: new interval: [" << min << "; "
+                << max << "[");
         Interval* interval = new Interval(min, max);
         intervals.push_back(interval);
         min = max;
@@ -57,6 +64,10 @@ void IntervalManager::prepareIntervals(int dimension) {
 
 void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
     int distance = pair.second - pair.first;
+    // if we go all the way around
+    if (distance < 0) {
+        distance = dimension - pair.second + pair.first;
+    }
     //PRINTLN("distance="<<distance);
     for (Interval* interval : intervals) {
         if (distance < interval->getMaxDistance()
