@@ -147,11 +147,12 @@ void Runner::run() {
                     PRINTLN("Current depth: " << i);
                 n = r->applyRelation(*n, randomPick);
                 // no better result was produced
+                int costDiff = oldCost - n->getCost();
                 if (n->getCost() == oldCost) {
+                    intervalManager->memorizeAction(s->getPair(), costDiff);
                     data->setDepth(i);
                     break;
                 }
-                int costDiff = oldCost - n->getCost();
                 intervalManager->memorizeAction(s->getPair(), costDiff);
                 if (printIntervalData)
                     PRINTLN(intervalManager);

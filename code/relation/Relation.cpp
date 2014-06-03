@@ -50,6 +50,7 @@ Neighborhood* Relation::useThisPath(const Neighborhood& n, int* nuPath) {
     Neighborhood* nuN = new Neighborhood(n);
     nuN->setPath(strategy->getFit());
     nuN->setCost(strategy->getFitCost());
+    strategy->setInitialCost(strategy->getFitCost());
     if (nuPath != NULL)
         delete[](nuPath);
     return nuN;
