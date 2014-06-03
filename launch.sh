@@ -8,9 +8,9 @@
 #./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint -doubleCheckCost -r swap -r insert -r reverse -s firstFit -s bestFit -s worstFit
 
 maxDepth=2000
-relations="-r swap -r insert -r reverse"
+relations="-r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
-miscArgs="-sameStartingPoint -doubleCheckCost"
+miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
 args="-maxDepth $maxDepth $miscArgs $relations $strategies -o auto"
@@ -30,7 +30,7 @@ do
     $execPath -file data/a280.tsp $args
     $execPath -file data/att48.tsp $args
     $execPath -file data/berlin52.tsp $args
-    $execPath -file data/ali535.tsp $args
+    #$execPath -file data/ali535.tsp $args
     $execPath -file data/ch130.tsp $args
     $execPath -file data/ch150.tsp $args
     $execPath -file data/bier127.tsp $args
