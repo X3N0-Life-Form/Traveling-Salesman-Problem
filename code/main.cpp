@@ -41,6 +41,7 @@ string main_oFileNameCSV("");
 bool main_quietMode = true;
 bool main_doubleCheckCost = false;
 bool main_noNeighborhoodCutoff = true;
+bool main_printIntervalData = false;
 
 /**
  * Note: requires problem to be initialized.
@@ -107,6 +108,8 @@ void printHelp() {
     
     PRINTLN("\t-quietMode [yes|no]\t\tIf set to no, print depth and loop info."
             << " Defaults to yes.");
+    PRINTLN("\t-printIntervalData\t\tIf set, print interval status "
+            << "everytime a suitable solution is found");
     
     PRINTLN("\t-doubleCheckCost\t\t\tperform a full calculation check at "
             << "the end of each execution and report inconsitencies");
@@ -190,6 +193,8 @@ void dealWithArgs(int argc, char** argv) {
             } else {
                 main_quietMode = true;
             }
+        } else if (arg == "-printIntervalData") {
+            main_printIntervalData = true;
         } else if (arg == "-doubleCheckCost") {
             main_doubleCheckCost = true;
         } else if (arg == "-noNeighborhoodCutoff") {
@@ -219,6 +224,7 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setSameStartingPoint(main_sameStartingPoint);
     main_runner->setDoubleCheckCost(main_doubleCheckCost);
     main_runner->setNoNeighborhoodCutoff(main_noNeighborhoodCutoff);
+    main_runner->setPrintIntervalData(main_printIntervalData);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);

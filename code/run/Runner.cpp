@@ -16,7 +16,8 @@ Runner::Runner(Problem& problem, int maxDepth) :
         maxDepth(maxDepth),
         noDepth(false),
         doubleCheckCost(false),
-        noNeighborhoodCutoff(false)
+        noNeighborhoodCutoff(false),
+        printIntervalData(true)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -34,6 +35,7 @@ Runner::Runner(const Runner& orig) :
         startingPoint(orig.startingPoint),
         doubleCheckCost(orig.doubleCheckCost),
         noNeighborhoodCutoff(orig.noNeighborhoodCutoff),
+        printIntervalData(orig.printIntervalData),
         intervalManagers(orig.intervalManagers)
 {}
 
@@ -71,6 +73,10 @@ void Runner::setDoubleCheckCost(bool doubleCheck) {
 
 void Runner::setNoNeighborhoodCutoff(bool cutoff) {
     this->noNeighborhoodCutoff = cutoff;
+}
+
+void Runner::setPrintIntervalData(bool print) {
+    this->printIntervalData = print;
 }
 
 std::list<Strategy*>& Runner::getStrategies() {
@@ -147,7 +153,8 @@ void Runner::run() {
                 }
                 int costDiff = oldCost - n->getCost();
                 intervalManager->memorizeAction(s->getPair(), costDiff);
-                PRINTLN(intervalManager);
+                if (printIntervalData)
+                    PRINTLN(intervalManager);
                 delete(oldN);
             }
             if (doubleCheckCost) {

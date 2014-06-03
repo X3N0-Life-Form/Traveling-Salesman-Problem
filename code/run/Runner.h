@@ -31,6 +31,7 @@ private:
     StartingPoint* startingPoint;
     bool doubleCheckCost;
     bool noNeighborhoodCutoff;
+    bool printIntervalData;
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
@@ -52,6 +53,7 @@ public:
     void setSameStartingPoint(bool useSameStartingPoint);
     void setDoubleCheckCost(bool doubleCheck);
     void setNoNeighborhoodCutoff(bool cutoff);
+    void setPrintIntervalData(bool print);
     
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);
