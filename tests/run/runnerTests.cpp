@@ -32,6 +32,7 @@ void runnerTests::setUp() {
     r.addStrategy(new FirstFit(p.getDimension()));
     r.addStrategy(new BestFit(p.getDimension()));
     r.addStrategy(new WorstFit(p.getDimension()));
+    r.setPrintIntervalData(false);
 }
 
 void runnerTests::tearDown() {
@@ -42,8 +43,9 @@ void runnerTests::test_start_OK_depth_1() {
     r.run();
     r.outputResults();
     for (RunData* data : r.getResults()) {
-        CPPUNIT_ASSERT(data->getStartingPoint()->cost
-                > data->getEndPoint()->cost);
+        int startingCost = data->getStartingPoint()->cost;
+        int endCost = data->getEndPoint()->cost;
+        CPPUNIT_ASSERT(startingCost > endCost);
     }
 }
 

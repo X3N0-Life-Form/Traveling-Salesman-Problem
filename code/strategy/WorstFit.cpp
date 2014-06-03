@@ -24,7 +24,7 @@ bool WorstFit::applyStrategy(int* nuPath, int nuCost, int counter,
         std::pair<int, int> pair) {
     // Note: mostly copy-pasted from BestFit
     if (nuCost < initialCost) {
-        if (nuCost > fitCost || fitCost == initialCost) {
+        if (nuCost > fitCost || fitCost == INT_MAX) {
             //PRINTLN(nuCost<<" < "<<fitCost);
             fitCost = nuCost;
             //fit = new int[dimension];
