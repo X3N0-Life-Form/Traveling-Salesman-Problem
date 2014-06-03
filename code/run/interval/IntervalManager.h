@@ -20,6 +20,7 @@ private:
     Strategy* strategy;
     Relation* relation;
     int dimension;
+    bool startedCSVOutput;
 public:
     IntervalManager(Strategy* strategy, Relation* relation);
     IntervalManager(const IntervalManager& orig);
@@ -33,6 +34,7 @@ public:
     // other methods
     void prepareIntervals(int dimension);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
+    std::ostream& outputDataCSV(std::ostream& out = std::cout);
 };
 
 std::ostream& operator<<(std::ostream& out, const IntervalManager& manager);

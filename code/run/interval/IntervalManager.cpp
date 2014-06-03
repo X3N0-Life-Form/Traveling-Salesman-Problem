@@ -12,14 +12,16 @@
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
         relation(relation),
-        dimension(-1)
+        dimension(-1),
+        startedCSVOutput(false)
 {}
 
 IntervalManager::IntervalManager(const IntervalManager& orig) :
         strategy(orig.strategy),
         relation(orig.relation),
         intervals(orig.intervals),
-        dimension(orig.dimension)
+        dimension(orig.dimension),
+        startedCSVOutput(orig.startedCSVOutput)
 {}
 
 IntervalManager::~IntervalManager() {
@@ -76,6 +78,25 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
             interval->addAction(action);
         }
     }
+}
+
+std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
+    // prefix
+    out << relation->getType() << "," << strategy->getType() << ",";
+    // either 1st line data or current data
+    if (!startedCSVOutput) {
+        startedCSVOutput = true;
+        for (Interval* interval : intervals) {
+            out << "[" << interval->getMinDistance() << ";"
+                    << interval->getMaxDistance() << "[,";
+        }
+    } else {
+        for (Interval* interval : intervals) {
+            out << interval->getActions().size();
+        }
+    }
+    
+    return out;
 }
 
 std::ostream& operator<<(std::ostream& out, const IntervalManager& manager) {
