@@ -3,4 +3,8 @@ Big TODO list:
     -get the regex-based parsing working
     -give completion% when running big things
     -add runtime stop condition
-    -get brd14051 to run
+    -fix the fuck-ups in worst fit
+    -efficiency tracking:
+        record it on file
+        analyse results
+        use it for stuff
