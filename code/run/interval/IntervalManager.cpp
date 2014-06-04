@@ -92,9 +92,10 @@ std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
         }
     } else {
         for (Interval* interval : intervals) {
-            out << interval->getActions().size();
+            out << interval->getActions().size() << ",";
         }
     }
+    out << std::endl;
     
     return out;
 }

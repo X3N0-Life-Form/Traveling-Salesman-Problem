@@ -32,6 +32,7 @@ private:
     bool doubleCheckCost;
     bool noNeighborhoodCutoff;
     bool printIntervalData;
+    std::ostream* intervalDataCSVoutput;
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
@@ -41,6 +42,9 @@ private:
 public:
     Runner(Problem& problem, int depth = 1);
     Runner(const Runner& orig);
+    /**
+     * Note: does not delete the intervalDataCSVoutput pointer.
+     */
     virtual ~Runner();
     // Getters/Setters/Adders
     std::list<RunData*>& getResults();
@@ -53,7 +57,9 @@ public:
     void setSameStartingPoint(bool useSameStartingPoint);
     void setDoubleCheckCost(bool doubleCheck);
     void setNoNeighborhoodCutoff(bool cutoff);
+    
     void setPrintIntervalData(bool print);
+    void setIntervalDataCSVoutput(std::ostream* out);
     
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);

@@ -42,6 +42,14 @@ bool main_quietMode = true;
 bool main_doubleCheckCost = false;
 bool main_noNeighborhoodCutoff = true;
 bool main_printIntervalData = false;
+bool main_saveIntervalData = false;
+ostream* main_intervalCSVoutput = NULL;
+
+enum OutputType {
+    RESULT,
+    CSV,
+    INTERVAL_DATA
+};
 
 /**
  * Note: requires problem to be initialized.
@@ -128,7 +136,7 @@ void printHelp() {
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
 }
 
-std::string getOutputName(std::string problemName, bool csv = false) {
+std::string getOutputName(std::string problemName, OutputType type = RESULT) {
     string res("data/results/");
     res.append(problemName);
     time_t t = time(0);
@@ -145,8 +153,10 @@ std::string getOutputName(std::string problemName, bool csv = false) {
     res.append(std::to_string(1 + now->tm_min));
     res.append("_");
     res.append(std::to_string(1 + now->tm_sec));
-    if (csv)
+    if (type == CSV)
         res.append(".csv");
+    else if (type == INTERVAL_DATA)
+        res.append(".csv.i");
     else
         res.append(".results");
     return res;
@@ -195,6 +205,8 @@ void dealWithArgs(int argc, char** argv) {
             }
         } else if (arg == "-printIntervalData") {
             main_printIntervalData = true;
+        } else if (arg == "-saveIntervalData") {
+            main_saveIntervalData = true;
         } else if (arg == "-doubleCheckCost") {
             main_doubleCheckCost = true;
         } else if (arg == "-noNeighborhoodCutoff") {
@@ -211,11 +223,15 @@ void dealWithArgs(int argc, char** argv) {
     }
     if (main_oFileName == "auto") {
         main_oFileName = getOutputName(main_problem->getName());
-        main_oFileNameCSV = getOutputName(main_problem->getName(), true);
+        main_oFileNameCSV = getOutputName(main_problem->getName(), CSV);
     }
     if (main_oFileName != "") {
         main_f_out = new ofstream(main_oFileName);
         main_f_out_csv = new ofstream(main_oFileNameCSV);
+    }
+    if (main_saveIntervalData) {
+        string fileName = getOutputName(main_problem->getName(), INTERVAL_DATA);
+        main_intervalCSVoutput = new ofstream(fileName);
     }
     
     main_runner = new Runner(*main_problem, main_maxDepth);
@@ -225,6 +241,7 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setDoubleCheckCost(main_doubleCheckCost);
     main_runner->setNoNeighborhoodCutoff(main_noNeighborhoodCutoff);
     main_runner->setPrintIntervalData(main_printIntervalData);
+    main_runner->setIntervalDataCSVoutput(main_intervalCSVoutput);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);
@@ -298,6 +315,9 @@ int main(int argc, char** argv) {
                 main_f_out_csv->close();
                 delete(main_f_out);
                 delete(main_f_out_csv);
+            }
+            if (main_saveIntervalData) {
+                delete(main_intervalCSVoutput);
             }
         } else {
             PRINTLN("Detected incorrectly entered data. Exiting.");

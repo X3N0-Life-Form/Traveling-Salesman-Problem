@@ -79,6 +79,10 @@ void Runner::setPrintIntervalData(bool print) {
     this->printIntervalData = print;
 }
 
+void Runner::setIntervalDataCSVoutput(std::ostream* out) {
+    intervalDataCSVoutput = out;
+}
+
 std::list<Strategy*>& Runner::getStrategies() {
     return strategies;
 }
@@ -150,10 +154,14 @@ void Runner::run() {
                 int costDiff = oldCost - n->getCost();
                 if (n->getCost() == oldCost) {
                     intervalManager->memorizeAction(s->getPair(), costDiff);
+                    if (intervalDataCSVoutput != NULL)
+                        intervalManager->outputDataCSV(*intervalDataCSVoutput);
                     data->setDepth(i);
                     break;
                 }
                 intervalManager->memorizeAction(s->getPair(), costDiff);
+                if (intervalDataCSVoutput != NULL)
+                    intervalManager->outputDataCSV(*intervalDataCSVoutput);
                 if (printIntervalData)
                     PRINTLN(intervalManager);
                 delete(oldN);
