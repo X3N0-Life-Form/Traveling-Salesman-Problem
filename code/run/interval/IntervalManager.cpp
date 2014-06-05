@@ -9,7 +9,7 @@
 
 #include "../../utils.h"
 
-const int IntervalManager::INTERVAL_STEP = 4;
+const int IntervalManager::INTERVAL_STEP = 2;
 
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
@@ -61,7 +61,7 @@ void IntervalManager::prepareIntervals(int dimension) {
         
         if (prev != NULL
                 && (max - min) < (prev->getMaxDistance() - prev->getMinDistance())) {
-            prev->setMaxDistance(prev->getMaxDistance() + (max - min) - 1);
+            prev->setMaxDistance(prev->getMaxDistance() + (max - min));
             PRINTLN("IntervalManager: expanding last Interval: ["
                     << prev->getMinDistance() << "; "
                     << prev->getMaxDistance() << "[");
