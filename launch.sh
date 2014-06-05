@@ -8,7 +8,7 @@
 #./dist/Debug/GNU-Linux-x86/traveling_salesman_problem -file data/a280.tsp -maxDepth 2000 -sameStartingPoint -doubleCheckCost -r swap -r insert -r reverse -s firstFit -s bestFit -s worstFit
 
 maxDepth=2000
-relations="-r reverse"
+relations="-r swap -r insert -r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
 miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth -saveIntervalData"
 
