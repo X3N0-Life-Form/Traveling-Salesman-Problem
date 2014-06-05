@@ -23,7 +23,9 @@ public:
     virtual ~Interval();
     // Getters/Setters/Adders
     int getMinDistance() const;
+    void setMinDistance(int min);
     int getMaxDistance() const;
+    void setMaxDistance(int max);
     const std::vector<Action*>& getActions() const;
     void addAction(Action* action);
 };

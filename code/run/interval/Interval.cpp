@@ -22,8 +22,16 @@ int Interval::getMinDistance() const {
     return minDistance;
 }
 
+void Interval::setMinDistance(int min) {
+    minDistance = min;
+}
+
 int Interval::getMaxDistance() const {
     return maxDistance;
+}
+
+void Interval::setMaxDistance(int max) {
+    maxDistance = max;
 }
 
 const std::vector<Action*>& Interval::getActions() const {
