@@ -1,6 +1,7 @@
 build/
 dist/
 personalLog.txt
+Report.odt
 nbproject/private/*
 .~lock.*
 data/results/
