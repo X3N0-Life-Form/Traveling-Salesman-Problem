@@ -17,7 +17,8 @@ Runner::Runner(Problem& problem, int maxDepth) :
         noDepth(false),
         doubleCheckCost(false),
         noNeighborhoodCutoff(false),
-        printIntervalData(true)
+        printIntervalData(true),
+        intervalType(DISJOINT)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -36,7 +37,8 @@ Runner::Runner(const Runner& orig) :
         doubleCheckCost(orig.doubleCheckCost),
         noNeighborhoodCutoff(orig.noNeighborhoodCutoff),
         printIntervalData(orig.printIntervalData),
-        intervalManagers(orig.intervalManagers)
+        intervalManagers(orig.intervalManagers),
+        intervalType(orig.intervalType)
 {}
 
 Runner::~Runner() {
@@ -83,6 +85,10 @@ void Runner::setIntervalDataCSVoutput(std::ostream* out) {
     intervalDataCSVoutput = out;
 }
 
+void Runner::setIntervalType(IntervalType type) {
+    this->intervalType = type;
+}
+
 std::list<Strategy*>& Runner::getStrategies() {
     return strategies;
 }
@@ -113,7 +119,7 @@ void Runner::run() {
         for (Strategy* s : strategies) {//TODO: use multiple threads
             r->setStrategy(s);
             IntervalManager* intervalManager = new IntervalManager(s, r);
-            intervalManager->prepareIntervals(problem.getDimension());
+            intervalManager->prepareIntervals(problem.getDimension(), intervalType);
             
             bool randomPick = true;
             if (s->getType() != "First Fit") {

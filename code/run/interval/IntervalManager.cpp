@@ -49,7 +49,7 @@ void IntervalManager::setStrategy(Strategy* strategy) {
     this->strategy = strategy;
 }
 
-void IntervalManager::prepareIntervals(int dimension) {
+void IntervalManager::prepareIntervals(int dimension, IntervalType type) {
     this->dimension = dimension;
     int min = 1;
     int max = INTERVAL_STEP;
@@ -60,18 +60,27 @@ void IntervalManager::prepareIntervals(int dimension) {
         }
         
         if (prev != NULL
-                && (max - min) < (prev->getMaxDistance() - prev->getMinDistance())) {
+                && (max - min) < prev->getMaxDistance() - prev->getMinDistance()) {
             prev->setMaxDistance(prev->getMaxDistance() + (max - min));
             PRINTLN("IntervalManager: expanding last Interval: ["
                     << prev->getMinDistance() << "; "
                     << prev->getMaxDistance() << "[");
         } else {
+            switch (type) {
+                case DISJOINT:
+                    // nuthin special
+                    break;
+                case JOINED_AT_ORIGIN:
+                    min = 1;
+                    break;
+            }
             PRINTLN("IntervalManager: new Interval: [" << min << "; "
                 << max << "[");
             Interval* interval = new Interval(min, max);
             intervals.push_back(interval);
             prev = interval;
         }
+        
         min = max;
         max *= INTERVAL_STEP;
     }
@@ -90,6 +99,7 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
             Action* action = new Action(pair, costDiff);
             interval->addAction(action);
         }
+        // Note: don't break, more than one interval might qualify
     }
 }
 

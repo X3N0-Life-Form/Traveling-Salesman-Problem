@@ -14,6 +14,11 @@
 #include "../../strategy/Strategy.h"
 #include "Interval.h"
 
+enum IntervalType {
+    DISJOINT,
+    JOINED_AT_ORIGIN
+};
+
 class IntervalManager {
 private:
     std::list<Interval*> intervals;
@@ -34,7 +39,7 @@ public:
     const Relation* getRelation() const;
     void setRelation(Relation* relation);
     // other methods
-    void prepareIntervals(int dimension);
+    void prepareIntervals(int dimension, IntervalType type = DISJOINT);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
     std::ostream& outputDataCSV(std::ostream& out = std::cout);
 };

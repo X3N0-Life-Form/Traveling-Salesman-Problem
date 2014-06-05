@@ -18,6 +18,7 @@
 #include "strategy/WorstFit.h"
 #include "relation/Insert.h"
 #include "relation/Reverse.h"
+#include "run/interval/IntervalManager.h"
 
 using namespace std;
 
@@ -41,9 +42,11 @@ string main_oFileNameCSV("");
 bool main_quietMode = true;
 bool main_doubleCheckCost = false;
 bool main_noNeighborhoodCutoff = true;
+
 bool main_printIntervalData = false;
 bool main_saveIntervalData = false;
 ostream* main_intervalCSVoutput = NULL;
+IntervalType main_intervalType = DISJOINT;
 
 enum OutputType {
     RESULT,
@@ -119,6 +122,9 @@ void printHelp() {
     PRINTLN("\t-printIntervalData\t\tIf set, print interval status "
             << "everytime a suitable solution is found");
     
+    PRINTLN("\t-intervalType [i_type]\t\tSpecifies the interval type. "
+            << "Defaults to disjoint.");
+    
     PRINTLN("\t-doubleCheckCost\t\t\tperform a full calculation check at "
             << "the end of each execution and report inconsitencies");
     
@@ -134,6 +140,7 @@ void printHelp() {
     PRINTLN("");
     PRINTLN("Valid Relations are\tswap, insert, reverse");
     PRINTLN("Valid Strategies are\tfirstFit, bestFit, worstFit");
+    PRINTLN("Valid interval types are\tdisjoint, joined_at_origin");
 }
 
 std::string getOutputName(std::string problemName, OutputType type = RESULT) {
@@ -207,6 +214,14 @@ void dealWithArgs(int argc, char** argv) {
             main_printIntervalData = true;
         } else if (arg == "-saveIntervalData") {
             main_saveIntervalData = true;
+        } else if (arg == "-intervalType") {
+            string type;
+            ARG_CHECK(type = string(argv[i]), "interval type");
+            if (type == "disjoint") {
+                main_intervalType = DISJOINT;
+            } else if (type == "joined_at_origin") {
+                main_intervalType = JOINED_AT_ORIGIN;
+            }
         } else if (arg == "-doubleCheckCost") {
             main_doubleCheckCost = true;
         } else if (arg == "-noNeighborhoodCutoff") {
@@ -242,6 +257,7 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setNoNeighborhoodCutoff(main_noNeighborhoodCutoff);
     main_runner->setPrintIntervalData(main_printIntervalData);
     main_runner->setIntervalDataCSVoutput(main_intervalCSVoutput);
+    main_runner->setIntervalType(main_intervalType);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);

@@ -31,8 +31,11 @@ private:
     StartingPoint* startingPoint;
     bool doubleCheckCost;
     bool noNeighborhoodCutoff;
+    
     bool printIntervalData;
     std::ostream* intervalDataCSVoutput;
+    IntervalType intervalType;
+    
     // Note: using pointers cause we can't allocate memory for an abstract type
     std::list<Strategy*> strategies;
     std::list<Relation*> relations;
@@ -60,6 +63,7 @@ public:
     
     void setPrintIntervalData(bool print);
     void setIntervalDataCSVoutput(std::ostream* out);
+    void setIntervalType(IntervalType type);
     
     std::list<Strategy*>& getStrategies();
     void addStrategy(Strategy* s);
