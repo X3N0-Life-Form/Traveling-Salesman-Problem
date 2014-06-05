@@ -22,6 +22,8 @@ private:
     int dimension;
     bool startedCSVOutput;
 public:
+    static const int INTERVAL_STEP;
+public:
     IntervalManager(Strategy* strategy, Relation* relation);
     IntervalManager(const IntervalManager& orig);
     virtual ~IntervalManager();

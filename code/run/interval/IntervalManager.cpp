@@ -9,6 +9,8 @@
 
 #include "../../utils.h"
 
+const int IntervalManager::INTERVAL_STEP = 2;
+
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
         relation(relation),
@@ -50,7 +52,7 @@ void IntervalManager::setStrategy(Strategy* strategy) {
 void IntervalManager::prepareIntervals(int dimension) {
     this->dimension = dimension;
     int min = 1;
-    int max = 4;
+    int max = INTERVAL_STEP;
     while (min < dimension) {
         if (max > dimension) {
             max = dimension + 1;
@@ -60,7 +62,7 @@ void IntervalManager::prepareIntervals(int dimension) {
         Interval* interval = new Interval(min, max);
         intervals.push_back(interval);
         min = max;
-        max *= 4;
+        max *= INTERVAL_STEP;
     }
 }
 
