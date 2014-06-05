@@ -30,7 +30,7 @@ do
     $execPath -file data/a280.tsp $args
     $execPath -file data/att48.tsp $args
     $execPath -file data/berlin52.tsp $args
-    #$execPath -file data/ali535.tsp $args
+    $execPath -file data/ali535.tsp $args
     $execPath -file data/ch130.tsp $args
     $execPath -file data/ch150.tsp $args
     $execPath -file data/bier127.tsp $args
