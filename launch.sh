@@ -27,6 +27,7 @@ fi
 
 for i in `seq 1 $loopCount`
 do
+    echo "Loop #$i/$loopCount"
     $execPath -file data/a280.tsp $args
     $execPath -file data/att48.tsp $args
     $execPath -file data/berlin52.tsp $args
