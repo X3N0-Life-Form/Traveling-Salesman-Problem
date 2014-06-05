@@ -134,6 +134,7 @@ void Runner::run() {
             Neighborhood* n = new Neighborhood(problem);
             if (startingPoint->useSameStartingPoint && startingPoint->initialized) {
                 n->setCost(startingPoint->cost);
+                s->setInitialCost(startingPoint->cost);
                 ARRAY_COPY(n->getPath(), startingPoint->path, problem.getDimension());
             } else {
                 n->generateRandomNeighborhood();
