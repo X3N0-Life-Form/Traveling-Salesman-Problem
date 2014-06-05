@@ -208,6 +208,9 @@ a280,Reverse,Worst Fit,34677,3048,30151,570.363
 a280,Reverse,First Fit,36601,2938,1152,0.58
 a280,Reverse,Best Fit,36601,2860,305,3.650
 a280,Reverse,Worst Fit,36601,2839,32289,637.195
+a280,Reverse,First Fit,36006,2925,1105,0.55
+a280,Reverse,Best Fit,36006,2893,316,3.782
+a280,Reverse,Worst Fit,36006,2960,31601,667.401
 ali535,Reverse,First Fit,13302,208,1331,0.166
 ali535,Reverse,Best Fit,13302,214,394,23.506
 ali535,Reverse,Worst Fit,13302,208,6383,463.39
@@ -277,6 +280,9 @@ ali535,Reverse,Worst Fit,12898,208,6204,437.485
 ali535,Reverse,First Fit,13476,208,1355,0.126
 ali535,Reverse,Best Fit,13476,208,391,23.17
 ali535,Reverse,Worst Fit,13476,208,6485,461.304
+ali535,Reverse,First Fit,12944,208,1328,0.181
+ali535,Reverse,Best Fit,12944,208,401,23.370
+ali535,Reverse,Worst Fit,12944,208,6212,468.584
 att48,Reverse,First Fit,158491,33851,125,0.18
 att48,Reverse,Best Fit,158491,35103,45,0.17
 att48,Reverse,Worst Fit,158491,34854,5038,1.954
@@ -490,6 +496,9 @@ att48,Reverse,Worst Fit,160543,35406,5938,2.212
 att48,Reverse,First Fit,173399,34983,123,0.1
 att48,Reverse,Best Fit,173399,34869,38,0.11
 att48,Reverse,Worst Fit,173399,34641,6227,2.550
+att48,Reverse,First Fit,150835,34396,108,0.1
+att48,Reverse,Best Fit,150835,35308,41,0.12
+att48,Reverse,Worst Fit,150835,35265,5302,2.25
 berlin52,Reverse,First Fit,22750,3430,96,0.23
 berlin52,Reverse,Best Fit,22750,3430,39,0.16
 berlin52,Reverse,Worst Fit,22750,3430,338,0.148
@@ -703,6 +712,9 @@ berlin52,Reverse,Worst Fit,23180,3430,329,0.128
 berlin52,Reverse,First Fit,21500,3430,85,0.1
 berlin52,Reverse,Best Fit,21500,3430,36,0.12
 berlin52,Reverse,Worst Fit,21500,3430,291,0.108
+berlin52,Reverse,First Fit,24180,3430,97,0.1
+berlin52,Reverse,Best Fit,24180,3430,35,0.12
+berlin52,Reverse,Worst Fit,24180,3430,363,0.145
 bier127,Reverse,First Fit,627619,128851,451,0.124
 bier127,Reverse,Best Fit,627619,131833,127,0.297
 bier127,Reverse,Worst Fit,627619,138534,56027,174.240
@@ -916,6 +928,9 @@ bier127,Reverse,Worst Fit,642117,137772,59828,185.983
 bier127,Reverse,First Fit,596333,130545,388,0.11
 bier127,Reverse,Best Fit,596333,129089,136,0.282
 bier127,Reverse,Worst Fit,596333,131193,49633,146.37
+bier127,Reverse,First Fit,653555,128883,447,0.11
+bier127,Reverse,Best Fit,653555,124088,142,0.325
+bier127,Reverse,Worst Fit,653555,132963,61564,197.15
 burma14,Reverse,First Fit,48,22,7,0.0
 burma14,Reverse,Best Fit,48,22,4,0.0
 burma14,Reverse,Worst Fit,48,22,11,0.0
@@ -1126,6 +1141,9 @@ burma14,Reverse,Worst Fit,44,22,9,0.0
 burma14,Reverse,First Fit,44,22,6,0.0
 burma14,Reverse,Best Fit,44,22,5,0.0
 burma14,Reverse,Worst Fit,44,22,9,0.0
+burma14,Reverse,First Fit,56,22,10,0.0
+burma14,Reverse,Best Fit,56,22,5,0.0
+burma14,Reverse,Worst Fit,56,22,13,0.0
 ch130,Reverse,First Fit,28800,1384,349,0.91
 ch130,Reverse,Best Fit,28800,1384,116,0.269
 ch130,Reverse,Worst Fit,28800,1384,2113,6.259
@@ -1339,6 +1357,9 @@ ch130,Reverse,Worst Fit,28802,1384,2099,5.819
 ch130,Reverse,First Fit,30634,1384,380,0.11
 ch130,Reverse,Best Fit,30634,1388,105,0.244
 ch130,Reverse,Worst Fit,30634,1384,2252,6.384
+ch130,Reverse,First Fit,30056,1384,354,0.9
+ch130,Reverse,Best Fit,30056,1384,110,0.246
+ch130,Reverse,Worst Fit,30056,1384,2215,6.374
 ch150,Reverse,First Fit,36388,1374,401,0.104
 ch150,Reverse,Best Fit,36388,1374,133,0.495
 ch150,Reverse,Worst Fit,36388,1374,2819,12.84
@@ -1552,3 +1573,6 @@ ch150,Reverse,Worst Fit,33634,1374,2648,10.368
 ch150,Reverse,First Fit,37716,1374,433,0.11
 ch150,Reverse,Best Fit,37716,1374,131,0.399
 ch150,Reverse,Worst Fit,37716,1374,2954,11.671
+ch150,Reverse,First Fit,35036,1374,443,0.12
+ch150,Reverse,Best Fit,35036,1374,137,0.413
+ch150,Reverse,Worst Fit,35036,1374,2729,10.744
