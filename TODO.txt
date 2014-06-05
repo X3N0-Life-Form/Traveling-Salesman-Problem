@@ -8,3 +8,4 @@ Big TODO list:
         record it on file
         analyse results
         use it for stuff
+        merge final interval with previous one if size < prev size
