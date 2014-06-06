@@ -15,6 +15,7 @@
 #include "../../code/strategy/BestFit.h"
 #include "../../code/strategy/WorstFit.h"
 #include "../../code/core/Neighborhood.h"
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(InsertTests);
 
@@ -37,6 +38,7 @@ Insert* i_wf;
 Neighborhood* n;
 
 void InsertTests::setUp() {
+    SILENT = true;
     n = new Neighborhood(problem);
     n->generateRandomNeighborhood();
     n->calculateCost();
