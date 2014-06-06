@@ -75,6 +75,7 @@ void InsertTests::test_applyRelation_bestFit() {
     CPPUNIT_ASSERT(*n != *result);
     Neighborhood* r2 = i_bf->applyRelation(*n);
     int r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
     CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
 }
 
@@ -86,5 +87,6 @@ void InsertTests::test_applyRelation_worstFit() {
     CPPUNIT_ASSERT(*n != *result);
     Neighborhood* r2 = i_wf->applyRelation(*n);
     int r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
     CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
 }

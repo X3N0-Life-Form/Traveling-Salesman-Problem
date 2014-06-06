@@ -74,6 +74,7 @@ void ReverseTests::test_applyRelation_bestFit() {
     CPPUNIT_ASSERT(*n != *result);
     Neighborhood* r2 = r_bf->applyRelation(*n);
     int r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
     CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
 }
 
@@ -85,5 +86,6 @@ void ReverseTests::test_applyRelation_worstFit() {
     CPPUNIT_ASSERT(*n != *result);
     Neighborhood* r2 = r_wf->applyRelation(*n);
     int r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
     CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
 }

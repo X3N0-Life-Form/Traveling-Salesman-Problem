@@ -69,32 +69,33 @@ void swapTests::test_applyRelation_firstFit() {
     int result_cost, original_cost;
     result_cost = result->getCost();
     original_cost = n->getCost();
-    //CPPUNIT_ASSERT(result.getCost() < n.getCost());
     CPPUNIT_ASSERT(result_cost < original_cost);
     CPPUNIT_ASSERT(*n != *result);
 }
 
 void swapTests::test_applyRelation_bestFit() {
     Neighborhood* result = swap_bf->applyRelation(*n);
-    int result_cost, original_cost, r2_cost;
-    result_cost = result->getCost();
-    original_cost = n->getCost();
-    CPPUNIT_ASSERT(result_cost < original_cost);
+    int resultCost, originalCost, r2Cost;
+    resultCost = result->getCost();
+    originalCost = n->getCost();
+    CPPUNIT_ASSERT(resultCost < originalCost);
     Neighborhood* r2 = swap_bf->applyRelation(*n);
-    r2_cost = r2->getCost();
-    CPPUNIT_ASSERT_EQUAL(result_cost, r2_cost);
+    r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
+    CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
     CPPUNIT_ASSERT(*n != *result);
 }
 
 // copy pasted again
 void swapTests::test_applyRelation_worstFit() {
     Neighborhood* result = swap_wf->applyRelation(*n);
-    int result_cost, original_cost, r2_cost;
-    result_cost = result->getCost();
-    original_cost = n->getCost();
-    CPPUNIT_ASSERT(result_cost < original_cost);
+    int resultCost, originalCost, r2Cost;
+    resultCost = result->getCost();
+    originalCost = n->getCost();
+    CPPUNIT_ASSERT(resultCost < originalCost);
     Neighborhood* r2 = swap_wf->applyRelation(*n);
-    r2_cost = r2->getCost();
-    CPPUNIT_ASSERT_EQUAL(result_cost, r2_cost);
+    r2Cost = r2->getCost();
+    CPPUNIT_ASSERT(r2Cost < originalCost);
+    CPPUNIT_ASSERT_EQUAL(resultCost, r2Cost);
     CPPUNIT_ASSERT(*n != *result);
 }
