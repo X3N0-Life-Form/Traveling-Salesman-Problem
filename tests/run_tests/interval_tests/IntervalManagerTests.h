@@ -13,7 +13,8 @@
 class IntervalManagerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(IntervalManagerTests);
 
-    CPPUNIT_TEST(test_prepareIntervals);
+    CPPUNIT_TEST(test_prepareIntervals_default);
+    CPPUNIT_TEST(test_prepareIntervals_jao);
     CPPUNIT_TEST(test_memorizeAction);
 
     CPPUNIT_TEST_SUITE_END();
@@ -25,7 +26,8 @@ public:
     void tearDown();
 
 private:
-    void test_prepareIntervals();
+    void test_prepareIntervals_default();
+    void test_prepareIntervals_jao();
     void test_memorizeAction();
 };
 

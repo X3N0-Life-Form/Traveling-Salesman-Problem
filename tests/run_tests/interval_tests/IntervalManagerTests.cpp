@@ -30,7 +30,7 @@ void IntervalManagerTests::tearDown() {
     delete(manager);
 }
 
-void IntervalManagerTests::test_prepareIntervals() {
+void IntervalManagerTests::test_prepareIntervals_default() {
     manager->prepareIntervals(40);
     std::list<Interval*> intervals = manager->getIntervals();
     int prev = 1;
@@ -38,6 +38,15 @@ void IntervalManagerTests::test_prepareIntervals() {
         CPPUNIT_ASSERT(interval->getMinDistance() < interval->getMaxDistance());
         CPPUNIT_ASSERT_EQUAL(prev, interval->getMinDistance());
         prev = interval->getMaxDistance();
+    }
+}
+
+void IntervalManagerTests::test_prepareIntervals_jao() {
+    manager->prepareIntervals(40, JOINED_AT_ORIGIN);
+    std::list<Interval*> intervals = manager->getIntervals();
+    for (Interval* interval : intervals) {
+        CPPUNIT_ASSERT(interval->getMinDistance() < interval->getMaxDistance());
+        CPPUNIT_ASSERT_EQUAL(1, interval->getMinDistance());
     }
 }
 
