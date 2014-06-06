@@ -10,6 +10,8 @@
 
 #include <string>
 
+extern bool SILENT;
+
 const std::string path_a280 = "data/a280.tsp";
 const std::string path_att48 = "data/att48.tsp";
 const std::string path_berlin52 = "data/berlin52.tsp";
@@ -21,7 +23,7 @@ void insert(int* target_array, int* source_array, int size, int origin, int targ
 void reverse(int* target_array, int*source_array, int size, int left, int right);
 
 #define ARRAY_PRINT(target, length) for (int i=0; i<length; i++) {std::cout<<target[i]<<" ";}
-#define PRINTLN(line) std::cout << "\n" << line; std::cout.flush();
+#define PRINTLN(line) if (!SILENT) std::cout << "\n" << line; std::cout.flush();
 
 // stuff for main.cpp
 #include "strategy/Strategy.h"

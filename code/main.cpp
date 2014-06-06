@@ -30,6 +30,8 @@ using namespace std;
                     << expected);\
             }
 
+bool SILENT = false;
+
 Runner* main_runner;
 Problem* main_problem;
 int main_maxDepth = 1;
