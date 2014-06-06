@@ -119,11 +119,12 @@ void printHelp() {
     
     PRINTLN("\t-quietMode [yes|no]\t\tIf set to no, print depth and loop info."
             << " Defaults to yes.");
+    
     PRINTLN("\t-printIntervalData\t\tIf set, print interval status "
             << "everytime a suitable solution is found");
-    
     PRINTLN("\t-intervalType [i_type]\t\tSpecifies the interval type. "
             << "Defaults to disjoint.");
+    PRINTLN("\t-intervalStep [integer]\t\tSpecifies an interval growth step");
     
     PRINTLN("\t-doubleCheckCost\t\t\tperform a full calculation check at "
             << "the end of each execution and report inconsitencies");
@@ -166,6 +167,7 @@ std::string getOutputName(std::string problemName, OutputType type = RESULT) {
         res.append(".csv.i");
     else
         res.append(".results");
+    delete(now);
     return res;
 }
 
@@ -222,6 +224,9 @@ void dealWithArgs(int argc, char** argv) {
             } else if (type == "joined_at_origin") {
                 main_intervalType = JOINED_AT_ORIGIN;
             }
+        } else if (arg == "-intervalStep") {
+            ARG_CHECK(argv[i], "number");
+            IntervalManager::INTERVAL_STEP = atoi(argv[i]);
         } else if (arg == "-doubleCheckCost") {
             main_doubleCheckCost = true;
         } else if (arg == "-noNeighborhoodCutoff") {

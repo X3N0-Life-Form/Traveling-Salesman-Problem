@@ -7,4 +7,3 @@ Big TODO list:
         analyse results
         use it for stuff
     -create unit tests for interval types
-    -make INTERVAL_STEP settable at launch
