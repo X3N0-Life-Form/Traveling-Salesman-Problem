@@ -6,4 +6,3 @@ Big TODO list:
         record it on file - done
         analyse results
         use it for stuff
-    -create unit tests for interval types
