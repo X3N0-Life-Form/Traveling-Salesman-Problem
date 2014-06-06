@@ -79,6 +79,7 @@ void swapTests::test_applyRelation_bestFit() {
     resultCost = result->getCost();
     originalCost = n->getCost();
     CPPUNIT_ASSERT(resultCost < originalCost);
+    bf->setInitialCost(originalCost);
     Neighborhood* r2 = swap_bf->applyRelation(*n);
     r2Cost = r2->getCost();
     CPPUNIT_ASSERT(r2Cost < originalCost);
@@ -93,6 +94,7 @@ void swapTests::test_applyRelation_worstFit() {
     resultCost = result->getCost();
     originalCost = n->getCost();
     CPPUNIT_ASSERT(resultCost < originalCost);
+    wf->setInitialCost(originalCost);
     Neighborhood* r2 = swap_wf->applyRelation(*n);
     r2Cost = r2->getCost();
     CPPUNIT_ASSERT(r2Cost < originalCost);
