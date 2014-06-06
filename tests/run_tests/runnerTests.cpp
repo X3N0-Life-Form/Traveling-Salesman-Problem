@@ -14,6 +14,7 @@
 #include "../../code/strategy/BestFit.h"
 #include "../../code/strategy/FirstFit.h"
 #include "../../code/strategy/WorstFit.h"
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(runnerTests);
 
@@ -28,6 +29,7 @@ runnerTests::~runnerTests() {
 }
 
 void runnerTests::setUp() {
+    SILENT = true;
     r.addRelation(new Swap(p, &ff));
     r.addStrategy(new FirstFit(p.getDimension()));
     r.addStrategy(new BestFit(p.getDimension()));

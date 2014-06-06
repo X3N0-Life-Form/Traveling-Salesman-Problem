@@ -7,9 +7,10 @@
 
 #include "problemTests.h"
 
+#include <list>
 #include "../../code/core/Problem.h"
 #include "tspParserTests.h"
-#include <list>
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(problemTests);
 
@@ -22,6 +23,7 @@ problemTests::~problemTests() {
 }
 
 void problemTests::setUp() {
+    SILENT = true;
     Problem temp = parseProblem(path_a280);
     p = new Problem(temp);
 }

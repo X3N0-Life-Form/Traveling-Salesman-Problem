@@ -14,6 +14,7 @@
 #include "../code/strategy/FirstFit.h"
 #include "../code/relation/Swap.h"
 #include "../code/run/Runner.h"
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(mainTests);
 
@@ -27,6 +28,7 @@ mainTests::~mainTests() {
 }
 
 void mainTests::setUp() {
+    SILENT = true;
     main_problem = new Problem(parseProblem(path_a280));
 }
 

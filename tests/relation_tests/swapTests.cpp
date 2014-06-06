@@ -15,6 +15,7 @@
 #include "../../code/core/Neighborhood.h"
 #include "../../code/utils.h"
 #include "../../code/parse/tspParser.h"
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(swapTests);
 
@@ -37,6 +38,7 @@ swapTests::~swapTests() {
 }
 
 void swapTests::setUp() {
+    SILENT = true;
     //Problem p = parseProblem(path_a280);
     n = new Neighborhood(p);
     n->generateRandomNeighborhood();

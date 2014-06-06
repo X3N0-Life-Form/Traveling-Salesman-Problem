@@ -6,7 +6,7 @@
  */
 
 #include "tspParserTests.h"
-
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(tspParserTests);
 
@@ -17,6 +17,7 @@ tspParserTests::~tspParserTests() {
 }
 
 void tspParserTests::setUp() {
+    SILENT = true;
 }
 
 void tspParserTests::tearDown() {

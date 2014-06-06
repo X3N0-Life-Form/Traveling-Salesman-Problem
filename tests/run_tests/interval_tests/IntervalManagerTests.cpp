@@ -11,6 +11,7 @@
 #include "../../../code/run/interval/Interval.h"
 #include "../../../code/run/interval/Action.h"
 #include "../../../code/utils.h"
+extern bool SILENT;
 
 CPPUNIT_TEST_SUITE_REGISTRATION(IntervalManagerTests);
 
@@ -23,6 +24,7 @@ IntervalManagerTests::~IntervalManagerTests() {
 IntervalManager* manager;
 
 void IntervalManagerTests::setUp() {
+    SILENT = true;
     manager = new IntervalManager(NULL, NULL);
 }
 

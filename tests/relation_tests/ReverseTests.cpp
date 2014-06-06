@@ -14,6 +14,8 @@
 
 #include "../../code/strategy/strategies.h"
 
+extern bool SILENT;
+
 Problem problem(parseProblem(path_a280));
 
 FirstFit* ff;
@@ -35,6 +37,7 @@ ReverseTests::~ReverseTests() {
 }
 
 void ReverseTests::setUp() {
+    SILENT = true;
     n = new Neighborhood(problem);
     n->generateRandomNeighborhood();
     n->calculateCost();
