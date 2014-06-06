@@ -9,7 +9,7 @@
 
 #include "../../utils.h"
 
-int IntervalManager::INTERVAL_STEP = 2;
+int IntervalManager::INTERVAL_STEP = 4;
 
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
