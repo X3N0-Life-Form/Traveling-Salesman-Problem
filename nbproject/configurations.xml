@@ -476,11 +476,140 @@
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/core_parsing_tests/neighborhoodTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/neighborhoodTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/neighborhoodTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/problemTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/problemTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/problemTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/tspParserTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/tspParserTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/core_parsing_tests/tspTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/mainTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tests/mainTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/InsertTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/InsertTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/InsertTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation_tests/RelationTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/RelationTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/RelationTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation_tests/ReverseTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/ReverseTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/ReverseTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/relation_tests/swapTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/relation_tests/swapTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalManagerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalManagerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/runnerTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/run_tests/runnerTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/run_tests/runnerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/bestFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/firstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/worstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/worstFitTests.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/strategy_tests/worstFitTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/utilsTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -501,6 +630,7 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
