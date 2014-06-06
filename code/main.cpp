@@ -169,7 +169,7 @@ std::string getOutputName(std::string problemName, OutputType type = RESULT) {
         res.append(".csv.i");
     else
         res.append(".results");
-    delete(now);
+    //delete(now);
     return res;
 }
 
