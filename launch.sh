@@ -10,7 +10,7 @@
 maxDepth=2000
 relations="-r swap -r insert -r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
-intervals="-saveIntervalData -intervalStep 2 -intervalType joined_at_origin"
+intervals="-saveIntervalData -intervalStep 2 -intervalType disjoint"
 miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
@@ -35,8 +35,8 @@ do
     $execPath -file data/ali535.tsp $args
     $execPath -file data/ch130.tsp $args
     $execPath -file data/ch150.tsp $args
-    $execPath -file data/bier127.tsp $args
     $execPath -file data/burma14.tsp $args
+    $execPath -file data/bier127.tsp $args
 done
 
 #big
