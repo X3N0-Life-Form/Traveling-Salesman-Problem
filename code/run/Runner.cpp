@@ -123,9 +123,8 @@ void Runner::run() {
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension(), intervalType);
             ChoiceMaker* choiceMaker = new ChoiceMaker(intervalManager);
-            RelationChoiceHook* hook = new RelationChoiceHook();
-            r->setHook(hook);
-            choiceMaker->setHook((Hook*) hook);
+            r->setHook(choiceMaker);
+            choiceMaker->setHook(r);
             
             bool randomPick = true;
             if (s->getType() != "First Fit") {
@@ -200,7 +199,6 @@ void Runner::run() {
             delete(intervalManager);
             delete(choiceMaker);
             r->setHook(NULL);
-            delete(hook);
             results.push_back(data);
         }
         // don't keep stuff that's too memory heavy

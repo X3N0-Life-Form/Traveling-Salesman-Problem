@@ -10,16 +10,15 @@
 
 #include <utility>
 
-#include "Hook.h"
-
 class Hookable {
 public:
     Hookable();
     Hookable(const Hookable& orig);
     virtual ~Hookable();
     
-    virtual void setHook(Hook* hook) = 0;
+    virtual void setHook(Hookable* hook) = 0;
     virtual bool processPair(std::pair<int, int>& pair) = 0;
+    virtual void updateHook(bool accepted) = 0;
 };
 
 #endif	/* HOOKABLE_H */

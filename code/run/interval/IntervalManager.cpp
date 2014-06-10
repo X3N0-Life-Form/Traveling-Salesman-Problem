@@ -115,6 +115,15 @@ Interval* IntervalManager::getInterval(int value) {
     return NULL;
 }
 
+Interval* IntervalManager::getInterval(const std::pair<int, int>& pair) {
+    int distance = pair.second - pair.first;
+    // if we go all the way around
+    if (distance < 0) {
+        distance = dimension - pair.second + pair.first;
+    }
+    return getInterval(distance);
+}
+
 std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
     // prefix
     out << relation->getType() << "," << strategy->getType() << ",";

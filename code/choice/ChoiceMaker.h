@@ -9,12 +9,16 @@
 #define	CHOICEMAKER_H
 
 #include "../run/interval/IntervalManager.h"
-#include "../hook/RelationChoiceHook.h"
+#include "../hook/Hookable.h"
 
 class ChoiceMaker : public Hookable {
+public:
+    static const double ALPHA; // = 0.99
 private:
     IntervalManager* manager;
-    RelationChoiceHook* hook;
+    Hookable* hook;
+    //
+    double masterProbability;
 public:
     ChoiceMaker(IntervalManager* manager);
     ChoiceMaker(const ChoiceMaker& orig);
@@ -24,9 +28,10 @@ public:
     virtual ~ChoiceMaker();
     // Getters / Setters
     void setManager(IntervalManager* manager);
-    virtual void setHook(Hook* hook);
+    virtual void setHook(Hookable* hook);
     // other methods
     virtual bool processPair(std::pair<int, int>& pair);
+    virtual void updateHook(bool accepted);
 };
 
 #endif	/* CHOICEMAKER_H */

@@ -104,10 +104,14 @@ void Relation::setNoNeighborhoodCutoff(bool cutoff) {
     this->noNeighborhoodCutoff = cutoff;
 }
 
-void Relation::setHook(Hook* hook) {
-    this->hook = dynamic_cast<RelationChoiceHook*>(hook);
+void Relation::setHook(Hookable* hook) {
+    this->hook = hook;
 }
 
 bool Relation::processPair(std::pair<int, int>& pair) {
     throw "This class is unable to process pairs.";
+}
+
+void Relation::updateHook(bool accepted) {
+    throw "This class cannot perfom the task updateHook(bool).";
 }

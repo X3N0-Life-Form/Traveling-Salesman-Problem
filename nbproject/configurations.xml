@@ -13,11 +13,10 @@
         <itemPath>code/core/Problem.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f5" displayName="hook" projectFiles="true">
-        <itemPath>code/hook/Hook.h</itemPath>
         <itemPath>code/hook/Hookable.h</itemPath>
-        <itemPath>code/hook/RelationChoiceHook.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="parse" projectFiles="true">
+        <itemPath>code/parse/tspParser.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="relation" projectFiles="true">
         <itemPath>code/relation/Insert.h</itemPath>
@@ -35,13 +34,12 @@
         <itemPath>code/run/Runner.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="strategy" projectFiles="true">
+        <itemPath>code/strategy/BestFit.h</itemPath>
+        <itemPath>code/strategy/FirstFit.h</itemPath>
+        <itemPath>code/strategy/Strategy.h</itemPath>
+        <itemPath>code/strategy/WorstFit.h</itemPath>
+        <itemPath>code/strategy/strategies.h</itemPath>
       </logicalFolder>
-      <itemPath>code/strategy/BestFit.h</itemPath>
-      <itemPath>code/strategy/FirstFit.h</itemPath>
-      <itemPath>code/strategy/Strategy.h</itemPath>
-      <itemPath>code/strategy/WorstFit.h</itemPath>
-      <itemPath>code/strategy/strategies.h</itemPath>
-      <itemPath>code/parse/tspParser.h</itemPath>
       <itemPath>code/utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -56,7 +54,6 @@
       <itemPath>code/choice/ChoiceMaker.cpp</itemPath>
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/strategy/FirstFit.cpp</itemPath>
-      <itemPath>code/hook/Hook.cpp</itemPath>
       <itemPath>code/hook/Hookable.cpp</itemPath>
       <itemPath>code/relation/Insert.cpp</itemPath>
       <itemPath>code/run/interval/Interval.cpp</itemPath>
@@ -64,7 +61,6 @@
       <itemPath>code/core/Neighborhood.cpp</itemPath>
       <itemPath>code/core/Problem.cpp</itemPath>
       <itemPath>code/relation/Relation.cpp</itemPath>
-      <itemPath>code/hook/RelationChoiceHook.cpp</itemPath>
       <itemPath>code/relation/Reverse.cpp</itemPath>
       <itemPath>code/run/RunData.cpp</itemPath>
       <itemPath>code/run/Runner.cpp</itemPath>
@@ -244,17 +240,9 @@
       </item>
       <item path="code/core/Problem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="code/hook/Hook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/Hook.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="code/hook/Hookable.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/hook/Hookable.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -771,17 +759,9 @@
       </item>
       <item path="code/core/Problem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="code/hook/Hook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/Hook.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="code/hook/Hookable.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/hook/Hookable.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1290,17 +1270,9 @@
       </item>
       <item path="code/core/Problem.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="code/hook/Hook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/Hook.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="code/hook/Hookable.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/hook/Hookable.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="code/hook/RelationChoiceHook.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/main.cpp" ex="false" tool="1" flavor2="0">
       </item>
