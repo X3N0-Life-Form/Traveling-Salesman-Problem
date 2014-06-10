@@ -9,6 +9,8 @@
 
 #include <chrono>
 
+#include "../choice/ChoiceMaker.h"
+
 extern bool main_quietMode;
 
 Runner::Runner(Problem& problem, int maxDepth) :
@@ -120,6 +122,10 @@ void Runner::run() {
             r->setStrategy(s);
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension(), intervalType);
+            ChoiceMaker* choiceMaker = new ChoiceMaker(intervalManager);
+            RelationChoiceHook* hook = new RelationChoiceHook();
+            r->setHook(hook);
+            choiceMaker->setHook((Hook*) hook);
             
             bool randomPick = true;
             if (s->getType() != "First Fit") {
@@ -192,6 +198,9 @@ void Runner::run() {
             PRINTLN("\tRuntime= " << data->getRunTimeString());
             delete(n);
             delete(intervalManager);
+            delete(choiceMaker);
+            r->setHook(NULL);
+            delete(hook);
             results.push_back(data);
         }
         // don't keep stuff that's too memory heavy

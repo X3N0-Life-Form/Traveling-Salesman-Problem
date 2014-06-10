@@ -10,14 +10,16 @@
 
 #include "../core/Neighborhood.h"
 #include "../strategy/Strategy.h"
+#include "../hook/RelationChoiceHook.h"
 
-class Relation {
+class Relation : public Hookable {
 protected:
     Problem& problem;
     Strategy* strategy;
     bool isFirstLoop = true;
     std::vector<std::pair<int, int> >* pairs;
     bool noNeighborhoodCutoff;
+    RelationChoiceHook* hook;
 public:
     Relation(Problem& problem, Strategy* strategy);
     Relation(const Relation& orig);
@@ -39,6 +41,8 @@ public:
     void setStrategy(Strategy* s);
     void setIsFirstLoop(bool isFirstLoop);
     void setNoNeighborhoodCutoff(bool cutoff);
+    virtual void setHook(Hook* hook);
+    virtual bool processPair(std::pair<int, int>& pair);
 };
 
 #endif	/* RELATION_H */

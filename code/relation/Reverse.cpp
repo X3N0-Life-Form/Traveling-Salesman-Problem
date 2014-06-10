@@ -38,6 +38,12 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
         // Note: Reverse-specific code begins here
         int left = randomPair.first;
         int right = randomPair.second;
+        
+        // Hook: is this pair worth considering
+        if (!hook->isPairWorthConsidering(randomPair)) {
+            continue;
+        }
+        
         int nuCost = n.calculatePotentialCostReverse(left, right);
         // is it a good move
         if (nuCost < n.getCost()) {

@@ -35,9 +35,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/code/choice/ChoiceMaker.o \
 	${OBJECTDIR}/code/core/City.o \
 	${OBJECTDIR}/code/core/Neighborhood.o \
 	${OBJECTDIR}/code/core/Problem.o \
+	${OBJECTDIR}/code/hook/Hook.o \
+	${OBJECTDIR}/code/hook/Hookable.o \
+	${OBJECTDIR}/code/hook/RelationChoiceHook.o \
 	${OBJECTDIR}/code/main.o \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Insert.o \
@@ -99,6 +103,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem: ${OBJECTF
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/code/choice/ChoiceMaker.o: code/choice/ChoiceMaker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceMaker.o code/choice/ChoiceMaker.cpp
+
 ${OBJECTDIR}/code/core/City.o: code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
 	${RM} "$@.d"
@@ -113,6 +122,21 @@ ${OBJECTDIR}/code/core/Problem.o: code/core/Problem.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/core
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/Problem.o code/core/Problem.cpp
+
+${OBJECTDIR}/code/hook/Hook.o: code/hook/Hook.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hook.o code/hook/Hook.cpp
+
+${OBJECTDIR}/code/hook/Hookable.o: code/hook/Hookable.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hookable.o code/hook/Hookable.cpp
+
+${OBJECTDIR}/code/hook/RelationChoiceHook.o: code/hook/RelationChoiceHook.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/RelationChoiceHook.o code/hook/RelationChoiceHook.cpp
 
 ${OBJECTDIR}/code/main.o: code/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code
@@ -424,6 +448,19 @@ ${TESTDIR}/tests/strategy_tests/worstFitTests_testrunner.o: tests/strategy_tests
 	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy_tests/worstFitTests_testrunner.o tests/strategy_tests/worstFitTests_testrunner.cpp
 
 
+${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o: ${OBJECTDIR}/code/choice/ChoiceMaker.o code/choice/ChoiceMaker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/choice/ChoiceMaker.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o code/choice/ChoiceMaker.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/choice/ChoiceMaker.o ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o;\
+	fi
+
 ${OBJECTDIR}/code/core/City_nomain.o: ${OBJECTDIR}/code/core/City.o code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/core/City.o`; \
@@ -461,6 +498,45 @@ ${OBJECTDIR}/code/core/Problem_nomain.o: ${OBJECTDIR}/code/core/Problem.o code/c
 	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/core/Problem_nomain.o code/core/Problem.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/core/Problem.o ${OBJECTDIR}/code/core/Problem_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/hook/Hook_nomain.o: ${OBJECTDIR}/code/hook/Hook.o code/hook/Hook.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/hook/Hook.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hook_nomain.o code/hook/Hook.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/hook/Hook.o ${OBJECTDIR}/code/hook/Hook_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/hook/Hookable_nomain.o: ${OBJECTDIR}/code/hook/Hookable.o code/hook/Hookable.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/hook/Hookable.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hookable_nomain.o code/hook/Hookable.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/hook/Hookable.o ${OBJECTDIR}/code/hook/Hookable_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/hook/RelationChoiceHook_nomain.o: ${OBJECTDIR}/code/hook/RelationChoiceHook.o code/hook/RelationChoiceHook.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/hook/RelationChoiceHook.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/RelationChoiceHook_nomain.o code/hook/RelationChoiceHook.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/hook/RelationChoiceHook.o ${OBJECTDIR}/code/hook/RelationChoiceHook_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/main_nomain.o: ${OBJECTDIR}/code/main.o code/main.cpp 

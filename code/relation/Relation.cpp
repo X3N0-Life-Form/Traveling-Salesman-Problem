@@ -17,13 +17,15 @@ extern bool main_quietMode;
 Relation::Relation(Problem& problem, Strategy* strategy) :
         problem(problem),
         strategy(strategy),
-        pairs(NULL)
+        pairs(NULL),
+        hook(NULL)
 {}
 
 Relation::Relation(const Relation& orig) :
         problem(orig.problem),
         strategy(orig.strategy),
-        pairs(orig.pairs)
+        pairs(orig.pairs),
+        hook(orig.hook)
 {}
 
 Relation::~Relation() {
@@ -100,4 +102,12 @@ void Relation::setIsFirstLoop(bool isFirstLoop) {
 
 void Relation::setNoNeighborhoodCutoff(bool cutoff) {
     this->noNeighborhoodCutoff = cutoff;
+}
+
+void Relation::setHook(Hook* hook) {
+    this->hook = dynamic_cast<RelationChoiceHook*>(hook);
+}
+
+bool Relation::processPair(std::pair<int, int>& pair) {
+    throw "This class is unable to process pairs.";
 }
