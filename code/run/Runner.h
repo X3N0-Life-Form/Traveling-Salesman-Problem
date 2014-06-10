@@ -32,6 +32,8 @@ private:
     bool doubleCheckCost;
     bool noNeighborhoodCutoff;
     
+    bool useChoiceMaker;
+    
     bool printIntervalData;
     std::ostream* intervalDataCSVoutput;
     IntervalType intervalType;

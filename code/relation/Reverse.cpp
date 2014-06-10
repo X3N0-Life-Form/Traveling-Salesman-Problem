@@ -40,14 +40,15 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
         int right = randomPair.second;
         
         // Hook: is this pair worth considering
-        if (!hook->processPair(randomPair)) {
+        if (hook != NULL && !hook->processPair(randomPair)) {
             continue;
         }
         
         int nuCost = n.calculatePotentialCostReverse(left, right);
         // is it a good move
         if (nuCost < n.getCost()) {
-            hook->updateHook(true);
+            if (hook != NULL)
+                hook->updateHook(true);
             
             int* nuPath = new int[dimension];
             reverse(nuPath, n.getPath(), dimension, left, right);
@@ -57,7 +58,7 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
             }
             // delete nuPath
             delete[](nuPath);
-        } else {
+        } else if (hook != NULL) {
             hook->updateHook(false);
         }
         // swap our pair with the end

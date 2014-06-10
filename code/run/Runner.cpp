@@ -20,7 +20,8 @@ Runner::Runner(Problem& problem, int maxDepth) :
         doubleCheckCost(false),
         noNeighborhoodCutoff(false),
         printIntervalData(true),
-        intervalType(DISJOINT)
+        intervalType(DISJOINT),
+        useChoiceMaker(false)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -38,6 +39,7 @@ Runner::Runner(const Runner& orig) :
         startingPoint(orig.startingPoint),
         doubleCheckCost(orig.doubleCheckCost),
         noNeighborhoodCutoff(orig.noNeighborhoodCutoff),
+        useChoiceMaker(orig.useChoiceMaker),
         printIntervalData(orig.printIntervalData),
         intervalManagers(orig.intervalManagers),
         intervalType(orig.intervalType)
@@ -122,9 +124,12 @@ void Runner::run() {
             r->setStrategy(s);
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension(), intervalType);
-            ChoiceMaker* choiceMaker = new ChoiceMaker(intervalManager);
-            r->setHook(choiceMaker);
-            choiceMaker->setHook(r);
+            ChoiceMaker* choiceMaker;
+            if (useChoiceMaker) {
+                choiceMaker = new ChoiceMaker(intervalManager);
+                r->setHook(choiceMaker);
+                choiceMaker->setHook(r);
+            }
             
             bool randomPick = true;
             if (s->getType() != "First Fit") {
@@ -197,7 +202,8 @@ void Runner::run() {
             PRINTLN("\tRuntime= " << data->getRunTimeString());
             delete(n);
             delete(intervalManager);
-            delete(choiceMaker);
+            if (useChoiceMaker)
+                delete(choiceMaker);
             r->setHook(NULL);
             results.push_back(data);
         }
