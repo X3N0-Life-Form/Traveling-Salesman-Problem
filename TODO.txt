@@ -7,3 +7,4 @@ Big TODO list:
         save relations/strategies on separate files, makes for easier copying into recap.ods
         analyse results
         use it for stuff
+    -fixor leaks

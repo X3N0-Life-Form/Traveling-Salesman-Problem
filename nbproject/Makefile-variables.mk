@@ -22,14 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/traveling_salesman_problem
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=travelingsalesmanproblem.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/travelingsalesmanproblem.tar
-# Debug_O3 configuration
-CND_PLATFORM_Debug_O3=GNU-Linux-x86
-CND_ARTIFACT_DIR_Debug_O3=dist/Debug_O3/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug_O3=traveling_salesman_problem
-CND_ARTIFACT_PATH_Debug_O3=dist/Debug_O3/GNU-Linux-x86/traveling_salesman_problem
-CND_PACKAGE_DIR_Debug_O3=dist/Debug_O3/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug_O3=travelingsalesmanproblem.tar
-CND_PACKAGE_PATH_Debug_O3=dist/Debug_O3/GNU-Linux-x86/package/travelingsalesmanproblem.tar
+# Debug_NO_O3 configuration
+CND_PLATFORM_Debug_NO_O3=GNU-Linux-x86
+CND_ARTIFACT_DIR_Debug_NO_O3=dist/Debug_NO_O3/GNU-Linux-x86
+CND_ARTIFACT_NAME_Debug_NO_O3=traveling_salesman_problem
+CND_ARTIFACT_PATH_Debug_NO_O3=dist/Debug_NO_O3/GNU-Linux-x86/traveling_salesman_problem
+CND_PACKAGE_DIR_Debug_NO_O3=dist/Debug_NO_O3/GNU-Linux-x86/package
+CND_PACKAGE_NAME_Debug_NO_O3=travelingsalesmanproblem.tar
+CND_PACKAGE_PATH_Debug_NO_O3=dist/Debug_NO_O3/GNU-Linux-x86/package/travelingsalesmanproblem.tar
 #
 # include compiler specific variables
 #

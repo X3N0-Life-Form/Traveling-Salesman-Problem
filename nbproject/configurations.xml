@@ -189,6 +189,7 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
+          <commandLine>-O3</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
@@ -496,7 +497,10 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/core_parsing_tests/problemTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/core_parsing_tests/problemTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/core_parsing_tests/problemTests_testrunner.cpp"
             ex="false"
@@ -524,7 +528,10 @@
       </item>
       <item path="tests/mainTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="tests/relation_tests/InsertTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/relation_tests/InsertTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
       <item path="tests/relation_tests/InsertTests.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -533,18 +540,30 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/relation_tests/RelationTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/relation_tests/RelationTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="tests/relation_tests/RelationTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/relation_tests/RelationTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/relation_tests/RelationTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/relation_tests/ReverseTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/relation_tests/ReverseTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="tests/relation_tests/ReverseTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/relation_tests/ReverseTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/relation_tests/ReverseTests_testrunner.cpp"
             ex="false"
@@ -582,34 +601,50 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/strategy_tests/bestFitTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/strategy_tests/bestFitTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="tests/strategy_tests/bestFitTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/strategy_tests/bestFitTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/strategy_tests/bestFitTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/strategy_tests/firstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/strategy_tests/firstFitTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="tests/strategy_tests/firstFitTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/strategy_tests/firstFitTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/strategy_tests/firstFitTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="tests/strategy_tests/worstFitTests.cpp" ex="false" tool="1" flavor2="0">
+      <item path="tests/strategy_tests/worstFitTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
       </item>
-      <item path="tests/strategy_tests/worstFitTests.h" ex="false" tool="3" flavor2="0">
+      <item path="tests/strategy_tests/worstFitTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="tests/strategy_tests/worstFitTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-      </item>
-      <item path="tests/swapTests.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tests/utilsTests.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1102,7 +1137,7 @@
       <item path="tests/utilsTests_testrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
-    <conf name="Debug_O3" type="1">
+    <conf name="Debug_NO_O3" type="1">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>true</dependencyChecking>
@@ -1111,7 +1146,6 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
-          <commandLine>-O3</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">

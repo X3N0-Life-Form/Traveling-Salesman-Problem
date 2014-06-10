@@ -5,4 +5,4 @@
 #
 # Debug configuration
 # Release configuration
-# Debug_O3 configuration
+# Debug_NO_O3 configuration

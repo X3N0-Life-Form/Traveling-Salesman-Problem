@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux-x86
 CND_DLIB_EXT=so
-CND_CONF=Debug_O3
+CND_CONF=Debug_NO_O3
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -79,8 +79,8 @@ TESTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-O3
-CXXFLAGS=-O3
+CCFLAGS=
+CXXFLAGS=
 
 # Fortran Compiler Flags
 FFLAGS=

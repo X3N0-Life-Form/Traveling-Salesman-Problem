@@ -20,7 +20,7 @@
                     <type>1</type>
                 </confElem>
                 <confElem>
-                    <name>Debug_O3</name>
+                    <name>Debug_NO_O3</name>
                     <type>1</type>
                 </confElem>
             </confList>

@@ -31,7 +31,7 @@ DEFAULTCONF=Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Debug Release Debug_O3 
+ALLCONFS=Debug Release Debug_NO_O3 
 
 
 # build
