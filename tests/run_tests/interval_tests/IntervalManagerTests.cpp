@@ -77,3 +77,22 @@ void IntervalManagerTests::test_memorizeAction() {
         CPPUNIT_ASSERT(false);
     }
 }
+
+void IntervalManagerTests::test_getInterval_OK() {
+    manager->prepareIntervals(40);
+    Interval* interval = manager->getInterval(38);
+    CPPUNIT_ASSERT(interval != NULL);
+    CPPUNIT_ASSERT(interval->getMaxDistance() >= 38);
+}
+
+void IntervalManagerTests::test_getInterval_KO_sup() {
+    manager->prepareIntervals(40);
+    Interval* interval = manager->getInterval(125);
+    CPPUNIT_ASSERT(interval == NULL);
+}
+
+void IntervalManagerTests::test_getInterval_KO_inf() {
+    manager->prepareIntervals(40);
+    Interval* interval = manager->getInterval(-1);
+    CPPUNIT_ASSERT(interval == NULL);
+}

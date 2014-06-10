@@ -65,6 +65,7 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f6 \
+	${TESTDIR}/TestFiles/f15 \
 	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f10 \
 	${TESTDIR}/TestFiles/f13 \
@@ -227,6 +228,10 @@ ${TESTDIR}/TestFiles/f6: ${TESTDIR}/tests/strategy_tests/bestFitTests.o ${TESTDI
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f6 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
+${TESTDIR}/TestFiles/f15: ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests.o ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f15 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/strategy_tests/firstFitTests.o ${TESTDIR}/tests/strategy_tests/firstFitTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f5 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
@@ -290,6 +295,18 @@ ${TESTDIR}/tests/strategy_tests/bestFitTests_testrunner.o: tests/strategy_tests/
 	${MKDIR} -p ${TESTDIR}/tests/strategy_tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy_tests/bestFitTests_testrunner.o tests/strategy_tests/bestFitTests_testrunner.cpp
+
+
+${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests.o: tests/choice_making_tests/ChoiceMakerTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests.o tests/choice_making_tests/ChoiceMakerTests.cpp
+
+
+${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o: tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/strategy_tests/firstFitTests.o: tests/strategy_tests/firstFitTests.cpp 
@@ -752,6 +769,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f6 || true; \
+	    ${TESTDIR}/TestFiles/f15 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f10 || true; \
 	    ${TESTDIR}/TestFiles/f13 || true; \

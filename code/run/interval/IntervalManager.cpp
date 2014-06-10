@@ -103,6 +103,18 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
     }
 }
 
+Interval* IntervalManager::getInterval(int value) {
+    for (Interval* interval : intervals) {
+        if (value < interval->getMinDistance()) {
+            continue;
+        }
+        if (value <= interval->getMaxDistance()) {
+            return interval;
+        }
+    }
+    return NULL;
+}
+
 std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
     // prefix
     out << relation->getType() << "," << strategy->getType() << ",";
