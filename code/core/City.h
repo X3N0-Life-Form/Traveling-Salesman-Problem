@@ -18,6 +18,7 @@ private:
     float x_f;
     float y_f;
 public:
+    // Constructors / Destructor
     City(const City& orig);
     City(int id, int x, int y);
     City(int id, float x, float y);
@@ -29,6 +30,7 @@ public:
     const float getYF();
 };
 
+// Operators
 bool operator<(City& left, City& right);
 bool operator>(City& left, City& right);
 bool operator==(City& left, City& right);

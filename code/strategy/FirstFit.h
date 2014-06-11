@@ -12,10 +12,11 @@
 
 class FirstFit : public Strategy {
 public:
+    // Constructors / Destructor
     FirstFit(int dimension, int initialCost = INT_MAX);
     FirstFit(const FirstFit& orig);
     virtual ~FirstFit();
-    // overridden methods
+    // Implemented Methods
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0,
             std::pair<int, int> pair = std::make_pair(-1, -1));
     virtual std::string getType() const;

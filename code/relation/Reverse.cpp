@@ -9,6 +9,10 @@
 
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Reverse::Reverse(Problem& problem, Strategy* strategy) :
     Relation(problem, strategy)
 {}
@@ -19,6 +23,10 @@ Reverse::Reverse(const Reverse& orig) :
 
 Reverse::~Reverse() {
 }
+
+/////////////////////////
+// Implemented Methods //
+/////////////////////////
 
 Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
     // Note: this section is identical to Swap & Insert's

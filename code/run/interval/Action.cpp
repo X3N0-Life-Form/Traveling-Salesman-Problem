@@ -7,6 +7,10 @@
 
 #include "Action.h"
 
+////////////////////////////////
+// Constructors / Destructors //
+////////////////////////////////
+
 Action::Action(std::pair<int, int> pair, int costDiff) :
         pair(pair),
         costDiff(costDiff)
@@ -19,6 +23,10 @@ Action::Action(const Action& orig):
 
 Action::~Action() {
 }
+
+///////////////////////
+// Getters / Setters //
+///////////////////////
 
 int Action::getCostDiff() const {
     return costDiff;

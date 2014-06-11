@@ -36,10 +36,11 @@ private:
     DistanceType distanceType;
     
 public:
-    // Constructors
+    // Constructors / Destructor
     Problem(std::string name, int dimension, DistanceType distanceType);
     Problem(const Problem& orig);
     virtual ~Problem();
+    Problem& operator=(const Problem& right);
     // Getters / Setters
     int getDimension() const;
     std::string getName() const;
@@ -53,7 +54,6 @@ public:
     std::vector<City> getCities() const;
     void setCities(std::vector<City>& cities);
     
-    Problem& operator=(const Problem& right);
     // Advanced Getters
     std::vector<int> getCityIdsAsVector();
     std::list<int> getCityIdsAsList();
@@ -61,6 +61,7 @@ public:
     int getDistance(int id1, int id2);
 };
 
+// Operators
 std::ostream& operator<<(std::ostream& out, const Problem& problem);
 bool operator==(const Problem& left, const Problem& right);
 bool operator!=(const Problem& left, const Problem& right);

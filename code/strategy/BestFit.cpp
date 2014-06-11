@@ -9,6 +9,10 @@
 
 #include "../utils.h"
 
+//////////////////////////////
+// Construtors / Destructor //
+//////////////////////////////
+
 BestFit::BestFit(int dimension, int initialCost) :
     Strategy(dimension, initialCost)
 {}
@@ -19,6 +23,10 @@ BestFit::BestFit(const BestFit& orig) :
 
 BestFit::~BestFit() {
 }
+
+/////////////////////////
+// Implemented Methods //
+/////////////////////////
 
 bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter,
         std::pair<int, int> pair) {

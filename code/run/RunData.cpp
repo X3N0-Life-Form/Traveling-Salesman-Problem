@@ -9,6 +9,10 @@
 
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 RunData::RunData(Relation* r, Strategy* s, Neighborhood* startingPoint) :
         relation(r),
         strategy(s),
@@ -33,6 +37,10 @@ RunData::~RunData() {
     delete(startingPoint);
     delete(endPoint);
 }
+
+///////////////////////
+// Getters / Setters //
+///////////////////////
 
 Relation* RunData::getRelation() {
     return relation;
@@ -75,6 +83,10 @@ void RunData::setBeginTime(std::chrono::steady_clock::time_point beginTime) {
 void RunData::setEndTime(std::chrono::steady_clock::time_point endTime) {
     this->endTime = endTime;
 }
+
+//////////////////////
+// Advanced Getters //
+//////////////////////
 
 std::string RunData::getRunTimeString() {
     std::string res;
@@ -127,6 +139,9 @@ std::string RunData::getRunTimeSeconds() {
     return res;
 }
 
+///////////////
+// Operators //
+///////////////
 
 std::ostream& operator<<(std::ostream& out, RunData& data) {
     out << "Run Data: Relation=" << data.getRelation()->getType()

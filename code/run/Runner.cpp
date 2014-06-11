@@ -13,6 +13,10 @@
 
 extern bool main_quietMode;
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Runner::Runner(Problem& problem, int maxDepth) :
         problem(problem),
         maxDepth(maxDepth),
@@ -48,6 +52,10 @@ Runner::Runner(const Runner& orig) :
 Runner::~Runner() {
     delete(startingPoint);
 }
+
+////////////////////////////////
+// Getters / Setters / Adders //
+////////////////////////////////
 
 std::list<RunData*>& Runner::getResults() {
     return results;
@@ -116,6 +124,10 @@ void Runner::addRelation(Relation* r) {
 void Runner::addRelation(Relation& r) {
     relations.push_back(&r);
 }
+
+///////////////////
+// Other Methods //
+///////////////////
 
 void Runner::run() {
     std::chrono::steady_clock clock;

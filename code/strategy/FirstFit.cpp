@@ -9,6 +9,10 @@
 
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 FirstFit::FirstFit(int dimension, int initialCost) :
     Strategy(dimension, initialCost)
 {}
@@ -19,6 +23,10 @@ FirstFit::FirstFit(const FirstFit& orig) :
 
 FirstFit::~FirstFit() {
 }
+
+/////////////////////////
+// Implemented Methods //
+/////////////////////////
 
 bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter,
         std::pair<int, int> pair) {
@@ -31,7 +39,6 @@ bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter,
         return false;
     }
 }
-
 
 std::string FirstFit::getType() const {
     return std::string("First Fit");

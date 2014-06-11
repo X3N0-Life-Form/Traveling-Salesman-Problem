@@ -11,6 +11,10 @@
 #include <random>
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Neighborhood::Neighborhood(Problem& problem) :
         problem(problem),
         cost(0),
@@ -39,6 +43,42 @@ Neighborhood& Neighborhood::operator =(const Neighborhood& right) {
     this->path = right.path;
 }
 
+///////////////////////
+// Getters / Setters //
+///////////////////////
+
+int* Neighborhood::getPath() const {
+    return path;
+}
+
+void Neighborhood::setPath(int* path) {
+    ARRAY_COPY(this->path, path, dimension);
+    //this->path = path;
+}
+
+int Neighborhood::getCost() const {
+    return cost;
+}
+
+void Neighborhood::setCost(int cost) {
+    this->cost = cost;
+}
+
+/**
+ * <=> problem.getDimension()
+ * @return This Neighborhood Problem's dimension.
+ */
+int Neighborhood::getDimension() const {
+    return dimension;
+}
+
+Problem& Neighborhood::getProblem() const {
+    return problem;
+}
+
+void Neighborhood::setProblem(Problem& problem) {
+    this->problem = problem;
+}
 
 void Neighborhood::generateRandomNeighborhood() {
     std::vector<int> v_city = problem.getCityIdsAsVector();
@@ -174,38 +214,9 @@ int Neighborhood::calculatePotentialCostReverse(int left, int right) const {
     return nuCost;
 }
 
-int* Neighborhood::getPath() const {
-    return path;
-}
-
-void Neighborhood::setPath(int* path) {
-    ARRAY_COPY(this->path, path, dimension);
-    //this->path = path;
-}
-
-int Neighborhood::getCost() const {
-    return cost;
-}
-
-void Neighborhood::setCost(int cost) {
-    this->cost = cost;
-}
-
-/**
- * <=> problem.getDimension()
- * @return This Neighborhood Problem's dimension.
- */
-int Neighborhood::getDimension() const {
-    return dimension;
-}
-
-Problem& Neighborhood::getProblem() const {
-    return problem;
-}
-
-void Neighborhood::setProblem(Problem& problem) {
-    this->problem = problem;
-}
+///////////////
+// Operators //
+///////////////
 
 std::ostream& operator<<(std::ostream& out, Neighborhood& n) {
     out << "Neighborhood: cost=" << n.getCost() << "; path=[";

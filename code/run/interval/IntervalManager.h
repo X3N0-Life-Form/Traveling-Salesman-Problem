@@ -29,17 +29,18 @@ private:
 public:
     static int INTERVAL_STEP;
 public:
+    // Constructors / Destructor
     IntervalManager(Strategy* strategy, Relation* relation);
     IntervalManager(const IntervalManager& orig);
     virtual ~IntervalManager();
-    // Getters/Setters/Adders
+    // Getters / Setters / Adders
     const std::list<Interval*>& getIntervals() const;
     const Strategy* getStrategy() const;
     void setStrategy(Strategy* strategy);
     const Relation* getRelation() const;
     void setRelation(Relation* relation);
     int getDimension() const;
-    // other methods
+    // Other Methods
     void prepareIntervals(int dimension, IntervalType type = DISJOINT);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
     Interval* getInterval(int value);
@@ -47,6 +48,7 @@ public:
     std::ostream& outputDataCSV(std::ostream& out = std::cout);
 };
 
+// Operators
 std::ostream& operator<<(std::ostream& out, const IntervalManager& manager);
 std::ostream& operator<<(std::ostream& out, const IntervalManager* manager);
 

@@ -9,6 +9,10 @@
 
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Strategy::Strategy() : dimension(0), initialCost(INT_MAX)
 {
     fit = new int[dimension];
@@ -34,6 +38,10 @@ Strategy::Strategy(const Strategy& orig) :
 Strategy::~Strategy() {
     delete[](fit);
 }
+
+///////////////////////
+// Getters / Setters //
+///////////////////////
 
 int Strategy::getDimension() const {
     return dimension;
@@ -67,9 +75,17 @@ std::pair<int, int>& Strategy::getPair() {
     return pair;
 }
 
+////////////////////
+// Common Methods //
+////////////////////
+
 bool Strategy::hasBetter() {
     return fitCost < initialCost;
 }
+
+///////////////
+// Operators //
+///////////////
 
 bool operator !=(const Strategy& left, const Strategy& right) {
     return !(left == right);

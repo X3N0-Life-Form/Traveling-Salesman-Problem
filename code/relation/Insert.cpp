@@ -11,6 +11,10 @@
 #include <algorithm>
 #include <list>
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Insert::Insert(Problem& problem, Strategy* strategy) :
     Relation(problem, strategy)
 {}
@@ -21,6 +25,10 @@ Insert::Insert(const Insert& orig) :
 
 Insert::~Insert() {
 }
+
+/////////////////////////
+// Implemented Methods //
+/////////////////////////
 
 Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
     // Note: this section is identical to Swap's

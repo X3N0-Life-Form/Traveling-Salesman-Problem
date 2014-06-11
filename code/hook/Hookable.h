@@ -12,10 +12,11 @@
 
 class Hookable {
 public:
+    // Constructors / Destructors
     Hookable();
     Hookable(const Hookable& orig);
     virtual ~Hookable();
-    
+    // Abstract Methods
     virtual void setHook(Hookable* hook) = 0;
     virtual bool processPair(std::pair<int, int>& pair) = 0;
     virtual void updateHook(bool accepted) = 0;

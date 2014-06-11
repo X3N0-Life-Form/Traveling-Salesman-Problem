@@ -20,11 +20,12 @@ protected:
     int stopCount;
     std::pair<int, int> pair;
 public:
+    // Constructors / Destructor
     Strategy();
     Strategy(int dimension, int initialCost = INT_MAX);
     Strategy(const Strategy& orig);
     virtual ~Strategy();
-    // abstract methods
+    // Abstract Methods
     /**
      * 
      * @param nuPath
@@ -49,10 +50,11 @@ public:
     int getStopCount();
     void setStopCount(int count);
     std::pair<int, int>& getPair();
-    
+    // Common Methods
     bool hasBetter();
 };
 
+// Operators
 bool operator==(const Strategy& left, const Strategy& right);
 bool operator!=(const Strategy& left, const Strategy& right);
 

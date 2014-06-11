@@ -7,6 +7,10 @@
 
 #include "Interval.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Interval::Interval(int min, int max) :
         minDistance(min),
         maxDistance(max)
@@ -17,6 +21,10 @@ Interval::Interval(const Interval& orig)
 
 Interval::~Interval() {
 }
+
+////////////////////////////////
+// Getters / Setters / Adders //
+////////////////////////////////
 
 int Interval::getMinDistance() const {
     return minDistance;
@@ -41,6 +49,10 @@ const std::vector<Action*>& Interval::getActions() const {
 void Interval::addAction(Action* action) {
     actions.push_back(action);
 }
+
+///////////////
+// Operators //
+///////////////
 
 std::ostream& operator<<(std::ostream& out, const Interval& interval) {
     out << "Interval: [" << interval.getMinDistance() << ", "

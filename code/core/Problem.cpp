@@ -3,6 +3,10 @@
 #include "../utils.h"
 #include <iostream>
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Problem::Problem(std::string name, int dimension, DistanceType distanceType) :
     dimension(dimension),
     name(name),
@@ -51,6 +55,22 @@ Problem::~Problem() {
     }
 }
 
+Problem& Problem::operator =(const Problem& right) {
+    this->name = right.name;
+    this->comment = right.comment;
+    this->dimension = right.dimension;
+    this->distanceType = right.distanceType;
+    this->cities = right.cities;
+    this->distanceMatrix_i = right.distanceMatrix_i;
+    this->distanceMatrix_f = right.distanceMatrix_f;
+    
+    return *this;
+}
+
+///////////////////////
+// Getters / Setters //
+///////////////////////
+
 int Problem::getDimension() const {
     return dimension;
 }
@@ -86,6 +106,10 @@ std::vector<City> Problem::getCities() const {
 void Problem::setCities(std::vector<City>& cities) {
     this->cities = cities;
 }
+
+//////////////////////
+// Advanced Getters //
+//////////////////////
 
 std::vector<int> Problem::getCityIdsAsVector() {
     std::vector<int> v;
@@ -161,17 +185,9 @@ int Problem::getDistance(int id1, int id2) {
         return distanceMatrix_i[id1 - 1][id2 - 1];
 }
 
-Problem& Problem::operator =(const Problem& right) {
-    this->name = right.name;
-    this->comment = right.comment;
-    this->dimension = right.dimension;
-    this->distanceType = right.distanceType;
-    this->cities = right.cities;
-    this->distanceMatrix_i = right.distanceMatrix_i;
-    this->distanceMatrix_f = right.distanceMatrix_f;
-    
-    return *this;
-}
+///////////////
+// Operators //
+///////////////
 
 std::ostream& operator<<(std::ostream& out, const Problem& problem) {
     out << "Problem " << problem.getName()

@@ -45,13 +45,14 @@ private:
     std::list<RunData*> results;
     std::list<IntervalManager*> intervalManagers;
 public:
+    // Constructors / Destructor
     Runner(Problem& problem, int depth = 1);
     Runner(const Runner& orig);
     /**
      * Note: does not delete the intervalDataCSVoutput pointer.
      */
     virtual ~Runner();
-    // Getters/Setters/Adders
+    // Getters / Setters / Adders
     std::list<RunData*>& getResults();
     
     int getMaxDepth() const;
@@ -74,7 +75,7 @@ public:
     std::list<Relation*> getRelations();
     void addRelation(Relation* r);
     void addRelation(Relation& r);
-    // other methods
+    // Other Methods
     void run();
     void clear();
     std::ostream& outputResults(std::ostream& out = std::cout);

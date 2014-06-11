@@ -12,13 +12,13 @@
 
 class Reverse : public Relation {
 public:
+    // Constructors / Destructor
     Reverse(Problem& problem, Strategy* strategy);
     Reverse(const Reverse& orig);
     virtual ~Reverse();
-
+    // Implemented Methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
     virtual std::string getType() const;
-
 };
 
 #endif	/* REVERSE_H */

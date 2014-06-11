@@ -7,6 +7,10 @@
 
 #include "Hookable.h"
 
+///////////////////////////////
+// Constructors / Destructors//
+///////////////////////////////
+
 Hookable::Hookable() {
 }
 

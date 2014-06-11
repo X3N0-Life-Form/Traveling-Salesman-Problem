@@ -31,10 +31,11 @@ private:
     std::chrono::steady_clock::time_point beginTime;
     std::chrono::steady_clock::time_point endTime;
 public:
+    // Constructors / Destructor
     RunData(Relation* r, Strategy* s, Neighborhood* startingPoint);
     RunData(const RunData& orig);
     virtual ~RunData();
-    // Getters/Setters
+    // Getters / Setters
     Relation* getRelation();
     Strategy* getStrategy();
     NeighborhoodLite* getStartingPoint();
@@ -53,6 +54,7 @@ public:
     std::string getRunTimeSeconds();
 };
 
+// Operators
 std::ostream& operator<<(std::ostream& out, RunData& data);
 
 #endif	/* RUNDATA_H */

@@ -12,10 +12,11 @@
 
 class Insert : public Relation {
 public:
+    // Constructors / Destructor
     Insert(Problem& problem, Strategy* strategy);
     Insert(const Insert& orig);
     virtual ~Insert();
-    // implemented methods
+    // Implemented Methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true);
     virtual std::string getType() const;
 };

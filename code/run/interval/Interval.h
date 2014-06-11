@@ -18,10 +18,11 @@ private:
     int maxDistance;
     std::vector<Action*> actions;
 public:
+    // Constructors / Destructor
     Interval(int min, int max);
     Interval(const Interval& orig);
     virtual ~Interval();
-    // Getters/Setters/Adders
+    // Getters / Setters / Adders
     int getMinDistance() const;
     void setMinDistance(int min);
     int getMaxDistance() const;
@@ -30,6 +31,7 @@ public:
     void addAction(Action* action);
 };
 
+// Operators
 std::ostream& operator<<(std::ostream& out, const Interval& interval);
 std::ostream& operator<<(std::ostream& out, const Interval* interval);
 

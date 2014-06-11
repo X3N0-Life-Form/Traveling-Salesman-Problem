@@ -11,6 +11,10 @@
 #include <list>
 #include "../utils.h"
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Swap::Swap(Problem& problem, Strategy* strategy) :
     Relation(problem, strategy)
 {}
@@ -21,6 +25,10 @@ Swap::Swap(const Swap& orig) :
 
 Swap::~Swap() {
 }
+
+/////////////////////////
+// Implemented Methods //
+/////////////////////////
 
 Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     int dimension = problem.getDimension();

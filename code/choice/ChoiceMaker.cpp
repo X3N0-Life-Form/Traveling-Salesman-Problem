@@ -13,6 +13,10 @@ extern std::random_device randomDevice;
 
 const double ChoiceMaker::ALPHA = 0.99;
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 ChoiceMaker::ChoiceMaker(IntervalManager* manager) :
         manager(manager),
         masterProbability(1)
@@ -26,6 +30,10 @@ ChoiceMaker::ChoiceMaker(const ChoiceMaker& orig) :
 ChoiceMaker::~ChoiceMaker() {
 }
 
+///////////////////////
+// Getters / Setters //
+///////////////////////
+
 void ChoiceMaker::setManager(IntervalManager* manager) {
     this->manager = manager;
 }
@@ -33,6 +41,10 @@ void ChoiceMaker::setManager(IntervalManager* manager) {
 void ChoiceMaker::setHook(Hookable* hook) {
     this->hook = hook;
 }
+
+///////////////////
+// Other Methods //
+///////////////////
 
 bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
     Interval* interval = manager->getInterval(pair);

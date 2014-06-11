@@ -11,6 +11,10 @@
 
 int IntervalManager::INTERVAL_STEP = 4;
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
         relation(relation),
@@ -28,6 +32,10 @@ IntervalManager::IntervalManager(const IntervalManager& orig) :
 
 IntervalManager::~IntervalManager() {
 }
+
+////////////////////////////////
+// Getters / Setters / Adders //
+////////////////////////////////
 
 const std::list<Interval*>& IntervalManager::getIntervals() const {
     return intervals;
@@ -54,7 +62,7 @@ int IntervalManager::getDimension() const {
 }
 
 ///////////////////
-// other methods //
+// Other Methods //
 ///////////////////
 
 void IntervalManager::prepareIntervals(int dimension, IntervalType type) {
@@ -143,6 +151,10 @@ std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
     
     return out;
 }
+
+///////////////
+// Operators //
+///////////////
 
 std::ostream& operator<<(std::ostream& out, const IntervalManager& manager) {
     out << "IntervalManager: " << manager.getRelation()->getType()

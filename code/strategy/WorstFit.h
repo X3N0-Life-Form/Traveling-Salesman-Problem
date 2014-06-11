@@ -13,10 +13,11 @@
 
 class WorstFit : public Strategy {
 public:
+    // Constructors / Destructor
     WorstFit(int dimension, int initialCost = INT_MAX);
     WorstFit(const WorstFit& orig);
     virtual ~WorstFit();
-    // implemented methods
+    // Implemented Methods
     virtual bool applyStrategy(int* nuPath, int nuCost, int counter = 0,
             std::pair<int, int> pair = std::make_pair(-1, -1));
     virtual std::string getType() const;

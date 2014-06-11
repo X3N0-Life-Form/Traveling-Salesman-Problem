@@ -20,6 +20,7 @@ private:
     //
     double masterProbability;
 public:
+    // Constructors / Destructor
     ChoiceMaker(IntervalManager* manager);
     ChoiceMaker(const ChoiceMaker& orig);
     /**
@@ -29,7 +30,7 @@ public:
     // Getters / Setters
     void setManager(IntervalManager* manager);
     virtual void setHook(Hookable* hook);
-    // other methods
+    // Other Methods
     virtual bool processPair(std::pair<int, int>& pair);
     virtual void updateHook(bool accepted);
 };

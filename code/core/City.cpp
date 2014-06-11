@@ -1,5 +1,9 @@
 #include "City.h"
 
+//////////////////////////////
+// Construtors / Destructor //
+//////////////////////////////
+
 City::City(const City& orig) :
         id(orig.id),
         x_i(orig.x_i), x_f(orig.x_f),
@@ -17,6 +21,10 @@ City::City(int id, float x, float y) :
         x_f(x),
         y_f(y)
 {}
+
+///////////////////////
+// Getters / Setters //
+///////////////////////
 
 const int City::getId() {
     return id;
@@ -37,6 +45,10 @@ const int City::getXI() {
 const int City::getYI() {
     return y_i;
 }
+
+///////////////
+// Operators //
+///////////////
 
 bool operator <(City& left, City& right) {
     return left.getId() < right.getId();

@@ -21,16 +21,17 @@ protected:
     bool noNeighborhoodCutoff;
     Hookable* hook;
 public:
+    // Constructors / Destructor
     Relation(Problem& problem, Strategy* strategy);
     Relation(const Relation& orig);
     /**
      * Does NOT delete the Strategy pointer.
      */
     virtual ~Relation();
-    // abstract methods
+    // Abstract Methods
     virtual Neighborhood* applyRelation(const Neighborhood& n, bool randomPick = true) = 0;
     virtual std::string getType() const = 0;
-    // common methods
+    // Common Methods
     void pairAndShuffle(PairingMode mode);
     Neighborhood* useThisPath(const Neighborhood& n, int* nuPath = NULL);
     std::pair<int, int> getPair(int index, bool randomPick);
@@ -41,7 +42,7 @@ public:
     void setStrategy(Strategy* s);
     void setIsFirstLoop(bool isFirstLoop);
     void setNoNeighborhoodCutoff(bool cutoff);
-    // Hookable methods
+    // Hookable Methods
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);
     virtual void updateHook(bool accepted);

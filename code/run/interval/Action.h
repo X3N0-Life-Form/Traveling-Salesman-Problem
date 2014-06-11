@@ -16,10 +16,11 @@ private:
     std::pair<int, int> pair;
     int costDiff;
 public:
+    // Constructors / Destructors
     Action(std::pair<int, int> pair, int costDiff);
     Action(const Action& orig);
     virtual ~Action();
-    // Getters/Setters
+    // Getters / Setters
     int getCostDiff() const;
     const std::pair<int, int>& getPair() const;
 };

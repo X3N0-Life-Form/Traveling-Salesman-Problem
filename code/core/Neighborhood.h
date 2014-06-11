@@ -20,16 +20,11 @@ private:
     int* path;
     int cost;
 public:
+    // Constructors / Destructor
     Neighborhood(Problem& problem);
     Neighborhood(const Neighborhood& orig);
     virtual ~Neighborhood();
     Neighborhood& operator=(const Neighborhood& right);
-    // other methods
-    void generateRandomNeighborhood();
-    int calculateCost();
-    int calculatePotentialCostSwap(int index1, int index2) const;
-    int calculatePotentialCostInsert(int origin, int target) const;
-    int calculatePotentialCostReverse(int left, int right) const;
     // Getters / Setters
     int* getPath() const;
     void setPath(int* path);
@@ -38,9 +33,15 @@ public:
     int getDimension() const;
     Problem& getProblem() const;
     void setProblem(Problem& problem);
-    
+    // Other Methods
+    void generateRandomNeighborhood();
+    int calculateCost();
+    int calculatePotentialCostSwap(int index1, int index2) const;
+    int calculatePotentialCostInsert(int origin, int target) const;
+    int calculatePotentialCostReverse(int left, int right) const;
 };
 
+// Operators
 std::ostream& operator<<(std::ostream& out, Neighborhood& n);
 bool operator==(const Neighborhood& left, const Neighborhood& right);
 bool operator!=(const Neighborhood& left, const Neighborhood& right);

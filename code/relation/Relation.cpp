@@ -14,6 +14,10 @@
 
 extern bool main_quietMode;
 
+///////////////////////////////
+// Constructors / Destructor //
+///////////////////////////////
+
 Relation::Relation(Problem& problem, Strategy* strategy) :
         problem(problem),
         strategy(strategy),
@@ -31,6 +35,10 @@ Relation::Relation(const Relation& orig) :
 Relation::~Relation() {
     delete(pairs);
 }
+
+////////////////////
+// Common Methods //
+////////////////////
 
 void Relation::pairAndShuffle(PairingMode mode) {
     if (pairs != NULL) {
@@ -88,6 +96,10 @@ void Relation::printLoopStatus(int count) {
     }
 }
 
+/////////////////////
+// Getters/Setters //
+/////////////////////
+
 Strategy* Relation::getStrategy() const {
     return strategy;
 }
@@ -103,6 +115,10 @@ void Relation::setIsFirstLoop(bool isFirstLoop) {
 void Relation::setNoNeighborhoodCutoff(bool cutoff) {
     this->noNeighborhoodCutoff = cutoff;
 }
+
+//////////////////////
+// Hookable Methods //
+//////////////////////
 
 void Relation::setHook(Hookable* hook) {
     this->hook = hook;
