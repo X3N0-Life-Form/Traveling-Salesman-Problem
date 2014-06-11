@@ -6,6 +6,7 @@
  */
 
 #include <cstdlib>
+#include <random>
 
 #include "parse/tspParser.h"
 #include "core/Problem.h"
@@ -31,6 +32,7 @@ using namespace std;
             }
 
 bool SILENT = false;
+std::random_device randomDevice;
 
 Runner* main_runner;
 Problem* main_problem;

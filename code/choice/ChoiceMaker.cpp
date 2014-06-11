@@ -7,6 +7,10 @@
 
 #include "ChoiceMaker.h"
 
+#include <random>
+
+extern std::random_device randomDevice;
+
 const double ChoiceMaker::ALPHA = 0.99;
 
 ChoiceMaker::ChoiceMaker(IntervalManager* manager) :
@@ -34,8 +38,18 @@ bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
     Interval* interval = manager->getInterval(pair);
     int count = interval->getActions().size();
     
-    
-    
+    if (count == 0) {
+        return true;
+    } else {
+        double probability = masterProbability - (count/manager->getDimension());
+        double roll = randomDevice();
+        if (roll > probability) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // Note: should never arrive there
     return false;
 }
 

@@ -22,6 +22,8 @@ const std::string path_burma14 = "data/burma14.tsp";
 void insert(int* target_array, int* source_array, int size, int origin, int target);
 void reverse(int* target_array, int*source_array, int size, int left, int right);
 
+int getPairDistance(const std::pair<int, int>& pair, int dimension);
+
 #define ARRAY_PRINT(target, length) for (int i=0; i<length; i++) {std::cout<<target[i]<<" ";}
 #define PRINTLN(line) if (!SILENT) std::cout << "\n" << line; std::cout.flush();
 

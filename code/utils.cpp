@@ -66,3 +66,12 @@ void reverse(int* target_array, int*source_array, int size, int left, int right)
         }
     }
 }
+
+int getPairDistance(const std::pair<int, int>& pair, int dimension) {
+    int distance = pair.second - pair.first;
+    // if we go all the way around
+    if (distance < 0) {
+        distance = dimension - pair.second + pair.first;
+    }
+    return distance;
+}

@@ -49,6 +49,14 @@ void IntervalManager::setStrategy(Strategy* strategy) {
     this->strategy = strategy;
 }
 
+int IntervalManager::getDimension() const {
+    return dimension;
+}
+
+///////////////////
+// other methods //
+///////////////////
+
 void IntervalManager::prepareIntervals(int dimension, IntervalType type) {
     this->dimension = dimension;
     int min = 1;
@@ -87,12 +95,8 @@ void IntervalManager::prepareIntervals(int dimension, IntervalType type) {
 }
 
 void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
-    int distance = pair.second - pair.first;
-    // if we go all the way around
-    if (distance < 0) {
-        distance = dimension - pair.second + pair.first;
-    }
-    //PRINTLN("distance="<<distance);
+    int distance = getPairDistance(pair, dimension);
+    
     for (Interval* interval : intervals) {
         if (distance < interval->getMaxDistance()
                 && distance >= interval->getMinDistance()) {
@@ -116,11 +120,7 @@ Interval* IntervalManager::getInterval(int value) {
 }
 
 Interval* IntervalManager::getInterval(const std::pair<int, int>& pair) {
-    int distance = pair.second - pair.first;
-    // if we go all the way around
-    if (distance < 0) {
-        distance = dimension - pair.second + pair.first;
-    }
+    int distance = getPairDistance(pair, dimension);
     return getInterval(distance);
 }
 

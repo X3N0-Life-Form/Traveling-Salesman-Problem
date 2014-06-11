@@ -38,6 +38,7 @@ public:
     void setStrategy(Strategy* strategy);
     const Relation* getRelation() const;
     void setRelation(Relation* relation);
+    int getDimension() const;
     // other methods
     void prepareIntervals(int dimension, IntervalType type = DISJOINT);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
