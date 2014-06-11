@@ -40,11 +40,13 @@ public:
     const Relation* getRelation() const;
     void setRelation(Relation* relation);
     int getDimension() const;
+    // Advanced Getters
+    Interval* getInterval(int value);
+    Interval* getInterval(const std::pair<int, int>& pair);
+    int getActionCount();
     // Other Methods
     void prepareIntervals(int dimension, IntervalType type = DISJOINT);
     void memorizeAction(std::pair<int, int>& pair, int costDiff);
-    Interval* getInterval(int value);
-    Interval* getInterval(const std::pair<int, int>& pair);
     std::ostream& outputDataCSV(std::ostream& out = std::cout);
 };
 

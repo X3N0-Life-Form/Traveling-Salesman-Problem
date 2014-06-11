@@ -61,6 +61,55 @@ int IntervalManager::getDimension() const {
     return dimension;
 }
 
+//////////////////////
+// Advanced Getters //
+//////////////////////
+
+Interval* IntervalManager::getInterval(int value) {
+    for (Interval* interval : intervals) {
+        if (value < interval->getMinDistance()) {
+            continue;
+        }
+        if (value <= interval->getMaxDistance()) {
+            return interval;
+        }
+    }
+    return NULL;
+}
+
+Interval* IntervalManager::getInterval(const std::pair<int, int>& pair) {
+    int distance = getPairDistance(pair, dimension);
+    return getInterval(distance);
+}
+
+std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
+    // prefix
+    out << relation->getType() << "," << strategy->getType() << ",";
+    // either 1st line data or current data
+    if (!startedCSVOutput) {
+        startedCSVOutput = true;
+        for (Interval* interval : intervals) {
+            out << "[" << interval->getMinDistance() << ";"
+                    << interval->getMaxDistance() << "[,";
+        }
+    } else {
+        for (Interval* interval : intervals) {
+            out << interval->getActions().size() << ",";
+        }
+    }
+    out << std::endl;
+    
+    return out;
+}
+
+int IntervalManager::getActionCount() {
+    int total = 0;
+    for (Interval* interval : intervals) {
+        total += interval->getActions().size();
+    }
+    return total;
+}
+
 ///////////////////
 // Other Methods //
 ///////////////////
@@ -113,43 +162,6 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
         }
         // Note: don't break, more than one interval might qualify
     }
-}
-
-Interval* IntervalManager::getInterval(int value) {
-    for (Interval* interval : intervals) {
-        if (value < interval->getMinDistance()) {
-            continue;
-        }
-        if (value <= interval->getMaxDistance()) {
-            return interval;
-        }
-    }
-    return NULL;
-}
-
-Interval* IntervalManager::getInterval(const std::pair<int, int>& pair) {
-    int distance = getPairDistance(pair, dimension);
-    return getInterval(distance);
-}
-
-std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
-    // prefix
-    out << relation->getType() << "," << strategy->getType() << ",";
-    // either 1st line data or current data
-    if (!startedCSVOutput) {
-        startedCSVOutput = true;
-        for (Interval* interval : intervals) {
-            out << "[" << interval->getMinDistance() << ";"
-                    << interval->getMaxDistance() << "[,";
-        }
-    } else {
-        for (Interval* interval : intervals) {
-            out << interval->getActions().size() << ",";
-        }
-    }
-    out << std::endl;
-    
-    return out;
 }
 
 ///////////////

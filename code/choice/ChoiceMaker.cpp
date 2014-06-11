@@ -19,12 +19,14 @@ const double ChoiceMaker::ALPHA = 0.99;
 
 ChoiceMaker::ChoiceMaker(IntervalManager* manager) :
         manager(manager),
-        masterProbability(1)
+        hook(NULL),
+        intervalToUpdate(NULL)
 {}
 
 ChoiceMaker::ChoiceMaker(const ChoiceMaker& orig) :
         manager(orig.manager),
-        hook(orig.hook)
+        hook(orig.hook),
+        intervalToUpdate(orig.intervalToUpdate)
 {}
 
 ChoiceMaker::~ChoiceMaker() {
@@ -48,14 +50,17 @@ void ChoiceMaker::setHook(Hookable* hook) {
 
 bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
     Interval* interval = manager->getInterval(pair);
+    intervalToUpdate = interval;
     int count = interval->getActions().size();
+    int totalCount = manager->getActionCount();
     
     if (count == 0) {
         return true;
     } else {
-        double probability = masterProbability - (count/manager->getDimension());
-        double roll = randomDevice();
-        if (roll > probability) {
+        double probability = interval->getProbability()
+            - (count/totalCount) * (1 - ALPHA);
+        double roll = (randomDevice() % 100);
+        if (roll / 100 < probability) {
             return true;
         } else {
             return false;
@@ -66,8 +71,15 @@ bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
 }
 
 void ChoiceMaker::updateHook(bool accepted) {
+    if (intervalToUpdate == NULL)
+        return;
     int delta = 1;
     if (!accepted)
         delta = 0;
-    masterProbability = masterProbability * ALPHA + (1 - ALPHA) * delta;
+    double nuProbability = intervalToUpdate->getProbability();
+    
+    nuProbability = nuProbability * ALPHA + (1 - ALPHA) * delta;
+    
+    intervalToUpdate->setProbability(nuProbability);
+    intervalToUpdate = NULL;
 }

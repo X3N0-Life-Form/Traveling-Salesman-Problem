@@ -13,7 +13,8 @@
 class ChoiceMakerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(ChoiceMakerTests);
 
-    CPPUNIT_TEST(test_isPairWorthConsidering);
+    CPPUNIT_TEST(test_processPair_one);
+    CPPUNIT_TEST(test_processPair_multi);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -24,7 +25,8 @@ public:
     void tearDown();
 
 private:
-    void test_isPairWorthConsidering();
+    void test_processPair_one();
+    void test_processPair_multi();
 };
 
 #endif	/* CHOICEMAKERTESTS_H */

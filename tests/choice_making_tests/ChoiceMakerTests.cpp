@@ -46,8 +46,22 @@ void ChoiceMakerTests::setUp() {
 void ChoiceMakerTests::tearDown() {
 }
 
-void ChoiceMakerTests::test_isPairWorthConsidering() {
+void ChoiceMakerTests::test_processPair_one() {
     std::pair<int, int> pair(1, 35);
     CPPUNIT_ASSERT(choiceMaker->processPair(pair));
 }
 
+void ChoiceMakerTests::test_processPair_multi() {
+    std::pair<int, int> pair(1, 39);
+    for (int i = 0; i < 300; i++) {
+        manager->memorizeAction(pair, 1);
+        choiceMaker->processPair(pair);
+        choiceMaker->updateHook(false);
+    }
+    CPPUNIT_ASSERT(!choiceMaker->processPair(pair));
+    std::pair<int, int> pair_small(1, 2);
+    CPPUNIT_ASSERT(choiceMaker->processPair(pair_small));
+    manager->memorizeAction(pair_small, 10);
+    choiceMaker->updateHook(true);
+    CPPUNIT_ASSERT(choiceMaker->processPair(pair_small));
+}

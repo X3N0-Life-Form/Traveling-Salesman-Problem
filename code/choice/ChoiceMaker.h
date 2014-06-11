@@ -17,8 +17,7 @@ public:
 private:
     IntervalManager* manager;
     Hookable* hook;
-    //
-    double masterProbability;
+    Interval* intervalToUpdate;
 public:
     // Constructors / Destructor
     ChoiceMaker(IntervalManager* manager);
