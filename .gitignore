@@ -1,13 +1,22 @@
 build/
 dist/
+nbproject/private/*
+
+mem-check.txt
 personalLog.txt
 Report.odt
-nbproject/private/*
-.~lock.*
+report.txt
+*.log
+*.aux
+*.toc
+*.backup
+*.pdf
+
 data/results/
 callgrind.out.*
 cachegrind.out.*
-mem-check.txt
+
+.~lock.*
 *~
 
 # Compiled Object files
