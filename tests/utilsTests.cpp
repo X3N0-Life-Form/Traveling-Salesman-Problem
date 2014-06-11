@@ -202,3 +202,16 @@ void utilsTests::test_reverse_self() {
         CPPUNIT_ASSERT_EQUAL(expected[i], produced[i]);
     }
 }
+
+void utilsTests::test_getPairDistance_regular() {
+    std::pair<int, int> pair(60, 103);
+    int distance = getPairDistance(pair, 127);
+    CPPUNIT_ASSERT_EQUAL(43, distance);
+}
+
+void utilsTests::test_getPairDistance_roundTrip() {
+    std::pair<int, int> pair(103, 60);
+    int distance = getPairDistance(pair, 127);
+    CPPUNIT_ASSERT(distance < 128);
+    CPPUNIT_ASSERT_EQUAL(84, distance);
+}

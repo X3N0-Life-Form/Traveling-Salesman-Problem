@@ -71,7 +71,7 @@ int getPairDistance(const std::pair<int, int>& pair, int dimension) {
     int distance = pair.second - pair.first;
     // if we go all the way around
     if (distance < 0) {
-        distance = dimension - pair.second + pair.first;
+        distance = dimension - pair.first + pair.second;
     }
     return distance;
 }
