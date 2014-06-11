@@ -49,6 +49,10 @@ void ChoiceMaker::setHook(Hookable* hook) {
 ///////////////////
 
 bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
+    // if this is a stupid pair, abort
+    if (pair.first == pair.second)
+        return false;
+    // else, process
     Interval* interval = manager->getInterval(pair);
     intervalToUpdate = interval;
     int count = interval->getActions().size();

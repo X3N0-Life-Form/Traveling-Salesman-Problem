@@ -125,6 +125,10 @@ void Runner::addRelation(Relation& r) {
     relations.push_back(&r);
 }
 
+void Runner::setUseChoiceMaker(bool value) {
+    useChoiceMaker = true;
+}
+
 ///////////////////
 // Other Methods //
 ///////////////////

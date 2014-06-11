@@ -39,11 +39,7 @@ Problem* main_problem;
 int main_maxDepth = 1;
 bool main_noDepth = false;
 bool main_sameStartingPoint= false;
-ofstream* main_f_out = NULL;
-ofstream* main_f_out_csv = NULL;
-string main_oFileName("");
-string main_oFileNameCSV("");
-bool main_quietMode = true;
+
 bool main_doubleCheckCost = false;
 bool main_noNeighborhoodCutoff = true;
 
@@ -51,6 +47,14 @@ bool main_printIntervalData = false;
 bool main_saveIntervalData = false;
 ostream* main_intervalCSVoutput = NULL;
 IntervalType main_intervalType = DISJOINT;
+
+bool main_useChoiceMaker = false;
+
+ofstream* main_f_out = NULL;
+ofstream* main_f_out_csv = NULL;
+string main_oFileName("");
+string main_oFileNameCSV("");
+bool main_quietMode = true;
 
 enum OutputType {
     RESULT,
@@ -138,6 +142,8 @@ void printHelp() {
     PRINTLN("\t(deprecated) -noNeighborhoodCutoff\tdo not remove any value "
             << "when creating pair lists, even meaningless or redundant ones. "
             << "Note: on by default");
+    
+    PRINTLN("\t-choiceMaker\t\t\tactivate probability-based decision making");
     
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
@@ -241,6 +247,8 @@ void dealWithArgs(int argc, char** argv) {
             ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
             printHelp();
+        } else if (arg == "-choiceMaker") {
+            main_useChoiceMaker = true;
         } else {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
@@ -264,9 +272,12 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setSameStartingPoint(main_sameStartingPoint);
     main_runner->setDoubleCheckCost(main_doubleCheckCost);
     main_runner->setNoNeighborhoodCutoff(main_noNeighborhoodCutoff);
+    
     main_runner->setPrintIntervalData(main_printIntervalData);
     main_runner->setIntervalDataCSVoutput(main_intervalCSVoutput);
     main_runner->setIntervalType(main_intervalType);
+    
+    main_runner->setUseChoiceMaker(main_useChoiceMaker);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);

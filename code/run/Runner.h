@@ -75,6 +75,8 @@ public:
     std::list<Relation*> getRelations();
     void addRelation(Relation* r);
     void addRelation(Relation& r);
+    
+    void setUseChoiceMaker(bool value);
     // Other Methods
     void run();
     void clear();
