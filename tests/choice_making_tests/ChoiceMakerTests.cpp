@@ -65,3 +65,17 @@ void ChoiceMakerTests::test_processPair_multi() {
     choiceMaker->updateHook(true);
     CPPUNIT_ASSERT(choiceMaker->processPair(pair_small));
 }
+
+void ChoiceMakerTests::test_adjustProbabilities() {
+    choiceMaker->adjustProbabilities();
+    double prevProba = 0;
+    for (Interval* interval : manager->getIntervals()) {
+        double proba = interval->getProbability();
+        
+        CPPUNIT_ASSERT(prevProba < proba);
+        CPPUNIT_ASSERT(proba >= ChoiceMaker::LOWEST_STARTING_PROBABILITY);
+        CPPUNIT_ASSERT(proba <= 1.0);
+        
+        prevProba = proba;
+    }
+}

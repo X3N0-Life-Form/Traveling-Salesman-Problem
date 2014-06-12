@@ -15,6 +15,7 @@ class ChoiceMakerTests : public CPPUNIT_NS::TestFixture {
 
     CPPUNIT_TEST(test_processPair_one);
     CPPUNIT_TEST(test_processPair_multi);
+    CPPUNIT_TEST(test_adjustProbabilities);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -27,6 +28,7 @@ public:
 private:
     void test_processPair_one();
     void test_processPair_multi();
+    void test_adjustProbabilities();
 };
 
 #endif	/* CHOICEMAKERTESTS_H */

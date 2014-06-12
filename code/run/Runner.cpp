@@ -145,6 +145,7 @@ void Runner::run() {
                 choiceMaker = new ChoiceMaker(intervalManager);
                 r->setHook(choiceMaker);
                 choiceMaker->setHook(r);
+                choiceMaker->adjustProbabilities();
             }
             
             bool randomPick = true;

@@ -14,6 +14,7 @@
 class ChoiceMaker : public Hookable {
 public:
     static const double ALPHA; // = 0.99
+    static double LOWEST_STARTING_PROBABILITY; // = 0.3
 private:
     IntervalManager* manager;
     Hookable* hook;
@@ -28,10 +29,16 @@ public:
     virtual ~ChoiceMaker();
     // Getters / Setters
     void setManager(IntervalManager* manager);
+    // Implemented Methods
     virtual void setHook(Hookable* hook);
-    // Other Methods
     virtual bool processPair(std::pair<int, int>& pair);
     virtual void updateHook(bool accepted);
+    // Other Methods
+    /**
+     * Sets each interval's starting probability according to the
+     * LOWEST_STARTING_PROBABILITY static attribute, from that value to 1.0.
+     */
+    void adjustProbabilities();
 };
 
 #endif	/* CHOICEMAKER_H */
