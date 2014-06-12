@@ -1,10 +1,4 @@
 Big TODO list:
-    -implement multithreading in Runner
-    -get the regex-based parsing working
-    -add runtime stop condition
-    -efficiency tracking:
-        record it on file - done
-        save relations/strategies on separate files, makes for easier copying into recap.ods
-        analyse results
-        use it for stuff
     -fixor leaks
+    -efficiency tracking:
+        analyse results
