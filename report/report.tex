@@ -1,10 +1,11 @@
 \documentclass[a4paper,10pt]{report}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 % Title Page
 \title{Traveling Salesman Problem}
 \author{Adrien DROGUET}
-\date{2014}
+\date{Avril - Juin 2014}
 
 \pagestyle{plain}
 
@@ -15,17 +16,69 @@
 \pagebreak
 
 \section{Définitions}
+\begin{itemize}
+ \item Problème : Ensemble de villes devant être parcourues.
+ \item Voisinage : Chemin parcourant toutes les villes sans répétition. Solution au problème du voyageur de commerce.
+ \item Recherche locale : Exploration exhaustive de l'ensemble des voisins d'une solution donnée.
+ Couteux en temps d'exécution.
+ \item Relation de voisinage : Fonction permettant de passer d'un voisnage à un autre.
+ \begin{itemize}
+  \item Swap : Échange la position de deux villes dans un chemin.
+  \item Insert : Insert une ville avant une autre.
+  \item Reverse : Inverse un sous section d'un chemin.
+ \end{itemize}
+ \item Stratégie de sélection : Détermine la manière dont on choisit un voisin en recherche locale.
+ \begin{itemize}
+  \item First Fit : Choisir le premier voisin améliorant trouvé.
+  \item Best Fit : Choisir le meilleur améliorant trouvé.
+  \item Worst Fit : Choisir le moins bon améliorant trouvé.
+ \end{itemize}
+\end{itemize}
+
 
 \section{Introduction}
 
+\paragraph{} % sujet
+  Le voyageur de commerce est un problème bien connu dans le milieu informatique : pour un ensemble de villes,
+minimiser la distance requise qu'un individu doit parcourir afin de visiter chaque ville. Le but de ce projet
+est d'étudier l'efficacité de différents algorithmes et stratégies applicables à la résolution de ce problème
+en recherce locale. Suite à l'étude des résultats de ces différents algos et stratégies, le projet vise la mise
+en place de méthodes permettant d'effectuer une recherche partielle capable d'obtenir des résultats comparables
+à ceux d'une recherche locale à un coût moindre en temps de calcul.
+
+\paragraph{} % ressources utilisées
+==> source des .tsp
+
+%%%%%%%%%%%%%%%%%%%%
+% Partie Recherche %
+%%%%%%%%%%%%%%%%%%%%
+\part{Recherche}
 \chapter{Recherche locale}
 \section{Implémentation des algorithmes}
 \subsection{Relations de voisinage}
 
 \subsection{Stratégies de sélection d'un voisinage}
 
-\section{Analyse et comparaison de l'efficacité des algos}
+\subsection{Lancement}
+signaler des trucs du style utiliser le même point de départ \& autre
+parler de runner
 
+\section{Analyse et comparaison de l'efficacité des algos}
+\subsection{Enregistrement des résultats}
+
+\subsection{Efficacité constatée}
+%Résultats
+%insérer tableaux de stats à la place de la liste?
+\begin{itemize}
+ \item Swap - First Fit : 
+ \item Swap - Best Fit : 
+ \item Swap - Worst Fit : 
+ \item Insert - First Fit :
+ \item Insert - Best Fit :
+ %...
+\end{itemize}
+
+%Conclusion
 
 \chapter{Analyse d'efficacité \& espérance d'amélioration}
 \section{Enregistrement du déroulement de l'algo pas à pas}
@@ -34,14 +87,42 @@
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
+%%%%%%%%%%%%%%%%%%%%
+% Partie technique %
+%%%%%%%%%%%%%%%%%%%%
+\part{Développement}
+\chapter{Structure de l'application}
+\section{Organisation des Classes}
+\subsection{Représentation des données}
+%core
+
+\subsection{Compartimentalisation des algorithmes}
+%relation & stratégie
+
+\subsection{Exécution du programme}
+%main, parser & runner
+
+\subsection{Analyse Comportementale}
+%interval stuff
+
+\subsection{Recherche partielle}
+
+
 
 \chapter{Déroulement du projet}
 \section{Organisation}
+\subsection{Standards auto-imposés}
+
 \subsection{Gestion de version}
 
-\subsection{Compartimentalisation du code}
+\subsection{Contrôle de non-régression}
+%tests unitaires
+%retro compatibilité
 
-\subsection{Standards auto-imposés}
+\subsection{Profiling et Optimisation}
+%valgrind, callgrind & autre
+
+\subsection{Optimisation}
 
 \section{Difficultés techniques}
 
