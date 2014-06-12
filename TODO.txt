@@ -1,4 +1,11 @@
 Big TODO list:
     -fixor leaks
     -efficiency tracking:
-        analyse results
+        analyse results more
+        make proba adjustments non-linear
+        compile results and use that to establish probabilities
+            con: requires solving a problem first
+            maybe compile results based on things like size?
+        probability evolution: try toying with the probabilities of intervals
+            that aren't being chosen when updating?
+    -write report

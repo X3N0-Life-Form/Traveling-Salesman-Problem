@@ -13,6 +13,7 @@ report.txt
 *.pdf
 
 data/results/
+data/result_mashup.txt
 callgrind.out.*
 cachegrind.out.*
 
