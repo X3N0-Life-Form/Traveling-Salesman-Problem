@@ -6,6 +6,11 @@ Big TODO list:
         compile results and use that to establish probabilities
             con: requires solving a problem first
             maybe compile results based on things like size?
+            maybe don't choose pairs completely randomly?
+            classify them by interval?
         probability evolution: try toying with the probabilities of intervals
             that aren't being chosen when updating?
+        try use different relations/strategies at runtime
+            make new runner subclass?
+    -intervals: save cost diffs
     -write report
