@@ -135,6 +135,14 @@
         <itemPath>tests/run_tests/interval_tests/IntervalManagerTests.h</itemPath>
         <itemPath>tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f18"
+                     displayName="IntervalTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/run_tests/interval_tests/IntervalTests.cpp</itemPath>
+        <itemPath>tests/run_tests/interval_tests/IntervalTests.h</itemPath>
+        <itemPath>tests/run_tests/interval_tests/IntervalTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f9"
                      displayName="main tests"
                      projectFiles="true"
@@ -483,6 +491,7 @@
           <output>${TESTDIR}/TestFiles/f18</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -753,6 +762,21 @@
       <item path="tests/run_tests/interval_tests/IntervalManagerTests.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests_testrunner.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp"
@@ -1091,6 +1115,7 @@
           <output>${TESTDIR}/TestFiles/f18</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -1363,6 +1388,21 @@
       <item path="tests/run_tests/interval_tests/IntervalManagerTests.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests_testrunner.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp"
@@ -1692,6 +1732,7 @@
           <output>${TESTDIR}/TestFiles/f18</output>
           <linkerLibItems>
             <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </folder>
@@ -1964,6 +2005,21 @@
       <item path="tests/run_tests/interval_tests/IntervalManagerTests.h"
             ex="false"
             tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/run_tests/interval_tests/IntervalTests_testrunner.cpp"
+            ex="false"
+            tool="1"
             flavor2="0">
       </item>
       <item path="tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp"

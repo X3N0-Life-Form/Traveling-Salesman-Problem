@@ -71,6 +71,7 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f10 \
 	${TESTDIR}/TestFiles/f13 \
+	${TESTDIR}/TestFiles/f18 \
 	${TESTDIR}/TestFiles/f9 \
 	${TESTDIR}/TestFiles/f2 \
 	${TESTDIR}/TestFiles/f1 \
@@ -254,6 +255,10 @@ ${TESTDIR}/TestFiles/f13: ${TESTDIR}/tests/run_tests/interval_tests/IntervalMana
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f13 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
+${TESTDIR}/TestFiles/f18: ${TESTDIR}/tests/run_tests/interval_tests/IntervalTests.o ${TESTDIR}/tests/run_tests/interval_tests/IntervalTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f18 $^ ${LDLIBSOPTIONS} `cppunit-config --libs` `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f9: ${TESTDIR}/tests/mainTests.o ${TESTDIR}/tests/mainTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f9 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
@@ -377,6 +382,18 @@ ${TESTDIR}/tests/run_tests/interval_tests/intervalManagerTests_testrunner.o: tes
 	${MKDIR} -p ${TESTDIR}/tests/run_tests/interval_tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/run_tests/interval_tests/intervalManagerTests_testrunner.o tests/run_tests/interval_tests/intervalManagerTests_testrunner.cpp
+
+
+${TESTDIR}/tests/run_tests/interval_tests/IntervalTests.o: tests/run_tests/interval_tests/IntervalTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/run_tests/interval_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/run_tests/interval_tests/IntervalTests.o tests/run_tests/interval_tests/IntervalTests.cpp
+
+
+${TESTDIR}/tests/run_tests/interval_tests/IntervalTests_testrunner.o: tests/run_tests/interval_tests/IntervalTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/run_tests/interval_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/run_tests/interval_tests/IntervalTests_testrunner.o tests/run_tests/interval_tests/IntervalTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/mainTests.o: tests/mainTests.cpp 
@@ -809,6 +826,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f10 || true; \
 	    ${TESTDIR}/TestFiles/f13 || true; \
+	    ${TESTDIR}/TestFiles/f18 || true; \
 	    ${TESTDIR}/TestFiles/f9 || true; \
 	    ${TESTDIR}/TestFiles/f2 || true; \
 	    ${TESTDIR}/TestFiles/f1 || true; \

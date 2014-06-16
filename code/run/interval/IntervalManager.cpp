@@ -142,6 +142,7 @@ void IntervalManager::prepareIntervals(int dimension, IntervalType type) {
             PRINTLN("IntervalManager: new Interval: [" << min << "; "
                 << max << "[");
             Interval* interval = new Interval(min, max);
+            interval->setDimension(dimension);
             intervals.push_back(interval);
             prev = interval;
         }

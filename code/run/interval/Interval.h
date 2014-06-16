@@ -18,6 +18,7 @@ private:
     int maxDistance;
     std::vector<Action*> actions;
     double probability;
+    int dimension;
 public:
     // Constructors / Destructor
     Interval(int min, int max);
@@ -32,6 +33,9 @@ public:
     void addAction(Action* action);
     double getProbability() const;
     void setProbability(double probability);
+    void setDimension(int dimension);
+    // Advanced Getters
+    bool includes(const std::pair<int, int>& pair);
 };
 
 // Operators

@@ -7,6 +7,8 @@
 
 #include "Interval.h"
 
+#include "../../utils.h"
+
 ///////////////////////////////
 // Constructors / Destructor //
 ///////////////////////////////
@@ -21,7 +23,8 @@ Interval::Interval(const Interval& orig) :
         minDistance(orig.minDistance),
         maxDistance(orig.maxDistance),
         actions(orig.actions),
-        probability(orig.probability)
+        probability(orig.probability),
+        dimension(dimension)
 {}
 
 Interval::~Interval() {
@@ -62,6 +65,23 @@ double Interval::getProbability() const {
 void Interval::setProbability(double probability) {
     this->probability = probability;
 }
+
+void Interval::setDimension(int dimension) {
+    this->dimension = dimension;
+}
+
+//////////////////////
+// Advanced Getters //
+//////////////////////
+
+bool Interval::includes(const std::pair<int, int>& pair) {
+    int distance = getPairDistance(pair, dimension);
+    if (distance >= minDistance && distance < maxDistance)
+        return true;
+    else
+        return false;
+}
+
 
 ///////////////
 // Operators //
