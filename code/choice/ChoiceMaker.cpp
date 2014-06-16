@@ -43,6 +43,10 @@ void ChoiceMaker::setManager(IntervalManager* manager) {
     this->manager = manager;
 }
 
+void ChoiceMaker::setIntervalToUpdate(Interval* interval) {
+    this->intervalToUpdate = interval;
+}
+
 /////////////////////////
 // Implemented Methods //
 /////////////////////////
@@ -59,21 +63,11 @@ bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
     Interval* interval = manager->getInterval(pair);
     intervalToUpdate = interval;
     int count = interval->getActions().size();
-    int totalCount = manager->getActionCount();
     
     if (count == 0) {
         return true;
     } else {
-        double probability = interval->getProbability()
-            - (count/totalCount) * (1 - ALPHA);
-        double roll = (randomDevice() % 100);
-        if (roll / 100 < probability) {
-            //PRINTLN("Accepted!"<<probability<<"; "<<*interval);
-            return true;
-        } else {
-            //PRINTLN("Refused!"<<probability<<"; "<<*interval);
-            return false;
-        }
+        return maybeChooseThisInterval(interval);
     }
     // Note: should never arrive there
     return false;
@@ -104,5 +98,21 @@ void ChoiceMaker::adjustProbabilities() {
     for (Interval* interval : manager->getIntervals()) {
         interval->setProbability(currentStartingProbability);
         currentStartingProbability += step;
+    }
+}
+
+bool ChoiceMaker::maybeChooseThisInterval(Interval* interval) {
+    int count = interval->getActions().size();
+    int totalCount = manager->getActionCount();
+    
+    double probability = interval->getProbability()
+        - (count/totalCount) * (1 - ALPHA);
+    double roll = (randomDevice() % 100);
+    if (roll / 100 < probability) {
+        //PRINTLN("Accepted!"<<probability<<"; "<<*interval);
+        return true;
+    } else {
+        //PRINTLN("Refused!"<<probability<<"; "<<*interval);
+        return false;
     }
 }

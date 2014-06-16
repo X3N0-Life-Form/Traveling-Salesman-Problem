@@ -29,6 +29,7 @@ public:
     virtual ~ChoiceMaker();
     // Getters / Setters
     void setManager(IntervalManager* manager);
+    void setIntervalToUpdate(Interval* interval);
     // Implemented Methods
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);
@@ -39,6 +40,13 @@ public:
      * LOWEST_STARTING_PROBABILITY static attribute, from that value to 1.0.
      */
     void adjustProbabilities();
+    /**
+     * Performs a probability roll to determine whether to choose this Interval.
+     * Note: Does NOT set intervalToUpdate if accepted.
+     * @param interval
+     * @return true if the specified Interval passed the roll.
+     */
+    bool maybeChooseThisInterval(Interval* interval);
 };
 
 #endif	/* CHOICEMAKER_H */
