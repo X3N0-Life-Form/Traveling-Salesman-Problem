@@ -15,3 +15,4 @@ Big TODO list:
     -intervals: save cost diffs
     -write report
     -see about reducing the number of pair copies
+    -change some of the cmd line defaults to prune the line a bit

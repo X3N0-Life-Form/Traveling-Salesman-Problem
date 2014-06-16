@@ -78,6 +78,7 @@ public:
     void addRelation(Relation& r);
     
     void setUseChoiceMaker(bool value);
+    void setUseChoicePicker(bool value);
     // Other Methods
     void run();
     void clear();

@@ -129,7 +129,11 @@ void Runner::addRelation(Relation& r) {
 }
 
 void Runner::setUseChoiceMaker(bool value) {
-    useChoiceMaker = true;
+    useChoiceMaker = value;
+}
+
+void Runner::setUseChoicePicker(bool value) {
+    useChoicePicker = value;
 }
 
 ///////////////////

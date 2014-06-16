@@ -49,6 +49,7 @@ ostream* main_intervalCSVoutput = NULL;
 IntervalType main_intervalType = DISJOINT;
 
 bool main_useChoiceMaker = false;
+bool main_useChoicePicker = false;
 
 ofstream* main_f_out = NULL;
 ofstream* main_f_out_csv = NULL;
@@ -144,6 +145,8 @@ void printHelp() {
             << "Note: on by default");
     
     PRINTLN("\t-choiceMaker\t\t\tactivate probability-based decision making");
+    PRINTLN("\t-choicePicker\t\t\tactivate the more advanced picker system; "
+            << "this overrides any choiceMaker option.");
     
     PRINTLN("\t-o [file path]\t\t\tspecifies an output file");
     PRINTLN("\t-o auto\t\t\t\tlet the application name the output file");
@@ -247,8 +250,11 @@ void dealWithArgs(int argc, char** argv) {
             ARG_CHECK(main_oFileName = string(argv[i]), "output file name");
         } else if (arg == "-help") {
             printHelp();
-        } else if (arg == "-choiceMaker") {
+        } else if (arg == "-choiceMaker" && !main_useChoicePicker) {
             main_useChoiceMaker = true;
+        } else if (arg == "-choicePicker") {
+            main_useChoicePicker = true;
+            main_useChoiceMaker = false;
         } else {
             PRINTLN("Unrecognised argument: " << argv[i]);
         }
@@ -278,6 +284,7 @@ void dealWithArgs(int argc, char** argv) {
     main_runner->setIntervalType(main_intervalType);
     
     main_runner->setUseChoiceMaker(main_useChoiceMaker);
+    main_runner->setUseChoicePicker(main_useChoicePicker);
     // Now that we should have all the data we need, actually create & add these
     for (string s_type : s_list) {
         Strategy* s = createStrategy(s_type);
