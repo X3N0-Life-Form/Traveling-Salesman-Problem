@@ -31,8 +31,16 @@ ChoiceContainer::~ChoiceContainer() {
 // Getters / Setters / Adders //
 ////////////////////////////////
 
+unsigned int ChoiceContainer::size() {
+    return pairs.size();
+}
+
 int ChoiceContainer::getIndex() {
     return index;
+}
+
+Interval* ChoiceContainer::getInterval() {
+    return interval;
 }
 
 void ChoiceContainer::addPair(std::pair<int, int>& pair) {

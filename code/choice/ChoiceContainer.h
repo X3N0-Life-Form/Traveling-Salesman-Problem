@@ -26,7 +26,9 @@ public:
      */
     virtual ~ChoiceContainer();
     // Getters / Setters / Adders
+    unsigned int size();
     int getIndex();
+    Interval* getInterval();
     void addPair(std::pair<int, int>& pair);
     // Advanced Getters
     std::pair<int, int>& getNextPair();

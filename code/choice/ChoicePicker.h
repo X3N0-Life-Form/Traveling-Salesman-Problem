@@ -30,7 +30,8 @@ public:
     // Advanced Getters
     std::pair<int, int>& getPair();
     // Other Methods
-    void prepareContainers();
+    ChoiceContainer* selectContainer(std::pair<int, int>& pair);
+    void prepareContainers(std::vector<std::pair<int, int> >& pairs);
 };
 
 #endif	/* CHOICEPICKER_H */
