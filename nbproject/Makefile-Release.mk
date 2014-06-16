@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/code/choice/ChoiceContainer.o \
 	${OBJECTDIR}/code/choice/ChoiceMaker.o \
+	${OBJECTDIR}/code/choice/ChoicePicker.o \
 	${OBJECTDIR}/code/core/City.o \
 	${OBJECTDIR}/code/core/Neighborhood.o \
 	${OBJECTDIR}/code/core/Problem.o \
@@ -63,7 +65,9 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 # Test Files
 TESTFILES= \
 	${TESTDIR}/TestFiles/f6 \
+	${TESTDIR}/TestFiles/f16 \
 	${TESTDIR}/TestFiles/f15 \
+	${TESTDIR}/TestFiles/f17 \
 	${TESTDIR}/TestFiles/f5 \
 	${TESTDIR}/TestFiles/f10 \
 	${TESTDIR}/TestFiles/f13 \
@@ -79,11 +83,11 @@ TESTFILES= \
 	${TESTDIR}/TestFiles/f7
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=`cppunit-config --cflags` 
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=`cppunit-config --cflags` 
+CXXFLAGS=`cppunit-config --cflags` 
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -92,20 +96,30 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=`cppunit-config --libs` `cppunit-config --libs`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${TESTDIR}/TestFiles/f16
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem ${OBJECTFILES} ${LDLIBSOPTIONS}
+${TESTDIR}/TestFiles/f16: ${OBJECTFILES}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc} -o ${TESTDIR}/TestFiles/f16 ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/code/choice/ChoiceContainer.o: code/choice/ChoiceContainer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceContainer.o code/choice/ChoiceContainer.cpp
 
 ${OBJECTDIR}/code/choice/ChoiceMaker.o: code/choice/ChoiceMaker.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/choice
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceMaker.o code/choice/ChoiceMaker.cpp
+
+${OBJECTDIR}/code/choice/ChoicePicker.o: code/choice/ChoicePicker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoicePicker.o code/choice/ChoicePicker.cpp
 
 ${OBJECTDIR}/code/core/City.o: code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
@@ -216,9 +230,17 @@ ${TESTDIR}/TestFiles/f6: ${TESTDIR}/tests/strategy_tests/bestFitTests.o ${TESTDI
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f6 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
+${TESTDIR}/TestFiles/f16: ${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests.o ${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f16 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
 ${TESTDIR}/TestFiles/f15: ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests.o ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f15 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
+
+${TESTDIR}/TestFiles/f17: ${TESTDIR}/tests/choice_making_tests/ChoicePickerTests.o ${TESTDIR}/tests/choice_making_tests/ChoicePickerTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
+	${MKDIR} -p ${TESTDIR}/TestFiles
+	${LINK.cc}   -o ${TESTDIR}/TestFiles/f17 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   
 
 ${TESTDIR}/TestFiles/f5: ${TESTDIR}/tests/strategy_tests/firstFitTests.o ${TESTDIR}/tests/strategy_tests/firstFitTests_testrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
@@ -285,6 +307,18 @@ ${TESTDIR}/tests/strategy_tests/bestFitTests_testrunner.o: tests/strategy_tests/
 	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy_tests/bestFitTests_testrunner.o tests/strategy_tests/bestFitTests_testrunner.cpp
 
 
+${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests.o: tests/choice_making_tests/ChoiceContainerTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests.o tests/choice_making_tests/ChoiceContainerTests.cpp
+
+
+${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests_testrunner.o: tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoiceContainerTests_testrunner.o tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp
+
+
 ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests.o: tests/choice_making_tests/ChoiceMakerTests.cpp 
 	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
 	${RM} "$@.d"
@@ -295,6 +329,18 @@ ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o: tests/choice
 	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoiceMakerTests_testrunner.o tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp
+
+
+${TESTDIR}/tests/choice_making_tests/ChoicePickerTests.o: tests/choice_making_tests/ChoicePickerTests.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoicePickerTests.o tests/choice_making_tests/ChoicePickerTests.cpp
+
+
+${TESTDIR}/tests/choice_making_tests/ChoicePickerTests_testrunner.o: tests/choice_making_tests/ChoicePickerTests_testrunner.cpp 
+	${MKDIR} -p ${TESTDIR}/tests/choice_making_tests
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/choice_making_tests/ChoicePickerTests_testrunner.o tests/choice_making_tests/ChoicePickerTests_testrunner.cpp
 
 
 ${TESTDIR}/tests/strategy_tests/firstFitTests.o: tests/strategy_tests/firstFitTests.cpp 
@@ -453,6 +499,19 @@ ${TESTDIR}/tests/strategy_tests/worstFitTests_testrunner.o: tests/strategy_tests
 	$(COMPILE.cc) -O2 -std=c++11 `cppunit-config --cflags` -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/strategy_tests/worstFitTests_testrunner.o tests/strategy_tests/worstFitTests_testrunner.cpp
 
 
+${OBJECTDIR}/code/choice/ChoiceContainer_nomain.o: ${OBJECTDIR}/code/choice/ChoiceContainer.o code/choice/ChoiceContainer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/choice/ChoiceContainer.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceContainer_nomain.o code/choice/ChoiceContainer.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/choice/ChoiceContainer.o ${OBJECTDIR}/code/choice/ChoiceContainer_nomain.o;\
+	fi
+
 ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o: ${OBJECTDIR}/code/choice/ChoiceMaker.o code/choice/ChoiceMaker.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/choice
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/choice/ChoiceMaker.o`; \
@@ -464,6 +523,19 @@ ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o: ${OBJECTDIR}/code/choice/ChoiceMa
 	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o code/choice/ChoiceMaker.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/choice/ChoiceMaker.o ${OBJECTDIR}/code/choice/ChoiceMaker_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/choice/ChoicePicker_nomain.o: ${OBJECTDIR}/code/choice/ChoicePicker.o code/choice/ChoicePicker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/choice/ChoicePicker.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -O2 -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoicePicker_nomain.o code/choice/ChoicePicker.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/choice/ChoicePicker.o ${OBJECTDIR}/code/choice/ChoicePicker_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/core/City_nomain.o: ${OBJECTDIR}/code/core/City.o code/core/City.cpp 
@@ -731,7 +803,9 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 	@if [ "${TEST}" = "" ]; \
 	then  \
 	    ${TESTDIR}/TestFiles/f6 || true; \
+	    ${TESTDIR}/TestFiles/f16 || true; \
 	    ${TESTDIR}/TestFiles/f15 || true; \
+	    ${TESTDIR}/TestFiles/f17 || true; \
 	    ${TESTDIR}/TestFiles/f5 || true; \
 	    ${TESTDIR}/TestFiles/f10 || true; \
 	    ${TESTDIR}/TestFiles/f13 || true; \
@@ -752,7 +826,7 @@ ${OBJECTDIR}/code/utils_nomain.o: ${OBJECTDIR}/code/utils.o code/utils.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/traveling_salesman_problem
+	${RM} ${TESTDIR}/TestFiles/f16
 
 # Subprojects
 .clean-subprojects:

@@ -40,6 +40,8 @@
         <itemPath>code/strategy/WorstFit.h</itemPath>
         <itemPath>code/strategy/strategies.h</itemPath>
       </logicalFolder>
+      <itemPath>code/choice/ChoiceContainer.h</itemPath>
+      <itemPath>code/choice/ChoicePicker.h</itemPath>
       <itemPath>code/utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -51,7 +53,9 @@
                    projectFiles="true">
       <itemPath>code/run/interval/Action.cpp</itemPath>
       <itemPath>code/strategy/BestFit.cpp</itemPath>
+      <itemPath>code/choice/ChoiceContainer.cpp</itemPath>
       <itemPath>code/choice/ChoiceMaker.cpp</itemPath>
+      <itemPath>code/choice/ChoicePicker.cpp</itemPath>
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/strategy/FirstFit.cpp</itemPath>
       <itemPath>code/hook/Hookable.cpp</itemPath>
@@ -83,6 +87,14 @@
         <itemPath>tests/strategy_tests/bestFitTests.h</itemPath>
         <itemPath>tests/strategy_tests/bestFitTests_testrunner.cpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f16"
+                     displayName="ChoiceContainerTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/choice_making_tests/ChoiceContainerTests.cpp</itemPath>
+        <itemPath>tests/choice_making_tests/ChoiceContainerTests.h</itemPath>
+        <itemPath>tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="f15"
                      displayName="ChoiceMakerTests"
                      projectFiles="true"
@@ -90,6 +102,14 @@
         <itemPath>tests/choice_making_tests/ChoiceMakerTests.cpp</itemPath>
         <itemPath>tests/choice_making_tests/ChoiceMakerTests.h</itemPath>
         <itemPath>tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f17"
+                     displayName="ChoicePickerTests"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/choice_making_tests/ChoicePickerTests.cpp</itemPath>
+        <itemPath>tests/choice_making_tests/ChoicePickerTests.h</itemPath>
+        <itemPath>tests/choice_making_tests/ChoicePickerTests_testrunner.cpp</itemPath>
       </logicalFolder>
       <logicalFolder name="f5"
                      displayName="firstFitTests"
@@ -215,18 +235,29 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
         <ccTool>
           <standard>8</standard>
-          <commandLine>-O3</commandLine>
+          <commandLine>`cppunit-config --cflags`</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/choice/ChoiceContainer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceContainer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/choice/ChoiceMaker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/choice/ChoiceMaker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -413,6 +444,48 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f16">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f16</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f17">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f17</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f18">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f18</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -527,6 +600,21 @@
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests.cpp"
             ex="false"
             tool="1"
@@ -538,6 +626,21 @@
             flavor2="0">
       </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -727,10 +830,12 @@
       <compileType>
         <cTool>
           <developmentMode>5</developmentMode>
+          <commandLine>`cppunit-config --cflags`</commandLine>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
           <standard>8</standard>
+          <commandLine>`cppunit-config --cflags`</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -738,14 +843,29 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f16</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/choice/ChoiceContainer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceContainer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/choice/ChoiceMaker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/choice/ChoiceMaker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -932,6 +1052,48 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f16">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f16</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f17">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f17</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f18">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f18</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -1046,6 +1208,21 @@
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests.cpp"
             ex="false"
             tool="1"
@@ -1057,6 +1234,21 @@
             flavor2="0">
       </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1246,17 +1438,35 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
         <ccTool>
           <standard>8</standard>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+          <commandLine>`cppunit-config --cflags`</commandLine>
         </ccTool>
       </compileType>
       <item path="TODO.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cleanStuff.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/choice/ChoiceContainer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceContainer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/choice/ChoiceMaker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/choice/ChoiceMaker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1443,6 +1653,48 @@
           </linkerLibItems>
         </linkerTool>
       </folder>
+      <folder path="TestFiles/f16">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f16</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f17">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f17</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <folder path="TestFiles/f18">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f18</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <folder path="TestFiles/f2">
         <cTool>
           <commandLine>`cppunit-config --cflags`</commandLine>
@@ -1557,6 +1809,21 @@
       </folder>
       <item path="launch.sh" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoiceContainerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests.cpp"
             ex="false"
             tool="1"
@@ -1568,6 +1835,21 @@
             flavor2="0">
       </item>
       <item path="tests/choice_making_tests/ChoiceMakerTests_testrunner.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="tests/choice_making_tests/ChoicePickerTests_testrunner.cpp"
             ex="false"
             tool="1"
             flavor2="0">

@@ -16,9 +16,9 @@ CND_PACKAGE_NAME_Debug=travelingsalesmanproblem.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/travelingsalesmanproblem.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=traveling_salesman_problem
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/traveling_salesman_problem
+CND_ARTIFACT_DIR_Release=build/Release/GNU-Linux-x86/tests/TestFiles
+CND_ARTIFACT_NAME_Release=f16
+CND_ARTIFACT_PATH_Release=build/Release/GNU-Linux-x86/tests/TestFiles/f16
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Release=travelingsalesmanproblem.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/travelingsalesmanproblem.tar
