@@ -33,6 +33,7 @@ private:
     bool noNeighborhoodCutoff;
     
     bool useChoiceMaker;
+    bool useChoicePicker;
     
     bool printIntervalData;
     std::ostream* intervalDataCSVoutput;

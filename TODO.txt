@@ -14,3 +14,4 @@ Big TODO list:
             make new runner subclass?
     -intervals: save cost diffs
     -write report
+    -see about reducing the number of pair copies

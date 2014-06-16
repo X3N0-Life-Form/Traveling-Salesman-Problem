@@ -11,6 +11,7 @@
 #include "../core/Neighborhood.h"
 #include "../strategy/Strategy.h"
 #include "../hook/Hookable.h"
+#include "../hook/Picker.h"
 
 class Relation : public Hookable {
 protected:
@@ -20,12 +21,13 @@ protected:
     std::vector<std::pair<int, int> >* pairs;
     bool noNeighborhoodCutoff;
     Hookable* hook;
+    Picker* picker;
 public:
     // Constructors / Destructor
     Relation(Problem& problem, Strategy* strategy);
     Relation(const Relation& orig);
     /**
-     * Does NOT delete the Strategy pointer.
+     * Does NOT delete the Strategy pointer, nor any hook or picker.
      */
     virtual ~Relation();
     // Abstract Methods
@@ -42,6 +44,7 @@ public:
     void setStrategy(Strategy* s);
     void setIsFirstLoop(bool isFirstLoop);
     void setNoNeighborhoodCutoff(bool cutoff);
+    void setPicker(Picker* picker);
     // Hookable Methods
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);

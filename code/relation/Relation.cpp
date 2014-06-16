@@ -22,14 +22,16 @@ Relation::Relation(Problem& problem, Strategy* strategy) :
         problem(problem),
         strategy(strategy),
         pairs(NULL),
-        hook(NULL)
+        hook(NULL),
+        picker(NULL)
 {}
 
 Relation::Relation(const Relation& orig) :
         problem(orig.problem),
         strategy(orig.strategy),
         pairs(orig.pairs),
-        hook(orig.hook)
+        hook(orig.hook),
+        picker(orig.picker)
 {}
 
 Relation::~Relation() {
@@ -68,7 +70,9 @@ Neighborhood* Relation::useThisPath(const Neighborhood& n, int* nuPath) {
 
 std::pair<int, int> Relation::getPair(int index, bool randomPick) {
     std::pair<int, int> randomPair;
-    if (randomPick && index < pairs->size() - 1) {
+    if (picker != NULL) {
+        return picker->getPair();
+    } else if (randomPick && index < pairs->size() - 1) {
         // turns out this section of code takes a humongus buttload of time
         //std::random_device rd;
         //int randomIndex = rd() % (pairs.size() - index - 1);
@@ -114,6 +118,10 @@ void Relation::setIsFirstLoop(bool isFirstLoop) {
 
 void Relation::setNoNeighborhoodCutoff(bool cutoff) {
     this->noNeighborhoodCutoff = cutoff;
+}
+
+void Relation::setPicker(Picker* picker) {
+    this->picker = picker;
 }
 
 //////////////////////

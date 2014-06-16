@@ -10,6 +10,7 @@
 #include <chrono>
 
 #include "../choice/ChoiceMaker.h"
+#include "../choice/ChoicePicker.h"
 
 extern bool main_quietMode;
 
@@ -25,7 +26,8 @@ Runner::Runner(Problem& problem, int maxDepth) :
         noNeighborhoodCutoff(false),
         printIntervalData(true),
         intervalType(DISJOINT),
-        useChoiceMaker(false)
+        useChoiceMaker(false),
+        useChoicePicker(false)
 {
     startingPoint = new StartingPoint();
     startingPoint->cost = -1;
@@ -44,6 +46,7 @@ Runner::Runner(const Runner& orig) :
         doubleCheckCost(orig.doubleCheckCost),
         noNeighborhoodCutoff(orig.noNeighborhoodCutoff),
         useChoiceMaker(orig.useChoiceMaker),
+        useChoicePicker(orig.useChoicePicker),
         printIntervalData(orig.printIntervalData),
         intervalManagers(orig.intervalManagers),
         intervalType(orig.intervalType)
@@ -141,7 +144,14 @@ void Runner::run() {
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension(), intervalType);
             ChoiceMaker* choiceMaker;
-            if (useChoiceMaker) {
+            ChoicePicker* choicePicker;
+            
+            if (useChoicePicker) {
+                choicePicker = new ChoicePicker(intervalManager);
+                r->setPicker(choicePicker);
+                r->setHook(choicePicker);
+                choicePicker->setHook(r);
+            } else if (useChoiceMaker) {
                 choiceMaker = new ChoiceMaker(intervalManager);
                 r->setHook(choiceMaker);
                 choiceMaker->setHook(r);

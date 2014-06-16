@@ -48,7 +48,8 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
         int right = randomPair.second;
         
         // Hook: is this pair worth considering
-        if (hook != NULL && !hook->processPair(randomPair)) {
+        // Note: only if we don't have a picker
+        if (picker == NULL && hook != NULL && !hook->processPair(randomPair)) {
             continue;
         }
         
