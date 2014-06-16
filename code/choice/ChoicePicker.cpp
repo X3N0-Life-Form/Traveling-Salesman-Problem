@@ -15,14 +15,20 @@
 
 ChoicePicker::ChoicePicker(IntervalManager* manager) :
         manager(manager)
-{}
+{
+    choiceMaker = new ChoiceMaker(manager);
+    choiceMaker->adjustProbabilities();
+}
 
 ChoicePicker::ChoicePicker(const ChoicePicker& orig) :
         manager(orig.manager),
-        containers(orig.containers)
+        containers(orig.containers),
+        hook(orig.hook),
+        choiceMaker(orig.choiceMaker)
 {}
 
 ChoicePicker::~ChoicePicker() {
+    delete(choiceMaker);
 }
 
 ///////////////////////
@@ -34,13 +40,40 @@ std::vector<ChoiceContainer*>& ChoicePicker::getContainers() {
 }
 
 
-//////////////////////
-// Advanced Getters //
-//////////////////////
+//////////////////////////////////
+// Implemented Methods - Picker //
+//////////////////////////////////
 
-std::pair<int, int>& ChoicePicker::getPair() {
-
+std::pair<int, int> ChoicePicker::getPair() {
+    //note: need to think about updating intervals
+    for (ChoiceContainer* container : containers) {
+        Interval* interval = container->getInterval();
+        if (choiceMaker->maybeChooseThisInterval(interval)) {
+            choiceMaker->setIntervalToUpdate(interval);
+            return container->getNextPair();
+        }
+    }
+    // if nothing was chosen, return something that won't be processed
+    std::pair<int, int> res(1,1);
+    return res;
 }
+
+////////////////////////////////////
+// Implemented Methods - Hookable //
+////////////////////////////////////
+
+bool ChoicePicker::processPair(std::pair<int, int>& pair) {
+    throw "This hook can't process pairs.";
+}
+
+void ChoicePicker::setHook(Hookable* hook) {
+    this->hook = hook;
+}
+
+void ChoicePicker::updateHook(bool accepted) {
+    hook->updateHook(accepted);
+}
+
 
 ///////////////////
 // Other Methods //

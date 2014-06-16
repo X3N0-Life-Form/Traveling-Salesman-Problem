@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/core/Neighborhood.o \
 	${OBJECTDIR}/code/core/Problem.o \
 	${OBJECTDIR}/code/hook/Hookable.o \
+	${OBJECTDIR}/code/hook/Picker.o \
 	${OBJECTDIR}/code/main.o \
 	${OBJECTDIR}/code/parse/tspParser.o \
 	${OBJECTDIR}/code/relation/Insert.o \
@@ -141,6 +142,11 @@ ${OBJECTDIR}/code/hook/Hookable.o: code/hook/Hookable.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/hook
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hookable.o code/hook/Hookable.cpp
+
+${OBJECTDIR}/code/hook/Picker.o: code/hook/Picker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Picker.o code/hook/Picker.cpp
 
 ${OBJECTDIR}/code/main.o: code/main.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code
@@ -605,6 +611,19 @@ ${OBJECTDIR}/code/hook/Hookable_nomain.o: ${OBJECTDIR}/code/hook/Hookable.o code
 	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Hookable_nomain.o code/hook/Hookable.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/hook/Hookable.o ${OBJECTDIR}/code/hook/Hookable_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/hook/Picker_nomain.o: ${OBJECTDIR}/code/hook/Picker.o code/hook/Picker.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/hook
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/hook/Picker.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/hook/Picker_nomain.o code/hook/Picker.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/hook/Picker.o ${OBJECTDIR}/code/hook/Picker_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/main_nomain.o: ${OBJECTDIR}/code/main.o code/main.cpp 

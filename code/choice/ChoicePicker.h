@@ -12,23 +12,31 @@
 
 #include "../run/interval/IntervalManager.h"
 #include "ChoiceContainer.h"
+#include "ChoiceMaker.h"
+#include "../hook/Picker.h"
 
-class ChoicePicker {
+class ChoicePicker : public Picker {
 private:
     IntervalManager* manager;
     std::vector<ChoiceContainer*> containers;
+    Hookable* hook;
+    ChoiceMaker* choiceMaker;
 public:
     // Constructors / Destructor
     ChoicePicker(IntervalManager* manager);
     ChoicePicker(const ChoicePicker& orig);
     /**
-     * Note: doesn't delete manager.
+     * Note: doesn't delete manager, but delete its internal ChoiceMaker.
      */
     virtual ~ChoicePicker();
     // Getters / Setters
     std::vector<ChoiceContainer*>& getContainers();
-    // Advanced Getters
-    std::pair<int, int>& getPair();
+    // Implemented Methods - Picker
+    virtual std::pair<int, int> getPair();
+    // Implemented Methods - Hookable
+    virtual void setHook(Hookable* hook);
+    virtual bool processPair(std::pair<int, int>& pair);
+    virtual void updateHook(bool accepted);
     // Other Methods
     ChoiceContainer* selectContainer(std::pair<int, int>& pair);
     void prepareContainers(std::vector<std::pair<int, int> >& pairs);
