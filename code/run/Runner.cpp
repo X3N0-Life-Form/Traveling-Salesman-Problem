@@ -235,6 +235,8 @@ void Runner::run() {
             delete(intervalManager);
             if (useChoiceMaker)
                 delete(choiceMaker);
+            if (useChoicePicker)
+                delete(choicePicker);
             r->setHook(NULL);
             results.push_back(data);
         }

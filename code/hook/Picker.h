@@ -8,6 +8,8 @@
 #ifndef PICKER_H
 #define	PICKER_H
 
+#include <vector>
+
 #include "Hookable.h"
 
 class Picker : public Hookable {
@@ -18,6 +20,7 @@ public:
     virtual ~Picker();
     // Abstract Methods
     virtual std::pair<int, int> getPair() = 0;
+    virtual void prepareContainers(std::vector<std::pair<int, int> >* pairs) = 0;
 };
 
 #endif	/* PICKER_H */

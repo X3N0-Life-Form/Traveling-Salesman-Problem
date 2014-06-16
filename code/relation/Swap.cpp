@@ -39,6 +39,8 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     if (isFirstLoop) {
         pairAndShuffle(PM_SWAP);
     }
+    if (picker != NULL)
+        picker->prepareContainers(pairs);
     
     for (int i = 0; i < pairs->size(); i++) {
         printLoopStatus(i);

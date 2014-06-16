@@ -33,13 +33,13 @@ public:
     std::vector<ChoiceContainer*>& getContainers();
     // Implemented Methods - Picker
     virtual std::pair<int, int> getPair();
+    virtual void prepareContainers(std::vector<std::pair<int, int> >* pairs);
     // Implemented Methods - Hookable
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);
     virtual void updateHook(bool accepted);
     // Other Methods
     ChoiceContainer* selectContainer(std::pair<int, int>& pair);
-    void prepareContainers(std::vector<std::pair<int, int> >& pairs);
 };
 
 #endif	/* CHOICEPICKER_H */

@@ -40,6 +40,8 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
     if (isFirstLoop) {
         pairAndShuffle(PM_INSERT);
     }
+    if (picker != NULL)
+        picker->prepareContainers(pairs);
     
     for (int i = 0; i < pairs->size(); i++) {
         printLoopStatus(i);

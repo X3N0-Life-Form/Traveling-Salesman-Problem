@@ -29,11 +29,12 @@ Reverse* rev;
 ChoicePicker* picker;
 IntervalManager* manager;
 Problem* problem;
-std::vector<std::pair<int, int> > pairs;
+std::vector<std::pair<int, int> >* pairs;
 
 void ChoicePickerTests::setUp() {
     SILENT = true;
     
+    pairs = new std::vector<std::pair<int, int> >();
     problem = new Problem("prob", 40, INTEGER);
     besty = new BestFit(40, 250);
     rev = new Reverse(*problem, besty);
@@ -43,12 +44,13 @@ void ChoicePickerTests::setUp() {
     for (int i = 1; i < 40; i++) {
         for (int j = 0; j < 40; j++) {
             std::pair<int, int> pair(i, j);
-            pairs.push_back(pair);
+            pairs->push_back(pair);
         }
     }
 }
 
 void ChoicePickerTests::tearDown() {
+    delete(pairs);
 }
 
 void ChoicePickerTests::test_selectContainer() {
@@ -66,6 +68,7 @@ void ChoicePickerTests::test_prepareContainers() {
     picker->prepareContainers(pairs);
     std::vector<ChoiceContainer*> them = picker->getContainers();
     CPPUNIT_ASSERT(them.size() > 0);
+    CPPUNIT_ASSERT_EQUAL(manager->getIntervals().size(), them.size());
     for (ChoiceContainer* it : them) {
         CPPUNIT_ASSERT(it->size() > 0);
         for (int i = 0; i < it->size(); i++)  {

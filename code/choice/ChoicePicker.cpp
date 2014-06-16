@@ -58,6 +58,26 @@ std::pair<int, int> ChoicePicker::getPair() {
     return res;
 }
 
+void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >* pairs) {
+    for (Interval* interval : manager->getIntervals()) {
+        ChoiceContainer* container = new ChoiceContainer(interval);
+        containers.push_back(container);
+    }
+    
+    for (std::pair<int, int> pair : *pairs) {
+        ChoiceContainer* container = selectContainer(pair);
+        if (container != NULL) {
+            container->addPair(pair);
+        } else if (pair.first == pair.second) {
+            // Invalid pair, don't process it
+        } else {
+            PRINTLN("WARNING: ChoicePicker::selectContainer() could "
+                    << "not find a container for pair <" << pair.first
+                    << ", " << pair.second << ">");
+        }
+    }
+}
+
 ////////////////////////////////////
 // Implemented Methods - Hookable //
 ////////////////////////////////////
@@ -71,7 +91,7 @@ void ChoicePicker::setHook(Hookable* hook) {
 }
 
 void ChoicePicker::updateHook(bool accepted) {
-    hook->updateHook(accepted);
+    choiceMaker->updateHook(accepted);
 }
 
 
@@ -86,24 +106,4 @@ ChoiceContainer* ChoicePicker::selectContainer(std::pair<int, int>& pair) {
             return container;
     }
     return NULL;
-}
-
-void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >& pairs) {
-    for (Interval* interval : manager->getIntervals()) {
-        ChoiceContainer* container = new ChoiceContainer(interval);
-        containers.push_back(container);
-    }
-    
-    for (std::pair<int, int> pair : pairs) {
-        ChoiceContainer* container = selectContainer(pair);
-        if (container != NULL) {
-            container->addPair(pair);
-        } else if (pair.first == pair.second) {
-            // Invalid pair, don't process it
-        } else {
-            PRINTLN("WARNING: ChoicePicker::selectContainer() could "
-                    << "not find a container for pair <" << pair.first
-                    << ", " << pair.second << ">");
-        }
-    }
 }

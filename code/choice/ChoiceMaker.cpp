@@ -104,6 +104,10 @@ void ChoiceMaker::adjustProbabilities() {
 bool ChoiceMaker::maybeChooseThisInterval(Interval* interval) {
     int count = interval->getActions().size();
     int totalCount = manager->getActionCount();
+    // if we're empty
+    if (totalCount == 0) {
+        count = ++totalCount;
+    }
     
     double probability = interval->getProbability()
         - (count/totalCount) * (1 - ALPHA);
