@@ -27,11 +27,9 @@ void ChoiceContainerTests::setUp() {
 }
 
 void ChoiceContainerTests::tearDown() {
-    delete(container);
-    delete(interval);
 }
 
-void ChoiceContainerTests::test_getNextPair() {
+void ChoiceContainerTests::test_getNextPair_OK() {
     std::pair<int, int> pair1(1, 2), pair2(3, 4), pair3(1,7);
     container->addPair(pair1);
     container->addPair(pair2);
@@ -40,4 +38,11 @@ void ChoiceContainerTests::test_getNextPair() {
     CPPUNIT_ASSERT(pair2 == container->getNextPair());
     CPPUNIT_ASSERT(pair3 == container->getNextPair());
     CPPUNIT_ASSERT(pair1 == container->getNextPair());
+    CPPUNIT_ASSERT(pair2 == container->getNextPair());
+    CPPUNIT_ASSERT(pair3 == container->getNextPair());
+}
+
+void ChoiceContainerTests::test_getNextPair_KO() {
+    std::pair<int, int> bogus(1, 1);
+    CPPUNIT_ASSERT(bogus == container->getNextPair());
 }

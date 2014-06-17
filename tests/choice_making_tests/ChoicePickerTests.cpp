@@ -50,7 +50,6 @@ void ChoicePickerTests::setUp() {
 }
 
 void ChoicePickerTests::tearDown() {
-    delete(pairs);
 }
 
 void ChoicePickerTests::test_selectContainer() {
@@ -79,3 +78,13 @@ void ChoicePickerTests::test_prepareContainers() {
     }
 }
 
+void ChoicePickerTests::test_getPair() {
+    picker->prepareContainers(pairs);
+    std::pair<int, int> neutral(1, 1);
+    std::pair<int, int> result = picker->getPair();
+    CPPUNIT_ASSERT(result != neutral);
+    for (int i = 0; i < 80; i++) {
+        result = picker->getPair();
+        CPPUNIT_ASSERT(result != neutral);
+    }
+}

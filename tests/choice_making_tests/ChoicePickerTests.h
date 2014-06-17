@@ -15,6 +15,7 @@ class ChoicePickerTests : public CPPUNIT_NS::TestFixture {
 
     CPPUNIT_TEST(test_selectContainer);
     CPPUNIT_TEST(test_prepareContainers);
+    CPPUNIT_TEST(test_getPair);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -27,6 +28,7 @@ public:
 private:
     void test_selectContainer();
     void test_prepareContainers();
+    void test_getPair();
 };
 
 #endif	/* CHOICEPICKERTESTS_H */

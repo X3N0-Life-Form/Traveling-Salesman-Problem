@@ -13,7 +13,8 @@
 class ChoiceContainerTests : public CPPUNIT_NS::TestFixture {
     CPPUNIT_TEST_SUITE(ChoiceContainerTests);
 
-    CPPUNIT_TEST(test_getNextPair);
+    CPPUNIT_TEST(test_getNextPair_OK);
+    CPPUNIT_TEST(test_getNextPair_KO);
 
     CPPUNIT_TEST_SUITE_END();
 
@@ -24,7 +25,8 @@ public:
     void tearDown();
 
 private:
-    void test_getNextPair();
+    void test_getNextPair_OK();
+    void test_getNextPair_KO();
 };
 
 #endif	/* CHOICECONTAINERTESTS_H */

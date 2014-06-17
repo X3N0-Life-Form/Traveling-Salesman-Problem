@@ -65,7 +65,7 @@ void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >* pairs) {
     }
     
     for (std::pair<int, int> pair : *pairs) {
-        ChoiceContainer* container = selectContainer(pair);
+        ChoiceContainer* container = selectContainer(pair);///!!!doesn't work w/ joined at origin
         if (container != NULL) {
             container->addPair(pair);
         } else if (pair.first == pair.second) {

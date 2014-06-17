@@ -51,7 +51,10 @@ void ChoiceContainer::addPair(std::pair<int, int>& pair) {
 // Advanced Getters //
 //////////////////////
 
-std::pair<int, int>& ChoiceContainer::getNextPair() {
+std::pair<int, int> ChoiceContainer::getNextPair() {
+    // If empty, return a "neutral" pair
+    if (pairs.size() == 0)
+        return std::pair<int, int>(1, 1);
     std::pair<int, int>& result = pairs[index++];
     if (index == pairs.size())
         index = 0;
