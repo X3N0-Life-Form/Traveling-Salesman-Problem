@@ -86,7 +86,8 @@ void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >* pairs) {
 }
 
 bool ChoicePicker::maybeMoveOn() {
-
+    //not implemented
+    return false;
 }
 
 ////////////////////////////////////

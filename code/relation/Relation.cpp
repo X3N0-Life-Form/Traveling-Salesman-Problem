@@ -68,8 +68,7 @@ Neighborhood* Relation::useThisPath(const Neighborhood& n, int* nuPath) {
     return nuN;
 }
 
-std::pair<int, int> Relation::getPair(int index, bool randomPick) {
-    std::pair<int, int> randomPair;
+std::pair<int, int>& Relation::getPair(int index, bool randomPick) {
     if (picker != NULL) {
         return picker->getPair();
     } else if (randomPick && index < pairs->size() - 1) {
@@ -78,11 +77,10 @@ std::pair<int, int> Relation::getPair(int index, bool randomPick) {
         //int randomIndex = rd() % (pairs.size() - index - 1);
         //randomPair = pairs[randomIndex];
         // so let's pipe it down shall we?
-        randomPair = pairs->at(index);
+        return pairs->at(index);
     } else {
-        randomPair = pairs->at(index);
+        return pairs->at(index);
     }
-    return randomPair;
 }
 
 void Relation::deletePairs() {

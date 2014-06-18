@@ -44,7 +44,7 @@ Neighborhood* Swap::applyRelation(const Neighborhood& n, bool randomPick) {
     
     for (int i = 0; i < pairs->size(); i++) {
         printLoopStatus(i);
-        std::pair<int, int> randomPair = getPair(i, randomPick); 
+        std::pair<int, int>& randomPair = getPair(i, randomPick); 
         
         // make your move
         int nuCost = n.calculatePotentialCostSwap(

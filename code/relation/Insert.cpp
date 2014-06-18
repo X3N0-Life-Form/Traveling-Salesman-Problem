@@ -45,7 +45,7 @@ Neighborhood* Insert::applyRelation(const Neighborhood& n, bool randomPick) {
     
     for (int i = 0; i < pairs->size(); i++) {
         printLoopStatus(i);
-        std::pair<int, int> randomPair = getPair(i, randomPick);
+        std::pair<int, int>& randomPair = getPair(i, randomPick);
         // make your move
         // Note: Insert-specific code begins here
         int origin = randomPair.first;
