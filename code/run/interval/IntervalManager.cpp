@@ -61,6 +61,10 @@ int IntervalManager::getDimension() const {
     return dimension;
 }
 
+int IntervalManager::getInitialCost() {
+    return relation->getInitialCost();
+}
+
 //////////////////////
 // Advanced Getters //
 //////////////////////

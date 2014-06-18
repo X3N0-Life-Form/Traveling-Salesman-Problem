@@ -45,6 +45,7 @@ public:
     void setIsFirstLoop(bool isFirstLoop);
     void setNoNeighborhoodCutoff(bool cutoff);
     void setPicker(Picker* picker);
+    int getInitialCost();
     // Hookable Methods
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);

@@ -124,6 +124,10 @@ void Relation::setPicker(Picker* picker) {
     this->picker = picker;
 }
 
+int Relation::getInitialCost() {
+    return strategy->getInitialCost();
+}
+
 //////////////////////
 // Hookable Methods //
 //////////////////////

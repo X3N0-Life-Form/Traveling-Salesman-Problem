@@ -16,7 +16,8 @@
 Interval::Interval(int min, int max) :
         minDistance(min),
         maxDistance(max),
-        probability(1)
+        probability(1),
+        latestAction(NULL)
 {}
 
 Interval::Interval(const Interval& orig) :
@@ -24,7 +25,8 @@ Interval::Interval(const Interval& orig) :
         maxDistance(orig.maxDistance),
         actions(orig.actions),
         probability(orig.probability),
-        dimension(dimension)
+        dimension(orig.dimension),
+        latestAction(orig.latestAction)
 {}
 
 Interval::~Interval() {
@@ -56,6 +58,7 @@ const std::vector<Action*>& Interval::getActions() const {
 
 void Interval::addAction(Action* action) {
     actions.push_back(action);
+    latestAction = action;
 }
 
 double Interval::getProbability() const {
@@ -68,6 +71,10 @@ void Interval::setProbability(double probability) {
 
 void Interval::setDimension(int dimension) {
     this->dimension = dimension;
+}
+
+Action* Interval::getLatestAction() {
+    return latestAction;
 }
 
 //////////////////////

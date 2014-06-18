@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/choice/ChoiceContainer.o \
 	${OBJECTDIR}/code/choice/ChoiceMaker.o \
 	${OBJECTDIR}/code/choice/ChoicePicker.o \
+	${OBJECTDIR}/code/choice/ChoiceStatic.o \
 	${OBJECTDIR}/code/core/City.o \
 	${OBJECTDIR}/code/core/Neighborhood.o \
 	${OBJECTDIR}/code/core/Problem.o \
@@ -122,6 +123,11 @@ ${OBJECTDIR}/code/choice/ChoicePicker.o: code/choice/ChoicePicker.cpp
 	${MKDIR} -p ${OBJECTDIR}/code/choice
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I. -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoicePicker.o code/choice/ChoicePicker.cpp
+
+${OBJECTDIR}/code/choice/ChoiceStatic.o: code/choice/ChoiceStatic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I. -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceStatic.o code/choice/ChoiceStatic.cpp
 
 ${OBJECTDIR}/code/core/City.o: code/core/City.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/core
@@ -559,6 +565,19 @@ ${OBJECTDIR}/code/choice/ChoicePicker_nomain.o: ${OBJECTDIR}/code/choice/ChoiceP
 	    $(COMPILE.cc) -g -I. -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoicePicker_nomain.o code/choice/ChoicePicker.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/choice/ChoicePicker.o ${OBJECTDIR}/code/choice/ChoicePicker_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/choice/ChoiceStatic_nomain.o: ${OBJECTDIR}/code/choice/ChoiceStatic.o code/choice/ChoiceStatic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/choice
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/choice/ChoiceStatic.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -I. -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/choice/ChoiceStatic_nomain.o code/choice/ChoiceStatic.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/choice/ChoiceStatic.o ${OBJECTDIR}/code/choice/ChoiceStatic_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/core/City_nomain.o: ${OBJECTDIR}/code/core/City.o code/core/City.cpp 

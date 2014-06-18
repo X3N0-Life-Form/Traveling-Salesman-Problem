@@ -44,6 +44,10 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
     for (int i = 0; i < pairs->size(); i++) {
         printLoopStatus(i);
         std::pair<int, int> randomPair = getPair(i, randomPick);
+        // if we've been given the neutral pair, let's cut our loses & move on
+        if (picker->maybeMoveOn()) {
+            return useThisPath(n);
+        }
         // make your move
         // Note: Reverse-specific code begins here
         int left = randomPair.first;

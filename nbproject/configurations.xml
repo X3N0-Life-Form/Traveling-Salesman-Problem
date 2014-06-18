@@ -42,7 +42,9 @@
       </logicalFolder>
       <itemPath>code/choice/ChoiceContainer.h</itemPath>
       <itemPath>code/choice/ChoicePicker.h</itemPath>
+      <itemPath>code/choice/ChoiceStatic.h</itemPath>
       <itemPath>code/hook/Picker.h</itemPath>
+      <itemPath>code/choice/choice.h</itemPath>
       <itemPath>code/utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -57,6 +59,7 @@
       <itemPath>code/choice/ChoiceContainer.cpp</itemPath>
       <itemPath>code/choice/ChoiceMaker.cpp</itemPath>
       <itemPath>code/choice/ChoicePicker.cpp</itemPath>
+      <itemPath>code/choice/ChoiceStatic.cpp</itemPath>
       <itemPath>code/core/City.cpp</itemPath>
       <itemPath>code/strategy/FirstFit.cpp</itemPath>
       <itemPath>code/hook/Hookable.cpp</itemPath>
@@ -268,6 +271,12 @@
       <item path="code/choice/ChoicePicker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceStatic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceStatic.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/choice.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -897,6 +906,12 @@
       </item>
       <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="code/choice/ChoiceStatic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceStatic.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/choice.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/core/City.h" ex="false" tool="3" flavor2="0">
@@ -1517,6 +1532,12 @@
       <item path="code/choice/ChoicePicker.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/choice/ChoicePicker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceStatic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="code/choice/ChoiceStatic.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="code/choice/choice.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="code/core/City.cpp" ex="false" tool="1" flavor2="0">
       </item>

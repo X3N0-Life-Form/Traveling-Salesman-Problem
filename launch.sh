@@ -11,7 +11,7 @@ maxDepth=2000
 relations="-r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
 intervals="-saveIntervalData -intervalStep 4 -intervalType disjoint"
-miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth -choicePicker"
+miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
 args="-maxDepth $maxDepth $miscArgs $intervals $relations $strategies -o auto"

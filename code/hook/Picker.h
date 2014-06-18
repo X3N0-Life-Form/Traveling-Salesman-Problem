@@ -19,8 +19,9 @@ public:
     Picker(const Picker& orig);
     virtual ~Picker();
     // Abstract Methods
-    virtual std::pair<int, int> getPair() = 0;
+    virtual std::pair<int, int>& getPair() = 0;
     virtual void prepareContainers(std::vector<std::pair<int, int> >* pairs) = 0;
+    virtual bool maybeMoveOn() = 0;
 };
 
 #endif	/* PICKER_H */

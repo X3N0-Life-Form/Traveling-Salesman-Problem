@@ -21,6 +21,7 @@ private:
     std::vector<ChoiceContainer*> containers;
     Hookable* hook;
     ChoiceMaker* choiceMaker;
+    double moveOnProbability;
 public:
     // Constructors / Destructor
     ChoicePicker(IntervalManager* manager);
@@ -31,9 +32,11 @@ public:
     virtual ~ChoicePicker();
     // Getters / Setters
     std::vector<ChoiceContainer*>& getContainers();
+    double getMoveOnProbability();
     // Implemented Methods - Picker
-    virtual std::pair<int, int> getPair();
+    virtual std::pair<int, int>& getPair();
     virtual void prepareContainers(std::vector<std::pair<int, int> >* pairs);
+    virtual bool maybeMoveOn();
     // Implemented Methods - Hookable
     virtual void setHook(Hookable* hook);
     virtual bool processPair(std::pair<int, int>& pair);

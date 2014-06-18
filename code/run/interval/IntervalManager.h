@@ -40,6 +40,7 @@ public:
     const Relation* getRelation() const;
     void setRelation(Relation* relation);
     int getDimension() const;
+    int getInitialCost();
     // Advanced Getters
     Interval* getInterval(int value);
     Interval* getInterval(const std::pair<int, int>& pair);

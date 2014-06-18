@@ -8,13 +8,16 @@
 #include "ChoicePicker.h"
 
 #include "../utils.h"
+#include "ChoiceStatic.h"
 
 ///////////////////////////////
 // Constructors / Destructor //
 ///////////////////////////////
 
 ChoicePicker::ChoicePicker(IntervalManager* manager) :
-        manager(manager)
+        manager(manager),
+        hook(NULL),
+        moveOnProbability(0.0)
 {
     choiceMaker = new ChoiceMaker(manager);
     choiceMaker->adjustProbabilities();
@@ -39,23 +42,27 @@ std::vector<ChoiceContainer*>& ChoicePicker::getContainers() {
     return containers;
 }
 
+double ChoicePicker::getMoveOnProbability() {
+    return moveOnProbability;
+}
 
 //////////////////////////////////
 // Implemented Methods - Picker //
 //////////////////////////////////
 
-std::pair<int, int> ChoicePicker::getPair() {
-    //note: need to think about updating intervals
-    for (ChoiceContainer* container : containers) {
-        Interval* interval = container->getInterval();
-        if (choiceMaker->maybeChooseThisInterval(interval)) {
-            choiceMaker->setIntervalToUpdate(interval);
-            return container->getNextPair();
+std::pair<int, int>& ChoicePicker::getPair() {
+    //while (true) { // actually, make sure we choose something
+        for (int i = containers.size() - 1; i >= 0; i--) {
+            ChoiceContainer* container = containers[i];
+            Interval* interval = container->getInterval();
+            if (choiceMaker->maybeChooseThisInterval(interval)) {
+                choiceMaker->setIntervalToUpdate(interval);
+                return container->getNextPair();
+            }
         }
-    }
-    // if nothing was chosen, return something that won't be processed
-    std::pair<int, int> res(1,1);
-    return res;
+    //}
+    // if nothing was chosen, return the neutral pair
+    return ChoiceStatic::NEUTRAL_PAIR;
 }
 
 void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >* pairs) {
@@ -76,6 +83,10 @@ void ChoicePicker::prepareContainers(std::vector<std::pair<int, int> >* pairs) {
                     << ", " << pair.second << ">");
         }
     }
+}
+
+bool ChoicePicker::maybeMoveOn() {
+
 }
 
 ////////////////////////////////////

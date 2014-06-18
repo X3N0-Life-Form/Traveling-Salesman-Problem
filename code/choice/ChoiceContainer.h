@@ -31,7 +31,7 @@ public:
     Interval* getInterval();
     void addPair(std::pair<int, int>& pair);
     // Advanced Getters
-    std::pair<int, int> getNextPair();
+    std::pair<int, int>& getNextPair();
 };
 
 #endif	/* CHOICECONTAINER_H */

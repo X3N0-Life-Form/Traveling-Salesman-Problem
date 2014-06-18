@@ -13,7 +13,7 @@
 
 extern std::random_device randomDevice;
 
-const double ChoiceMaker::ALPHA = 0.99;
+const double ChoiceMaker::ALPHA = 0.999;
 double ChoiceMaker::LOWEST_STARTING_PROBABILITY = 0.3;
 
 ///////////////////////////////
@@ -76,12 +76,22 @@ bool ChoiceMaker::processPair(std::pair<int, int>& pair) {
 void ChoiceMaker::updateHook(bool accepted) {
     if (intervalToUpdate == NULL)
         return;
+    
     int delta = 1;
     if (!accepted)
         delta = 0;
     double nuProbability = intervalToUpdate->getProbability();
+    // cost diff variation
+    double gamma = 0;
+    if (intervalToUpdate->getLatestAction() != NULL) {
+        Action* latestAction = intervalToUpdate->getLatestAction();
+        gamma = 1 / latestAction->getCostDiff();
+    }
+    // take dimension into account
+    double omicron = (1 + (1 /manager->getDimension()));
     
-    nuProbability = nuProbability * ALPHA + (1 - ALPHA) * delta;
+    nuProbability = nuProbability * ALPHA * omicron
+            + (1 - ALPHA - gamma) * delta;
     
     intervalToUpdate->setProbability(nuProbability);
     intervalToUpdate = NULL;
@@ -93,11 +103,12 @@ void ChoiceMaker::updateHook(bool accepted) {
 
 void ChoiceMaker::adjustProbabilities() {
     int intervalCount = manager->getIntervals().size();
-    double step = (1 - LOWEST_STARTING_PROBABILITY) / intervalCount;
-    double currentStartingProbability = LOWEST_STARTING_PROBABILITY;
+    double step = (1 - LOWEST_STARTING_PROBABILITY) / manager->getDimension();
+    double currentStartingProbability = 1.0;
     for (Interval* interval : manager->getIntervals()) {
         interval->setProbability(currentStartingProbability);
-        currentStartingProbability += step;
+        currentStartingProbability -= step
+                * (interval->getMaxDistance() - interval->getMinDistance());
     }
 }
 

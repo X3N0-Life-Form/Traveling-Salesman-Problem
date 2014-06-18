@@ -144,7 +144,7 @@ void printHelp() {
             << "when creating pair lists, even meaningless or redundant ones. "
             << "Note: on by default");
     
-    PRINTLN("\t-choiceMaker\t\t\tactivate probability-based decision making");
+    PRINTLN("\t(deprecated) -choiceMaker\tactivate probability-based decision making");
     PRINTLN("\t-choicePicker\t\t\tactivate the more advanced picker system; "
             << "this overrides any choiceMaker option.");
     
