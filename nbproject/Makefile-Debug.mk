@@ -55,6 +55,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/code/run/interval/Action.o \
 	${OBJECTDIR}/code/run/interval/Interval.o \
 	${OBJECTDIR}/code/run/interval/IntervalManager.o \
+	${OBJECTDIR}/code/run/interval/StrategicMemory.o \
 	${OBJECTDIR}/code/strategy/BestFit.o \
 	${OBJECTDIR}/code/strategy/FirstFit.o \
 	${OBJECTDIR}/code/strategy/Strategy.o \
@@ -208,6 +209,11 @@ ${OBJECTDIR}/code/run/interval/IntervalManager.o: code/run/interval/IntervalMana
 	${MKDIR} -p ${OBJECTDIR}/code/run/interval
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/IntervalManager.o code/run/interval/IntervalManager.cpp
+
+${OBJECTDIR}/code/run/interval/StrategicMemory.o: code/run/interval/StrategicMemory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/StrategicMemory.o code/run/interval/StrategicMemory.cpp
 
 ${OBJECTDIR}/code/strategy/BestFit.o: code/strategy/BestFit.cpp 
 	${MKDIR} -p ${OBJECTDIR}/code/strategy
@@ -786,6 +792,19 @@ ${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o: ${OBJECTDIR}/code/run/i
 	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o code/run/interval/IntervalManager.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/code/run/interval/IntervalManager.o ${OBJECTDIR}/code/run/interval/IntervalManager_nomain.o;\
+	fi
+
+${OBJECTDIR}/code/run/interval/StrategicMemory_nomain.o: ${OBJECTDIR}/code/run/interval/StrategicMemory.o code/run/interval/StrategicMemory.cpp 
+	${MKDIR} -p ${OBJECTDIR}/code/run/interval
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/code/run/interval/StrategicMemory.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.cc) -g -std=c++11 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/code/run/interval/StrategicMemory_nomain.o code/run/interval/StrategicMemory.cpp;\
+	else  \
+	    ${CP} ${OBJECTDIR}/code/run/interval/StrategicMemory.o ${OBJECTDIR}/code/run/interval/StrategicMemory_nomain.o;\
 	fi
 
 ${OBJECTDIR}/code/strategy/BestFit_nomain.o: ${OBJECTDIR}/code/strategy/BestFit.o code/strategy/BestFit.cpp 

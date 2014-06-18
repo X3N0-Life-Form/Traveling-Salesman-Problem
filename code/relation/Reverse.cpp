@@ -73,8 +73,13 @@ Neighborhood* Reverse::applyRelation(const Neighborhood& n, bool randomPick) {
             }
             // delete nuPath
             delete[](nuPath);
-        } else if (hook != NULL) {
-            hook->updateHook(false);
+        } else {
+            int costDiff = n.getCost() - nuCost;
+            Action* action = new Action(randomPair, costDiff);
+            strategy->getStrategicMemory()->addAction(action);
+            if (hook != NULL) {
+                hook->updateHook(false);
+            }
         }
         // swap our pair with the end
         pairs->at(i) = pairs->at(pairs->size() - i - 1);

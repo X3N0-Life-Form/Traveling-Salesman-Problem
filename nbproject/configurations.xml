@@ -44,6 +44,7 @@
       <itemPath>code/choice/ChoicePicker.h</itemPath>
       <itemPath>code/choice/ChoiceStatic.h</itemPath>
       <itemPath>code/hook/Picker.h</itemPath>
+      <itemPath>code/run/interval/StrategicMemory.h</itemPath>
       <itemPath>code/choice/choice.h</itemPath>
       <itemPath>code/utils.h</itemPath>
     </logicalFolder>
@@ -73,6 +74,7 @@
       <itemPath>code/relation/Reverse.cpp</itemPath>
       <itemPath>code/run/RunData.cpp</itemPath>
       <itemPath>code/run/Runner.cpp</itemPath>
+      <itemPath>code/run/interval/StrategicMemory.cpp</itemPath>
       <itemPath>code/strategy/Strategy.cpp</itemPath>
       <itemPath>code/relation/Swap.cpp</itemPath>
       <itemPath>code/strategy/WorstFit.cpp</itemPath>
@@ -342,6 +344,16 @@
             flavor2="0">
       </item>
       <item path="code/run/interval/IntervalManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="code/run/interval/StrategicMemory.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="code/run/interval/StrategicMemory.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -980,6 +992,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="code/run/interval/StrategicMemory.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="code/run/interval/StrategicMemory.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="code/strategy/BestFit.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="code/strategy/BestFit.h" ex="false" tool="3" flavor2="0">
@@ -1603,6 +1625,16 @@
             flavor2="0">
       </item>
       <item path="code/run/interval/IntervalManager.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="code/run/interval/StrategicMemory.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="code/run/interval/StrategicMemory.h"
             ex="false"
             tool="3"
             flavor2="0">

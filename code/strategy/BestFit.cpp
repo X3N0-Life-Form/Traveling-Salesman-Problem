@@ -30,6 +30,7 @@ BestFit::~BestFit() {
 
 bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter,
         std::pair<int, int> pair) {
+    int costDiff = fitCost - nuCost;
     if (nuCost < initialCost) {
         if (nuCost < fitCost) {
             //PRINTLN(nuCost<<" < "<<fitCost);
@@ -39,6 +40,11 @@ bool BestFit::applyStrategy(int* nuPath, int nuCost, int counter,
             this->pair = pair;
         }
     }
+    
+    if (strategicMemory != NULL) {
+        recordAction(pair, costDiff);
+    }
+    
     // are we there yet?
     if (counter == stopCount) {
         return true;

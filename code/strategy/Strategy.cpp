@@ -13,7 +13,10 @@
 // Constructors / Destructor //
 ///////////////////////////////
 
-Strategy::Strategy() : dimension(0), initialCost(INT_MAX)
+Strategy::Strategy() :
+        dimension(0),
+        initialCost(INT_MAX),
+        strategicMemory(NULL)
 {
     fit = new int[dimension];
 }
@@ -21,7 +24,8 @@ Strategy::Strategy() : dimension(0), initialCost(INT_MAX)
 Strategy::Strategy(int dimension, int initialCost) :
         initialCost(initialCost),
         dimension(dimension),
-        fitCost(initialCost)
+        fitCost(initialCost),
+        strategicMemory(NULL)
 {
     fit = new int[dimension];
 }
@@ -29,7 +33,8 @@ Strategy::Strategy(int dimension, int initialCost) :
 Strategy::Strategy(const Strategy& orig) :
         initialCost(orig.initialCost),
         dimension(orig.dimension),
-        fitCost(orig.fitCost)
+        fitCost(orig.fitCost),
+        strategicMemory(orig.strategicMemory)
 {
     fit = new int[dimension];
     ARRAY_COPY(fit, orig.fit, dimension);
@@ -75,12 +80,29 @@ std::pair<int, int>& Strategy::getPair() {
     return pair;
 }
 
+StrategicMemory* Strategy::getStrategicMemory() {
+    return strategicMemory;
+}
+
+void Strategy::setStrategicMemory(StrategicMemory* strategicMemory) {
+    this->strategicMemory = strategicMemory;
+}
+
 ////////////////////
 // Common Methods //
 ////////////////////
 
 bool Strategy::hasBetter() {
     return fitCost < initialCost;
+}
+
+void Strategy::recordAction(std::pair<int, int>& pair, int costDiff) {
+    Action* action = new Action(pair, costDiff);
+    strategicMemory->addAction(action);
+}
+
+void Strategy::flushMemory() {
+    strategicMemory->flushMemory();
 }
 
 ///////////////

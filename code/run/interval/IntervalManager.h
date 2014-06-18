@@ -13,6 +13,7 @@
 #include "../../relation/Relation.h"
 #include "../../strategy/Strategy.h"
 #include "Interval.h"
+#include "StrategicMemory.h"
 
 enum IntervalType {
     DISJOINT,
@@ -26,12 +27,17 @@ private:
     Relation* relation;
     int dimension;
     bool startedCSVOutput;
+    StrategicMemory* strategicMemory;
+    Action* lastAction; //Hero
 public:
     static int INTERVAL_STEP;
 public:
     // Constructors / Destructor
     IntervalManager(Strategy* strategy, Relation* relation);
     IntervalManager(const IntervalManager& orig);
+    /**
+     * Note: Does not delete any pointer.
+     */
     virtual ~IntervalManager();
     // Getters / Setters / Adders
     const std::list<Interval*>& getIntervals() const;
@@ -41,6 +47,7 @@ public:
     void setRelation(Relation* relation);
     int getDimension() const;
     int getInitialCost();
+    void setStrategicMemory(StrategicMemory* strategicMemory);
     // Advanced Getters
     Interval* getInterval(int value);
     Interval* getInterval(const std::pair<int, int>& pair);

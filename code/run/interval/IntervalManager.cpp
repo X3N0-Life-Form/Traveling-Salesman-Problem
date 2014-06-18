@@ -19,7 +19,9 @@ IntervalManager::IntervalManager(Strategy* strategy, Relation* relation) :
         strategy(strategy),
         relation(relation),
         dimension(-1),
-        startedCSVOutput(false)
+        startedCSVOutput(false),
+        strategicMemory(NULL),
+        lastAction(NULL)
 {}
 
 IntervalManager::IntervalManager(const IntervalManager& orig) :
@@ -27,7 +29,9 @@ IntervalManager::IntervalManager(const IntervalManager& orig) :
         relation(orig.relation),
         intervals(orig.intervals),
         dimension(orig.dimension),
-        startedCSVOutput(orig.startedCSVOutput)
+        startedCSVOutput(orig.startedCSVOutput),
+        strategicMemory(orig.strategicMemory),
+        lastAction(orig.lastAction)
 {}
 
 IntervalManager::~IntervalManager() {
@@ -65,6 +69,10 @@ int IntervalManager::getInitialCost() {
     return relation->getInitialCost();
 }
 
+void IntervalManager::setStrategicMemory(StrategicMemory* strategicMemory) {
+    this->strategicMemory = strategicMemory;
+}
+
 //////////////////////
 // Advanced Getters //
 //////////////////////
@@ -92,14 +100,36 @@ std::ostream& IntervalManager::outputDataCSV(std::ostream& out) {
     // either 1st line data or current data
     if (!startedCSVOutput) {
         startedCSVOutput = true;
+        // Interval data headers
         for (Interval* interval : intervals) {
             out << "[" << interval->getMinDistance() << ";"
                     << interval->getMaxDistance() << "[,";
         }
+        // Last action headers
+        out << "Last Action, ,";
+        out << "Range,";
+        out << "Cost diff,";
+        // Actions considered headers
+        out << "Stats,";
+        out << "# of improving actions,";
+        out << "# of degrading actions,";
+        out << "ratio,";
     } else {
+        // Interval data
         for (Interval* interval : intervals) {
             out << interval->getActions().size() << ",";
         }
+        // Last action data
+        out << "Action:,";
+        const std::pair<int, int>& pair = lastAction->getPair();
+        out << "[" << pair.first << " <-> " << pair.second << "],";
+        out << getPairDistance(pair, dimension) << ",";
+        out << lastAction->getCostDiff() << ",";
+        // Actions considered stats
+        out << "Stats:,";
+        out << strategicMemory->getNumberOfGoodActions() << ",";
+        out << strategicMemory->getNumberOfBadActions() << ",";
+        out << strategicMemory->getGoodToBadRatio() << ",";
     }
     out << std::endl;
     
@@ -164,6 +194,7 @@ void IntervalManager::memorizeAction(std::pair<int, int>& pair, int costDiff) {
                 && distance >= interval->getMinDistance()) {
             Action* action = new Action(pair, costDiff);
             interval->addAction(action);
+            lastAction = action;
         }
         // Note: don't break, more than one interval might qualify
     }

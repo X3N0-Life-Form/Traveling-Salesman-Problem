@@ -142,11 +142,15 @@ void Runner::setUseChoicePicker(bool value) {
 
 void Runner::run() {
     std::chrono::steady_clock clock;
+    
     for (Relation* r : relations) {
         for (Strategy* s : strategies) {//TODO: use multiple threads
             r->setStrategy(s);
             IntervalManager* intervalManager = new IntervalManager(s, r);
             intervalManager->prepareIntervals(problem.getDimension(), intervalType);
+            StrategicMemory* strategicMemory = new StrategicMemory();
+            s->setStrategicMemory(strategicMemory);
+            intervalManager->setStrategicMemory(strategicMemory);
             ChoiceMaker* choiceMaker;
             ChoicePicker* choicePicker;
             
@@ -213,6 +217,7 @@ void Runner::run() {
                 if (printIntervalData)
                     PRINTLN(intervalManager);
                 delete(oldN);
+                strategicMemory->flushMemory();
             }
             if (doubleCheckCost) {
                 int potentialCost = n->getCost();
@@ -233,6 +238,7 @@ void Runner::run() {
             PRINTLN("\tRuntime= " << data->getRunTimeString());
             delete(n);
             delete(intervalManager);
+            delete(strategicMemory);
             if (useChoiceMaker)
                 delete(choiceMaker);
             if (useChoicePicker)

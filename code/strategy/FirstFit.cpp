@@ -34,8 +34,14 @@ bool FirstFit::applyStrategy(int* nuPath, int nuCost, int counter,
         ARRAY_COPY(fit, nuPath, dimension);
         fitCost = nuCost;
         this->pair = pair;
+        if (strategicMemory != NULL) {
+            recordAction(pair, nuCost);
+        }
         return true;
     } else {
+        if (strategicMemory != NULL) {
+            recordAction(pair, nuCost);
+        }
         return false;
     }
 }

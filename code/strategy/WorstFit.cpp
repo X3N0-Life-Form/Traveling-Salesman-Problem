@@ -43,6 +43,11 @@ bool WorstFit::applyStrategy(int* nuPath, int nuCost, int counter,
             this->pair = pair;
         }
     }
+    
+    if (strategicMemory != NULL) {
+        recordAction(pair, nuCost);
+    }
+    
     // are we there yet?
     if (counter == stopCount) {
         return true;

@@ -10,7 +10,7 @@
 maxDepth=2000
 relations="-r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
-intervals="-saveIntervalData -intervalStep 4 -intervalType disjoint"
+intervals="-saveIntervalData -intervalStep 4 -intervalType disjoint -printIntervalData"
 miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
@@ -29,14 +29,14 @@ fi
 for i in `seq 1 $loopCount`
 do
     echo "Loop #$i/$loopCount"
-    #$execPath -file data/a280.tsp $args
+    $execPath -file data/a280.tsp $args
     $execPath -file data/att48.tsp $args
-    #$execPath -file data/berlin52.tsp $args
-    #$execPath -file data/ali535.tsp $args
-    #$execPath -file data/ch130.tsp $args
-    #$execPath -file data/ch150.tsp $args
-    #$execPath -file data/burma14.tsp $args
-    #$execPath -file data/bier127.tsp $args
+    $execPath -file data/berlin52.tsp $args
+    $execPath -file data/ali535.tsp $args
+    $execPath -file data/ch130.tsp $args
+    $execPath -file data/ch150.tsp $args
+    $execPath -file data/burma14.tsp $args
+    $execPath -file data/bier127.tsp $args
 done
 
 #big

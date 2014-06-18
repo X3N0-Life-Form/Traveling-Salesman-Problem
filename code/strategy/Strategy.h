@@ -9,7 +9,9 @@
 #define	STRATEGY_H
 
 #include <climits>
+
 #include "../core/Neighborhood.h"
+#include "../run/interval/StrategicMemory.h"
 
 class Strategy {
 protected:
@@ -19,11 +21,15 @@ protected:
     int dimension;
     int stopCount;
     std::pair<int, int> pair;
+    StrategicMemory* strategicMemory;
 public:
     // Constructors / Destructor
     Strategy();
     Strategy(int dimension, int initialCost = INT_MAX);
     Strategy(const Strategy& orig);
+    /**
+     * Note: does not delete strategic memory.
+     */
     virtual ~Strategy();
     // Abstract Methods
     /**
@@ -50,8 +56,12 @@ public:
     int getStopCount();
     void setStopCount(int count);
     std::pair<int, int>& getPair();
+    StrategicMemory* getStrategicMemory();
+    void setStrategicMemory(StrategicMemory* strategicMemory);
     // Common Methods
     bool hasBetter();
+    void recordAction(std::pair<int, int>& pair, int costDiff);
+    void flushMemory();
 };
 
 // Operators
