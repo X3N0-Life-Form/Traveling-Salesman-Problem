@@ -4,6 +4,7 @@ Big TODO list:
         make proba adjustments non-linear
         probability evolution: try toying with the probabilities of intervals
             that aren't being chosen when updating?
+        add probability for moving on before going through every pair
         try to use different relations/strategies at runtime
             make new runner subclass?
     -intervals: save cost diffs + use that to alter probability
