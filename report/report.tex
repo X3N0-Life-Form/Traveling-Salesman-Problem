@@ -22,8 +22,8 @@
  \item Voisinage : Chemin parcourant toutes les villes sans répétition. Solution au problème du voyageur de commerce.
  \item Voisin améliorant : Chemin voisin d'une solution X, dont le coût est inférieur au coût de X.
  \item Recherche locale : Exploration exhaustive de l'ensemble des voisins d'une solution donnée.
- Couteux en temps d'exécution.
- \item Relation de voisinage : Fonction permettant de passer d'un voisnage à un autre.
+ Coûteux en temps d'exécution.
+ \item Relation de voisinage : Fonction permettant de passer d'un voisinage à un autre.
  \begin{itemize}
   \item Swap : Échange la position de deux villes dans un chemin.
   \item Insert : Insert une ville avant une autre.
@@ -44,7 +44,7 @@
   Le voyageur de commerce est un problème bien connu dans le milieu informatique : pour un ensemble de villes,
 minimiser la distance requise qu'un individu doit parcourir afin de visiter chaque ville. Le but de ce projet
 est d'étudier l'efficacité de différents algorithmes et stratégies applicables à la résolution de ce problème
-en recherce locale. Suite à l'étude des résultats de ces différents algos et stratégies, le projet vise la mise
+en recherche locale. Suite à l'étude des résultats de ces différents algorithmes et stratégies, le projet vise la mise
 en place de méthodes permettant d'effectuer une recherche partielle capable d'obtenir des résultats comparables
 à ceux d'une recherche locale à un coût moindre en temps de calcul.
 
@@ -87,7 +87,7 @@ solution actuelle (Worst Fit).
 \subsection{Lancement}
 
 \paragraph{}
-  Suite au parsage d'un TSP particulier, notre programme s'efforce d'appliquer chacune des relations et chacunes
+  Suite au parsage d'un TSP particulier, notre programme s'efforce d'appliquer chacune des relations et chacune
 des stratégies spécifiées l'une après l'autre, en partant éventuellement du même point de départ. Le voisinage de
 départ est généré aléatoirement à partir des données du problème. Chaque pas est exploré de manière aléatoire, bien
 que dans le cas des stratégies Best Fit et Worst Fit, on va chercher (dans un premier temps) à explorer l'ensemble
@@ -97,7 +97,7 @@ des voisins possibles.
 En fin d'exécution, un résumé des résultats obtenus est affiché en console.
 \includegraphics[width=\textwidth]{images/exec-summary.png} 
 
-\section{Analyse et comparaison de l'efficacité des algos}
+\section{Analyse et comparaison de l'efficacité des algorithmes}
 \subsection{Enregistrement des résultats}
 
 \paragraph{}
@@ -108,7 +108,7 @@ fournissent un résumé facile à lire pour les humain.
   D'autre part, les *.csv contiennent les mêmes données enregistrées au format Comma Separated Value, ie. valeurs
 séparées par virgule, chaque ligne correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
 fichiers est concatené dans un fichier résumé, qui peut alors être copié tel quel dans un tableur type Microsoft
-Excel ou Libre Office Calc. Voir en annexe pour description plus appronfondie du tableur utilisé.
+Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du tableur utilisé.
   
 % insérer extraits de .results et .csv
 % insérer screen de recap.ods
@@ -130,16 +130,16 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus appronfondie du
 \chapter{Analyse d'efficacité \& espérance d'amélioration}
 
 \paragraph{}
-  Suite à l'étude prémliminaire de l'efficacité de chacun des relations et stratégies, on a cherché à étudier
+  Suite à l'étude préliminaire de l'efficacité de chacun des relations et stratégies, on a cherché à étudier
 plus en détail le comportement de ces algorithmes en cours d'exécution.
 
-\section{Enregistrement du déroulement de l'algo pas à pas}
+\section{Enregistrement du déroulement de l'algorithme pas à pas}
 
 \paragraph{}
   Avant toute chose, il a fallu concevoir de nouvelles structures capable de représenter l'état de notre programme
 à un instant t. Ensuite, ces classes ont été greffé au code existant sans en modifier le comportement. Finalement,
 nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne par ligne dans un fichier texte. Une fois encore,
-nous utilisons le format .csv afin de pouvoir aisement transférer ces données dans un tableur au besoin.
+nous utilisons le format .csv afin de pouvoir aisément transférer ces données dans un tableur au besoin.
 
 \paragraph{}
   Via le tableur, nous avons pu établir des graphe retraçant l'historique de chaque exécution. La contrepartie de
