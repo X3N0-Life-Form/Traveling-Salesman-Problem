@@ -2,9 +2,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[francais]{babel}
+\usepackage{hyperref}
 
 % Title Page
-\title{Traveling Salesman Problem}
+\title{Opérateurs de recherche et stratégies d'exploration} %Traveling Salesman Problem
 \author{Adrien DROGUET}
 \date{Avril - Juin 2014}
 
@@ -41,15 +42,25 @@
 \section{Introduction}
 
 \paragraph{} % sujet
+  Le but de ce projet est d'étudier l'efficacité de différents opérateurs de recherche et stratégies applicables
+à la résolution de ce problème en recherche locale. Suite à l'étude des résultats de ces différents algorithmes
+et stratégies, le projet vise la mise en place de méthodes permettant d'effectuer une recherche partielle capable
+d'obtenir des résultats comparables à ceux d'une recherche locale à un coût moindre en temps de calcul.
+
+\paragraph{}
   Le voyageur de commerce est un problème bien connu dans le milieu informatique : pour un ensemble de villes,
-minimiser la distance requise qu'un individu doit parcourir afin de visiter chaque ville. Le but de ce projet
-est d'étudier l'efficacité de différents algorithmes et stratégies applicables à la résolution de ce problème
-en recherche locale. Suite à l'étude des résultats de ces différents algorithmes et stratégies, le projet vise la mise
-en place de méthodes permettant d'effectuer une recherche partielle capable d'obtenir des résultats comparables
-à ceux d'une recherche locale à un coût moindre en temps de calcul.
+minimiser la distance requise qu'un individu doit parcourir afin de visiter chaque ville. De nombreuses études
+ont été menées sur ce sujet et une quantité significative d'algorithmes de résolution ont été écrit au fil des
+ans. Pour cette raison, cette problématique forme un cadre intéressant pour l'analyse de l'efficacité des différents
+opérateurs relationnels que l'ont cherche à étudier.
 
 \paragraph{} % ressources utilisées
-==> source des .tsp
+  Pour référence, nous avons utilisé les problèmes fourni par
+\href{https://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/}{TSPLIB}
+- une bibliothèque d'échantillons d'instances pour le TSP (et autres problèmes liés) provenant de diverses sources
+et de types variés. Dans notre cas, nous nous sommes confiné à des problèmes symétriques à deux dimensions, avec des
+distances entières ou réelles.
+
 
 %%%%%%%%%%%%%%%%%%%%
 % Partie Recherche %
@@ -95,8 +106,35 @@ des voisins possibles.
 
 \paragraph{}
 En fin d'exécution, un résumé des résultats obtenus est affiché en console.
-\includegraphics[width=\textwidth]{images/exec-summary.png} 
 
+\begin{figure}[h]
+Run Results for a280:
+ \begin{center}
+Run Data: Relation=Reverse;	Strategy=First Fit;	starting cost=34194,	end cost=3026;	depth=1182;	run time= 0.448 sec\linebreak
+Run Data: Relation=Reverse;	Strategy=Best Fit;	starting cost=34194,	end cost=2935;	depth=297;	run time= 9.652 sec\linebreak
+Run Data: Relation=Reverse;	Strategy=Worst Fit;	starting cost=34194,	end cost=3010;	depth=29699;	run time= 22 min 32.312 sec\linebreak
+ \end{center}
+  \label{a280-sample-results}
+  \caption{Résumé de fin d'exécution - format texte}
+\end{figure}
+
+\paragraph{}
+Instances utilisées (par ordre de lancement) :
+\begin{itemize}
+  \item \textbf{a280.tsp} : Instance principalement utilisée par les tests unitaires, d'une taille respectable, mais pas excessive.
+  \item \textbf{att48.tsp} : Instance de petite taille, utilisée lors de tests manuels rapide ou en débuggage.
+  \item \textbf{berlin52.tsp} : Instance de petite taille.
+  \item \textbf{ali535.tsp} : Instance de grande taille, beaucoup utilisée étalon lorsque l'on cherche à améliorer les temps
+d'exécution.
+  \item \textbf{ch130.tsp} : Instance de taille moyenne.
+  \item \textbf{ch150.tsp} : Instance de taille moyenne.
+  \item \textbf{burma14.tsp} : Instance de très petite taille.
+  \item \textbf{bier127.tsp} : Instance de taille moyenne, parfois substituée à a280 dans les tests.
+  \item \textbf{brd14051.tsp} : Instance de taille excessive, seule la stratégie First Fit met un temps ``raisonnable''
+à atteindre un optimum local. Best Fit et Worst Fit n'ont jamais été testé sur cette instance.
+\end{itemize}
+
+\pagebreak
 \section{Analyse et comparaison de l'efficacité des algorithmes}
 \subsection{Enregistrement des résultats}
 
@@ -109,12 +147,29 @@ fournissent un résumé facile à lire pour les humain.
 séparées par virgule, chaque ligne correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
 fichiers est concatené dans un fichier résumé, qui peut alors être copié tel quel dans un tableur type Microsoft
 Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du tableur utilisé.
-  
-% insérer extraits de .results et .csv
+
+\begin{figure}[h]
+  \begin{tabular}{ccccccc}
+    a280, &Reverse, &First Fit, &34194, &3026, &1182, &0.448\\
+    a280, &Reverse, &Best Fit,  &34194, &2935, &297,  &9.652\\
+    a280, &Reverse, &Worst Fit, &34194, &3010, &29699,&1352.312\\
+  \end{tabular}
+  \label{a280-sample-csv}
+  \caption{Résumé de fin d'exécution - format .csv}
+\end{figure}
+
 % insérer screen de recap.ods
 
 \subsection{Efficacité constatée}
-%Résultats
+
+\begin{figure}[h]
+  \begin{tabular}{c}
+    
+  \end{tabular}
+ \label{recap-general}
+ 
+\end{figure}
+
 %insérer tableaux de stats à la place de la liste?
 \begin{itemize}
  \item Swap - First Fit : 
@@ -127,7 +182,7 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 
 %Conclusion
 
-\chapter{Analyse d'efficacité \& espérance d'amélioration}
+\chapter{Analyse d'efficacité et espérance d'amélioration}
 
 \paragraph{}
   Suite à l'étude préliminaire de l'efficacité de chacun des relations et stratégies, on a cherché à étudier
@@ -146,6 +201,25 @@ nous utilisons le format .csv afin de pouvoir aisément transférer ces données
 cette méthode est la relative difficulté à comparer de nombreux résultats cote à cote, le logiciel n'étant pas
 bien adapté pour traiter de tels volumes de données de manière dynamique.
 
+\begin{figure}[ht]
+  \begin{tabular}{cccccc}
+    Reverse,&First Fit,&[1;4[,&[4;16[,&[16;64[,&[64;281[,\\
+    Reverse,&First Fit,&0,    &0,     &1,      &1,\\
+    Reverse,&First Fit,&0,    &0,     &2,      &1,\\
+    Reverse,&First Fit,&0,    &0,     &2,      &2,\\
+    Reverse,&First Fit,&0,    &0,     &2,      &3,\\
+    Reverse,&First Fit,&0,    &0,     &2,      &4,\\
+    Reverse,&First Fit,&0,    &0,     &2,      &5,\\
+    Reverse,&First Fit,&0,    &0,     &3,      &5,\\
+    Reverse,&First Fit,&0,    &0,     &3,      &6,\\
+    Reverse,&First Fit,&0,    &0,     &3,      &7,\\
+    Reverse,&First Fit,&0,    &0,     &3,      &8,\\
+  \end{tabular}
+  \label{a280-sample-interval-simple}
+  \caption{Extrait simplifié d'historique d'exécution}
+\end{figure}
+
+\pagebreak
 \section{Analyse des résultats}
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
