@@ -13,6 +13,9 @@
 
 \begin{document}
 \maketitle
+%customiser page de titre
+%ajouter nom de l'encadrant
+%logo univ
 
 \tableofcontents
 \pagebreak
@@ -163,22 +166,77 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 \subsection{Efficacité constatée}
 
 \begin{figure}[h]
-  \begin{tabular}{c}
-    
+  \begin{tabular}{ccrrr}
+    \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût Moyen}& \textbf{Temps d'exécution}& \textbf{Profondeur}\\
+%   Opérateur&	Stratégie&	Coût Moyen&	Temps d'exécution&	Profondeur\\
+    Swap&	First Fit&	35 404,39&	107,186&		150 717\\
+    Swap&	Best Fit&	37 313,41&	1 198,021&		46 680\\
+    Swap&	Worst Fit&	33 743,71&	63 440,385&		3 275 847\\
+    Insert&	First Fit&	28 531,77&	55,669&			144 553\\
+    Insert&	Best Fit&	29 643,06&	233,594&		22 209\\
+    Insert&	Worst Fit&	28 420,68&	65 041,299&		4 667 846\\
+    Reverse&	First Fit&	25 823,20&	88,784&			148 971\\
+    Reverse&	Best Fit&	25 344,58&	409,759&		16 198\\
+    Reverse&	Worst Fit&	26 349,78&	58 323,618&		3 912 314\\
   \end{tabular}
- \label{recap-general}
- 
+  \label{recap-general}
+  \caption{Exemple de données générales recueillies après 40 exécutions sur chaque instance}
 \end{figure}
 
-%insérer tableaux de stats à la place de la liste?
-\begin{itemize}
- \item Swap - First Fit : 
- \item Swap - Best Fit : 
- \item Swap - Worst Fit : 
- \item Insert - First Fit :
- \item Insert - Best Fit :
- %...
-\end{itemize}
+% résultats spécifiques (ne pas tous les mettre, en envoyer dans annexe)
+%ALSO: utiliser couleur plutôt que underline
+
+\begin{center}
+  \begin{figure}[h]
+    \begin{tabular}{lrrr}
+	&	    \textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
+      \textbf{Swap}&	7 653,780&		8 516,976&	\underline{6 437,415}\\
+      \textbf{Insert}&	5 435,000&		5 674,415&	\underline{4 969,829}\\
+      \textbf{Reverse}&	4 508,780&	\underline{4 346,805}&	4 532,195\\
+    \end{tabular}
+    \label{a280-results}
+    \caption{Résultats moyens pour le TSP a280}
+  \end{figure}
+\end{center}
+
+\begin{center}
+  \begin{figure}[h]
+    \begin{tabular}{lrrr}
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
+      \textbf{Swap}&	3 200,600&	3 432,550&		2 662,600\\
+      \textbf{Insert}&	2 516,450&	3 299,950&		2 359,950\\
+      \textbf{Reverse}&	861,250&	861,350&		861,400\\
+    \end{tabular}
+    \label{ali535-results}
+    \caption{Résultats moyens pour le TSP ali535}
+  \end{figure}
+\end{center}
+
+\begin{center}
+  \begin{figure}[h]
+    \begin{tabular}{lrrr}
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
+      \textbf{Swap}&	53 327,317&	55 026,098&		51 228,220\\
+      \textbf{Insert}&	44 155,293&	44 656,390&		43 567,049\\
+      \textbf{Reverse}&	40 788,024&	40 212,732&		40 826,512\\
+    \end{tabular}
+    \label{att48-results}
+    \caption{Résultats moyens pour le TSP att48}
+  \end{figure}
+\end{center}
+
+\begin{center}
+  \begin{figure}[h]
+    \begin{tabular}{lrrr}
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
+      \textbf{Swap}&	24,683&		25,756&			26,098\\
+      \textbf{Insert}&	26,098&		24,585&			24,732\\
+      \textbf{Reverse}&	23,659&		23,707&			24,390\\
+    \end{tabular}
+    \label{burma14-results}
+    \caption{Résultats moyens pour le TSP burma14}
+  \end{figure}
+\end{center}
 
 %Conclusion
 
@@ -224,6 +282,30 @@ bien adapté pour traiter de tels volumes de données de manière dynamique.
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
+\paragraph{}
+%but=réduire espace de recherche
+
+\subsection{Piste 1 : probabilité de considérer un voisin}
+\subsubsection{Idée}
+%en fonction de son intervalle
+%
+
+\subsubsection{Problèmes}
+
+
+\subsection{Piste 2 : Trier les intervalles de considération}
+\subsubsection{Idée}
+%+ proba de base fonction de l'intervalle
+
+\subsubsection{Problèmes}
+
+\subsection{Piste 3 : Échantillonnage acceptable (non implémenté)}
+\subsubsection{Idée}
+%probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et de passer au niveau suivant
+
+\subsubsection{Problèmes potentiels}
+
+
 %%%%%%%%%%%%%%%%%%%%
 % Partie technique %
 %%%%%%%%%%%%%%%%%%%%
@@ -243,7 +325,7 @@ bien adapté pour traiter de tels volumes de données de manière dynamique.
 %interval stuff
 
 \subsection{Recherche partielle}
-
+%choice
 
 
 \chapter{Déroulement du projet}
@@ -262,5 +344,15 @@ bien adapté pour traiter de tels volumes de données de manière dynamique.
 \subsection{Optimisation}
 
 \section{Difficultés techniques}
+
+\part{Conclusion}
+\section{Conclusion}
+
+
+\section{Informations complémentaires}
+%bibliographie
+%licence
+%repo github
+
 
 \end{document}          
