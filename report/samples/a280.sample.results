@@ -1,0 +1,5 @@
+
+Run Results for a280:
+Run Data: Relation=Reverse;	Strategy=First Fit;	starting cost=34194,	end cost=3026;	depth=1182;	run time= 0.448 sec
+Run Data: Relation=Reverse;	Strategy=Best Fit;	starting cost=34194,	end cost=2935;	depth=297;	run time= 9.652 sec
+Run Data: Relation=Reverse;	Strategy=Worst Fit;	starting cost=34194,	end cost=3010;	depth=29699;	run time= 22 min 32.312 sec
