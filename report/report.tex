@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage[francais]{babel}
 \usepackage{hyperref}
+\usepackage{color}
 
 % Title Page
 \title{Opérateurs de recherche et stratégies d'exploration} %Traveling Salesman Problem
@@ -188,11 +189,20 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 
 \begin{center}
   \begin{figure}[h]
-    \begin{tabular}{lrrr}
-	&	    \textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
-      \textbf{Swap}&	7 653,780&		8 516,976&	\underline{6 437,415}\\
-      \textbf{Insert}&	5 435,000&		5 674,415&	\underline{4 969,829}\\
-      \textbf{Reverse}&	4 508,780&	\underline{4 346,805}&	4 532,195\\
+    \begin{tabular}{l|r|r|r}
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
+      \textbf{Swap}&	
+	  7 653,780&
+	  8 516,976&
+	  \textbf{\textcolor{blue}{6 437,415}}\\
+      \textbf{Insert}&
+	  5 435,000&
+	  5 674,415&
+	  \textbf{\textcolor{blue}{4 969,829}}\\
+      \textbf{Reverse}&
+	  4 508,780&
+	  \textbf{\textcolor{blue}{4 346,805}}&
+	  4 532,195\\
     \end{tabular}
     \label{a280-results}
     \caption{Résultats moyens pour le TSP a280}
@@ -201,11 +211,20 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 
 \begin{center}
   \begin{figure}[h]
-    \begin{tabular}{lrrr}
+    \begin{tabular}{l|r|r|r}
       &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
-      \textbf{Swap}&	3 200,600&	3 432,550&		2 662,600\\
-      \textbf{Insert}&	2 516,450&	3 299,950&		2 359,950\\
-      \textbf{Reverse}&	861,250&	861,350&		861,400\\
+      \textbf{Swap}&
+	  3 200,600&
+	  3 432,550&
+	  \textbf{\textcolor{blue}{2 662,600}}\\
+      \textbf{Insert}&
+	  2 516,450&
+	  3 299,950&
+	  \textbf{\textcolor{blue}{2 359,950}}\\
+      \textbf{Reverse}&
+	  \textbf{\textcolor{blue}{861,250}}&
+	  861,350&
+	  861,400\\
     \end{tabular}
     \label{ali535-results}
     \caption{Résultats moyens pour le TSP ali535}
@@ -214,11 +233,20 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 
 \begin{center}
   \begin{figure}[h]
-    \begin{tabular}{lrrr}
+    \begin{tabular}{l|r|r|r}
       &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
-      \textbf{Swap}&	53 327,317&	55 026,098&		51 228,220\\
-      \textbf{Insert}&	44 155,293&	44 656,390&		43 567,049\\
-      \textbf{Reverse}&	40 788,024&	40 212,732&		40 826,512\\
+      \textbf{Swap}&
+	  53 327,317&
+	  55 026,098&
+	  \textbf{\textcolor{blue}{51 228,220}}\\
+      \textbf{Insert}&
+	  44 155,293&
+	  44 656,390&
+	  \textbf{\textcolor{blue}{43 567,049}}\\
+      \textbf{Reverse}&
+	  40 788,024&
+	  \textbf{\textcolor{blue}{40 212,732}}&
+	  40 826,512\\
     \end{tabular}
     \label{att48-results}
     \caption{Résultats moyens pour le TSP att48}
@@ -227,11 +255,20 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 
 \begin{center}
   \begin{figure}[h]
-    \begin{tabular}{lrrr}
+    \begin{tabular}{l|r|r|r}
       &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\
-      \textbf{Swap}&	24,683&		25,756&			26,098\\
-      \textbf{Insert}&	26,098&		24,585&			24,732\\
-      \textbf{Reverse}&	23,659&		23,707&			24,390\\
+      \textbf{Swap}&
+	  \textbf{\textcolor{blue}{24,683}}&
+	  25,756&
+	  26,098\\
+      \textbf{Insert}&
+	  26,098&
+	  \textbf{\textcolor{blue}{24,585}}&
+	  24,732\\
+      \textbf{Reverse}&
+	  \textbf{\textcolor{blue}{23,659}}&
+	  23,707&
+	  24,390\\
     \end{tabular}
     \label{burma14-results}
     \caption{Résultats moyens pour le TSP burma14}
