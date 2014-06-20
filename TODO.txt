@@ -1,13 +1,1 @@
-Big TODO list:
-    -fixor leaks
-    -efficiency tracking:
-        make proba adjustments non-linear
-        probability evolution: try toying with the probabilities of intervals
-            that aren't being chosen when updating?
-        add probability for moving on before going through every pair
-        try to use different relations/strategies at runtime
-            make new runner subclass?
-    -intervals: save cost diffs + use that to alter probability
-    -write report
-    -see about reducing the number of pair copies
-    -change some of the cmd line defaults to prune the line a bit
+NOTHING
