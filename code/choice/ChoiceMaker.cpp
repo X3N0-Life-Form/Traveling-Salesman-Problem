@@ -77,9 +77,9 @@ void ChoiceMaker::updateHook(bool accepted) {
     if (intervalToUpdate == NULL)
         return;
     
-    int delta = 1;
+    int delta = 0;
     if (!accepted)
-        delta = 0;
+        delta = 1;
     double nuProbability = intervalToUpdate->getProbability();
     // cost diff variation
     double gamma = 0;
