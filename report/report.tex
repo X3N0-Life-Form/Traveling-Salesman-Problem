@@ -8,7 +8,8 @@
 \usepackage{algorithm}
 
 % Title Page
-\title{Opérateurs de recherche et stratégies d'exploration} %Traveling Salesman Problem
+\title{Opérateurs de recherche et stratégies d'exploration} %Traveling Salesman
+Problem
 \author{Adrien DROGUET}
 \date{Avril - Juin 2014}
 
@@ -27,19 +28,26 @@
 \section*{Définitions}
 \begin{itemize}
  \item \textbf{Problème :} Ensemble de villes devant être parcourues.
- \item \textbf{Voisinage :} Chemin parcourant toutes les villes sans répétition. Solution au problème du voyageur de commerce.
- \item \textbf{Voisin améliorant :} Chemin voisin d'une solution X, dont le coût est inférieur au coût de X.
- \item \textbf{Recherche locale :} Exploration exhaustive de l'ensemble des voisins d'une solution donnée.
+ \item \textbf{Voisinage :} Chemin parcourant toutes les villes sans répétition.
+Solution au problème du voyageur de commerce.
+ \item \textbf{Voisin améliorant :} Chemin voisin d'une solution X, dont le coût
+est inférieur au coût de X.
+ \item \textbf{Recherche locale :} Exploration exhaustive de l'ensemble des
+voisins d'une solution donnée.
  Coûteux en temps d'exécution.
- \item \textbf{Relation de voisinage :} Fonction permettant de passer d'un voisinage à un autre.
+ \item \textbf{Relation de voisinage :} Fonction permettant de passer d'un
+voisinage à un autre.
  \begin{itemize}
-  \item \textit{\textbf{Swap :}} Échange la position de deux villes dans un chemin.
+  \item \textit{\textbf{Swap :}} Échange la position de deux villes dans un
+chemin.
   \item \textit{\textbf{Insert :}} Insert une ville avant une autre.
   \item \textit{\textbf{Reverse :}} Inverse un sous section d'un chemin.
  \end{itemize}
- \item \textbf{Stratégie de sélection :} Détermine la manière dont on choisit un voisin en recherche locale.
+ \item \textbf{Stratégie de sélection :} Détermine la manière dont on choisit un
+voisin en recherche locale.
  \begin{itemize}
-  \item \textit{\textbf{First Fit :}} Choisir le premier voisin améliorant trouvé.
+  \item \textit{\textbf{First Fit :}} Choisir le premier voisin améliorant
+trouvé.
   \item \textit{\textbf{Best Fit :}} Choisir le meilleur améliorant trouvé.
   \item \textit{\textbf{Worst Fit :}} Choisir le moins bon améliorant trouvé.
  \end{itemize}
@@ -50,23 +58,28 @@
 \section*{Introduction}
 
 \paragraph{} % sujet
-  Le but de ce projet est d'étudier l'efficacité de différents opérateurs de recherche et stratégies applicables
-à la résolution de ce problème en recherche locale. Suite à l'étude des résultats de ces différents algorithmes
-et stratégies, le projet vise la mise en place de méthodes permettant d'effectuer une recherche partielle capable
-d'obtenir des résultats comparables à ceux d'une recherche locale à un coût moindre en temps de calcul.
-
+  Le but de ce projet est d'étudier l'efficacité de différents opérateurs de
+recherche et stratégies applicables à la résolution de ce problème en recherche
+locale. Suite à l'étude des résultats de ces différents algorithmes et
+stratégies, le projet vise la mise en place de méthodes permettant d'effectuer
+une recherche partielle capable d'obtenir des résultats comparables à ceux d'une
+recherche locale à un coût moindre en temps de calcul.
 \paragraph{}
-  Le voyageur de commerce est un problème bien connu dans le milieu informatique : pour un ensemble de villes,
-minimiser la distance requise qu'un individu doit parcourir afin de visiter chaque ville. De nombreuses études
-ont été menées sur ce sujet et une quantité significative d'algorithmes de résolution ont été écrit au fil des
-ans. Pour cette raison, cette problématique forme un cadre intéressant pour l'analyse de l'efficacité des différents
-opérateurs relationnels que l'ont cherche à étudier.
+  Le voyageur de commerce est un problème bien connu dans le milieu informatique
+: pour un ensemble de villes, minimiser la distance requise qu'un individu doit
+parcourir afin de visiter chaque ville. De nombreuses études ont été menées sur
+ce sujet et une quantité significative d'algorithmes de résolution ont été écrit
+au fil des ans. Pour cette raison, cette problématique forme un cadre
+intéressant pour l'analyse de l'efficacité des différents opérateurs
+relationnels que l'ont cherche à étudier.
 
 \paragraph{} % ressources utilisées
   Pour référence, nous avons utilisé les problèmes fourni par
-\href{https://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/}{TSPLIB}
-- une bibliothèque d'échantillons d'instances pour le TSP (et autres problèmes liés) provenant de diverses sources
-et de types variés. Dans notre cas, nous nous sommes confiné à des problèmes symétriques à deux dimensions, avec des
+\href{https://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/}{TSPLIB
+}
+- une bibliothèque d'échantillons d'instances pour le TSP (et autres problèmes
+liés) provenant de diverses sources et de types variés. Dans notre cas, nous
+nous sommes confiné à des problèmes symétriques à deux dimensions, avec des
 distances entières ou réelles.
 
 
@@ -79,15 +92,18 @@ distances entières ou réelles.
 \subsection{Relations de voisinage}
 
 \paragraph{}
-  Après avoir établit une représentation satisfaisante et un système de lecture des données fonctionnel (voir partie
-développement, sous-section représentation des données), nous avons défini trois types de mouvements, ou relation de
-voisinage à appliquer à une solution : l'échange (Swap), l'insertion (Insert) et l'inversion (Reverse).
+  Après avoir établit une représentation satisfaisante et un système de lecture
+des données fonctionnel (voir partie développement, sous-section représentation
+des données), nous avons défini trois types de mouvements, ou relation de
+voisinage à appliquer à une solution : l'échange (Swap), l'insertion (Insert) et
+l'inversion (Reverse).
 
 \paragraph{}
-Afin d'éviter de recalculer le coût d'une solution (c'est à dire la distance que le voyageur doit parcourir
-pour un chemin donné), à chacune de ces relations est associé une fonction de calcul de coût potentielle.
-Celle-ci prend en paramètre les villes sur lesquels seront appliqués les déplacements, et effectue les calculs
-aux points de rupture du chemin modifié.
+Afin d'éviter de recalculer le coût d'une solution (c'est à dire la distance que
+le voyageur doit parcourir pour un chemin donné), à chacune de ces relations est
+associé une fonction de calcul de coût potentielle. Celle-ci prend en paramètre
+les villes sur lesquels seront appliqués les déplacements, et effectue les
+calculs aux points de rupture du chemin modifié.
 % insérer schéma types de déplacements + points de rupture
 % reprendre comme exemple 0123456789
 
@@ -95,22 +111,26 @@ aux points de rupture du chemin modifié.
 \subsection{Stratégies de sélection d'un voisinage}
 
 \paragraph{}
-  Une fois que l'on dispose d'une fonction permettant de calculer le voisinage d'une solution donnée, il faut déterminer
-une stratégie d'amélioration à appliquer. Nous avons retenu trois stratégies distinctes à appliquer à notre recherche
-locale : choisir le premier voisin améliorant que l'on trouve (First Fit), choisir le meilleur voisin améliorant après
-avoir parcouru l'ensemble des voisins possibles (Best Fit), ou bien choisir le voisin améliorant le moins possible la
-solution actuelle (Worst Fit).
+  Une fois que l'on dispose d'une fonction permettant de calculer le voisinage
+d'une solution donnée, il faut déterminer une stratégie d'amélioration à
+appliquer. Nous avons retenu trois stratégies distinctes à appliquer à notre
+recherche locale : choisir le premier voisin améliorant que l'on trouve (First
+Fit), choisir le meilleur voisin améliorant après avoir parcouru l'ensemble des
+voisins possibles (Best Fit), ou bien choisir le voisin améliorant le moins
+possible la solution actuelle (Worst Fit).
 % schémas d'exemples
 
 
 \subsection{Lancement}
 
 \paragraph{}
-  Suite au parsage d'un TSP particulier, notre programme s'efforce d'appliquer chacune des relations et chacune
-des stratégies spécifiées l'une après l'autre, en partant éventuellement du même point de départ. Le voisinage de
-départ est généré aléatoirement à partir des données du problème. Chaque pas est exploré de manière aléatoire, bien
-que dans le cas des stratégies \textit{Best Fit} et \textit{Worst Fit}, on va chercher (dans un premier temps) à
-explorer l'ensemble des voisins possibles.
+  Suite au parsage d'un TSP particulier, notre programme s'efforce d'appliquer
+chacune des relations et chacune des stratégies spécifiées l'une après l'autre,
+en partant éventuellement du même point de départ. Le voisinage de départ est
+généré aléatoirement à partir des données du problème. Chaque pas est exploré de
+manière aléatoire, bien que dans le cas des stratégies \textit{Best Fit} et
+\textit{Worst Fit}, on va chercher (dans un premier temps) à explorer l'ensemble
+des voisins possibles.
 
 \paragraph{}
 En fin d'exécution, un résumé des résultats obtenus est affiché en console.
@@ -118,9 +138,12 @@ En fin d'exécution, un résumé des résultats obtenus est affiché en console.
 \begin{figure}[h]
 Run Results for a280:
  \begin{center}
-Run Data: Relation=Reverse;	Strategy=First Fit;	starting cost=34194,	end cost=3026;	depth=1182;	run time= 0.448 sec\linebreak
-Run Data: Relation=Reverse;	Strategy=Best Fit;	starting cost=34194,	end cost=2935;	depth=297;	run time= 9.652 sec\linebreak
-Run Data: Relation=Reverse;	Strategy=Worst Fit;	starting cost=34194,	end cost=3010;	depth=29699;	run time= 22 min 32.312 sec\linebreak
+Run Data: Relation=Reverse;	Strategy=First Fit;	starting cost=34194,
+  end cost=3026;	depth=1182;	run time= 0.448 sec\linebreak
+Run Data: Relation=Reverse;	Strategy=Best Fit;	starting cost=34194,
+  end cost=2935;	depth=297;	run time= 9.652 sec\linebreak
+Run Data: Relation=Reverse;	Strategy=Worst Fit;	starting cost=34194,
+  end cost=3010;	depth=29699;	run time= 22 min 32.312 sec\linebreak
  \end{center}
   \label{a280-sample-results}
   \caption{Résumé de fin d'exécution - format texte}
@@ -129,17 +152,23 @@ Run Data: Relation=Reverse;	Strategy=Worst Fit;	starting cost=34194,	end cost=30
 \paragraph{}
 Instances utilisées (par ordre de lancement) :
 \begin{itemize}
-  \item \textbf{a280.tsp} : Instance principalement utilisée par les tests unitaires, d'une taille respectable, mais pas excessive.
-  \item \textbf{att48.tsp} : Instance de petite taille, utilisée lors de tests manuels rapide ou en débuggage.
+  \item \textbf{a280.tsp} : Instance principalement utilisée par les tests
+unitaires, d'une taille respectable, mais pas excessive.
+  \item \textbf{att48.tsp} : Instance de petite taille, utilisée lors de tests
+manuels rapide ou en débuggage.
   \item \textbf{berlin52.tsp} : Instance de petite taille.
-  \item \textbf{ali535.tsp} : Instance de grande taille, beaucoup utilisée étalon lorsque l'on cherche à améliorer les temps
+  \item \textbf{ali535.tsp} : Instance de grande taille, beaucoup utilisée
+étalon lorsque l'on cherche à améliorer les temps
 d'exécution.
   \item \textbf{ch130.tsp} : Instance de taille moyenne.
   \item \textbf{ch150.tsp} : Instance de taille moyenne.
   \item \textbf{burma14.tsp} : Instance de très petite taille.
-  \item \textbf{bier127.tsp} : Instance de taille moyenne, parfois substituée à a280 dans les tests.
-  \item \textbf{brd14051.tsp} : Instance de taille excessive, seule la stratégie First Fit met un temps ``raisonnable''
-à atteindre un optimum local. Best Fit et Worst Fit n'ont jamais été testé sur cette instance.
+  \item \textbf{bier127.tsp} : Instance de taille moyenne, parfois substituée à
+a280 dans les tests.
+  \item \textbf{brd14051.tsp} : Instance de taille excessive, seule la stratégie
+First Fit met un temps ``raisonnable''
+à atteindre un optimum local. Best Fit et Worst Fit n'ont jamais été testé sur
+cette instance.
 \end{itemize}
 
 \pagebreak
@@ -147,14 +176,17 @@ d'exécution.
 \subsection{Enregistrement des résultats}
 
 \paragraph{}
-  Après chaque exécution, on en enregistre les résultats dans des fichiers sous forme textuelle. On distingue deux
-types de fichiers de sortie. D'une part les *.results sont équivalents à la sortie console en fin de programme et
+  Après chaque exécution, on en enregistre les résultats dans des fichiers sous
+forme textuelle. On distingue deux types de fichiers de sortie. D'une part les
+*.results sont équivalents à la sortie console en fin de programme et
 fournissent un résumé facile à lire pour les humain.
 \paragraph{}
-  D'autre part, les *.csv contiennent les mêmes données enregistrées au format Comma Separated Value, ie. valeurs
-séparées par virgule, chaque ligne correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
-fichiers est concatené dans un fichier résumé, qui peut alors être copié tel quel dans un tableur type Microsoft
-Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du tableur utilisé.
+  D'autre part, les *.csv contiennent les mêmes données enregistrées au format
+Comma Separated Value, ie. valeurs séparées par virgule, chaque ligne
+correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
+fichiers est concatené dans un fichier résumé, qui peut alors être copié tel
+quel dans un tableur type Microsoft Excel ou Libre Office Calc. Voir en annexe
+pour description plus approfondie du tableur utilisé.
 
 \begin{figure}[h]
   \begin{center}
@@ -175,21 +207,24 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 \begin{figure}[h]
   \begin{center}
     \begin{tabular}{ccrrr}
-      \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût Moyen}& \textbf{Temps d'exécution}& \textbf{Profondeur}\\
-%     Opérateur&	Stratégie&	Coût Moyen&	Temps d'exécution&	Profondeur\\
-      Swap&	First Fit&	35 404,39&	107,186&		150 717\\
-      Swap&	Best Fit&	37 313,41&	1 198,021&		46 680\\
-      Swap&	Worst Fit&	33 743,71&	63 440,385&		3 275 847\\
-      Insert&	First Fit&	28 531,77&	55,669&			144 553\\
-      Insert&	Best Fit&	29 643,06&	233,594&		22 209\\
-      Insert&	Worst Fit&	28 420,68&	65 041,299&		4 667 846\\
-      Reverse&	First Fit&	25 823,20&	88,784&			148 971\\
-      Reverse&	Best Fit&	25 344,58&	409,759&		16 198\\
-      Reverse&	Worst Fit&	26 349,78&	58 323,618&		3 912 314\\
+      \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût Moyen}& \textbf{Temps
+d'exécution}& \textbf{Profondeur}\\
+%     Opérateur&	Stratégie&	Coût Moyen&	Temps d'exécution&
+Profondeur\\
+      Swap&	First Fit&	35 404,39&	107,186&	150 717\\
+      Swap&	Best Fit&	37 313,41&	1 198,021&	46 680\\
+      Swap&	Worst Fit&	33 743,71&	63 440,385&	3 275 847\\
+      Insert&	First Fit&	28 531,77&	55,669&		144 553\\
+      Insert&	Best Fit&	29 643,06&	233,594&	22 209\\
+      Insert&	Worst Fit&	28 420,68&	65 041,299&	4 667 846\\
+      Reverse&	First Fit&	25 823,20&	88,784&		148 971\\
+      Reverse&	Best Fit&	25 344,58&	409,759&	16 198\\
+      Reverse&	Worst Fit&	26 349,78&	58 323,618&	3 912 314\\
     \end{tabular}
   \end{center}
   \label{recap-general}
-  \caption{Exemple de données générales recueillies après 40 exécutions sur chaque instance}
+  \caption{Exemple de données générales recueillies après 40 exécutions sur
+chaque instance}
 \end{figure}
 
 % résultats spécifiques (ne pas tous les mettre, en envoyer dans annexe)
@@ -198,7 +233,8 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
-      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\\hline
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst
+Fit}\\\hline
       \textbf{Swap}&	
 	  7 653,780&
 	  8 516,976&
@@ -221,7 +257,8 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
-      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\\hline
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst
+Fit}\\\hline
       \textbf{Swap}&
 	  3 200,600&
 	  3 432,550&
@@ -244,7 +281,8 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
-      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\\hline
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst
+Fit}\\\hline
       \textbf{Swap}&
 	  53 327,317&
 	  55 026,098&
@@ -267,7 +305,8 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
-      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst Fit}\\\hline
+      &		\textbf{First Fit}&	\textbf{Best Fit}&	\textbf{Worst
+Fit}\\\hline
       \textbf{Swap}&
 	  \textbf{\textcolor{blue}{24,683}}&
 	  25,756&
@@ -290,42 +329,50 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
 Note: les résultats des autres TSP sont disponibles en annexe.
 
 \paragraph{}
-  Comme on peut le constater, l'opérateur \textbf{\textit{Reverse}} est nettement plus efficace que
-\textbf{\textit{Swap}} et \textbf{\textit{Insert}}. En terme de stratégie, \textbf{Worst Fit} est
-la plus efficace combinée avec les opérateurs \textbf{\textit{Swap}} et \textbf{\textit{Insert}},
-tandis que \textbf{Best Fit} est la stratégie de choix pour \textbf{\textit{Reverse}}.
+  Comme on peut le constater, l'opérateur \textbf{\textit{Reverse}} est
+nettement plus efficace que \textbf{\textit{Swap}} et \textbf{\textit{Insert}}.
+En terme de stratégie, \textbf{Worst Fit} est la plus efficace combinée avec les
+opérateurs \textbf{\textit{Swap}} et \textbf{\textit{Insert}}, tandis que
+\textbf{Best Fit} est la stratégie de choix pour \textbf{\textit{Reverse}}.
 
 \chapter{Analyse d'efficacité et espérance d'amélioration}
 
 \paragraph{}
-  Suite à l'étude préliminaire de l'efficacité de chacun des relations et stratégies, on a cherché à étudier
-plus en détail le comportement de ces algorithmes en cours d'exécution. Nous nous sommes concentré sur
-l'opérateur relationnel le plus efficace sur l'ensemble de nos résultats : \textbf{\textit{Reverse}}.
+  Suite à l'étude préliminaire de l'efficacité de chacun des relations et
+stratégies, on a cherché à étudier plus en détail le comportement de ces
+algorithmes en cours d'exécution. Nous nous sommes concentré sur l'opérateur
+relationnel le plus efficace sur l'ensemble de nos résultats :
+\textbf{\textit{Reverse}}.
 
 \section{Enregistrement du déroulement de l'algorithme pas à pas}
 \subsection{Intégration dans le code existant}
 
 \paragraph{}
-  Avant toute chose, il a fallu concevoir de nouvelles structures capable de représenter l'état de notre programme
-à un instant \textit{t}. Ensuite, ces classes ont été greffé au code existant sans en modifier le comportement.
-Finalement, nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne par ligne dans un fichier texte.
-Une fois encore, nous utilisons le format .csv afin de pouvoir aisément transférer ces données dans un tableur
-au besoin.
+  Avant toute chose, il a fallu concevoir de nouvelles structures capable de
+représenter l'état de notre programme à un instant \textit{t}. Ensuite, ces
+classes ont été greffé au code existant sans en modifier le comportement.
+Finalement, nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne
+par ligne dans un fichier texte. Une fois encore, nous utilisons le format .csv
+afin de pouvoir aisément transférer ces données dans un tableur au besoin.
 
 \paragraph{}
-  Via le tableur, nous avons pu établir des graphe retraçant l'historique de chaque exécution. La contrepartie de
-cette méthode est la relative difficulté à comparer de nombreux résultats cote à cote, le logiciel n'étant pas
-bien adapté pour traiter de tels volumes de données de manière dynamique.
+  Via le tableur, nous avons pu établir des graphe retraçant l'historique de
+chaque exécution. La contrepartie de cette méthode est la relative difficulté à
+comparer de nombreux résultats cote à cote, le logiciel n'étant pas bien adapté
+pour traiter de tels volumes de données de manière dynamique.
 
 \subsection{Données enregistrées}
 
 \paragraph{}
-  Dans un premier temps, nous avons classé les opérations de type \textit{Reverse} en fonction de leur portée,
-c'est à dire le nombre d'éléments (villes) affectés. On détermine ainsi de manière dynamique une série
-d'intervalles de taille croissante pour chacune de nos instances. Nous avons mis en place deux façon de créer
-nos intervalles : soit ils sont disjoint (voir tableau ci-dessous), avec la borne inférieure égale à la borne
-supérieure de l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1. Le type et le
-taux de croissance peuvent être spécifiés au lancement de l'application.
+  Dans un premier temps, nous avons classé les opérations de type
+\textit{Reverse} en fonction de leur portée, c'est à dire le nombre d'éléments
+(villes) affectés. On détermine ainsi de manière dynamique une série
+d'intervalles de taille croissante pour chacune de nos instances. Nous avons mis
+en place deux façon de créer nos intervalles : soit ils sont disjoint (voir
+tableau ci-dessous), avec la borne inférieure égale à la borne supérieure de
+l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1.
+Le type et le taux de croissance peuvent être spécifiés au lancement de
+l'application.
 
 \begin{figure}[h]
   \begin{center}
@@ -348,28 +395,28 @@ taux de croissance peuvent être spécifiés au lancement de l'application.
 \end{figure}
 
 \paragraph{}
-  Dans un second temps, nous enregistrons les informations ayant trait à l'exploration du voisinage
-et à l'action choisie. Ainsi, nous prenons note de la portée de l'opération, de son degré d'amélioration
-(de combien le coût a diminué), avec la quantité de voisins améliorants et de voisins dégradant trouvés,
-accompagné du ratio voisins améliorants/voisins explorés.
+  Dans un second temps, nous enregistrons les informations ayant trait à
+l'exploration du voisinage et à l'action choisie. Ainsi, nous prenons note de
+la portée de l'opération, de son degré d'amélioration (de combien le coût a
+diminué), avec la quantité de voisins améliorants et de voisins dégradant
+trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 
 \begin{figure}[h]
   \begin{tabular}{lcccl}
-    Range,		&Cost diff,	&Stats,
-						      &improv/degrad actions
-									&ratio,\\
-    (23  ; 143),120,	&104,		&Stats:,	&1,2,		&0.333333,\\
-    (117 ; 26),  59,	&788,		&Stats:,	&1,4,		&0.2,\\
-    (117 ; 14),  47,	&106,		&Stats:,	&1,2,		&0.333333,\\
-    (137 ; 81),  94,	&322,		&Stats:,	&1,1,		&0.5,\\
-    (132 ; 22),  40,	&466,		&Stats:,	&1,7,		&0.125,\\
-    (137 ; 81),  94,	&600,		&Stats:,	&1,1,		&0.5,\\
-    (82  ; 86),   4,	&108,		&Stats:,	&1,6,		&0.142857,\\
-    (1   ; 14),  13,	&22,		&Stats:,	&1,8,		&0.111111,\\
-    (25  ; 129),104,	&548,		&Stats:,	&1,10,		&0.0909091,\\
-    (91  ; 80), 139,	&662,		&Stats:,	&1,0,		&0,\\
-    (137 ; 81),  94,	&94,		&Stats:,	&1,1,		&0.5,\\
-    (100 ; 50), 100,	&334,		&Stats:,	&1,8,		&0.111111,\\
+    Range,		&Cost diff,	
+				&Stats,	&improv/degrad actions	&ratio,\\
+    (23  ; 143),120,	&104,	&Stats:,	&1,2,		&0.333333,\\
+    (117 ; 26),  59,	&788,	&Stats:,	&1,4,		&0.2,\\
+    (117 ; 14),  47,	&106,	&Stats:,	&1,2,		&0.333333,\\
+    (137 ; 81),  94,	&322,	&Stats:,	&1,1,		&0.5,\\
+    (132 ; 22),  40,	&466,	&Stats:,	&1,7,		&0.125,\\
+    (137 ; 81),  94,	&600,	&Stats:,	&1,1,		&0.5,\\
+    (82  ; 86),   4,	&108,	&Stats:,	&1,6,		&0.142857,\\
+    (1   ; 14),  13,	&22,	&Stats:,	&1,8,		&0.111111,\\
+    (25  ; 129),104,	&548,	&Stats:,	&1,10,		&0.0909091,\\
+    (91  ; 80), 139,	&662,	&Stats:,	&1,0,		&0,\\
+    (137 ; 81),  94,	&94,	&Stats:,	&1,1,		&0.5,\\
+    (100 ; 50), 100,	&334,	&Stats:,	&1,8,		&0.111111,\\
   \end{tabular}
   \label{a280-sample-interval-simple-bis}
   \caption{Extrait simplifié d'historique d'exécution - détails actions}
@@ -384,17 +431,17 @@ accompagné du ratio voisins améliorants/voisins explorés.
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
 \paragraph{}
-  Grâce aux résultats obtenus, il est possible d'analyser plus en profondeur le comportement de nos
-opérateurs et stratégie, et ainsi déterminer un système permettant d'effectuer les recherches de
-manière plus intelligente.
+  Grâce aux résultats obtenus, il est possible d'analyser plus en profondeur le
+comportement de nos opérateurs et stratégie, et ainsi déterminer un système
+permettant d'effectuer les recherches de manière plus intelligente.
 %rechercher de manière intelligente / réduire espace de recherche
 
 \subsection{Piste 1 : Probabilité de considérer un voisin}
 \subsubsection{Idée}
 
 \paragraph{}
-À chaque intervalle est associé une probabilité. A chaque voisin est associé un intervalle. Nous sélectionnons
-désormais nos voisins avec l'algorithme suivant :
+À chaque intervalle est associé une probabilité. A chaque voisin est associé un
+intervalle. Nous sélectionnons désormais nos voisins avec l'algorithme suivant :
 
 \begin{algorithm}[h]
   \begin{algorithmic}
@@ -413,13 +460,14 @@ désormais nos voisins avec l'algorithme suivant :
 \end{algorithm}
 
 \paragraph{}
-\underline{Note :} La variable \textit{selection} peut avoir été modifiée par la fonction \textit{satisfaitStrategie},
-en fonction de la stratégie utilisée.
+\underline{Note :} La variable \textit{selection} peut avoir été modifiée par la
+fonction \textit{satisfaitStrategie}, en fonction de la stratégie utilisée.
 
 \paragraph{}
-  On espère ainsi qu'une fois arrivé en milieu ou fin de recherche, on ignorera des mouvements que l'on estime avoir
-peu de chances d'améliorer la solution actuelle. La probabilité d'un intervalle évolue en fonction du nombre de
-voisins acceptants qu'il produit.
+  On espère ainsi qu'une fois arrivé en milieu ou fin de recherche, on ignorera
+des mouvements que l'on estime avoir peu de chances d'améliorer la solution
+actuelle. La probabilité d'un intervalle évolue en fonction du nombre de voisins
+acceptants qu'il produit.
 
 \pagebreak
 \begin{algorithm}[h]
@@ -427,7 +475,8 @@ voisins acceptants qu'il produit.
     \Require $selection$ : Voisin
     \Require $increment > 0$
     \State 
-    \Comment{Voir sous-section \textit{Problèmes} ci-dessous pour la description du calcul de l'incrément}
+    \Comment{Voir sous-section \textit{Problèmes} ci-dessous pour la description
+du calcul de l'incrément}
     \State $probabilite \gets selection.intervalle.probabilite$
     \If $ameliorant(selection)$
       \State $selection.intervalle.probabilite \gets probabilite + increment$
@@ -442,8 +491,9 @@ voisins acceptants qu'il produit.
 \end{algorithm}
 
 \paragraph{}
-\underline{Note :} On modifie la probabilité d'un seul intervalle à la fois. Alternativement, on peut choisir
-de n'effectuer qu'une seule condition de changement de la probabilité (décroître si voisin non-améliorant).
+\underline{Note :} On modifie la probabilité d'un seul intervalle à la fois.
+Alternativement, on peut choisir de n'effectuer qu'une seule condition de
+changement de la probabilité (décroître si voisin non-améliorant).
 
 %insérer résultats
 
@@ -451,24 +501,29 @@ de n'effectuer qu'une seule condition de changement de la probabilité (décroî
 \subsubsection{Problèmes}
 
 \paragraph{}
-  Dans notre cas, l'obtention d'un jet aléatoire prend plus de temps processeur que de calculer le coût d'un
-voisin potentiel. On aura également des difficultés à faire en sorte que les probabilités entre les différents
-intervalles soient significatives sans évoluer trop rapidement. Une évolution trop rapide peut nous amener à
-refuser tous les voisins d'une solution à une profondeur relativement faible, ce qui peut s'avérer particulièrement
-problématique dans le cas de \textit{Worst Fit}.
+  Dans notre cas, l'obtention d'un jet aléatoire prend plus de temps processeur
+que de calculer le coût d'un voisin potentiel. On aura également des difficultés
+à faire en sorte que les probabilités entre les différents intervalles soient
+significatives sans évoluer trop rapidement. Une évolution trop rapide peut nous
+amener à refuser tous les voisins d'une solution à une profondeur relativement
+faible, ce qui peut s'avérer particulièrement problématique dans le cas de
+\textit{Worst Fit}.
 \paragraph{}
-  Pour remédier en partie à cela, la formule d'évolution de la probabilité prend en compte la taille du problème
-à traiter et la différence de coût par rapport à la solution précédente.
+  Pour remédier en partie à cela, la formule d'évolution de la probabilité prend
+en compte la taille du problème à traiter et la différence de coût par rapport à
+la solution précédente.
 
 \pagebreak
 \subsection{Piste 2 : Trier les intervalles}
 \subsubsection{Idée}
 
 \paragraph{}
-  Étant donné que, d'après nos résultats d'exécution, les grands intervalles ont tendance à être beaucoup plus
-intéressants en début et milieu de recherche, nous avons cherché à orienter le chemin de la recherche. En
-modifiant les probabilités de départ de chaque intervalle en fonction de leur taille (plus grands = probabilité
-plus importante), on espère limiter le nombre d'analyses ``inutiles'' en début de recherche.
+  Étant donné que, d'après nos résultats d'exécution, les grands intervalles ont
+tendance à être beaucoup plus intéressants en début et milieu de recherche, nous
+avons cherché à orienter le chemin de la recherche. En modifiant les
+probabilités de départ de chaque intervalle en fonction de leur taille (plus
+grands = probabilité plus importante), on espère limiter le nombre d'analyses
+``inutiles'' en début de recherche.
 
 %relancer quelques run (cf TODO list)
 %faire algo
@@ -477,15 +532,16 @@ plus importante), on espère limiter le nombre d'analyses ``inutiles'' en début
 \subsubsection{Problèmes}
 
 \paragraph{}
-  Une fois encore, on se heurte au coût des jets aléatoires. La problématique de l'évolution des coûts reste
-présente.
+  Une fois encore, on se heurte au coût des jets aléatoires. La problématique
+de l'évolution des coûts reste présente.
 
 
 \pagebreak
 \subsection{Piste 3 : Échantillonnage acceptable}
 Note: Non implémenté.
 \subsubsection{Idée}
-%probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et de passer au niveau suivant
+%probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et
+de passer au niveau suivant
 
 \subsubsection{Problèmes potentiels}
 
@@ -499,26 +555,28 @@ Note: Non implémenté.
 \subsection{Représentation des données}
 %core + parsage
 \paragraph{}
-  Les .tsp fournis par LIBTSP suivent assez rigoureusement la même structure de fichier, ce qui les rend
-facile à lire. Étant donné que nous n'auront vraisemblablement qu'un seul problème en mémoire à un instant
-donné, on peut se permettre d'être assez gourmand. Les objets \textbf{Problem} et \textbf{City} forment le
-cœur de nos données et nous servent à faire abstraction de certaines caractéristiques des différents TSP,
-principalement de la représentation des coordonnées (nombres entiers ou réels). Voir la section \textit{core}
-en annexe pour plus de détails.
+  Les .tsp fournis par LIBTSP suivent assez rigoureusement la même structure de
+fichier, ce qui les rend facile à lire. Étant donné que nous n'auront
+vraisemblablement qu'un seul problème en mémoire à un instant donné, on peut se
+permettre d'être assez gourmand. Les objets \textbf{Problem} et \textbf{City}
+forment le cœur de nos données et nous servent à faire abstraction de certaines
+caractéristiques des différents TSP, principalement de la représentation des
+coordonnées (nombres entiers ou réels). Voir la section \textit{core} en annexe
+pour plus de détails.
 
 \subsection{Compartimentalisation des algorithmes}
 %relation & stratégies
 \paragraph{}
-  Afin de séparer au mieux les différents opérateurs relationnels et stratégies tout en évitant autant
-que possible les duplications de code, nous avons tiré avantage du polymorphisme et de l'héritage pour
-généraliser le traitement de ces objets. Voir les diagrammes de classe dans les sections \textit{relation}
-et \textit{strategy} en annexe.
+  Afin de séparer au mieux les différents opérateurs relationnels et stratégies
+tout en évitant autant que possible les duplications de code, nous avons tiré
+avantage du polymorphisme et de l'héritage pour généraliser le traitement de ces
+objets. Voir les diagrammes de classe dans les sections \textit{relation} et
+\textit{strategy} en annexe.
 
 
 \section{Exécution}
 \subsection{Lancement du programme}
 %main, parser & runner
-
 \subsection{Analyse Comportementale}
 %interval stuff
 
