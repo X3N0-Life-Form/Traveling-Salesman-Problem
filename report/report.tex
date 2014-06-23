@@ -23,8 +23,8 @@
 \tableofcontents
 \pagebreak
 
-\chapter{Introduction}
-\section{Définitions}
+\chapter*{Introduction}
+\section*{Définitions}
 \begin{itemize}
  \item \textbf{Problème :} Ensemble de villes devant être parcourues.
  \item \textbf{Voisinage :} Chemin parcourant toutes les villes sans répétition. Solution au problème du voyageur de commerce.
@@ -46,7 +46,8 @@
 \end{itemize}
 
 
-\section{Introduction}
+\pagebreak
+\section*{Introduction}
 
 \paragraph{} % sujet
   Le but de ce projet est d'étudier l'efficacité de différents opérateurs de recherche et stratégies applicables
@@ -262,7 +263,7 @@ Excel ou Libre Office Calc. Voir en annexe pour description plus approfondie du 
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -397,16 +398,14 @@ désormais nos voisins avec l'algorithme suivant :
 
 \begin{algorithm}[h]
   \begin{algorithmic}
-    \Ensure 
     \ForAll{voisins}
-      \State $roll\gets valeurAleatoire()$
+      \State $roll\gets \Call{valeurAleatoire}{}$
       \If{$roll \leq voisin.intervalle.probabilite$}
 	\State $selection \gets voisin$
 	\State break
       \EndIf
     \EndFor
-    \If{$satisfaitStrategie(selection)$}
-      \Function
+    \If{\Call{satisfaitStrategie}{selection}}
       \Return selection
     \EndIf
   \end{algorithmic}
@@ -418,21 +417,71 @@ désormais nos voisins avec l'algorithme suivant :
 en fonction de la stratégie utilisée.
 
 \paragraph{}
-  On espère ainsi qu'une fois arrivé en milieu ou fin de recherche, on ignorera des mouvements ayant peu de
-chances d'améliorer 
+  On espère ainsi qu'une fois arrivé en milieu ou fin de recherche, on ignorera des mouvements que l'on estime avoir
+peu de chances d'améliorer la solution actuelle. La probabilité d'un intervalle évolue en fonction du nombre de
+voisins acceptants qu'il produit.
+
+\pagebreak
+\begin{algorithm}[h]
+  \begin{algorithmic}
+    \Require $selection$ : Voisin
+    \Require $increment > 0$
+    \State 
+    \Comment{Voir sous-section \textit{Problèmes} ci-dessous pour la description du calcul de l'incrément}
+    \State $probabilite \gets selection.intervalle.probabilite$
+    \If $ameliorant(selection)$
+      \State $selection.intervalle.probabilite \gets probabilite + increment$
+    \Else
+      \State $selection.intervalle.probabilite \gets probabilite - increment$
+    \EndIf
+    \State ...
+    \Comment{Suite de la procédure dépend du type de stratégie choisie}
+    \Ensure $selection.intervalle.probabilite \leq 1$
+  \end{algorithmic}
+  \caption{satisfaitStrategie (Générique)}
+\end{algorithm}
+
+\paragraph{}
+\underline{Note :} On modifie la probabilité d'un seul intervalle à la fois. Alternativement, on peut choisir
+de n'effectuer qu'une seule condition de changement de la probabilité (décroître si voisin non-améliorant).
+
+%insérer résultats
+
 
 \subsubsection{Problèmes}
 
 \paragraph{}
   Dans notre cas, l'obtention d'un jet aléatoire prend plus de temps processeur que de calculer le coût d'un
-voisin potentiel.
+voisin potentiel. On aura également des difficultés à faire en sorte que les probabilités entre les différents
+intervalles soient significatives sans évoluer trop rapidement. Une évolution trop rapide peut nous amener à
+refuser tous les voisins d'une solution à une profondeur relativement faible, ce qui peut s'avérer particulièrement
+problématique dans le cas de \textit{Worst Fit}.
+\paragraph{}
+  Pour remédier en partie à cela, la formule d'évolution de la probabilité prend en compte la taille du problème
+à traiter et la différence de coût par rapport à la solution précédente.
 
-\subsection{Piste 2 : Trier les intervalles de considération}
+\pagebreak
+\subsection{Piste 2 : Trier les intervalles}
 \subsubsection{Idée}
-%+ proba de base fonction de l'intervalle
+
+\paragraph{}
+  Étant donné que, d'après nos résultats d'exécution, les grands intervalles ont tendance à être beaucoup plus
+intéressants en début et milieu de recherche, nous avons cherché à orienter le chemin de la recherche. En
+modifiant les probabilités de départ de chaque intervalle en fonction de leur taille (plus grands = probabilité
+plus importante), on espère limiter le nombre d'analyses ``inutiles'' en début de recherche.
+
+%relancer quelques run (cf TODO list)
+%faire algo
+%insérer résultats
 
 \subsubsection{Problèmes}
 
+\paragraph{}
+  Une fois encore, on se heurte au coût des jets aléatoires. La problématique de l'évolution des coûts reste
+présente.
+
+
+\pagebreak
 \subsection{Piste 3 : Échantillonnage acceptable}
 Note: Non implémenté.
 \subsubsection{Idée}
@@ -445,15 +494,29 @@ Note: Non implémenté.
 % Partie technique %
 %%%%%%%%%%%%%%%%%%%%
 \part{Développement}
-\chapter{Structure de l'application}
-\section{Organisation des Classes}
+\chapter{Architecture de l'application}
+\section{Structures de base}
 \subsection{Représentation des données}
 %core + parsage
+\paragraph{}
+  Les .tsp fournis par LIBTSP suivent assez rigoureusement la même structure de fichier, ce qui les rend
+facile à lire. Étant donné que nous n'auront vraisemblablement qu'un seul problème en mémoire à un instant
+donné, on peut se permettre d'être assez gourmand. Les objets \textbf{Problem} et \textbf{City} forment le
+cœur de nos données et nous servent à faire abstraction de certaines caractéristiques des différents TSP,
+principalement de la représentation des coordonnées (nombres entiers ou réels). Voir la section \textit{core}
+en annexe pour plus de détails.
 
 \subsection{Compartimentalisation des algorithmes}
-%relation & stratégie
+%relation & stratégies
+\paragraph{}
+  Afin de séparer au mieux les différents opérateurs relationnels et stratégies tout en évitant autant
+que possible les duplications de code, nous avons tiré avantage du polymorphisme et de l'héritage pour
+généraliser le traitement de ces objets. Voir les diagrammes de classe dans les sections \textit{relation}
+et \textit{strategy} en annexe.
 
-\subsection{Exécution du programme}
+
+\section{Exécution}
+\subsection{Lancement du programme}
 %main, parser & runner
 
 \subsection{Analyse Comportementale}
@@ -465,9 +528,15 @@ Note: Non implémenté.
 
 \chapter{Déroulement du projet}
 \section{Organisation}
+\subsection{Contrôle d'avancement}
+
+\subsubsection{Gestion de version}
+
+\subsubsection{Rapports hebdomadaires et réunions}
+
 \subsection{Standards auto-imposés}
 
-\subsection{Gestion de version}
+
 
 \subsection{Contrôle de non-régression}
 %tests unitaires
