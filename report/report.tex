@@ -8,8 +8,7 @@
 \usepackage{algorithm}
 
 % Title Page
-\title{Opérateurs de recherche et stratégies d'exploration} %Traveling Salesman
-Problem
+\title{Opérateurs de recherche et stratégies d'exploration}
 \author{Adrien DROGUET}
 \date{Avril - Juin 2014}
 
@@ -301,7 +300,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -433,7 +432,9 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 \paragraph{}
   Grâce aux résultats obtenus, il est possible d'analyser plus en profondeur le
 comportement de nos opérateurs et stratégie, et ainsi déterminer un système
-permettant d'effectuer les recherches de manière plus intelligente.
+permettant d'effectuer les recherches de manière plus intelligente. L'idée
+directrice est d'avoir un ensemble de dispositifs permettant de jauger la
+pertinence d'un voisinage donné en fonction des voisinages précédemment choisis.
 %rechercher de manière intelligente / réduire espace de recherche
 
 \subsection{Piste 1 : Probabilité de considérer un voisin}
@@ -541,7 +542,7 @@ de l'évolution des coûts reste présente.
 Note: Non implémenté.
 \subsubsection{Idée}
 %probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et
-de passer au niveau suivant
+%de passer au niveau suivant
 
 \subsubsection{Problèmes potentiels}
 
@@ -577,11 +578,35 @@ objets. Voir les diagrammes de classe dans les sections \textit{relation} et
 \section{Exécution}
 \subsection{Lancement du programme}
 %main, parser & runner
+\paragraph{}
+  Le programme s'exécute en ligne de commande avec un certain nombre d'arguments
+obligatoires, tels que le nom du fichier .tsp ou les relations de voisinage et
+stratégies à utiliser, et des arguments optionnels activant out désactivant
+certains contrôles ou écritures de trace. Une fois tous les objets créés et
+configurés, le main passe la main à la classe \textit{Runner} (voir annexe).
+
 \subsection{Analyse Comportementale}
 %interval stuff
+\paragraph{}
+  On utilise 3 classes afin d'enregistrer chaque pas de l'exécution de notre
+programme: \textit{Action}, \textit{Interval} et \textit{IntervalManager}.
+\textit{Action} mémorise quel voisin a été choisi et avec quel gain (ou perte)
+par rapport à la solution actuelle. \textit{Interval} permet de classer ces
+actions et \textit{IntervalManager} sert de chef d'orchestre. Du fait des
+informations mises en mémoire par ces classes, les entités dédiées à la
+recherche partielle en font également usage pour déterminer la pertinence d'un
+voisinage.
 
 \subsection{Recherche partielle}
-%choice
+%choice & hook
+\paragraph{}
+  L'organisation des classes de prise de décision est légèrement plus chaotique.
+La classe \textit{ChoiceMaker} correspond à la première tentative d'analyse de
+pertinence. Elle implémente l'interface \textit{Hookable} afin de s'interfacer
+avec les classes de type \textit{Relation} sans causer de conflits d'inclusion
+multiples. \textit{ChoicePicker} a un rôle similaire, implémente la même
+interface et, du point de vue de \textit{Relation}, opère de la même manière
+que \textit{ChoiceMaker}.
 
 
 \chapter{Déroulement du projet}
@@ -589,16 +614,46 @@ objets. Voir les diagrammes de classe dans les sections \textit{relation} et
 \subsection{Contrôle d'avancement}
 
 \subsubsection{Gestion de version}
+\paragraph{}
+  Afin de pouvoir garder un contrôle optimal sur les changements et évolutions
+du projet, un système de contrôle de version Git, avec un dépôt distant hébergé
+sur Github, a été adopté. Nous avons employé une approche type "commits
+courants, commits courts", de diviser nos changements au mieux - ce qui facilite
+les réversions lorsque l'on en a besoin.
+
+\paragraph{}
+  Combiné à un journal de bord personnel, l'historique des commits permet
+d'avoir une vision d'ensemble précise de l'évolution de l'application.
 
 \subsubsection{Rapports hebdomadaires et réunions}
+\paragraph{}
+  Chaque semaine, un compte-rendu de l'avancement, des difficultés rencontrées,
+résultats obtenus et des évolutions à venir a été rédigé, accompagné de
+réunions à chaque fois qu'une étape importante était atteinte - implémentation
+des opérateurs et stratégie, des traces d'exécution, de la prise de décision...
+
 
 \subsection{Standards auto-imposés}
+\paragraph{}
 
 
 
 \subsection{Contrôle de non-régression}
 %tests unitaires
+\paragraph{}
+  La quasi-totalité des méthodes, fonctionnalités et bugs ont été contrôlés par
+une batterie de tests unitaires, mettant parfois en évidence une régression ou
+un comportement incorrecte. Ainsi, à chaque révision majeure ou en fin de
+journée, on lance l'ensemble des tests pour vérifier que rien n'a cassé (y
+compris parfois les tests eux-mêmes).
+
 %retro compatibilité
+\paragraph{}
+  On s'est également efforcé de maintenir un certain degré de rétrocompatibilité
+: la plupart des nouvelles méthodes ou algorithmes doivent être activés lors de
+l'appel au programme en ligne de commande. Heureusement, le script de lancement
+permet de maintenir une bonne utilisabilité de l'application malgré l'inflation
+du nombre de paramètres optionnels.
 
 \subsection{Profiling et Optimisation}
 %valgrind, callgrind & autre
