@@ -353,24 +353,24 @@ Finalement, nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne
 par ligne dans un fichier texte. Une fois encore, nous utilisons le format .csv
 afin de pouvoir aisément transférer ces données dans un tableur au besoin.
 
-\paragraph{}
-  Via le tableur, nous avons pu établir des graphe retraçant l'historique de
-chaque exécution. La contrepartie de cette méthode est la relative difficulté à
+\paragraph{}%topres^
+  Via le tableur, nous établissons des graphes retraçant l'historique de chaque
+exécution. La contrepartie de cette méthode est la relative difficulté à
 comparer de nombreux résultats cote à cote, le logiciel n'étant pas bien adapté
 pour traiter de tels volumes de données de manière dynamique.
 
 \subsection{Données enregistrées}
 
 \paragraph{}
-  Dans un premier temps, nous avons classé les opérations de type
+  Dans un premier temps, nous classons les opérations de type
 \textit{Reverse} en fonction de leur portée, c'est à dire le nombre d'éléments
 (villes) affectés. On détermine ainsi de manière dynamique une série
 d'intervalles de taille croissante pour chacune de nos instances. Nous avons mis
 en place deux façon de créer nos intervalles : soit ils sont disjoint (voir
 tableau ci-dessous), avec la borne inférieure égale à la borne supérieure de
-l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1.
-Le type et le taux de croissance peuvent être spécifiés au lancement de
-l'application.
+l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1
+(type retenu pour la collecte des résultats). Le type et le taux de croissance
+peuvent être spécifiés au lancement de l'application.
 
 \begin{figure}[h]
   \begin{center}
@@ -424,7 +424,13 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 \pagebreak
 \section{Analyse des résultats}
 
+\includegraphics[width=\textwidth]{images/att48-intervals-first-fit.png}
+\includegraphics[width=\textwidth]{images/att48-intervals-best-fit.png}
+\includegraphics[width=\textwidth]{images/att48-intervals-worst-fit.png}
+
 %insert graphs
+
+TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes stats + commentaires
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
@@ -470,7 +476,8 @@ intervalle. Nous sélectionnons désormais nos voisins avec l'algorithme suivant
 
 \begin{algorithm}[h]
   \begin{algorithmic}
-    \ForAll{voisins}
+    \Require $voisins$ : ensemble de Voisin
+    \ForAll{$voisin \gets voisins$}
       \State $roll\gets \Call{valeurAleatoire}{}$
       \If{$roll \leq voisin.intervalle.probabilite$}
 	\State $selection \gets voisin$
@@ -494,7 +501,7 @@ des mouvements que l'on estime avoir peu de chances d'améliorer la solution
 actuelle. La probabilité d'un intervalle évolue en fonction du nombre de voisins
 acceptants qu'il produit.
 
-\pagebreak
+
 \begin{algorithm}[h]
   \begin{algorithmic}
     \Require $selection$ : Voisin
@@ -520,7 +527,30 @@ du calcul de l'incrément}
 Alternativement, on peut choisir de n'effectuer qu'une seule condition de
 changement de la probabilité (décroître si voisin non-améliorant).
 
-%insérer résultats
+
+\begin{figure}[h]
+ \begin{tabular}{lll}
+  Run Data:Relation=Reverse;&
+    Strategy=First Fit;\\
+    &starting cost=162567,&
+    end cost=43234;\\
+    &depth=141;\\
+    &run time= 0.008 sec\\
+  Run Data:Relation=Reverse;&
+    Strategy=Best Fit;\\
+    &starting cost=162567,&
+    end cost=41921;\\
+    &depth=47;\\
+    &run time= 0.064 sec\\
+  Run Data:Relation=Reverse;&
+    Strategy=Worst Fit;\\
+    &starting cost=162567,&
+    end cost=104442;\\
+    &depth=162;\\
+    &run time= 0.199 sec\\
+ \end{tabular}
+ \caption{Résultats avec sélection probabiliste}
+\end{figure}
 
 
 \subsubsection{Problèmes}
@@ -538,7 +568,7 @@ faible, ce qui peut s'avérer particulièrement problématique dans le cas de
 en compte la taille du problème à traiter et la différence de coût par rapport à
 la solution précédente.
 
-\pagebreak
+
 \subsection{Piste 2 : Trier les intervalles}
 \subsubsection{Idée}
 
@@ -548,22 +578,87 @@ tendance à être beaucoup plus intéressants en début et milieu de recherche, 
 avons cherché à orienter le chemin de la recherche. En modifiant les
 probabilités de départ de chaque intervalle en fonction de leur taille (plus
 grands = probabilité plus importante), on espère limiter le nombre d'analyses
-``inutiles'' en début de recherche.
+"inutiles" en début de recherche.
 
-%relancer quelques run (cf TODO list)
-%faire algo
-%insérer résultats
+
+\begin{algorithm}
+  \begin{algorithmic}
+    \Require $intervalles$ : ensemble d'Intervalle
+    \Require $probleme$ : Problème
+    \State 
+    \Comment Note: $PROBA\_MIN$ : constante déterminant la probabilité minimum qu'un
+intervalle peut avoir avant le début de la recherche (par défaut 0,3)
+    \State
+    \State $nbrIntervalles \gets intervalles.taille$
+    \State $pas \gets (1 - PROBA\_MIN) / probleme.taille$
+    \State $probabilite \gets 1.0$
+    \ForAll{$intervalle \gets intervalles$}
+      \State $intervalle.probabilite \gets probabilite$
+      \State $probabilite \gets pas * (intervalle.borneMax - intervalle.borneMin)$
+    \EndFor
+  \end{algorithmic}
+  \caption{Ajustement des probabilités de départ}
+\end{algorithm}
+
+
+\begin{figure}[h]
+ \begin{tabular}{lll}
+  Run Data: Relation=Reverse;&
+    Strategy=First Fit;\\
+    &starting cost=164833,&
+    end cost=36000;\\
+    &depth=133;\\
+    &run time= 0.007 sec\\
+  Run Data: Relation=Reverse;&
+    Strategy=Best Fit;\\
+    &starting cost=164833,&
+    end cost=39929;\\
+    &depth=42;\\
+    &run time= 0.061 sec\\
+  Run Data: Relation=Reverse;&
+    Strategy=Worst Fit;\\
+    &starting cost=164833,&
+    end cost=99563;\\
+    &depth=157;\\
+    &run time= 0.211 sec\\
+ \end{tabular}
+ \caption{Résultats avec sélection probabiliste orientée}
+\end{figure}
 
 \subsubsection{Problèmes}
 
 \paragraph{}
   Une fois encore, on se heurte au coût des jets aléatoires. La problématique
-de l'évolution des coûts reste présente.
+de l'évolution des coûts reste présente. On note une amélioration marginale des
+coûts de \textit{First Fit} et \textit{Best Fit}.
 
 
-\pagebreak
+\subsection{Piste 2.5 : Trie / évolution fonction de la stratégie}
+
+Note : Non implémenté.
+
+\subsubsection{Idée}
+
+\paragraph{}
+  Deux idées: D'une part inverser la répartition des probabilités initiales
+lorsque l'on a affaire à une stratégie \textit{Worst Fit}. D'autre part :
+utiliser une formule d'évolution de la probabilité plus "douce" lorsque l'on
+est en \textit{Worst Fit}, ou rendre la formule actuelle plus sensible à la
+taille d'un pas.
+  
+\subsubsection{Problèmes potentiels}
+
+\paragraph{}
+  L'inversion des probabilités de départ peut n'avoir aucune incidence sur
+la performance de \textit{Worst Fit}. Utiliser une formule générique pour chaque
+stratégie semble préférable, mais augmenter la sensibilité de la formule risque
+d'avoir des effets de bord sur les autres stratégies (en bien ou en mal).
+
+
 \subsection{Piste 3 : Échantillonnage acceptable}
+
 Note: Non implémenté.
+
 \subsubsection{Idée}
 %probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et
 %de passer au niveau suivant
@@ -593,7 +688,7 @@ pour plus de détails.
 %relation & stratégies
 \paragraph{}
   Afin de séparer au mieux les différents opérateurs relationnels et stratégies
-tout en évitant autant que possible les duplications de code, nous avons tiré
+tout en évitant autant que possible les duplications de code, nous tirons
 avantage du polymorphisme et de l'héritage pour généraliser le traitement de ces
 objets. Voir les diagrammes de classe dans les sections \textit{relation} et
 \textit{strategy} en annexe.
@@ -612,7 +707,7 @@ configurés, le main passe la main à la classe \textit{Runner} (voir annexe).
 \subsection{Analyse Comportementale}
 %interval stuff
 \paragraph{}
-  On utilise 3 classes afin d'enregistrer chaque pas de l'exécution de notre
+  Nous utilisons 3 classes afin d'enregistrer chaque pas de l'exécution de notre
 programme: \textit{Action}, \textit{Interval} et \textit{IntervalManager}.
 \textit{Action} mémorise quel voisin a été choisi et avec quel gain (ou perte)
 par rapport à la solution actuelle. \textit{Interval} permet de classer ces
@@ -637,7 +732,7 @@ que \textit{ChoiceMaker}.
 \section{Organisation}
 \subsection{Contrôle d'avancement}
 
-\subsubsection{Gestion de version}
+\subsubsection{Gestion de version}%topres v
 \paragraph{}
   Afin de pouvoir garder un contrôle optimal sur les changements et évolutions
 du projet, un système de contrôle de version Git, avec un dépôt distant hébergé
