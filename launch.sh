@@ -10,7 +10,7 @@
 maxDepth=2000
 relations="-r reverse"
 strategies="-s firstFit -s bestFit -s worstFit"
-intervals="-saveIntervalData -intervalStep 4 -intervalType joined_at_origin"
+intervals="-saveIntervalData -intervalStep 2 -intervalType joined_at_origin"
 miscArgs="-sameStartingPoint -doubleCheckCost -noMaxDepth"
 
 execPath="./dist/Debug/GNU-Linux-x86/traveling_salesman_problem"
