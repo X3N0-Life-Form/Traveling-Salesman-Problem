@@ -1,5 +1,6 @@
 \documentclass[a4paper,10pt]{report}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage[francais]{babel}
 \usepackage{hyperref}
@@ -157,17 +158,16 @@ unitaires, d'une taille respectable, mais pas excessive.
 manuels rapide ou en débuggage.
   \item \textbf{berlin52.tsp} : Instance de petite taille.
   \item \textbf{ali535.tsp} : Instance de grande taille, beaucoup utilisée
-étalon lorsque l'on cherche à améliorer les temps
-d'exécution.
+étalon lorsque l'on cherche à améliorer les temps d'exécution.
   \item \textbf{ch130.tsp} : Instance de taille moyenne.
   \item \textbf{ch150.tsp} : Instance de taille moyenne.
   \item \textbf{burma14.tsp} : Instance de très petite taille.
   \item \textbf{bier127.tsp} : Instance de taille moyenne, parfois substituée à
 a280 dans les tests.
   \item \textbf{brd14051.tsp} : Instance de taille excessive, seule la stratégie
-First Fit met un temps ``raisonnable''
-à atteindre un optimum local. Best Fit et Worst Fit n'ont jamais été testé sur
-cette instance.
+\textit{First Fit} met un temps "raisonnable" à atteindre un optimum local.
+\textit{Best Fit} et \textit{Worst Fit} n'ont jamais été testé sur cette
+instance.
 \end{itemize}
 
 \pagebreak
@@ -199,17 +199,15 @@ pour description plus approfondie du tableur utilisé.
   \caption{Résumé de fin d'exécution - format .csv}
 \end{figure}
 
-% insérer screen de recap.ods
-
 \subsection{Efficacité constatée}
 
 \begin{figure}[h]
   \begin{center}
     \begin{tabular}{ccrrr}
-      \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût Moyen}& \textbf{Temps
+      \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût}& \textbf{Tps
 d'exécution}& \textbf{Profondeur}\\
 %     Opérateur&	Stratégie&	Coût Moyen&	Temps d'exécution&
-Profondeur\\
+%Profondeur\\
       Swap&	First Fit&	35 404,39&	107,186&	150 717\\
       Swap&	Best Fit&	37 313,41&	1 198,021&	46 680\\
       Swap&	Worst Fit&	33 743,71&	63 440,385&	3 275 847\\
@@ -226,9 +224,9 @@ Profondeur\\
 chaque instance}
 \end{figure}
 
-% résultats spécifiques (ne pas tous les mettre, en envoyer dans annexe)
+% résultats spécifiques
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -252,7 +250,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -276,7 +274,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -300,7 +298,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -341,15 +339,16 @@ opérateurs \textbf{\textit{Swap}} et \textbf{\textit{Insert}}, tandis que
 stratégies, on a cherché à étudier plus en détail le comportement de ces
 algorithmes en cours d'exécution. Nous nous sommes concentré sur l'opérateur
 relationnel le plus efficace sur l'ensemble de nos résultats :
-\textbf{\textit{Reverse}}.
+\textbf{\textit{Reverse}}. La première étape est l'enregistrement de l'exécution
+du programme pas à pas.
 
-\section{Enregistrement du déroulement de l'algorithme pas à pas}
+\section{Enregistrement de l'exécution}
 \subsection{Intégration dans le code existant}
 
 \paragraph{}
   Avant toute chose, il a fallu concevoir de nouvelles structures capable de
 représenter l'état de notre programme à un instant \textit{t}. Ensuite, ces
-classes ont été greffé au code existant sans en modifier le comportement.
+classes ont été greffées au code existant sans en modifier le comportement.
 Finalement, nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne
 par ligne dans un fichier texte. Une fois encore, nous utilisons le format .csv
 afin de pouvoir aisément transférer ces données dans un tableur au besoin.
@@ -436,6 +435,31 @@ permettant d'effectuer les recherches de manière plus intelligente. L'idée
 directrice est d'avoir un ensemble de dispositifs permettant de jauger la
 pertinence d'un voisinage donné en fonction des voisinages précédemment choisis.
 %rechercher de manière intelligente / réduire espace de recherche
+
+\begin{figure}[h]
+  \begin{tabular}{lll}
+    Run Data: Relation=Reverse;&
+      Strategy=First Fit;\\
+      &starting cost=157894,&
+      end cost=34817;\\
+      &depth=135;\\
+      &run time= 0.004 sec\\
+    Run Data: Relation=Reverse;&
+      Strategy=Best Fit;\\
+      &starting cost=157894,&
+      end cost=35155;\\
+      &depth=46;\\
+      &run time= 0.036 sec\\
+    Run Data: Relation=Reverse;&
+      Strategy=Worst Fit;\\
+      &starting cost=157894,&
+      end cost=36260;\\
+      &depth=5374;\\
+      &run time= 3.913 sec\\
+  \end{tabular}
+  \caption{Résultats témoins}
+\end{figure}
+
 
 \subsection{Piste 1 : Probabilité de considérer un voisin}
 \subsubsection{Idée}
@@ -633,11 +657,6 @@ réunions à chaque fois qu'une étape importante était atteinte - implémentat
 des opérateurs et stratégie, des traces d'exécution, de la prise de décision...
 
 
-\subsection{Standards auto-imposés}
-\paragraph{}
-
-
-
 \subsection{Contrôle de non-régression}
 %tests unitaires
 \paragraph{}
@@ -675,11 +694,11 @@ beaucoup plus robuste et capable de tenir la charge sur de grandes instances.
 
 \section{Difficultés techniques}
 
-\chapter{Conclusion}
-\section{Conclusion}
+\chapter*{Conclusion}
+\section*{} %conclusion / rétrospective
 
 
-\section{Informations complémentaires}
+\section*{Informations complémentaires}
 %bibliographie
 %licence
 %repo github
