@@ -657,8 +657,21 @@ du nombre de paramètres optionnels.
 
 \subsection{Profiling et Optimisation}
 %valgrind, callgrind & autre
+\paragraph{}
+  Dans le but d'améliorer la vitesse d'exécution, l'utilisation mémoire de
+l'application, et corriger des problèmes potentiels, nous avons tiré avantage
+des capacités des \textbf{valgrind}, \textbf{callgrind} ainsi qu'une poignée de
+contrôles manuels pour obtenir une image précise du comportement de notre
+programme. Ces informations nous ont ensuite permis de commencer à optimiser
+certaines sections du code.
 
-\subsection{Optimisation}
+\paragraph{}
+  Cette opération a donné naissance à certaines structures allégées, comme des
+voisins simplifiés, ne contenant que les informations essentielles aux classes
+dont elles sont attributs. On s'est également efforcé de libérer dès que
+possible les données ayant dépassé leur période d'utilité, rendant le programme
+beaucoup plus robuste et capable de tenir la charge sur de grandes instances.
+
 
 \section{Difficultés techniques}
 
