@@ -11,6 +11,7 @@ report.txt
 *.toc
 *.backup
 *.pdf
+*.tar.gz
 
 data/results/
 data/result_mashup.txt
