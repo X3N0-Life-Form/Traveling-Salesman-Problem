@@ -7,9 +7,11 @@
 \usepackage{color}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
+\usepackage{mathtools}
+
 
 % Title Page
-\title{Opérateurs de recherche et stratégies d'exploration}
+\title{Relations de voisinage et stratégies d'exploration}
 \author{Adrien DROGUET}
 \date{Avril - Juin 2014}
 
@@ -57,21 +59,23 @@ trouvé.
 \pagebreak
 \section*{Introduction}
 
-\paragraph{} % sujet
-  Le but de ce projet est d'étudier l'efficacité de différents opérateurs de
-recherche et stratégies applicables à la résolution de ce problème en recherche
-locale. Suite à l'étude des résultats de ces différents algorithmes et
-stratégies, le projet vise la mise en place de méthodes permettant d'effectuer
-une recherche partielle capable d'obtenir des résultats comparables à ceux d'une
-recherche locale à un coût moindre en temps de calcul.
 \paragraph{}
   Le voyageur de commerce est un problème bien connu dans le milieu informatique
 : pour un ensemble de villes, minimiser la distance requise qu'un individu doit
 parcourir afin de visiter chaque ville. De nombreuses études ont été menées sur
-ce sujet et une quantité significative d'algorithmes de résolution ont été écrit
-au fil des ans. Pour cette raison, cette problématique forme un cadre
-intéressant pour l'analyse de l'efficacité des différents opérateurs
-relationnels que l'ont cherche à étudier.
+ce sujet et une quantité significative d'algorithmes de résolution ont été
+définis au fil des ans. Pour cette raison, cette problématique forme un cadre
+intéressant pour l'analyse de l'efficacité des différentes relations que l'ont
+cherche à étudier.
+
+\paragraph{} % sujet
+  Le but de ce projet est d'étudier l'efficacité de différentes recherches de
+voisinage et stratégies applicables à la résolution de ce problème en recherche
+locale. Suite à l'étude des résultats de ces différents algorithmes et
+stratégies, le projet vise la mise en place de méthodes permettant d'effectuer
+une recherche partielle capable d'obtenir des résultats comparables à ceux d'une
+recherche locale à un coût moindre en temps de calcul.
+
 
 \paragraph{} % ressources utilisées
   Pour référence, nous avons utilisé les problèmes fourni par
@@ -88,24 +92,98 @@ distances entières ou réelles.
 %%%%%%%%%%%%%%%%%%%%
 \part{Recherche}
 \chapter{Recherche locale}
+
+\paragraph{}
+  Le \textit{Traveling Salesman Problem} est un problème d'optimisation
+combinatoire : Soit un chemin $C$ de $n$ villes, avec $x_k, k \in [1, n]$ une
+ville quelconque et $c_l, l \in [1, n]$ le numéro de la ville située à l'indice
+$l$ du chemin $C$ tel que $c_l \in [1,n]$, et $d(x_i,x_j), i,j \in [1,n]$ la
+distance entre la ville $i$ et la ville $j$.
+\paragraph{}
+  On cherche à minimiser {\Large $\sum_{i=1}^{n - 1} d(x_{c_i},x_{c_{i+1}})$}
+en appliquant un algorithme de recherche locale.
+
+\begin{algorithm}
+  \begin{algorithmic}
+    \Require $solution$ : Solution courante
+    \Require $solutions$ : ensemble des solutions retenues
+    \Require $voisins$ : ensemble des solutions voisines de $solution$
+    \Require $solutionAmeliorante(actuelle, nouvelle)$ : fonction d'évaluation
+booléenne renvoyant vrai si une solution est considérée de meilleure qualité
+    \Require $solutionOptimale(solutions)$ : fonction renvoyant la solution
+jugée plus appropriée pour la suite de la recherche dans un ensemble de
+solutions
+    \State
+    \State $solutions \gets \emptyset$
+    \For {$voisin \in voisins$}
+      \If {\Call{solutionAmeliorante}{solution, voisin}}
+	\State $solutions \gets solutions \cup voisin$
+      \EndIf
+    \EndFor
+    \State $solution \gets$ \Call{solutionOptimale}{solutions}
+  \end{algorithmic}
+  \caption{Algorithme de recherche locale}
+\end{algorithm}
+
+\paragraph{}
+  Notre projet propose plusieurs manière d'obtenir un voisinage, ainsi que
+diverses façons d'évaluer une solution comme étant optimale pour la suite de la
+recherche.
+
 \section{Implémentation des algorithmes}
 \subsection{Relations de voisinage}
 
+\subsubsection{Déplacement}
 \paragraph{}
-  Après avoir établit une représentation satisfaisante et un système de lecture
-des données fonctionnel (voir partie développement, sous-section représentation
-des données), nous avons défini trois types de mouvements, ou relation de
-voisinage à appliquer à une solution : l'échange (Swap), l'insertion (Insert) et
-l'inversion (Reverse).
+  Après avoir établi une représentation satisfaisante et un système de lecture
+des données fonctionnel (voir section 3.1), nous avons défini trois types de
+mouvements, ou relation de voisinage à appliquer à une solution : l'échange
+(Swap), l'insertion (Insert) et l'inversion (Reverse). Soient $C_i$ et $C_j$ les
+villes aux indices $i$ et $j$ du chemin $C$ respectivement. Appliquons nos
+relations de voisinage sur $C_i$ et $C_j$ pour obtenir le chemin $C^{'}$ :
 
 \paragraph{}
-Afin d'éviter de recalculer le coût d'une solution (c'est à dire la distance que
-le voyageur doit parcourir pour un chemin donné), à chacune de ces relations est
-associé une fonction de calcul de coût potentielle. Celle-ci prend en paramètre
-les villes sur lesquels seront appliqués les déplacements, et effectue les
-calculs aux points de rupture du chemin modifié.
-% insérer schéma types de déplacements + points de rupture
-% reprendre comme exemple 0123456789
+\begin{itemize}
+  \item \textbf{Swap :} On échange la position de $C_i$ et $C_j$.
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/Swap.png}
+    \end{center}
+    \caption{Voisinage Swap}
+  \end{figure}
+
+  \item \textbf{Insert :} On insère $C_i$ avant $C_j$.
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/Insert.png}
+    \end{center}
+    \caption{Voisinage Insert}
+  \end{figure}
+
+  \item \textbf{Reverse :} On inverse la position de chaque ville entre $C_i$ et
+$C_j$. $C^{'}_i \gets C_j$, $C^{'}_{i+1} \gets C_{j-1}$, ..., $C^{'}_{j-1} \gets
+C_{i+1}$, $C^{'}_j \gets C_i$.
+  \begin{figure}[H]
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/Reverse.png}
+    \end{center}
+    \caption{Voisinage Reverse}
+  \end{figure}
+
+\end{itemize}
+
+\subsubsection{Variation de coût}
+\paragraph{}
+  Vous noterez les croix rouges séparant certaines villes sur les schémas
+précédents. Ces celles-ci représentent ce que l'on appelle des points de
+rupture, c'est à dire des changements dans la distance à parcourir, donc un
+changement du coût de la solution (coût = distance que le voyageur doit
+parcourir pour un chemin donné).
+\paragraph{}
+Afin d'éviter de recalculer le coût d'une solution, à chacune de ces relations
+est associé une fonction de calcul de coût potentielle. Celle-ci prend en
+paramètre les villes sur lesquels seront appliqués les déplacements, et effectue
+les calculs aux points de rupture du chemin modifié.
 
 
 \subsection{Stratégies de sélection d'un voisinage}
@@ -118,19 +196,19 @@ recherche locale : choisir le premier voisin améliorant que l'on trouve (First
 Fit), choisir le meilleur voisin améliorant après avoir parcouru l'ensemble des
 voisins possibles (Best Fit), ou bien choisir le voisin améliorant le moins
 possible la solution actuelle (Worst Fit).
-% schémas d'exemples
+
+% algos d'exemples
 
 
 \subsection{Lancement}
 
 \paragraph{}
-  Suite au parsage d'un TSP particulier, notre programme s'efforce d'appliquer
+  Suite au parsage d'un TSP particulier, notre algorithme s'efforce d'appliquer
 chacune des relations et chacune des stratégies spécifiées l'une après l'autre,
-en partant éventuellement du même point de départ. Le voisinage de départ est
-généré aléatoirement à partir des données du problème. Chaque pas est exploré de
-manière aléatoire, bien que dans le cas des stratégies \textit{Best Fit} et
-\textit{Worst Fit}, on va chercher (dans un premier temps) à explorer l'ensemble
-des voisins possibles.
+en partant éventuellement du même point de départ. Chaque voisinage est généré
+aléatoirement à partir des données du problème, bien que dans le cas des
+stratégies \textit{Best Fit} et \textit{Worst Fit}, on va chercher à explorer
+l'ensemble des voisins possibles.
 
 \paragraph{}
 En fin d'exécution, un résumé des résultats obtenus est affiché en console.
@@ -177,15 +255,15 @@ instance.
 \paragraph{}
   Après chaque exécution, on en enregistre les résultats dans des fichiers sous
 forme textuelle. On distingue deux types de fichiers de sortie. D'une part les
-*.results sont équivalents à la sortie console en fin de programme et
-fournissent un résumé facile à lire pour les humain.
+*.results sont équivalents à la sortie console en fin d'exécution et
+fournissent un résumé facile à lire pour les humains.
 \paragraph{}
   D'autre part, les *.csv contiennent les mêmes données enregistrées au format
 Comma Separated Value, ie. valeurs séparées par virgule, chaque ligne
 correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
 fichiers est concatené dans un fichier résumé, qui peut alors être copié tel
 quel dans un tableur type Microsoft Excel ou Libre Office Calc. Voir en annexe
-pour description plus approfondie du tableur utilisé.
+pour une description plus approfondie du tableur utilisé.
 
 \begin{figure}[h]
   \begin{center}
@@ -204,9 +282,9 @@ pour description plus approfondie du tableur utilisé.
 \begin{figure}[h]
   \begin{center}
     \begin{tabular}{ccrrr}
-      \textbf{Opérateur}& \textbf{Stratégie}& \textbf{Coût}& \textbf{Tps
+      \textbf{Relation}& \textbf{Stratégie}& \textbf{Coût}& \textbf{Tps
 d'exécution}& \textbf{Profondeur}\\
-%     Opérateur&	Stratégie&	Coût Moyen&	Temps d'exécution&
+%     Relation&	Stratégie&	Coût Moyen&	Temps d'exécution&
 %Profondeur\\
       Swap&	First Fit&	35 404,39&	107,186&	150 717\\
       Swap&	Best Fit&	37 313,41&	1 198,021&	46 680\\
@@ -226,7 +304,7 @@ chaque instance}
 
 % résultats spécifiques
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -250,7 +328,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -274,7 +352,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -298,7 +376,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -326,51 +404,58 @@ Fit}\\\hline
 Note: les résultats des autres TSP sont disponibles en annexe.
 
 \paragraph{}
-  Comme on peut le constater, l'opérateur \textbf{\textit{Reverse}} est
+  Comme on peut le constater, le voisinage \textbf{\textit{Reverse}} est
 nettement plus efficace que \textbf{\textit{Swap}} et \textbf{\textit{Insert}}.
 En terme de stratégie, \textbf{Worst Fit} est la plus efficace combinée avec les
-opérateurs \textbf{\textit{Swap}} et \textbf{\textit{Insert}}, tandis que
+voisinages \textbf{\textit{Swap}} et \textbf{\textit{Insert}}, tandis que
 \textbf{Best Fit} est la stratégie de choix pour \textbf{\textit{Reverse}}.
 
 \chapter{Analyse d'efficacité et espérance d'amélioration}
 
+\paragraph{}%revoir problématique
+  Suite à l'étude préliminaire de l'efficacité de chacunes des relations et
+stratégies, nous souhaitions étudier plus en détail le comportement de ces
+algorithmes en cours d'exécution. En ayant une image plus nette des choix
+effectués à un instant $t$ et de leur efficacité, on espère parvenir à
+identifier des moyens d'améliorer l'efficacité des algorithmes déjà implémentés,
+et/ou d'en souligner les avantages et limitations.
+
 \paragraph{}
-  Suite à l'étude préliminaire de l'efficacité de chacun des relations et
-stratégies, on a cherché à étudier plus en détail le comportement de ces
-algorithmes en cours d'exécution. Nous nous sommes concentré sur l'opérateur
-relationnel le plus efficace sur l'ensemble de nos résultats :
-\textbf{\textit{Reverse}}. La première étape est l'enregistrement de l'exécution
-du programme pas à pas.
+Nous nous sommes concentrés sur la relation de voisinage le plus efficace sur
+l'ensemble de nos résultats : \textbf{\textit{Reverse}}. La première étape est
+l'enregistrement de l'exécution de l'algorithme pas à pas.
+
+
 
 \section{Enregistrement de l'exécution}
 \subsection{Intégration dans le code existant}
 
 \paragraph{}
-  Avant toute chose, il a fallu concevoir de nouvelles structures capable de
-représenter l'état de notre programme à un instant \textit{t}. Ensuite, ces
-classes ont été greffées au code existant sans en modifier le comportement.
-Finalement, nous avons choisi d'enregistrer chaque étape, chaque ``pas'' ligne
-par ligne dans un fichier texte. Une fois encore, nous utilisons le format .csv
-afin de pouvoir aisément transférer ces données dans un tableur au besoin.
+  Avant toute chose, nous avons conçu de nouvelles structures permettant de
+représenter l'état de notre algorithme à un instant \textit{t}. Ensuite, nous
+avons greffé ces classes au code existant sans en modifier le comportement.
+Finalement, nous avons choisi d'enregistrer chaque étape, chaque "pas" ligne par
+ligne dans un fichier texte. Une fois encore, nous utilisons le format .csv afin
+de pouvoir aisément transférer ces données dans un tableur au besoin.
 
-\paragraph{}%topres^
+\paragraph{}
   Via le tableur, nous établissons des graphes retraçant l'historique de chaque
 exécution. La contrepartie de cette méthode est la relative difficulté à
 comparer de nombreux résultats cote à cote, le logiciel n'étant pas bien adapté
-pour traiter de tels volumes de données de manière dynamique.
+pour traiter de tels volumes de données.
 
 \subsection{Données enregistrées}
 
 \paragraph{}
-  Dans un premier temps, nous classons les opérations de type
-\textit{Reverse} en fonction de leur portée, c'est à dire le nombre d'éléments
-(villes) affectés. On détermine ainsi de manière dynamique une série
-d'intervalles de taille croissante pour chacune de nos instances. Nous avons mis
-en place deux façon de créer nos intervalles : soit ils sont disjoint (voir
-tableau ci-dessous), avec la borne inférieure égale à la borne supérieure de
-l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1
-(type retenu pour la collecte des résultats). Le type et le taux de croissance
-peuvent être spécifiés au lancement de l'application.
+  Dans un premier temps, nous classons les relations de type \textit{Reverse}
+en fonction de leur portée, c'est à dire le nombre d'éléments (villes) affectés.
+On détermine ainsi de manière dynamique une série d'intervalles de taille
+croissante pour chacune de nos instances. Nous avons mis en place deux manières
+de créer nos intervalles : soit ils sont disjoints (voir tableau ci-dessous),
+avec la borne inférieure égale à la borne supérieure de l'intervalle précédent ;
+soit nous leur attribuons à tous la borne inférieure 1 (type retenu pour la
+collecte des résultats). Le type et le taux de croissance peuvent être spécifiés
+au lancement de l'application.
 
 \begin{figure}[h]
   \begin{center}
@@ -396,7 +481,7 @@ peuvent être spécifiés au lancement de l'application.
   Dans un second temps, nous enregistrons les informations ayant trait à
 l'exploration du voisinage et à l'action choisie. Ainsi, nous prenons note de
 la portée de l'opération, de son degré d'amélioration (de combien le coût a
-diminué), avec la quantité de voisins améliorants et de voisins dégradant
+diminué), avec la quantité de voisins améliorants et de voisins dégradants
 trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 
 \begin{figure}[h]
@@ -438,14 +523,14 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 
 %insert graphs
 
-TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes
-stats + commentaires
+%TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes
+%stats + commentaires
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
 \paragraph{}
   Grâce aux résultats obtenus, il est possible d'analyser plus en profondeur le
-comportement de nos opérateurs et stratégie, et ainsi déterminer un système
+comportement de nos voisinages et stratégies, et ainsi déterminer un système
 permettant d'effectuer les recherches de manière plus intelligente. L'idée
 directrice est d'avoir un ensemble de dispositifs permettant de jauger la
 pertinence d'un voisinage donné en fonction des voisinages précédemment choisis.
@@ -480,17 +565,17 @@ pertinence d'un voisinage donné en fonction des voisinages précédemment chois
 \subsubsection{Idée}
 
 \paragraph{}
-À chaque intervalle est associé une probabilité. A chaque voisin est associé un
+À chaque intervalle est associé une probabilité. À chaque voisin est associé un
 intervalle. Nous sélectionnons désormais nos voisins avec l'algorithme suivant :
 
 \begin{algorithm}[h]
   \begin{algorithmic}
     \Require $voisins$ : ensemble de Voisin
-    \ForAll{$voisin \gets voisins$}
+    \ForAll{$voisin \in voisins$}
       \State $roll\gets \Call{valeurAleatoire}{}$
       \If{$roll \leq voisin.intervalle.probabilite$}
 	\State $selection \gets voisin$
-	\State break
+	\State sortir
       \EndIf
     \EndFor
     \If{\Call{satisfaitStrategie}{selection}}
@@ -516,10 +601,9 @@ acceptants qu'il produit.
     \Require $selection$ : Voisin
     \Require $increment > 0$
     \State 
-    \Comment{Voir sous-section \textit{Problèmes} ci-dessous pour la description
-du calcul de l'incrément}
+    \Comment{Voir description du calcul de l'incrément ci-dessous}
     \State $probabilite \gets selection.intervalle.probabilite$
-    \If $ameliorant(selection)$
+    \If{$ameliorant(selection)$}
       \State $selection.intervalle.probabilite \gets probabilite + increment$
     \Else
       \State $selection.intervalle.probabilite \gets probabilite - increment$
@@ -602,7 +686,7 @@ intervalle peut avoir avant le début de la recherche (par défaut 0,3)
     \State $nbrIntervalles \gets intervalles.taille$
     \State $pas \gets (1 - PROBA\_MIN) / probleme.taille$
     \State $probabilite \gets 1.0$
-    \ForAll{$intervalle \gets intervalles$}
+    \ForAll{$intervalle \in intervalles$}
       \State $intervalle.probabilite \gets probabilite$
       \State $probabilite \gets pas * (intervalle.borneMax -
 intervalle.borneMin)$
@@ -644,7 +728,7 @@ de l'évolution des coûts reste présente. On note une amélioration marginale 
 coûts de \textit{First Fit} et \textit{Best Fit}.
 
 
-\subsection{Piste 2.5 : Trie / évolution fonction de la stratégie}
+\subsection{Piste 2.5 : Tri / évolution fonction de la stratégie}
 
 Note : Non implémenté.
 
@@ -652,7 +736,7 @@ Note : Non implémenté.
 
 \paragraph{}
   Deux idées: D'une part inverser la répartition des probabilités initiales
-lorsque l'on a affaire à une stratégie \textit{Worst Fit}. D'autre part :
+lorsque l'on a affaire à une stratégie \textit{Worst Fit}. D'autre part,
 utiliser une formule d'évolution de la probabilité plus "douce" lorsque l'on
 est en \textit{Worst Fit}, ou rendre la formule actuelle plus sensible à la
 taille d'un pas.
@@ -662,8 +746,9 @@ taille d'un pas.
 \paragraph{}
   L'inversion des probabilités de départ peut n'avoir aucune incidence sur
 la performance de \textit{Worst Fit}. Utiliser une formule générique pour chaque
-stratégie semble préférable, mais augmenter la sensibilité de la formule risque
-d'avoir des effets de bord sur les autres stratégies (en bien ou en mal).
+stratégie semble préférable, mais trouver un bon équilibre entre tous les
+paramètres de la formule (taux d'amélioration, portée de la modification) peut
+s'avérer délicat.
 
 
 \subsection{Piste 3 : Échantillonnage acceptable}
@@ -671,10 +756,57 @@ d'avoir des effets de bord sur les autres stratégies (en bien ou en mal).
 Note: Non implémenté.
 
 \subsubsection{Idée}
-%probabilité d'arrêter la recherche en fonction du nombre de voisins explorés et
-%de passer au niveau suivant
+  Au lieu d'explorer de manière exhaustive notre voisinage à chaque fois, on
+ajoute un test du taux d'exploration en condition d'arrêt et de passage au
+niveau suivant. On juge alors l'échantillon de voisin explorés jusqu'à ce moment
+comme étant acceptable et on choisit le prochain point de départ pour le niveau
+suivant de la recherche.
+
+\paragraph{}
+  Vraisemblablement, on devrait pouvoir définir le taux d'exploration au moment
+de l'exécution de l'application. Il s'agirait alors d'optimiser le rapport taux
+d'exploration / taille de l'instance de manière à obtenir des résultats
+suffisamment proches de ceux de l'exploration exhaustive.
+
+\paragraph{}
+  En outre, ce système devrait être compatible à la fois avec l'exploration
+probabiliste et la recherche locale classique.
+
+\begin{algorithm}[H]
+  \begin{algorithmic}
+    \Require $voisins$ : ensemble de voisin
+    \Require $solution$ : solution courante
+    \Require $relation$ : relation de voisinage
+    \Require $strategie$ : stratégie d'exploration
+    \Require $ACCEPTANCE$ : constante du taux d'échantillon jugé acceptable
+    \State
+    \While{\Call{aVoisinsAmeliorant}{$solution, relation$}}
+      \State $compteur \gets 0$
+      \ForAll {$voisin \in voisins$}
+	\State \Call{appliquerStrategie}{$strategie, solution, voisin$}
+	\If{$(compteur / voisins.taille) \geq ACCEPTANCE$}
+	  \State sortir
+	\Else
+	  \State $acceptance \gets \Call{augmenterAcceptance}{acceptance}$
+	\EndIf
+      \EndFor
+      \If{$solution \neq strategie.voisinOptimal$}
+	\Comment{une nouvelle solution a été trouvée}
+	\State $solution \gets strategie.voisinOptimal$
+      \Else
+	\State sortir
+      \EndIf
+    \EndWhile
+  \end{algorithmic}
+  \caption{Exploration avec taux d'échantillonnage}
+\end{algorithm}
+
 
 \subsubsection{Problèmes potentiels}
+Trouver un bon taux d'échantillonnage pourrait s'avérer difficile. Le problème
+pourrait être résolu en déterminant le taux optimal au lancement de
+l'application. Le problème devient alors de trouver une méthode de calcul
+efficace.
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -682,36 +814,39 @@ Note: Non implémenté.
 %%%%%%%%%%%%%%%%%%%%
 \part{Développement}
 \chapter{Architecture de l'application}
+
+\paragraph{}
+  Afin d'obtenir un programme à la fois rapide et faisant usage des propriétés
+de la programmation orientée objet, le projet a été écrit en C++11.
+
 \section{Structures de base}
 \subsection{Représentation des données}
 %core + parsage
 \paragraph{}
   Les .tsp fournis par LIBTSP suivent assez rigoureusement la même structure de
-fichier, ce qui les rend facile à lire. Étant donné que nous n'auront
-vraisemblablement qu'un seul problème en mémoire à un instant donné, on peut se
-permettre d'être assez gourmand. Les objets \textbf{Problem} et \textbf{City}
-forment le cœur de nos données et nous servent à faire abstraction de certaines
-caractéristiques des différents TSP, principalement de la représentation des
-coordonnées (nombres entiers ou réels). Voir la section \textit{core} en annexe
-pour plus de détails.
+fichier, ce qui les rend faciles à lire. Les objets \textbf{Problem} et
+\textbf{City} forment le cœur de nos données et nous servent à faire abstraction
+de certaines caractéristiques des différents TSP, principalement de la
+représentation des coordonnées (nombres entiers ou réels). Voir la section
+\textit{core} en annexe pour plus de détails.
 
 \subsection{Compartimentalisation des algorithmes}
 %relation & stratégies
 \paragraph{}
-  Afin de séparer au mieux les différents opérateurs relationnels et stratégies
-tout en évitant autant que possible les duplications de code, nous tirons
-avantage du polymorphisme et de l'héritage pour généraliser le traitement de ces
-objets. Voir les diagrammes de classe dans les sections \textit{relation} et
+  Afin de séparer au mieux les différentes voisinages et stratégies tout en
+évitant autant que possible les duplications de code, nous tirons avantage du
+polymorphisme et de l'héritage pour généraliser le traitement de ces objets.
+Voir les diagrammes de classe dans les sections \textit{relation} et
 \textit{strategy} en annexe.
 
 
 \section{Exécution}
-\subsection{Lancement du programme}
+\subsection{Lancement des algorithmes}
 %main, parser & runner
 \paragraph{}
   Le programme s'exécute en ligne de commande avec un certain nombre d'arguments
 obligatoires, tels que le nom du fichier .tsp ou les relations de voisinage et
-stratégies à utiliser, et des arguments optionnels activant out désactivant
+stratégies à utiliser, et des arguments optionnels activant ou désactivant
 certains contrôles ou écritures de trace. Une fois tous les objets créés et
 configurés, le main passe la main à la classe \textit{Runner} (voir annexe).
 
@@ -719,7 +854,7 @@ configurés, le main passe la main à la classe \textit{Runner} (voir annexe).
 %interval stuff
 \paragraph{}
   Nous utilisons 3 classes afin d'enregistrer chaque pas de l'exécution de notre
-programme: \textit{Action}, \textit{Interval} et \textit{IntervalManager}.
+algorithme: \textit{Action}, \textit{Interval} et \textit{IntervalManager}.
 \textit{Action} mémorise quel voisin a été choisi et avec quel gain (ou perte)
 par rapport à la solution actuelle. \textit{Interval} permet de classer ces
 actions et \textit{IntervalManager} sert de chef d'orchestre. Du fait des
@@ -759,7 +894,7 @@ d'avoir une vision d'ensemble précise de l'évolution de l'application.
 \paragraph{}
   Chaque semaine, un compte-rendu de l'avancement, des difficultés rencontrées,
 résultats obtenus et des évolutions à venir est rédigé, accompagné de réunions
-dès qu'une étape importante est atteinte - implémentation des opérateurs et
+dès qu'une étape importante est atteinte - implémentation des relations et
 stratégie, des traces d'exécution, de la prise de décision...
 
 
@@ -768,17 +903,17 @@ stratégie, des traces d'exécution, de la prise de décision...
 \paragraph{}
   La quasi-totalité des méthodes, fonctionnalités et bugs sont contrôlés par
 une batterie de tests unitaires, mettant parfois en évidence une régression ou
-un comportement incorrecte. Ainsi, à chaque révision majeure ou en fin de
-journée, on lance l'ensemble des tests pour vérifier que rien n'a cassé (y
-compris parfois les tests eux-mêmes).
+un comportement incorrect. Ainsi, à chaque révision majeure ou en fin de
+journée, on lance l'ensemble des tests pour vérifier qu'aucune anomalie n'a fait
+surface (y compris dans les tests eux-mêmes).
 
 %retro compatibilité
 \paragraph{}
   On s'efforce également de maintenir un certain degré de rétrocompatibilité
 : la plupart des nouvelles méthodes ou algorithmes doivent être activés lors de
-l'appel au programme en ligne de commande. Heureusement, le script de lancement
-permet de maintenir une bonne utilisabilité de l'application malgré l'inflation
-du nombre de paramètres optionnels.
+l'appel en ligne de commande. Heureusement, le script de lancement permet de
+maintenir une bonne utilisabilité de l'application malgré l'inflation du nombre
+de paramètres optionnels.
 
 \subsection{Profiling et Optimisation}
 %valgrind, callgrind & autre
@@ -787,7 +922,7 @@ du nombre de paramètres optionnels.
 l'application, et corriger des problèmes potentiels, nous tirons avantage des
 capacités de \textbf{valgrind}, \textbf{callgrind} ainsi qu'une poignée de
 contrôles manuels pour obtenir une image précise du comportement de notre
-programme. Ces informations nous permettent ensuite d'optimiser certaines
+algorithme. Ces informations nous permettent ensuite d'optimiser certaines
 sections du code lorsque le besoin se fait sentir.
 
 \paragraph{}
@@ -799,6 +934,21 @@ et capable de tenir la charge sur de grandes instances.
 
 
 \section{Difficultés techniques}
+
+\paragraph{}
+  S'agissant du premier projet écrit en C++ de taille significative que j'ai eu
+l'occasion de réaliser, la première partie du projet a été marqué par une série
+de bugs qu'une plus grande familiarité avec le langage aurait pu éviter. En
+particulier, un bug sévère passé inaperçu pendant quelques semaines rendait les
+résultats alors obtenus nuls, forçant à relancer de nombreuses exécutions après
+correction.
+
+\paragraph{}
+  Ceci a eu des conséquences importantes sur le temps de développement, forçant
+à revoir à la baisse les ambitions du projet. Les algorithmes génétiques, le
+changement de voisinage en cours de recherche et quelques autres concepts ont dû
+être enlevé du planning.
+
 
 \chapter*{Conclusion}
 \section*{} %conclusion / rétrospective
