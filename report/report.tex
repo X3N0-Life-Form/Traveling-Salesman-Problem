@@ -424,13 +424,22 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 \pagebreak
 \section{Analyse des résultats}
 
-\includegraphics[width=\textwidth]{images/att48-intervals-first-fit.png}
-\includegraphics[width=\textwidth]{images/att48-intervals-best-fit.png}
-\includegraphics[width=\textwidth]{images/att48-intervals-worst-fit.png}
+\begin{center}
+  \includegraphics[width=\textwidth]{images/att48-intervals-first-fit.png}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=\textwidth]{images/att48-intervals-best-fit.png}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=\textwidth]{images/att48-intervals-worst-fit.png}
+\end{center}
 
 %insert graphs
 
-TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes stats + commentaires
+TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes
+stats + commentaires
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
@@ -440,7 +449,7 @@ comportement de nos opérateurs et stratégie, et ainsi déterminer un système
 permettant d'effectuer les recherches de manière plus intelligente. L'idée
 directrice est d'avoir un ensemble de dispositifs permettant de jauger la
 pertinence d'un voisinage donné en fonction des voisinages précédemment choisis.
-%rechercher de manière intelligente / réduire espace de recherche
+
 
 \begin{figure}[h]
   \begin{tabular}{lll}
@@ -586,7 +595,8 @@ grands = probabilité plus importante), on espère limiter le nombre d'analyses
     \Require $intervalles$ : ensemble d'Intervalle
     \Require $probleme$ : Problème
     \State 
-    \Comment Note: $PROBA\_MIN$ : constante déterminant la probabilité minimum qu'un
+    \Comment Note: $PROBA\_MIN$ : constante déterminant la probabilité minimum
+qu'un
 intervalle peut avoir avant le début de la recherche (par défaut 0,3)
     \State
     \State $nbrIntervalles \gets intervalles.taille$
@@ -594,7 +604,8 @@ intervalle peut avoir avant le début de la recherche (par défaut 0,3)
     \State $probabilite \gets 1.0$
     \ForAll{$intervalle \gets intervalles$}
       \State $intervalle.probabilite \gets probabilite$
-      \State $probabilite \gets pas * (intervalle.borneMax - intervalle.borneMin)$
+      \State $probabilite \gets pas * (intervalle.borneMax -
+intervalle.borneMin)$
     \EndFor
   \end{algorithmic}
   \caption{Ajustement des probabilités de départ}
@@ -732,11 +743,11 @@ que \textit{ChoiceMaker}.
 \section{Organisation}
 \subsection{Contrôle d'avancement}
 
-\subsubsection{Gestion de version}%topres v
+\subsubsection{Gestion de version}
 \paragraph{}
   Afin de pouvoir garder un contrôle optimal sur les changements et évolutions
-du projet, un système de contrôle de version Git, avec un dépôt distant hébergé
-sur Github, a été adopté. Nous avons employé une approche type "commits
+du projet, nous avons adopté un système de contrôle de version Git, avec un
+dépôt distant hébergé sur Github. Nous employons une approche type "commits
 courants, commits courts", de diviser nos changements au mieux - ce qui facilite
 les réversions lorsque l'on en a besoin.
 
@@ -747,15 +758,15 @@ d'avoir une vision d'ensemble précise de l'évolution de l'application.
 \subsubsection{Rapports hebdomadaires et réunions}
 \paragraph{}
   Chaque semaine, un compte-rendu de l'avancement, des difficultés rencontrées,
-résultats obtenus et des évolutions à venir a été rédigé, accompagné de
-réunions à chaque fois qu'une étape importante était atteinte - implémentation
-des opérateurs et stratégie, des traces d'exécution, de la prise de décision...
+résultats obtenus et des évolutions à venir est rédigé, accompagné de réunions
+dès qu'une étape importante est atteinte - implémentation des opérateurs et
+stratégie, des traces d'exécution, de la prise de décision...
 
 
 \subsection{Contrôle de non-régression}
 %tests unitaires
 \paragraph{}
-  La quasi-totalité des méthodes, fonctionnalités et bugs ont été contrôlés par
+  La quasi-totalité des méthodes, fonctionnalités et bugs sont contrôlés par
 une batterie de tests unitaires, mettant parfois en évidence une régression ou
 un comportement incorrecte. Ainsi, à chaque révision majeure ou en fin de
 journée, on lance l'ensemble des tests pour vérifier que rien n'a cassé (y
@@ -763,7 +774,7 @@ compris parfois les tests eux-mêmes).
 
 %retro compatibilité
 \paragraph{}
-  On s'est également efforcé de maintenir un certain degré de rétrocompatibilité
+  On s'efforce également de maintenir un certain degré de rétrocompatibilité
 : la plupart des nouvelles méthodes ou algorithmes doivent être activés lors de
 l'appel au programme en ligne de commande. Heureusement, le script de lancement
 permet de maintenir une bonne utilisabilité de l'application malgré l'inflation
@@ -773,18 +784,18 @@ du nombre de paramètres optionnels.
 %valgrind, callgrind & autre
 \paragraph{}
   Dans le but d'améliorer la vitesse d'exécution, l'utilisation mémoire de
-l'application, et corriger des problèmes potentiels, nous avons tiré avantage
-des capacités des \textbf{valgrind}, \textbf{callgrind} ainsi qu'une poignée de
+l'application, et corriger des problèmes potentiels, nous tirons avantage des
+capacités de \textbf{valgrind}, \textbf{callgrind} ainsi qu'une poignée de
 contrôles manuels pour obtenir une image précise du comportement de notre
-programme. Ces informations nous ont ensuite permis de commencer à optimiser
-certaines sections du code.
+programme. Ces informations nous permettent ensuite d'optimiser certaines
+sections du code lorsque le besoin se fait sentir.
 
 \paragraph{}
-  Cette opération a donné naissance à certaines structures allégées, comme des
+  Ce type opération a donné naissance à certaines structures allégées, comme des
 voisins simplifiés, ne contenant que les informations essentielles aux classes
-dont elles sont attributs. On s'est également efforcé de libérer dès que
-possible les données ayant dépassé leur période d'utilité, rendant le programme
-beaucoup plus robuste et capable de tenir la charge sur de grandes instances.
+dont elles sont attributs. On s'efforce de libérer dès que possible les données
+ayant dépassé leur période d'utilité, rendant le programme beaucoup plus robuste
+et capable de tenir la charge sur de grandes instances.
 
 
 \section{Difficultés techniques}
