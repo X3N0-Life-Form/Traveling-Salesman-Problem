@@ -412,13 +412,13 @@ voisinages \textbf{\textit{Swap}} et \textbf{\textit{Insert}}, tandis que
 
 \chapter{Analyse d'efficacité et espérance d'amélioration}
 
-\paragraph{}%revoir problématique
+\paragraph{}
   Suite à l'étude préliminaire de l'efficacité de chacunes des relations et
 stratégies, nous souhaitions étudier plus en détail le comportement de ces
 algorithmes en cours d'exécution. En ayant une image plus nette des choix
 effectués à un instant $t$ et de leur efficacité, on espère parvenir à
-identifier des moyens d'améliorer l'efficacité des algorithmes déjà implémentés,
-et/ou d'en souligner les avantages et limitations.
+identifier des moyens d'améliorer la performance des algorithmes déjà
+implémentés, et/ou d'en souligner les avantages et limitations.
 
 \paragraph{}
 Nous nous sommes concentrés sur la relation de voisinage le plus efficace sur
@@ -440,9 +440,9 @@ de pouvoir aisément transférer ces données dans un tableur au besoin.
 
 \paragraph{}
   Via le tableur, nous établissons des graphes retraçant l'historique de chaque
-exécution. La contrepartie de cette méthode est la relative difficulté à
-comparer de nombreux résultats cote à cote, le logiciel n'étant pas bien adapté
-pour traiter de tels volumes de données.
+exécution. La contrepartie de cette méthode de visualisation est la relative
+difficulté à comparer de nombreux résultats cote à cote, le logiciel n'étant pas
+bien adapté pour traiter de tels volumes de données.
 
 \subsection{Données enregistrées}
 
@@ -509,6 +509,9 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 \pagebreak
 \section{Analyse des résultats}
 
+\subsection{Intervalles choisis en fonction du temps}
+\paragraph{}
+
 \begin{center}
   \includegraphics[width=\textwidth]{images/att48-intervals-first-fit.png}
 \end{center}
@@ -521,10 +524,33 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
   \includegraphics[width=\textwidth]{images/att48-intervals-worst-fit.png}
 \end{center}
 
-%insert graphs
+\subsection{Évolution des coûts}
 
-%TODO: graphes intervalles pour ali535 \& bier127 (reste ds annexe) + graphes
-%stats + commentaires
+\paragraph{}
+Les graphes ci-dessous montrent l'amélioration du coût des solutions au cours
+du temps. On constate sans surprise que \textit{First Fit} est complètement
+aléatoire, tandis que \textit{Best Fit} décrois de manière constante avant de
+stagner en approchant de la fin. À l'inverse, \textit{Worst Fit} stagne pendant
+la majeure partie de l'exécution avant de croître en fin de recherche.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/att48-cost-first-fit.png}
+  \end{center}
+\end{figure}
+
+
+\begin{center}
+  \includegraphics[width=\textwidth]{images/att48-cost-best-fit.png}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=\textwidth]{images/att48-cost-worst-fit.png}
+\end{center}
+
+%TODO: graphes pour ali535 \& bier127 ds annexe
+% commentaire intervalles
+% graphe ratio good/bad?
 
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
