@@ -269,9 +269,9 @@ voisinage
   Suite au parsage d'un TSP particulier, notre algorithme s'efforce d'appliquer
 chacune des relations et chacune des stratégies spécifiées l'une après l'autre,
 en partant éventuellement du même point de départ. Chaque voisinage est généré
-aléatoirement à partir des données du problème, bien que dans le cas des
-stratégies \textit{Best Fit} et \textit{Worst Fit}, on va chercher à explorer
-l'ensemble des voisins possibles.
+aléatoirement à partir des combinaisons de changements possibles. Dans le cas
+des stratégies \textit{Best Fit} et \textit{Worst Fit}, on va chercher à
+explorer l'ensemble des voisins d'une solution donnée.
 
 \paragraph{}
 En fin d'exécution, un résumé des résultats obtenus est affiché en console.
@@ -296,9 +296,9 @@ Instances utilisées (par ordre de lancement) :
   \item \textbf{a280.tsp} : Instance principalement utilisée par les tests
 unitaires, d'une taille respectable, mais pas excessive.
   \item \textbf{att48.tsp} : Instance de petite taille, utilisée lors de tests
-manuels rapide ou en débuggage.
+manuels rapide, en débuggage ou encore en récupération de statistiques.
   \item \textbf{berlin52.tsp} : Instance de petite taille.
-  \item \textbf{ali535.tsp} : Instance de grande taille, beaucoup utilisée
+  \item \textbf{ali535.tsp} : Instance de grande taille, très utilisée comme
 étalon lorsque l'on cherche à améliorer les temps d'exécution.
   \item \textbf{ch130.tsp} : Instance de taille moyenne.
   \item \textbf{ch150.tsp} : Instance de taille moyenne.
@@ -306,9 +306,10 @@ manuels rapide ou en débuggage.
   \item \textbf{bier127.tsp} : Instance de taille moyenne, parfois substituée à
 a280 dans les tests.
   \item \textbf{brd14051.tsp} : Instance de taille excessive, seule la stratégie
-\textit{First Fit} met un temps "raisonnable" à atteindre un optimum local.
-\textit{Best Fit} et \textit{Worst Fit} n'ont jamais été testé sur cette
-instance.
+\textit{First Fit} met un temps "raisonnable" (inférieur à une journée) à
+atteindre un optimum local. \textit{Best Fit} et \textit{Worst Fit} n'ont jamais
+été testé sur cette instance, les temps d'exécution explosant comparativement à
+\textit{First Fit}.
 \end{itemize}
 
 \pagebreak
@@ -322,11 +323,10 @@ forme textuelle. On distingue deux types de fichiers de sortie. D'une part les
 fournissent un résumé facile à lire pour les humains.
 \paragraph{}
   D'autre part, les *.csv contiennent les mêmes données enregistrées au format
-Comma Separated Value, ie. valeurs séparées par virgule, chaque ligne
+\textit{Comma Separated Value}, ie. valeurs séparées par virgule, chaque ligne
 correspondant à un couple Relation/Stratégie. Typiquement, le contenu de ces 
 fichiers est concatené dans un fichier résumé, qui peut alors être copié tel
-quel dans un tableur type Microsoft Excel ou Libre Office Calc. Voir en annexe
-pour une description plus approfondie du tableur utilisé.
+quel dans un tableur type Microsoft Excel ou Libre Office Calc.
 
 \begin{figure}[h]
   \begin{center}
@@ -510,15 +510,15 @@ bien adapté pour traiter de tels volumes de données.
 \subsection{Données enregistrées}
 
 \paragraph{}
-  Dans un premier temps, nous classons les relations de type \textit{Reverse}
-en fonction de leur portée, c'est à dire le nombre d'éléments (villes) affectés.
-On détermine ainsi de manière dynamique une série d'intervalles de taille
-croissante pour chacune de nos instances. Nous avons mis en place deux manières
-de créer nos intervalles : soit ils sont disjoints (voir tableau ci-dessous),
-avec la borne inférieure égale à la borne supérieure de l'intervalle précédent ;
-soit nous leur attribuons à tous la borne inférieure 1 (type retenu pour la
-collecte des résultats). Le type et le taux de croissance peuvent être spécifiés
-au lancement de l'application.
+  Avant de lancer la recherche, nous classons les relations de type
+\textit{Reverse} en fonction de leur portée, c'est à dire le nombre d'éléments
+(villes) affectés. On détermine ainsi de manière dynamique une série
+d'intervalles de taille croissante pour chacune de nos instances. Nous avons mis
+en place deux manières de créer nos intervalles : soit ils sont disjoints (voir
+tableau ci-dessous), avec la borne inférieure égale à la borne supérieure de
+l'intervalle précédent ; soit nous leur attribuons à tous la borne inférieure 1
+(type retenu pour la collecte des résultats). Le type et le taux de croissance
+peuvent être spécifiés au lancement de l'application.
 
 \begin{figure}[h]
   \begin{center}
@@ -540,12 +540,21 @@ au lancement de l'application.
   \caption{Extrait simplifié d'historique d'exécution - statistiques générales}
 \end{figure}
 
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/reverse-range.png}
+  \end{center}
+  \caption{Exemple de portée d'une inversion}
+\end{figure}
+
+
 \paragraph{}
-  Dans un second temps, nous enregistrons les informations ayant trait à
-l'exploration du voisinage et à l'action choisie. Ainsi, nous prenons note de
-la portée de l'opération, de son degré d'amélioration (de combien le coût a
-diminué), avec la quantité de voisins améliorants et de voisins dégradants
-trouvés, accompagné du ratio voisins améliorants/voisins explorés.
+  Une fois nos intervalles générés, nous enregistrons les informations ayant
+trait à l'exploration du voisinage et à l'action choisie. Ainsi, nous prenons
+note de la portée de l'opération, de son degré d'amélioration (de combien le
+coût a diminué), avec la quantité de voisins améliorants et de voisins
+dégradants trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 
 \begin{figure}[h]
   \begin{tabular}{lcccl}
@@ -574,6 +583,16 @@ trouvés, accompagné du ratio voisins améliorants/voisins explorés.
 
 \subsection{Intervalles choisis en fonction du temps}
 \paragraph{}
+ De part sa nature, une stratégie \textit{First Fit} a tendance à sélectionner
+des voisinages appartenant aux intervalles les plus peuplés, bien que de petits
+intervalles soient choisis avec une certaine régularité. \textit{Best Fit} est
+plus systématique et sélectionne quasi-exclusivement des inversions de moyenne
+grande taille pendant les 2 premiers tiers de la recherche, et ne commence à
+effectuer des petits changements que lorsque l'on a optimisé la majeure partie
+du chemin. De son coté, \textit{Worst Fit} a la tendance inverse et choisi de
+manière régulière des mouvements appartenant aux plus petits intervalles dès le
+début de la recherche, avec une montée en puissance des grands intervalles passé
+le premier tiers de la recherche.
 
 \begin{center}
   \includegraphics[width=\textwidth]{images/att48-intervals-first-fit.png}
@@ -611,9 +630,6 @@ la majeure partie de l'exécution avant de croître en fin de recherche.
   \includegraphics[width=\textwidth]{images/att48-cost-worst-fit.png}
 \end{center}
 
-%TODO: 
-% commentaire intervalles
-% graphe ratio good/bad?
 
 \pagebreak
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
@@ -895,8 +911,8 @@ probabiliste et la recherche locale classique.
 \subsubsection{Problèmes potentiels}
 Trouver un bon taux d'échantillonnage pourrait s'avérer difficile. Le problème
 pourrait être résolu en déterminant le taux optimal au lancement de
-l'application. Le problème devient alors de trouver une méthode de calcul
-efficace.
+l'application. Le challenge est alors de parvenir à trouver une méthode de
+calcul efficace.
 
 
 %%%%%%%%%%%%%%%%%%%%
@@ -906,8 +922,9 @@ efficace.
 \chapter{Architecture de l'application}
 
 \paragraph{}
-  Afin d'obtenir un programme à la fois rapide et faisant usage des propriétés
-de la programmation orientée objet, le projet a été écrit en C++11.
+  Afin d'obtenir un programme à la fois rapide et tirant avantage des
+particularités de la programmation orientée objet, le projet a été écrit et
+compilé en C++11.
 
 \section{Structures de base}
 \subsection{Représentation des données}
@@ -935,22 +952,23 @@ Voir les diagrammes de classe dans les sections \textit{relation} et
 %main, parser & runner
 \paragraph{}
   Le programme s'exécute en ligne de commande avec un certain nombre d'arguments
-obligatoires, tels que le nom du fichier .tsp ou les relations de voisinage et
-stratégies à utiliser, et des arguments optionnels activant ou désactivant
-certains contrôles ou écritures de trace. Une fois tous les objets créés et
-configurés, le main passe la main à la classe \textit{Runner} (voir annexe).
+obligatoires, tels que le nom du fichier décrivant le TSP ou les relations de
+voisinage et stratégies à utiliser, et des arguments optionnels activant ou
+désactivant certains contrôles ou écritures de trace. Une fois tous les objets
+créés et configurés, le main passe la main à la classe \textit{Runner} (voir
+annexe).
 
 \subsection{Analyse Comportementale}
 %interval stuff
 \paragraph{}
   Nous utilisons 3 classes afin d'enregistrer chaque pas de l'exécution de notre
 algorithme: \textit{Action}, \textit{Interval} et \textit{IntervalManager}.
-\textit{Action} mémorise quel voisin a été choisi et avec quel gain (ou perte)
-par rapport à la solution actuelle. \textit{Interval} permet de classer ces
-actions et \textit{IntervalManager} sert de chef d'orchestre. Du fait des
-informations mises en mémoire par ces classes, les entités dédiées à la
-recherche partielle en font également usage pour déterminer la pertinence d'un
-voisinage.
+\textbf{\textit{Action}} mémorise quel voisin a été choisi et avec quel gain (ou
+perte) par rapport à la solution actuelle. \textbf{\textit{Interval}} permet de
+classer ces actions et \textbf{\textit{IntervalManager}} sert de chef
+d'orchestre. Du fait des informations mises en mémoire par ces classes, les
+entités dédiées à la recherche partielle en font également usage pour déterminer
+la pertinence d'un voisinage.
 
 \subsection{Recherche partielle}
 %choice & hook
@@ -1029,9 +1047,9 @@ et capable de tenir la charge sur de grandes instances.
   S'agissant du premier projet écrit en C++ de taille significative que j'ai eu
 l'occasion de réaliser, la première partie du projet a été marqué par une série
 de bugs qu'une plus grande familiarité avec le langage aurait pu éviter. En
-particulier, un bug sévère passé inaperçu pendant quelques semaines rendait les
-résultats alors obtenus nuls, forçant à relancer de nombreuses exécutions après
-correction.
+particulier, un bug sévère est passé inaperçu pendant quelques semaines rendait
+les résultats alors obtenus nuls, forçant à relancer de nombreuses exécutions
+après correction.
 
 \paragraph{}
   Ceci a eu des conséquences importantes sur le temps de développement, forçant
@@ -1041,13 +1059,54 @@ changement de voisinage en cours de recherche et quelques autres concepts ont d�
 
 
 \chapter*{Conclusion}
-\section*{} %conclusion / rétrospective
+%\section*{} %conclusion / rétrospective
+
+\paragraph{} %algos + pistes
+Parmi les algorithmes étudiés, \textit{Reverse} fourni les meilleurs résultats,
+sauf sur de très petites instances, où \textit{Swap} devient la méthode de
+choix. Parmi les stratégies étudiées, \textit{Worst Fit} obtient de meilleurs
+résultats que \textit{First} et \textit{Best Fit} lorsqu'elle est combinée avec
+\textit{Swap} ou \textit{Insert}, alors que \textit{Best Fit} est la stratégie
+optimale pour un voisinage type \textit{Reverse}. On peut supposer que choisir
+le moins bon améliorant pour des mouvements de petite taille permet d'éviter de
+se retrouver rapidement dans un optimum local, mais qu'utiliser la même approche
+avec un mouvement ayant plus d'impact comme l'inversion d'une section du chemin
+nous amène au contraire vers des voisinages de qualité médiocre.
+
+\paragraph{} % améliorations possibles
+Il aurait été intéressant d'essayer de combiner les différents algorithmes à
+différents stades de l'exécution, par exemple utiliser l'inversion jusqu'à ce
+que l'on obtienne des gains faible d'une solution à l'autre, puis passer à
+l'insertion ou à l'échange pour essayer de continuer à avancer. Automatiser plus
+avant la collecte et la compilation de résultats nous permettrait également de
+mesurer les effets de tel ou tel algorithme, stratégie, formule plus rapidement
+et avec plus d'aisance.
+
+\paragraph{} % dev & tech
+D'un point de vue technique, le projet est intéressant et fait bon usage de
+notion objet telles que l'héritage et le polymorphisme. Il est dommage que
+le manque de familiarité avec le langage choisi ait causé de tels
+ralentissements, mais l'expérience a été en contrepartie très formatrice. De
+plus, ce travail constitue une introduction fascinante au monde de la recherche
+informatique.
 
 
 \section*{Informations complémentaires}
-%bibliographie
-%licence
-%repo github
+
+\paragraph{}
+L'ensemble des TSP utilisés proviennent de TSPLIB,
+https://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/\\
+Ce programme est sous licence MIT et est donc libre d'utilisation, copie,
+modification, distribution, etc.
+
+\paragraph{}
+Le projet est disponible sur github.com, à l'adresse ci-dessous et inclus le
+code source, les données utilisées et une partie des données récoltées,
+le présent rapport au format .tex et les ressources qui lui sont associées,
+ainsi que les fichiers nécessaires à Netbeans IDE 8.0 pour construire ce
+projet.\\
+https://github.com/X3N0-Life-Form/Traveling-Salesman-Problem
+
 
 
 \end{document}          

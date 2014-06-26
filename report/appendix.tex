@@ -45,7 +45,40 @@ les citées ont été enregistrées, qui va être l'attribut le plus important d
 
 
 
-\chapter{Résultats d'exécution}
+\chapter{Données et Résultats d'exécution}
+
+\section{Représentation des TSP}
+
+\begin{figure}[h]
+
+NAME: burma14\\
+TYPE: TSP\\
+COMMENT: 14-Staedte in Burma (Zaw Win)\\
+DIMENSION: 14\\
+EDGE\_WEIGHT\_TYPE: GEO\\
+EDGE\_WEIGHT\_FORMAT: FUNCTION \\
+DISPLAY\_DATA\_TYPE: COORD\_DISPLAY\\
+NODE\_COORD\_SECTION\\
+\begin{tabular}{rlcr}
+ 1&  16.47&&       96.10\\
+ 2&  16.47&&       94.44\\
+ 3&  20.09&&       92.54\\
+ 4&  22.39&&       93.37\\
+ 5&  25.23&&       97.24\\
+ 6&  22.00&&       96.05\\
+ 7&  20.47&&       97.02\\
+ 8&  17.20&&       96.29\\
+ 9&  16.30&&       97.38\\
+10&  14.05&&       98.12\\
+11&  16.53&&       97.38\\
+12&  21.52&&       95.59\\
+13&  19.41&&       97.13\\
+14&  20.09&&       94.55\\
+\end{tabular}
+\\EOF
+\caption{burma14.tsp}
+\end{figure}
+
 
 \section{Résultats moyens}
 
@@ -76,7 +109,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -122,7 +155,7 @@ Fit}\\\hline
   \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \begin{center}
     \begin{tabular}{|l|r|r|r|}
       \hline
@@ -147,20 +180,55 @@ Fit}\\\hline
 
 \section{Graphes d'exécution}
 
-\begin{center}
-  \includegraphics[width=\textwidth]{images/bier127-intervals-first-fit.png}
-\end{center}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/bier127-intervals-first-fit.png}
+  \end{center}
+\end{figure}
 
-\begin{center}
-  \includegraphics[width=\textwidth]{images/bier127-intervals-best-fit.png}
-\end{center}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/bier127-intervals-best-fit.png}
+  \end{center}
+\end{figure}
 
-\begin{center}
-  \includegraphics[width=\textwidth]{images/bier127-intervals-worst-fit.png}
-\end{center}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{images/bier127-intervals-worst-fit.png}
+  \end{center}
+\end{figure}
 
 \subsection{Portée}
 
 %+extra cost & intervals
+
+\chapter{Divers}
+\section{Arguments de lancement (liste non exhaustive)}
+
+\begin{itemize}
+ \item \textbf{-file [nom de fichier]} ==\textgreater TSP à optimiser
+ \item \textbf{-maxDepth [entier]} ==\textgreater spécifie une profondeur de
+recherche maximale
+ \item \textbf{-noMaxDepth} ==\textgreater 
+ \item \textbf{-r [swap|insert|reverse]} ==\textgreater  ajoute un voisinage à
+explorer
+ \item \textbf{-s [firstFit|bestFit|worstFit]} ==\textgreater ajoute une
+stratégie à appliquer
+ \item \textbf{-o [nom de fichier|auto]} ==\textgreater spécifie un fichier de
+sortie ou laisse le programme décider d'un nom de fichier (recommandé)
+ \item \textbf{-saveIntervalData} ==\textgreater enregistre les données
+d'intervalle lors de l'exécution ; si un fichier de sortie a été spécifié, la
+trace d'exécution sera sauvée en tant que \textless nom\textgreater.csv.i
+ \item \textbf{-intervalStep [entier]} ==\textgreater spécifie une puissance de
+croissance de la taille des intervalles (4 par défaut)
+ \item \textbf{-intervalType [disjoint|joined\_at\_origin]} ==\textgreater
+spécifie le type d'intervalle à enregistrer (joined\_at\_origin recommandé)
+ \item \textbf{-sameStartingPoint} ==\textgreater utiliser le même point de
+départ pour chaque algorithme
+ \item \textbf{-doubleCheckCost} ==\textgreater force un calcul complet des
+coûts en fin d'exécution ; envoie un message d'erreur si il y a des
+irrégularités
+\end{itemize}
+
 
 \end{document}          
