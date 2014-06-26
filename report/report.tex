@@ -30,19 +30,20 @@
 \section*{Définitions}
 \begin{itemize}
  \item \textbf{Problème :} Ensemble de villes devant être parcourues.
- \item \textbf{Voisinage :} Chemin parcourant toutes les villes sans répétition.
+ \item \textbf{Voisin :} Chemin parcourant toutes les villes sans répétition.
 Solution au problème du voyageur de commerce.
  \item \textbf{Voisin améliorant :} Chemin voisin d'une solution X, dont le coût
 est inférieur au coût de X.
+ \item \textbf{Voisinage :} Ensemble des voisins d'une solution donnée, obtenu à
+travers une relation de voisinage.
  \item \textbf{Recherche locale :} Exploration exhaustive de l'ensemble des
-voisins d'une solution donnée.
- Coûteux en temps d'exécution.
+voisins d'une solution donnée. Coûteux en temps d'exécution.
  \item \textbf{Relation de voisinage :} Fonction permettant de passer d'un
 voisinage à un autre.
  \begin{itemize}
   \item \textit{\textbf{Swap :}} Échange la position de deux villes dans un
 chemin.
-  \item \textit{\textbf{Insert :}} Insert une ville avant une autre.
+  \item \textit{\textbf{Insert :}} Insère une ville avant une autre.
   \item \textit{\textbf{Reverse :}} Inverse un sous section d'un chemin.
  \end{itemize}
  \item \textbf{Stratégie de sélection :} Détermine la manière dont on choisit un
@@ -59,7 +60,7 @@ trouvé.
 \pagebreak
 \section*{Introduction}
 
-\paragraph{}
+\paragraph{} % cadre
   Le voyageur de commerce est un problème bien connu dans le milieu informatique
 : pour un ensemble de villes, minimiser la distance requise qu'un individu doit
 parcourir afin de visiter chaque ville. De nombreuses études ont été menées sur
@@ -183,7 +184,7 @@ parcourir pour un chemin donné).
 Afin d'éviter de recalculer le coût d'une solution, à chacune de ces relations
 est associé une fonction de calcul de coût potentielle. Celle-ci prend en
 paramètre les villes sur lesquels seront appliqués les déplacements, et effectue
-les calculs aux points de rupture du chemin modifié.
+les calculs uniquement aux points de rupture du chemin modifié.
 
 
 \subsection{Stratégies de sélection d'un voisinage}
@@ -192,13 +193,75 @@ les calculs aux points de rupture du chemin modifié.
   Une fois que l'on dispose d'une fonction permettant de calculer le voisinage
 d'une solution donnée, il faut déterminer une stratégie d'amélioration à
 appliquer. Nous avons retenu trois stratégies distinctes à appliquer à notre
-recherche locale : choisir le premier voisin améliorant que l'on trouve (First
-Fit), choisir le meilleur voisin améliorant après avoir parcouru l'ensemble des
-voisins possibles (Best Fit), ou bien choisir le voisin améliorant le moins
-possible la solution actuelle (Worst Fit).
+recherche locale : choisir le premier voisin améliorant que l'on trouve
+(\textit{First Fit}), choisir le meilleur voisin améliorant après avoir parcouru
+l'ensemble des voisins possibles (\textit{Best Fit}), ou bien choisir le voisin
+améliorant le moins possible la solution actuelle (\textit{Worst Fit}).
 
-% algos d'exemples
+\begin{algorithm}[H]
+  \begin{algorithmic}
+    \Require $origine$ : solution de départ
+    \Require $solution$ : solution courante
+    \Require $candidate$ : solution candidate
+    \Require $optimale$ : solution optimale
+    \If{$candidate.cout < solution.cout$}
+      \State $optimale \gets candidate$
+      \State \Return Solution trouvée
+    \Else
+      \State \Return Continuer recherche
+    \EndIf
+    \Ensure $optimale \leq origine$
+  \end{algorithmic}
+  \caption{Stratégie First Fit}
+\end{algorithm}
 
+\begin{algorithm}[H]
+  \begin{algorithmic}
+    \Require $origine$ : solution de départ
+    \Require $solution$ : solution courante
+    \Require $candidate$ : solution candidate
+    \Require $optimale$ : solution optimale
+    \Require $rechercheTerminee$ : indique si on a parcouru l'ensemble du
+voisinage
+    \If{$candidate.cout < solution.cout$}
+      \If{$candidate.cout < optimale.cout$}
+	\Comment On veut un meilleur coût.
+	\State $optimale \gets candidate$
+      \EndIf
+    \EndIf
+    \If{$rechercheTerminee$}
+      \State \Return Solution trouvée
+    \Else
+      \State \Return Continuer recherche
+    \EndIf
+    \Ensure $optimale \leq origine$
+  \end{algorithmic}
+  \caption{Stratégie Best Fit}
+\end{algorithm}
+
+\begin{algorithm}[H]
+  \begin{algorithmic}
+    \Require $origine$ : solution de départ
+    \Require $solution$ : solution courante
+    \Require $candidate$ : solution candidate
+    \Require $optimale$ : solution optimale
+    \Require $rechercheTerminee$ : indique si on a parcouru l'ensemble du
+voisinage
+    \If{$candidate.cout < solution.cout$}
+      \If{$candidate.cout > optimale.cout$}
+      \Comment On veut un moins bon coût améliorant.
+	\State $optimale \gets candidate$
+      \EndIf
+    \EndIf
+    \If{$rechercheTerminee$}
+      \State \Return Solution trouvée
+    \Else
+      \State \Return Continuer recherche
+    \EndIf
+    \Ensure $optimale \leq origine$
+  \end{algorithmic}
+  \caption{Stratégie Worst Fit}
+\end{algorithm}
 
 \subsection{Lancement}
 
@@ -548,10 +611,11 @@ la majeure partie de l'exécution avant de croître en fin de recherche.
   \includegraphics[width=\textwidth]{images/att48-cost-worst-fit.png}
 \end{center}
 
-%TODO: graphes pour ali535 \& bier127 ds annexe
+%TODO: 
 % commentaire intervalles
 % graphe ratio good/bad?
 
+\pagebreak
 \section{Espérance d'amélioration - Implémentation d'un système de décision}
 
 \paragraph{}
