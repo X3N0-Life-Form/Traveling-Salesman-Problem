@@ -12,6 +12,8 @@ report.txt
 *.backup
 *.pdf
 *.tar.gz
+*.nav
+*.snm
 
 data/results/
 data/result_mashup.txt
