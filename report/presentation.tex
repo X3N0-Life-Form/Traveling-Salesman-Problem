@@ -2,7 +2,11 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{default}
-
+\usepackage{graphicx}
+\usepackage[francais]{babel}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{mathtools}
 
 % Title Page
 \title{Relations de voisinage et stratégies d'exploration}
@@ -14,17 +18,16 @@
 
 \frame{\titlepage}
 
-\begin{frame}
-  \frametitle{Étude de permutations et stratégies}
-  
-  
-\end{frame}
-
 
 \begin{frame}
   \frametitle{Étude de permutations et stratégies}
   \framesubtitle{Cadre - Recherche locale}
-  definition (+ algo?)
+
+  % à l'oral: définir voisinage
+  \begin{definition}
+    Recherche d'une solution localement optimale (solution n'ayant pas de voisin
+immédiatement améliorant) dans un espace de recherche donné.
+  \end{definition}
 
   
 \end{frame}
@@ -33,11 +36,16 @@
 \begin{frame}
   \frametitle{Étude de permutations et stratégies}
   \framesubtitle{Voisinage}
+  
   \begin{definition}
-    def voisinage \& relation
+    Le \textbf{voisinage} d'une solution est l'ensemble des solutions se
+trouvant à une distance de 1 permutation.
   \end{definition}
 
-  
+  \begin{definition}
+    Une \textbf{relation de voisinage} est une opération appliquée à une
+solution (permutation) permettant d'obtenir un voisinage de cette solution.
+  \end{definition}
 \end{frame}
 
 
@@ -45,17 +53,31 @@
   \frametitle{Étude de permutations et stratégies}
   \framesubtitle{Stratégies d'exploration}
   \begin{definition}
-    définition stratégie
+    On appelle \textbf{stratégie} le critère d'amélioration de notre recherche
+locale.
   \end{definition}
 
   
+  Notre système distingue trois types de stratégies:
+  \begin{itemize}
+   \item \textbf{First Fit} : Choisir le premier améliorant trouvé.
+   \item \textbf{Best Fit} : Choisir le meilleur améliorant.
+   \item \textbf{Worst Fit} : Choisir le pire améliorant.
+  \end{itemize}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Étude de permutations et stratégies}
   \framesubtitle{Cadre - Problème du voyageur de commerce}
-  présentation du problème \& explication pourquoi c'est bien
+  \begin{definition}
+    \textbf{Problème du voyageur de commerce} : pour un ensemble de villes
+séparées par des distances données, trouver le chemin le plus court pour
+parcourir toutes ces villes.
+  \end{definition}
+  %présentation du problème \& explication pourquoi c'est bien
+  $==>$ Problème d'optimisation bien connu et étudié.
   
 \end{frame}
 
@@ -72,6 +94,9 @@
   \frametitle{Phase 1 - Implémentation}
   \framesubtitle{Lancement et mesures préliminaires}
   
+  \begin{center}
+  \includegraphics[width=0.6\textwidth,height=0.75\textheight]{images/exec-phase-1.png}
+  \end{center}
   
 \end{frame}
 
@@ -80,6 +105,9 @@
 \begin{frame}
   \frametitle{Phase 2 - Collecte d'information}
   
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight]{images/exec-phase-2.png}
+  \end{center}
   
 \end{frame}
 
@@ -88,6 +116,19 @@
   \frametitle{Phase 2 - Collecte d'information}
   \framesubtitle{Analyse}
   
+  \begin{itemize}
+    \item \textbf{Relations de voisinage} :
+      \begin{itemize}
+	\item Inversion en tête
+	\item Échange en dernière position
+      \end{itemize}
+    \item \textbf{Stratégies d'exploration} :
+      \begin{itemize}
+	\item Choisir le moins bon améliorant pour des voisinages d'échange et
+d'insertion.
+	\item Choisir le meilleur améliorant pour un voisinage d'inversion.
+      \end{itemize}
+  \end{itemize}
   
 \end{frame}
 
@@ -95,7 +136,22 @@
 \begin{frame}
   \frametitle{Phase 3 - Amélioration du système}
   
-  ...
+  
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Conclusion}
+  
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Remerciements}
+  
+  
 \end{frame}
 
 
