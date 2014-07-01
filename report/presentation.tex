@@ -25,11 +25,14 @@
 
   % à l'oral: définir voisinage
   \begin{definition}
-    Recherche d'une solution localement optimale (solution n'ayant pas de voisin
-immédiatement améliorant) dans un espace de recherche donné.
+    \textbf{Recherche locale} : A partir d'une solution initiale, recherche
+d'une solution voisine de meilleure qualité jusqu'à atteindre un optimum local.
   \end{definition}
 
-  
+  \begin{definition}
+    \textbf{Optimum local} : Solution n'ayant pas de voisin améliorant.
+  \end{definition}
+
 \end{frame}
 
 
@@ -48,6 +51,33 @@ solution (permutation) permettant d'obtenir un voisinage de cette solution.
   \end{definition}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Étude de permutations et stratégies}
+  \framesubtitle{Cadre - Problème du voyageur de commerce}
+  \begin{definition}
+    \textbf{Problème du voyageur de commerce} : pour un ensemble de villes
+séparées par des distances données, trouver le chemin le plus court pour
+parcourir toutes ces villes.
+  \end{definition}
+  %présentation du problème \& explication pourquoi c'est bien
+  $==>$ Problème d'optimisation bien connu et étudié.
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Étude de permutations et stratégies}
+  \framesubtitle{Relations de voisinage}
+  
+  Notre système distingue trois types de relations:
+  \begin{itemize}
+   \item \textbf{Swap} : Échanger la position de deux villes.
+   \item \textbf{Insert} : Insérer une ville avant une autre.
+   \item \textbf{Reverse} : Inverser un sous-chemin.
+  \end{itemize}
+
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Étude de permutations et stratégies}
@@ -65,20 +95,6 @@ locale.
    \item \textbf{Worst Fit} : Choisir le pire améliorant.
   \end{itemize}
 
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Étude de permutations et stratégies}
-  \framesubtitle{Cadre - Problème du voyageur de commerce}
-  \begin{definition}
-    \textbf{Problème du voyageur de commerce} : pour un ensemble de villes
-séparées par des distances données, trouver le chemin le plus court pour
-parcourir toutes ces villes.
-  \end{definition}
-  %présentation du problème \& explication pourquoi c'est bien
-  $==>$ Problème d'optimisation bien connu et étudié.
-  
 \end{frame}
 
 
@@ -103,20 +119,8 @@ parcourir toutes ces villes.
   
 \end{frame}
 
-
-
 \begin{frame}
-  \frametitle{Phase 2 - Collecte d'information}
-  
-  \begin{center}
-    \includegraphics[width=\textwidth,height=0.8\textheight]{images/exec-phase-2.png}
-  \end{center}
-  
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Phase 2 - Collecte d'information}
+  \frametitle{Phase 1 - Implémentation}
   \framesubtitle{Analyse}
   
   \begin{itemize}
@@ -135,11 +139,48 @@ d'insertion.
   
 \end{frame}
 
+\begin{frame}
+  \frametitle{Phase 2 - Collecte d'information}
+  
+  \begin{center}
+    \includegraphics[width=\textwidth,height=0.8\textheight]{images/exec-phase-2.png}
+  \end{center}
+  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Phase 2 - Collecte d'information}
+  \framesubtitle{Analyse}
+  
+  Voisinage retenu : \textbf{Reverse}
+  
+  Comportement en cours d'exécution :
+  \begin{itemize}
+    \item \textbf{First Fit} : Mouvements erratiques.
+    \item \textbf{Best Fit} : De grands mouvements jusqu'à mi-exécution.
+    \item \textbf{Worst Fit} : De petits mouvements dès le début.
+  \end{itemize}
+  
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Phase 3 - Amélioration du système}
+  \framesubtitle{Pistes considérées}
   
-  
+  \begin{itemize}
+    \item Espérance d'amélioration
+    \begin{itemize}
+      \item Recherche probabiliste
+    \end{itemize}
+    \item Relations / Stratégies dynamiques
+    \begin{itemize}
+      \item Changement d'approche en cours de recherche
+    \end{itemize}
+    \item Algorithmes génétiques
+  \end{itemize}
+
 \end{frame}
 
 
@@ -147,14 +188,25 @@ d'insertion.
 \begin{frame}
   \frametitle{Conclusion}
   
-  
+  \begin{itemize}
+    \item Des résultats intéressants pour les voisinages et stratégies étudiées.
+    \item Portée réduite par rapport aux prévisions initiales ; laisse sur sa
+faim.
+    \item Malgré les complications en première partie, projet solide d'un
+point de vue technique.
+    \item Approche recherche intéressante.
+  \end{itemize}
+
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Remerciements}
   
-  
+  Adrien Goëffon, pour avoir aiguillé l'étude de manière efficace et fait
+preuve de patience.
+
+  Sara et les étudiants de M2 recherche.
 \end{frame}
 
 
